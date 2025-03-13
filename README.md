@@ -1,3 +1,1 @@
 # UniHi!
-deneme
-gluglu
