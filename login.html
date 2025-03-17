@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniHi - Giriş & Kayıt</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #FF69B6 , #8B0000);
+        }
+        .logo {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen relative">
+    <img src="photos/unihilogo.png" alt="Logo" class="logo" />
+
+    <div class="text-center text-white">
+        <h1 class="text-5xl font-bold mb-6">UniHi - Your University Guide</h1>
+
+        <!-- Giriş Formu -->
+        <div id="login-form" class="bg-white p-6 max-w-lg mx-auto rounded-2xl shadow-2xl">
+            <p class="text-gray-700 text-lg mb-4">Giriş Yap</p>
+            <input type="text" id="login-username" placeholder="Kullanıcı Adı" class="w-full mb-2 p-2 border rounded text-black" />
+            <input type="password" id="login-password" placeholder="Şifre" class="w-full mb-4 p-2 border rounded text-black" />
+            <div class="flex justify-center space-x-4">
+                <button onclick="login()" class="bg-blue-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-blue-600">Giriş Yap</button>
+                <button onclick="toggleForms()" class="bg-green-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-green-600">Kayıt Ol</button>
+            </div>
+            <p id="login-message" class="text-red-500 mt-2"></p>
+        </div>
+
+        <!-- Kayıt Ol Formu -->
+        <div id="register-form" class="bg-white p-6 max-w-lg mx-auto rounded-2xl shadow-2xl hidden">
+            <p class="text-gray-700 text-lg mb-4">Kayıt Ol</p>
+            <input type="text" id="full-name" placeholder="Ad Soyad" class="w-full mb-2 p-2 border rounded text-black" />
+            <input type="text" id="faculty" placeholder="Fakülte" class="w-full mb-2 p-2 border rounded text-black" />
+            <input type="text" id="department" placeholder="Bölüm" class="w-full mb-2 p-2 border rounded text-black" />
+            <input type="text" id="student-number" placeholder="Öğrenci No" class="w-full mb-2 p-2 border rounded text-black" />
+            <input type="text" id="register-username" placeholder="Kullanıcı Adı" class="w-full mb-2 p-2 border rounded text-black" />
+            <input type="password" id="register-password" placeholder="Şifre" class="w-full mb-4 p-2 border rounded text-black" />
+            <div class="flex justify-center space-x-4">
+                <button onclick="register()" class="bg-green-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-green-600">Kaydı Tamamla</button>
+                <button onclick="toggleForms()" class="bg-gray-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-gray-600">Geri Dön</button>
+            </div>
+            <p id="register-message" class="text-green-500 mt-2"></p>
+        </div>
+    </div>
+
+    <script>
+        function toggleForms() {
+            document.getElementById("login-form").classList.toggle("hidden");
+            document.getElementById("register-form").classList.toggle("hidden");
+        }
+
+        function register() {
+            const fullName = document.getElementById("full-name").value;
+            const faculty = document.getElementById("faculty").value;
+            const department = document.getElementById("department").value;
+            const studentNumber = document.getElementById("student-number").value;
+            const username = document.getElementById("register-username").value;
+            const password = document.getElementById("register-password").value;
+            const message = document.getElementById("register-message");
+
+            if (!fullName || !faculty || !department || !studentNumber || !username || !password) {
+                message.textContent = "Tüm alanları doldurun!";
+                message.classList.add("text-red-500");
+                return;
+            }
+
+            // Kullanıcı bilgilerini Local Storage'a kaydet
+            localStorage.setItem(username, JSON.stringify({ fullName, faculty, department, studentNumber, password }));
+
+            message.textContent = "Kayıt başarılı! Giriş yapabilirsiniz.";
+            message.classList.remove("text-red-500");
+            message.classList.add("text-green-500");
+
+            setTimeout(toggleForms, 1500); // 1.5 saniye sonra giriş ekranına döndür
+        }
+
+        function login() {
+            const username = document.getElementById("login-username").value;
+            const password = document.getElementById("login-password").value;
+            const message = document.getElementById("login-message");
+
+            const userData = localStorage.getItem(username);
+            if (!userData) {
+                message.textContent = "Böyle bir kullanıcı bulunamadı!";
+                return;
+            }
+
+            const user = JSON.parse(userData);
+            if (user.password === password) {
+                message.textContent = "Giriş başarılı!";
+                message.classList.remove("text-red-500");
+                message.classList.add("text-green-500");
+
+                // Kullanıcıyı modüller sayfasına yönlendir
+                setTimeout(() => window.location.href = "modules.html", 1500);
+            } else {
+                message.textContent = "Şifre hatalı!";
+            }
+        }
+    </script>
+</body>
+</html>

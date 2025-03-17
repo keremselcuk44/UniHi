@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniHi - Ana Sayfa</title>
+    <link rel="icon" href="photos/logo_orj.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #6a0d45, #9b1d48, #c32f52);
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-red min-h-screen flex flex-col">
+
+    <!-- Üst Menü -->
+    <header class="bg-red shadow-md py-4 px-6 flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+            <button id="menu-toggle" class="text-2xl text-white">&#9776;</button>
+            <img src="photos/logo_orj.png" alt="UniHi Logo" class="w-12">
+        </div>
+    </header>
+    
+    <!-- Yan Menü -->
+    <nav id="sidebar" class="fixed left-0 top-0 h-full w-64 bg-white shadow-lg sidebar">
+        <ul class="mt-10 space-y-4 px-6">
+            <li><a href="#" class="text-lg text-gray-700 block">Fakülteler</a></li>
+            <li><a href="#" class="text-lg text-gray-700 block">Yurtlar</a></li>
+        </ul>
+    </nav>
+
+    <!-- Kayıt Modalı -->
+    <div id="register-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 class="text-2xl font-bold mb-4">Üye Ol</h2>
+            <input type="text" id="full-name" placeholder="İsim Soyisim" class="w-full mb-2 p-2 border rounded" />
+            <input type="text" id="faculty" placeholder="Fakülte" class="w-full mb-2 p-2 border rounded" />
+            <input type="text" id="student-no" placeholder="Öğrenci No" class="w-full mb-2 p-2 border rounded" />
+            <input type="text" id="reg-username" placeholder="Kullanıcı Adı" class="w-full mb-2 p-2 border rounded" />
+            <input type="password" id="reg-password" placeholder="Şifre" class="w-full mb-4 p-2 border rounded" />
+            <button id="confirm-register" class="bg-green-500 text-white px-4 py-2 rounded-md w-full">Kayıt Ol</button>
+        </div>
+    </div>
+    
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const registerModal = document.getElementById('register-modal');
+        const confirmRegister = document.getElementById('confirm-register');
+
+        // Menü açma-kapama işlemi
+        menuToggle.addEventListener('click', function () {
+            sidebar.classList.toggle('open');
+        });
+
+        // Sayfanın herhangi bir yerine tıklanınca menüyü kapat
+        document.addEventListener('click', function (event) {
+            if (!sidebar.contains(event.target) && event.target !== menuToggle) {
+                sidebar.classList.remove('open');
+            }
+            if (event.target === registerModal) registerModal.classList.add('hidden');
+        });
+
+        confirmRegister.addEventListener('click', function () {
+            alert('Kayıt başarılı!');
+            registerModal.classList.add('hidden');
+        });
+
+    </script>
+</body>
+</html>
