@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniHi - Ana Sayfa</title>
+    <link rel="icon" href="fotolar/unihilogo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
+        }
+        .menu-item {
+            position: relative;
+            padding: 10px 15px;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .menu-item:hover {
+            background: rgb(0, 0, 0);
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            min-width: 200px;
+        }
+        .dropdown a {
+            display: block;
+            padding: 10px;
+            color: black;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .dropdown a:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .menu-item:hover .dropdown {
+            display: block;
+        }
+        .slider {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        .slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .slider img.active {
+            display: block;
+        }
+        /* Profil resmi */
+        .profile-menu {
+            position: relative;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .profile-menu img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+        }
+        #mectrl_headerPicture {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: url('fotolar/profil.png') center/cover; /* Varsayılan profil fotoğrafı */
+        }
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            min-width: 150px;
+            z-index: 10;
+        }
+        .profile-dropdown a {
+            display: block;
+            padding: 10px;
+            color: black;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .profile-dropdown a:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        .profile-menu:hover .profile-dropdown {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-red min-h-screen flex flex-col">
+    
+    <!-- Üst Menü -->
+    <header class="bg-red shadow-md py-4 px-6 flex justify-between items-center">
+        <div>
+            <img src="fotolar/unihilogo.png" alt="UniHi Logo" class="w-16">
+        </div>
+        <div class="flex space-x-6 items-center">
+            <div class="menu-item">FAKÜLTELER
+                <div class="dropdown">
+                    <a href="#">Teknoloji Fakültesi</a>
+                    <a href="#">Mühendislik Fakültesi</a>
+                </div>
+            </div>
+            <div class="menu-item">ÜNİVERSİTE EVİ</div>
+            <div class="menu-item">YURTLAR</div>
+            <div class="menu-item">ETKİNLİKLER</div>
+            <div class="menu-item">DENEME 1</div>
+            
+            <!-- Profil Menüsü -->
+            <div class="profile-menu">
+                <div id="mectrl_headerPicture"></div>
+                <div><img src="fotolar/jonsnow.png" alt=""></div>
+                <div class="profile-dropdown">
+                    <a href="#">Ayarlar</a>
+                    <a href="#">Çıkış Yap</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Alt Panel -->
+    <section class="flex mt-10 px-6">
+        <div class="w-2/3">
+            <p class="text-white text-lg">FIRAT'A HOŞ GELDİN</p>
+        </div>
+        <div class="w-1/3 slider">
+            <img src="fotolar/unnamed.png" class="active">
+            <img src="fotolar/unnamed (1).png">
+            <img src="fotolar/unnamed (2).png">
+            <img src="fotolar/unnamed (3).png">
+            <img src="fotolar/unnamed (4).png">
+        </div>
+    </section>
+    
+    <script>
+        let index = 0;
+        const images = document.querySelectorAll(".slider img");
+        function changeImage() {
+            images[index].classList.remove("active");
+            index = (index + 1) % images.length;
+            images[index].classList.add("active");
+        }
+        setInterval(changeImage, 3000);
+    </script>
+</body>
+</html>
