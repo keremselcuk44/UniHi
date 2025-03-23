@@ -3,53 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etkinlikler-UniHi!</title>
+    <title>Harput Kalesi-UniHi!</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .image-gallery {
-            display: flex; /* Flexbox kullanarak yan yana dizme */
-            justify-content: space-between; /* Resimler arasında eşit boşluk bırakır */
-            gap: 20px; /* Resimler arasındaki mesafeyi ayarlar */
+        /* Genel Ayarlar */
+        body {
+            background: linear-gradient(to right, #6a0d45, #9b1d48, #c32f52);
+            color: white;
+            padding-top: 70px;
         }
 
-        .image-container {
-            flex: 1; /* Her bir resim kutusuna eşit alan verir */
-            text-align: center; /* Resimleri ortalar */
-        }
-
-        .image {
-            width: 100%; /* Resimleri container'a göre %100 genişlikte yapar */
-            height: auto; /* Yüksekliği otomatik olarak ayarlayıp orantıyı korur */
-            border-radius: 8px; /* Resimlere yumuşak köşeler ekler */
-        }
-
-        header{
+        /* Header Stilleri */
+        header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #9b1d48;
+            background: linear-gradient(to left, #6a0d45, #9b1d48, #c32f52);
             z-index: 1000;
             padding: 10px 20px;
-            background: linear-gradient(to left, #6a0d45, #9b1d48, #c32f52);
         }
-        body {
-            background: linear-gradient(to right, #6a0d45, #9b1d48, #c32f52);
-            color: white;
-            padding-top: 60px;
+
+        header a {
+            padding: 5px; /* Normalde ne ise hover'da da o kalacak */
+            transition: background-color 0.3s;
+            border-radius: 8px;
         }
-        .sidebar {
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
+
+        header a:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            /* padding KALDIRILDI veya değişmedi */
         }
-        .sidebar.open {
-            transform: translateX(0);
-        }
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
+        /* Dropdown */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -57,14 +44,16 @@
             min-width: 160px;
             box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
             z-index: 1000;
+            border-radius: 8px;
+            overflow: hidden;
         }
+
         .dropdown:hover .dropdown-content {
             display: block;
         }
-        .profile-dropdown {
-            position: relative;
-            display: inline-block;
-        }
+
+        /* Profil Dropdown */
+
 
         .profile-menu {
             display: none;
@@ -92,18 +81,73 @@
         .profile-menu a:hover {
             background-color: #f0f0f0;
         }
+
+        /* Etkinlik ve Profil Hover Arka Plan Karartma */
+        .hover-dark:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        /* Resim Galerisi */
+        .image-gallery {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .image-container {
+            flex: 1;
+            text-align: center;
+        }
+
+        .image {
+            width: 4000px;
+            height: 250px;
+            border-radius: 8px;
+            cursor: pointer;
+            object-fit: cover;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 8px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
 
-    <header class="bg-red shadow-md py-4 px-6 flex justify-between items-center">
-        <div class="flex items-center space-x-4">
+    <header class="shadow-md py-4 px-6 flex justify-between items-center">
+        <div class="flex items-center space-x-6">
             <a href="modules.html"><img src="photos/unihilogo.png" alt="UniHi Logo" class="w-12"></a>
-            <a href=""><h1 class="text-2xl font-bold">Fakülteler</h1></a>
-            <a href=""><h1 class="text-2xl font-bold">Üniversite Evi</h1></a>
-            <a href=""><h1 class="text-2xl font-bold">Yurtlar</h1></a>
+            <a href="#" class="text-2xl font-bold hover-dark">Fakülteler</a>
+            <a href="#" class="text-2xl font-bold hover-dark">Üniversite Evi</a>
+            <a href="#" class="text-2xl font-bold hover-dark">Yurtlar</a>
+            
             <div class="dropdown">
-                <a href="etkinlik.html" class="text-2xl font-bold">Etkinlikler</a>
+                <a href="etkinlik.html" class="text-2xl font-bold hover-dark">Etkinlikler</a>
                 <div class="dropdown-content p-2">
                     <a href="gezi.html" class="block px-4 py-2 text-gray-700">Gezi</a>
                     <a href="#" class="block px-4 py-2 text-gray-700">Söyleşiler</a>
@@ -111,10 +155,11 @@
                 </div>
             </div>
         </div>
+        
         <div class="profile-dropdown">
-            <div class="flex items-center space-x-2 cursor-pointer">
+            <div class="flex items-center space-x-2 cursor-pointer p-2 hover-dark rounded-lg">
                 <span class="text-xl font-bold">Gergin Görünüşlü Adam</span>
-                <img src="photos/Turizm/gergingorunusluadam.jpg" alt="Profil" class="w-10 h-10 rounded-full">
+                <img src="photos/Turizm/gergingorunusluadam.jpg" alt="Profil" class="w-10 h-10 rounded-full" onclick="openModal(this)">
             </div>
             <div class="profile-menu">
                 <a href="#">Ayarlar</a>
@@ -126,7 +171,9 @@
     <main class="p-6">
         <section id="tarihce" class="mb-6">
             <h2 class="text-3xl font-bold">Harput Kalesi'nin Tarihi:</h2>
-            <p>Harput Kalesi, Elazığ il sınırlarında yer alan ve şehri yüksekten görebileceğiniz tarihi bir yapıdır. Harput Kalesi, MÖ 8. yüzyıldan günümüze kadar farklı medeniyetler tarafından kullanılmıştır ve bu durum, kalenin tarih boyunca birçok farklı kültür ve medeniyet tarafından şekillendirilmesine olanak sağlamıştır.</p>
+            <p>Harput Kalesi, Elazığ il sınırlarında yer alan ve şehri yüksekten görebileceğiniz tarihi bir yapıdır. 
+                Harput Kalesi, MÖ 8. yüzyıldan günümüze kadar farklı medeniyetler tarafından kullanılmıştır ve bu durum, 
+                kalenin tarih boyunca birçok farklı kültür ve medeniyet tarafından şekillendirilmesine olanak sağlamıştır.</p>
         </section>
         <section id="yonetim" class="mb-6">
             <h2 class="text-3xl font-bold">Tarih Boyunca Kimler Yönetti?</h2>
@@ -139,7 +186,7 @@
             </ul>
         </section>
         <section id="yapilar" class="mb-6">
-            <h2 class="text-3xl font-bold">Harput Kalesi'nde Bulunan Yapılar</h2>
+            <h2 class="text-3xl font-bold">Harput Kalesi'nde Bulunan Yapılar:</h2>
             <ul>
                 <li><strong>Kale Sur ve Kapıları:</strong> Harput Kalesi, dik kayalıklar üzerine inşa edilmiştir ve sağlam surları ile ünlüdür.</li>
                 <li><strong>Saray ve Zindanlar:</strong> Kalenin içinde bazı saray kalıntıları ve zindanlar da bulunmaktadır.</li>
@@ -148,27 +195,43 @@
             </ul>
         </section>
         <section id="fotolar" class="mb-6">
-            <h2 class="text-3xl font-bold">Harput Kalesi'nin Fotoğrafları:</h2>
+            <h2 class="text-3xl font-bold">Harput Kalesi'nden Bazı Fotoğraflar:</h2>
+            <br>
             <div class="image-gallery">
                 <div class="image-container">
-                    <img src="photos/Turizm/harput.jpg" class="image" alt="Harput Kale Fotoğraf 1">
+                    <img src="photos/Turizm/harput.jpg" class="image" alt="Harput Kale Fotoğraf 1" onclick="openModal(this)">
                 </div>
                 <div class="image-container">
-                    <img src="photos/Turizm/harput2.jpg" class="image" alt="Harput Kale Fotoğraf 2">
+                    <img src="photos/Turizm/harput2.jpg" class="image" alt="Harput Kale Fotoğraf 2" onclick="openModal(this)">
                 </div>
                 <div class="image-container">
-                    <img src="photos/Turizm/harput3.jpg" class="image" alt="Harput Kale Fotoğraf 3">
+                    <img src="photos/Turizm/harput3.jpg" class="image" alt="Harput Kale Fotoğraf 3" onclick="openModal(this)">
                 </div>
             </div>
         </section>
     </main>
-    
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
     <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const sidebar = document.getElementById('sidebar');
-        menuToggle.addEventListener('click', function () {
-            sidebar.classList.toggle('open');
+        function openModal(imgElement) {
+            var modal = document.getElementById("imageModal");
+            var modalImg = document.getElementById("modalImage");
+            modal.style.display = "flex";
+            modalImg.src = imgElement.src;
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+        document.getElementById("imageModal").addEventListener("click", function(event) {
+            if (event.target.id === "imageModal") { 
+                closeModal(); 
+            }
         });
     </script>
+    
 </body>
 </html>
