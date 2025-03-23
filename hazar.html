@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harput Kalesi-UniHi!</title>
+    <title>Hazar Gölü-UniHi!</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -99,12 +99,14 @@
         .image-container {
             flex: 1;
             text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 8px;
         }
 
         .image {
             width: 4000px;
             height: 250px;
-            border-radius: 8px;
             cursor: pointer;
             object-fit: cover;
         }
@@ -138,7 +140,6 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
-
     <header class="shadow-md py-4 px-6 flex justify-between items-center">
         <div class="flex items-center space-x-6">
             <a href="modules.html"><img src="photos/unihilogo.png" alt="UniHi Logo" class="w-12"></a>
@@ -159,53 +160,54 @@
         <div class="profile-dropdown">
             <div class="flex items-center space-x-2 cursor-pointer p-2 hover-dark rounded-lg">
                 <span class="text-xl font-bold">Gergin Görünüşlü Adam</span>
-                <img src="photos/Turizm/gergingorunusluadam.jpg" alt="Profil" class="w-10 h-10 rounded-full" onclick="openModal(this)">
+                <img src="photos/Turizm/gergingorunusluadam.jpg" alt="Profil" class="w-10 h-10 rounded-full">
             </div>
             <div class="profile-menu">
                 <a href="#">Ayarlar</a>
                 <a href="#">Çıkış Yap</a>
             </div>
         </div>
-    </header>
-       
+    </header>    
     <main class="p-6">
-        <section id="tarihce" class="mb-6">
-            <h2 class="text-3xl font-bold">Harput Kalesi'nin Tarihi:</h2>
-            <p>Harput Kalesi, Elazığ il sınırlarında yer alan ve şehri yüksekten görebileceğiniz tarihi bir yapıdır. 
-                Harput Kalesi, MÖ 8. yüzyıldan günümüze kadar farklı medeniyetler tarafından kullanılmıştır ve bu durum, 
-                kalenin tarih boyunca birçok farklı kültür ve medeniyet tarafından şekillendirilmesine olanak sağlamıştır.</p>
+        <section id="tarihi">
+            <h2 class="text-3xl font-bold">Hazar Gölü'nün Tarihi:</h2>
+            <p>Hazar Gölü, ismini bölgedeki Hazar köyünden alır ve bölgeye adını veren bu köyün de bulunduğu alanda tarihi ve kültürel zenginlikler
+                 bulunmaktadır. Göl çevresinde yapılan kazılarda, bölgedeki eski yerleşimlere ve kültürlere ait izlere rastlanmıştır. Antik 
+                 dönemlere kadar uzanan tarihi süreç, gölü çevreleyen yerleşim yerlerinin sürekli bir yerleşim yeri olarak kullanıldığını gösterir.</p>
         </section>
-        <section id="yonetim" class="mb-6">
-            <h2 class="text-3xl font-bold">Tarih Boyunca Kimler Yönetti?</h2>
+        <section id="yonetim">
+            <h2 class="text-3xl font-bold">Hazar Gölü'nü Kimler Yönetti?</h2>
             <ul>
-                <li><strong>Urartular (MÖ 9. – 6. yüzyıl):</strong> Harput, ilk olarak Urartular tarafından surlarla çevrilmiş ve bölgenin savunma amaçlı kullanıldığı bir kale olarak inşa edilmiştir.</li>
-                <li><strong>Asurlar (MÖ 7. yüzyıl):</strong> Urartular’ın yıkılmasının ardından, Asurlar da Harput’u ele geçirmiş ve kale burada askeri bir üs olarak kullanılmıştır.</li>
-                <li><strong>Roma ve Bizans Dönemi (M.S. 1. – 11. yüzyıl):</strong> Harput, Roma ve Bizans İmparatorlukları döneminde stratejik bir kale olarak önemli bir yerleşim alanı olmuştur.</li>
-                <li><strong>Selçuklular (11. yüzyıl):</strong> Selçuklular, bölgeye geldiklerinde Harput Kalesi’ni yeniden güçlendirmişlerdir.</li>
-                <li><strong>Osmanlı Dönemi (15. yüzyıl – 19. yüzyıl):</strong> Osmanlı İmparatorluğu döneminde, Harput Kalesi önemli bir askeri ve idari merkez olmaya devam etmiştir.</li>
+                <li><strong>Urartular (MÖ 9. – 6. yüzyıl):</strong> Elazığ ve çevresini kapsayan bölgeyi yönetmiş ve Hazar Gölü'nün bulunduğu 
+                bölgeyi savunma amaçlı kullanmışlardır. Urartular döneminde pek çok kale ve su depoları yapılmıştır.</li>
+                <li><strong>Asurlar (MÖ 7. – 6. yüzyıl):</strong> Urartular’ın çöküşünün ardından, Asur İmparatorluğu bölgeyi ele geçirmiştir. 
+                Hazar Gölü çevresi, Asurlar için stratejik bir alan olmuştur.</li>
+                <li><strong>Persler (MÖ 6. – 4. yüzyıl):</strong> Büyük Kiros’un liderliğinde bölgeyi ele geçirerek Hazar Gölü’nün de dahil olduğu 
+                topraklarda hüküm sürmüşlerdir. Persler, bölgedeki Urartu ve Asur miraslarından yararlanmışlardır.</li>
+                <li><strong>Makedonya (MÖ 4. yüzyıl):</strong> Büyük İskender'in fetihleri sırasında Hazar Gölü çevresi, Makedon İmparatorluğu’nun 
+                sınırları içine girmiştir. Bu dönemde bölge, İskender’in genişleme stratejileri doğrultusunda yönetilmiştir.</li>
+                <li><strong>Roma İmparatorluğu (MÖ 1. yüzyıl – 5. yüzyıl):</strong> Hazar Gölü’nün bulunduğu bölgeyi de kapsayan geniş topraklara 
+                hükmetmiştir. Bu dönemde bölge, Roma İmparatorluğu’nun güney sınırlarını oluşturmuştur.</li>
+                <li><strong>Selçuklular (11. yüzyıl):</strong> Büyük Selçuklu İmparatorluğu'nun Anadolu’ya girmesiyle, Elazığ ve çevresi 
+                Selçuklular'ın egemenliğine girmiştir. Hazar Gölü çevresi, Selçuklular için stratejik bir bölge olmuştur.</li>
+                <li><strong>Osmanlı İmparatorluğu (15. yüzyıl – 19. yüzyıl):</strong> Osmanlı İmparatorluğu, Hazar Gölü’nün bulunduğu bölgeyi 
+                16. yüzyılda tamamen egemenliği altına almış ve bölgeyi Osmanlı İmparatorluğu’nun Erzincan eyaletine bağlı olarak yönetmiştir.</li>
+                <li><strong>Cumhuriyet Dönemi (1923 – günümüz):</strong> Türkiye Cumhuriyeti’nin kuruluşundan sonra, Hazar Gölü ve çevresi Elazığ 
+                il sınırları içinde yer almış ve modern Türkiye’nin yönetim yapısına dahil edilmiştir.</li>
             </ul>
         </section>
-        <section id="yapilar" class="mb-6">
-            <h2 class="text-3xl font-bold">Harput Kalesi'nde Bulunan Yapılar:</h2>
-            <ul>
-                <li><strong>Kale Sur ve Kapıları:</strong> Harput Kalesi, dik kayalıklar üzerine inşa edilmiştir ve sağlam surları ile ünlüdür.</li>
-                <li><strong>Saray ve Zindanlar:</strong> Kalenin içinde bazı saray kalıntıları ve zindanlar da bulunmaktadır.</li>
-                <li><strong>Cami ve Mezarlıklar:</strong> Harput Kalesi’nin içinde bir cami (Harput Ulu Camii) ve etrafında mezarlık alanları da bulunmaktadır.</li>
-                <li><strong>Tarihi Su Depoları:</strong> Kalede, suyun sürekli sağlanabilmesi için yapılmış eski su depoları bulunmaktadır.</li>
-            </ul>
-        </section>
-        <section id="fotolar" class="mb-6">
-            <h2 class="text-3xl font-bold">Harput Kalesi'nden Bazı Fotoğraflar:</h2>
+        <section id="fotolar">
+            <h2 class="text-3xl font-bold">Hazar Gölü'nden Bazı Fotoğraflar:</h2>
             <br>
             <div class="image-gallery">
                 <div class="image-container">
-                    <img src="photos/Turizm/harput.jpg" class="image" alt="Harput Kale Fotoğraf 1" onclick="openModal(this)">
+                    <img src="photos/Turizm/hazargolu1.jpg" class="image" alt="Harput Kale Fotoğraf 1" onclick="openModal(this)">
                 </div>
                 <div class="image-container">
-                    <img src="photos/Turizm/harput2.jpg" class="image" alt="Harput Kale Fotoğraf 2" onclick="openModal(this)">
+                    <img src="photos/Turizm/hazargolu2.jpg" class="image" alt="Harput Kale Fotoğraf 2" onclick="openModal(this)">
                 </div>
                 <div class="image-container">
-                    <img src="photos/Turizm/harput3.jpg" class="image" alt="Harput Kale Fotoğraf 3" onclick="openModal(this)">
+                    <img src="photos/Turizm/hazargolu3.jpeg" class="image" alt="Harput Kale Fotoğraf 3" onclick="openModal(this)">
                 </div>
             </div>
         </section>
@@ -232,6 +234,6 @@
             }
         });
     </script>
-    
+    </script>
 </body>
 </html>

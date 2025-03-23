@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harput Kalesi-UniHi!</title>
+    <title>Kahve Fincanı Müzesi-UniHi!</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -99,12 +99,14 @@
         .image-container {
             flex: 1;
             text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 8px;
         }
 
         .image {
             width: 4000px;
             height: 250px;
-            border-radius: 8px;
             cursor: pointer;
             object-fit: cover;
         }
@@ -138,7 +140,6 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
-
     <header class="shadow-md py-4 px-6 flex justify-between items-center">
         <div class="flex items-center space-x-6">
             <a href="modules.html"><img src="photos/unihilogo.png" alt="UniHi Logo" class="w-12"></a>
@@ -159,53 +160,55 @@
         <div class="profile-dropdown">
             <div class="flex items-center space-x-2 cursor-pointer p-2 hover-dark rounded-lg">
                 <span class="text-xl font-bold">Gergin Görünüşlü Adam</span>
-                <img src="photos/Turizm/gergingorunusluadam.jpg" alt="Profil" class="w-10 h-10 rounded-full" onclick="openModal(this)">
+                <img src="photos/Turizm/gergingorunusluadam.jpg" alt="Profil" class="w-10 h-10 rounded-full">
             </div>
             <div class="profile-menu">
                 <a href="#">Ayarlar</a>
                 <a href="#">Çıkış Yap</a>
             </div>
         </div>
-    </header>
-       
+    </header>    
     <main class="p-6">
         <section id="tarihce" class="mb-6">
-            <h2 class="text-3xl font-bold">Harput Kalesi'nin Tarihi:</h2>
-            <p>Harput Kalesi, Elazığ il sınırlarında yer alan ve şehri yüksekten görebileceğiniz tarihi bir yapıdır. 
-                Harput Kalesi, MÖ 8. yüzyıldan günümüze kadar farklı medeniyetler tarafından kullanılmıştır ve bu durum, 
-                kalenin tarih boyunca birçok farklı kültür ve medeniyet tarafından şekillendirilmesine olanak sağlamıştır.</p>
+            <h2 class="text-3xl font-bold">Kahve Fincanı Müzesi'nin Tarihi:</h2>
+            <p>Elazığ'ın tarihi Harput Mahallesi'nde bulunan Kahve Fincanı Müzesi, 29 Ekim 2023'te Cumhuriyet'in 100. yılı anısına açılmıştır. 
+                Türkiye'nin ilk ve tek kahve fincanı müzesi olma özelliğine sahip olan bu mekânda, başlangıçta 2.023 fincan sergilenirken, 
+                zamanla bu sayı 7.000'i aşmıştır. Müze, açılışından itibaren büyük ilgi görmüş ve ilk dört ayında yaklaşık 20.000 ziyaretçiyi 
+                ağırlamıştır. 2024 yılı Kasım ayı itibarıyla toplam ziyaretçi sayısı 300.000'i geçmiş olup, müze Guinness Rekorlar Kitabı'na 
+                girmeyi hedeflemektedir. Müzede sergilenen değerli fincanlar arasında, 1737'de İngiltere'den Osmanlı'ya gönderilen bir fincan, 
+                Harput kazılarında bulunan 12 hayvanlı Türk takvimli fincan ve ünlü fotoğrafçı Ara Güler'e ait kahve fincanları bulunmaktadır. 
+                Ayrıca, 17 Kasım 1937'de Elazığ'ı ziyaret eden Mustafa Kemal Atatürk'ün kahve içtiği fincan da müzede sergilenmektedir. 
+                Ziyaretçiler, müzede sergilenen fincanları bağışlayarak katkıda bulunabilir ve isimlerini bakır levhalara yazdırarak hatıralarını 
+                ölümsüzleştirebilirler. Müze, hem kahve kültürünü yaşatmakta hem de ziyaretçilere geçmişe dair anlamlı bir yolculuk sunmaktadır.​​</p>
         </section>
-        <section id="yonetim" class="mb-6">
-            <h2 class="text-3xl font-bold">Tarih Boyunca Kimler Yönetti?</h2>
-            <ul>
-                <li><strong>Urartular (MÖ 9. – 6. yüzyıl):</strong> Harput, ilk olarak Urartular tarafından surlarla çevrilmiş ve bölgenin savunma amaçlı kullanıldığı bir kale olarak inşa edilmiştir.</li>
-                <li><strong>Asurlar (MÖ 7. yüzyıl):</strong> Urartular’ın yıkılmasının ardından, Asurlar da Harput’u ele geçirmiş ve kale burada askeri bir üs olarak kullanılmıştır.</li>
-                <li><strong>Roma ve Bizans Dönemi (M.S. 1. – 11. yüzyıl):</strong> Harput, Roma ve Bizans İmparatorlukları döneminde stratejik bir kale olarak önemli bir yerleşim alanı olmuştur.</li>
-                <li><strong>Selçuklular (11. yüzyıl):</strong> Selçuklular, bölgeye geldiklerinde Harput Kalesi’ni yeniden güçlendirmişlerdir.</li>
-                <li><strong>Osmanlı Dönemi (15. yüzyıl – 19. yüzyıl):</strong> Osmanlı İmparatorluğu döneminde, Harput Kalesi önemli bir askeri ve idari merkez olmaya devam etmiştir.</li>
-            </ul>
+        <section id="kurucusu" class="mb-6">
+            <h2 class="text-3xl font-bold"> Kurucusu Kimdir?</h2>
+            <p>Elazığ Kahve Fincanı Müzesi'nin kurucusu, iş insanı ve turizmci olan Kemal Sülük'tür. Sülük, müzeyi 2023 yılında, Türkiye'nin ilk 
+                ve tek kahve fincanı müzesi olarak açmıştır. Müze, özellikle kahve kültürüne olan ilgisi ve koleksiyonculuk tutkusuyla dikkat 
+                çekmektedir.</p>
         </section>
-        <section id="yapilar" class="mb-6">
-            <h2 class="text-3xl font-bold">Harput Kalesi'nde Bulunan Yapılar:</h2>
-            <ul>
-                <li><strong>Kale Sur ve Kapıları:</strong> Harput Kalesi, dik kayalıklar üzerine inşa edilmiştir ve sağlam surları ile ünlüdür.</li>
-                <li><strong>Saray ve Zindanlar:</strong> Kalenin içinde bazı saray kalıntıları ve zindanlar da bulunmaktadır.</li>
-                <li><strong>Cami ve Mezarlıklar:</strong> Harput Kalesi’nin içinde bir cami (Harput Ulu Camii) ve etrafında mezarlık alanları da bulunmaktadır.</li>
-                <li><strong>Tarihi Su Depoları:</strong> Kalede, suyun sürekli sağlanabilmesi için yapılmış eski su depoları bulunmaktadır.</li>
-            </ul>
+        <section id="amac" class="mb-6">
+            <h2 class="text-3xl font-bold"> Kuruluş Amacı:</h2>
+            <p>Elazığ Kahve Fincanı Müzesi'nin kuruluş amacı, kahve kültürünü yaşatmak, kahvenin tarihsel ve kültürel önemini vurgulamak ve bu 
+                alandaki nadir koleksiyonları sergileyerek ziyaretçilere geçmişe dair bir yolculuk sunmaktır. Müze, kahve fincanlarının tarihi 
+                sürecini ve farklı kültürlerdeki yerini gösteren özel bir koleksiyon sunmaktadır.
+                <br>
+                Ayrıca, müze, kahve fincanlarının sadece birer eşya değil, aynı zamanda kültürel miras olarak değer taşıdığına dikkat çekmeyi 
+                amaçlamaktadır. Ziyaretçiler, müzeye bağışta bulunarak fincanları sergileyebilir ve kendi isimlerini bakır levhalara yazdırarak 
+                bu kültürel mirasa katkıda bulunabilirler. Bu şekilde, kahve kültürünün nesilden nesile aktarılmasına olanak tanınmaktadır.</p>
         </section>
         <section id="fotolar" class="mb-6">
-            <h2 class="text-3xl font-bold">Harput Kalesi'nden Bazı Fotoğraflar:</h2>
+            <h2 class="text-3xl font-bold"> Kahve Fincanı Müzesi'nden Bazı Fotoğraflar:</h2>
             <br>
             <div class="image-gallery">
                 <div class="image-container">
-                    <img src="photos/Turizm/harput.jpg" class="image" alt="Harput Kale Fotoğraf 1" onclick="openModal(this)">
+                    <img src="photos/Turizm/kahvefincanı1.jpg" onclick="openModal(this)">
                 </div>
                 <div class="image-container">
-                    <img src="photos/Turizm/harput2.jpg" class="image" alt="Harput Kale Fotoğraf 2" onclick="openModal(this)">
+                    <img src="photos/Turizm/kahvefincanı2.jpg" onclick="openModal(this)">
                 </div>
                 <div class="image-container">
-                    <img src="photos/Turizm/harput3.jpg" class="image" alt="Harput Kale Fotoğraf 3" onclick="openModal(this)">
+                    <img src="photos/Turizm/kahvefincanı4.jpg" onclick="openModal(this)">
                 </div>
             </div>
         </section>
@@ -232,6 +235,5 @@
             }
         });
     </script>
-    
 </body>
 </html>
