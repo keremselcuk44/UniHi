@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teknoloji Fakültesi</title>
+    <link rel="icon" href="fotolar/unihilogo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 20px;
+            align-items: center;
+        }
+        .menu-item {
+            position: relative;
+            padding: 10px 15px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+        .menu-item:hover .dropdown {
+            display: block;
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            min-width: 200px;
+        }
+        .dropdown a {
+            display: block;
+            padding: 10px;
+            color: black;
+            text-decoration: none;
+        }
+        .dropdown a:hover {
+            background: #f4f4f4;
+        }
+        .profile-menu {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+        .profile-menu img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+        }
+        .profile-menu:hover .profile-dropdown {
+            display: block;
+        }
+        .profile-dropdown a {
+            display: block;
+            padding: 10px;
+            color: black;
+            text-decoration: none;
+        }
+        .profile-dropdown a:hover {
+            background: #f4f4f4;
+        }
+    </style>
+</head>
+<body class="bg-red min-h-screen flex flex-col">
+    <header class="bg-#c32f52, #9b1d48, #6a0d45 shadow-md py-4 px-6 flex justify-between items-center">
+        <a href="index.html" class="text-white text-2xl font-bold">
+            <img src="fotolar/images-removebg-preview (1).png" alt="Anasayfa" class="w-8 h-8">
+        </a>
+        <nav class="menu text-white"> 
+            <div class="menu-item">TEKNOLOJİ FAKÜLTESİ
+                <div class="dropdown">
+                    <a href="#">Bilgisayar Mühendisliği</a>
+                    <a href="#">Yazılım Mühendisliği</a>
+                    <a href="#">Elektrik-Elektronik Mühendisliği</a>
+                    <a href="#">Makine Mühendisliği</a>
+                    <a href="#">İnşaat Mühendisliği</a>
+                </div>
+            </div>
+        </nav>
+        <div class="profile-menu">
+            <img src="fotolar/jonsnow.png" alt="Admin Profil">
+            <div class="profile-dropdown">
+                <a href="#">Ayarlar</a>
+                <a href="#">Çıkış Yap</a>
+            </div>
+        </div>
+    </header>
+    </body>
+    </html>
