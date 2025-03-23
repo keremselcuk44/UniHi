@@ -43,6 +43,12 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+        .hover-darken:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+            border-radius: 8px;
+            padding: 5px;
+        }
         .profile-dropdown {
             position: relative;
             display: inline-block;
@@ -74,6 +80,20 @@
         .profile-menu a:hover {
             background-color: #f0f0f0;
         }
+        .image-gallery {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .image-container {
+            flex: 1;
+            text-align: center;
+        }
+
+        .image {
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -87,9 +107,9 @@
             <div class="dropdown">
                 <a href="etkinlik.html" class="text-2xl font-bold">Etkinlikler</a>
                 <div class="dropdown-content p-2">
-                    <a href="#" class="block px-4 py-2 text-gray-700">Gezi</a>
-                    <a href="#" class="block px-4 py-2 text-gray-700">Söyleşiler</a>
-                    <a href="#" class="block px-4 py-2 text-gray-700">Festivaller</a>
+                    <a href="" class="block px-4 py-2 text-gray-700">Gezi</a>
+                    <a href="" class="block px-4 py-2 text-gray-700">Söyleşiler</a>
+                    <a href="" class="block px-4 py-2 text-gray-700">Festivaller</a>
                 </div>
             </div>
         </div>
@@ -109,22 +129,49 @@
         <section id="harput" class="mb-8 text-center">
             <a href="harput.html" class="text-3xl font-bold">Harput Kalesi</a>
             <p>Harput Kalesi ve tarihi camileri ile Elazığ’ın en önemli turistik bölgesidir.</p>
-            <img src="photos/Turizm/harput.jpg" class="mx-auto w-1/2">
+            <div class="image-gallery">
+                <div class="image-container">
+                    <img src="photos/Turizm/harput.jpg" class="image mx-auto w-1/2">
+                </div>
+            </div>
         </section>
         <section id="hazar" class="mb-8 text-center">
-            <a href="" class="text-3xl font-bold">Hazar Gölü</a>
+            <a href="hazar.html" class="text-3xl font-bold">Hazar Gölü</a>
             <p>Doğal güzellikleri ile ünlü Hazar Gölü, dinlenmek ve kamp yapmak için ideal bir yerdir.</p>
-            <img src="photos/Turizm/hazar-golu.png" class="mx-auto w-1/2">
+            <div class="image">
+                <div class="image-gallery">
+                    <div class="image-container">
+                        <img src="photos/Turizm/hazargolu1.jpg" class="image mx-auto w-1/2" >
+                    </div>
+                </div>
+            </div>
         </section>
         <section id="buzluk" class="mb-8 text-center">
             <a href="" class="text-3xl font-bold">Buzluk Mağarası</a>
             <p>Yaz aylarında bile soğuk havası ile dikkat çeken doğal bir mağaradır.</p>
-            <img src="photos/Turizm/harputbuzlukmagarasi.jpg" class="mx-auto w-1/2">
+            <div class="image-gallery">
+                <div class="image-container">
+                    <img src="photos/Turizm/harputbuzlukmagarasi.jpg" class="image mx-auto w-1/2">
+                </div>
+            </div>
         </section>
         <section id="çırçır" class="mb-8 text-center">
             <a href="" class="text-3xl font-bold">Çırçır Şelalesi</a>
             <p>Çırçır Şelalesi, Elazığ'ın doğal güzelliklerinden biri olup, şehrin gürültüsünden uzaklaşıp doğayla iç içe olmak isteyenler için mükemmel bir kaçış noktasıdır.</p>
-            <img src="photos/Turizm/circir-selalesi.jpg" class="mx-auto w-1/2">
+            <div class="image-gallery">
+                <div class="image-container">
+                    <img src="photos/Turizm/circir-selalesi.jpg" class="image mx-auto w-1/2">
+                </div>
+            </div>
+        </section>
+        <section id="kfm" class="mb-8 text-center">
+            <a href="kahvefincanimuzesi.html" class="text-3xl font-bold"> Kahve Fincanı Müzesi</a>
+            <p>Kahve Fincanı Müzesi, farklı kültürlere ait tarihi ve sanatsal kahve fincanlarını sergileyen özel bir koleksiyona ev sahipliği yapar.</p>
+            <div class="image-gallery">
+                <div class="image-container">
+                    <img src="photos/Turizm/kahvefincanı.webp" class="image mx-auto w-1/2">
+                </div>
+            </div>
         </section>
     </main>
     
