@@ -5,100 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UniHi - Giriş & Kayıt</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://apis.google.com/js/platform.js" async defer></script> <!-- Google Sign-In Script -->
     <style>
-    /* Genel Sayfa Stili */
-    body {
-        font-family: 'Arial', sans-serif;
-        background: linear-gradient(to left, #6a0d45, #9b1d48, #c32f52);
-        color: white;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    /* Fade-in Animasyonu */
-    .fade-in {
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeInUp 1s ease-out forwards;
-    }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
+        body {
+            background: linear-gradient(to right, #FF69B6 , #8B0000);
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
+        .logo {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
         }
-    }
-
-    /* Sidebar Stili */
-    .sidebar {
-        position: fixed;
-        top: 0;
-        left: -250px;
-        width: 250px;
-        height: 100%;
-        background-color: #2c2f3e;
-        transition: transform 0.3s ease-in-out;
-        padding: 20px;
-        z-index: 1000;
-    }
-
-    .sidebar.open {
-        transform: translateX(250px);
-    }
-
-    /* Sidebar Item Stili */
-    .sidebar ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    .sidebar ul li {
-        padding: 15px;
-        margin: 10px 0;
-        background-color: #4e5363;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-    }
-
-    .sidebar ul li:hover {
-        background-color: #5e6674;
-    }
-
-    /* Butonlar ve Diğer Elementler */
-    button, .btn {
-        background-color: #c32f52;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    button:hover, .btn:hover {
-        background-color: #9b1d48;
-    }
-
-    /* Genel Link Stili */
-    a {
-        color: #c32f52;
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-
-    a:hover {
-        color: #9b1d48;
-    }
-</style>
-
-    
+        .hidden { display: none; }
+    </style>
 </head>
 <body class="flex items-center justify-center min-h-screen relative">
     <img src="photos/unihilogo.png" alt="Logo" class="logo" />
@@ -116,10 +36,6 @@
                 <button onclick="toggleForms()" class="bg-green-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-green-600">Kayıt Ol</button>
             </div>
             <p id="login-message" class="text-red-500 mt-2"></p>
-
-            <!-- Google Sign-In Butonu -->
-            <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-            <div class="google-signin-button" onclick="googleSignUp()">Google ile Kayıt Ol</div>
         </div>
 
         <!-- Kayıt Ol Formu -->
@@ -138,10 +54,8 @@
             <p id="register-message" class="text-green-500 mt-2"></p>
         </div>
     </div>
-    
+
     <script>
-        
-        
         function toggleForms() {
             document.getElementById("login-form").classList.toggle("hidden");
             document.getElementById("register-form").classList.toggle("hidden");
@@ -162,39 +76,14 @@
                 return;
             }
 
-            // Backend'e kayıt isteği gönderme
-            fetch('http://localhost:3000/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ 
-                    username, 
-                    password, 
-                    fullName, 
-                    faculty, 
-                    department, 
-                    studentNumber 
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message === "Kullanıcı başarıyla kaydedildi!") {
-                    message.textContent = data.message;
-                    message.classList.remove("text-red-500");
-                    message.classList.add("text-green-500");
+            // Kullanıcı bilgilerini Local Storage'a kaydet
+            localStorage.setItem(username, JSON.stringify({ fullName, faculty, department, studentNumber, password }));
 
-                    setTimeout(toggleForms, 1500); // 1.5 saniye sonra giriş ekranına döndür
-                } else {
-                    message.textContent = data.message;
-                    message.classList.add("text-red-500");
-                }
-            })
-            .catch(error => {
-                message.textContent = "Bir hata oluştu!";
-                message.classList.add("text-red-500");
-                console.error(error);
-            });
+            message.textContent = "Kayıt başarılı! Giriş yapabilirsiniz.";
+            message.classList.remove("text-red-500");
+            message.classList.add("text-green-500");
+
+            setTimeout(toggleForms, 1500); // 1.5 saniye sonra giriş ekranına döndür
         }
 
         function login() {
@@ -202,92 +91,24 @@
             const password = document.getElementById("login-password").value;
             const message = document.getElementById("login-message");
 
-            if (!username || !password) {
-                message.textContent = "Kullanıcı adı ve şifreyi girin!";
-                message.classList.add("text-red-500");
+            const userData = localStorage.getItem(username);
+            if (!userData) {
+                message.textContent = "Böyle bir kullanıcı bulunamadı!";
                 return;
             }
 
-            // Backend'e login isteği gönderme
-            fetch('http://localhost:3000/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username, password })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message === "Giriş başarılı!") {
-                    message.textContent = data.message;
-                    message.classList.remove("text-red-500");
-                    message.classList.add("text-green-500");
+            const user = JSON.parse(userData);
+            if (user.password === password) {
+                message.textContent = "Giriş başarılı!";
+                message.classList.remove("text-red-500");
+                message.classList.add("text-green-500");
 
-                    // Başarılı giriş sonrası yönlendirme
-                    setTimeout(() => window.location.href = "modules.html", 1500);
-                } else {
-                    message.textContent = data.message;
-                    message.classList.add("text-red-500");
-                }
-            })
-            .catch(error => {
-                message.textContent = "Bir hata oluştu!";
-                message.classList.add("text-red-500");
-                console.error(error);
-            });
+                // Kullanıcıyı modüller sayfasına yönlendir
+                setTimeout(() => window.location.href = "modules.html", 1500);
+            } else {
+                message.textContent = "Şifre hatalı!";
+            }
         }
-
-        // Google Sign-In'den dönen kullanıcı bilgileri
-        function onSignIn(googleUser) {
-            const profile = googleUser.getBasicProfile();
-            const idToken = googleUser.getAuthResponse().id_token;
-
-            fetch('http://localhost:3000/google-login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ idToken })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message === "Google ile giriş başarılı!") {
-                    setTimeout(() => window.location.href = "modules.html", 1500);
-                } else {
-                    alert("Bir hata oluştu!");
-                }
-            })
-            .catch(error => {
-                console.error(error);
-                alert("Bir hata oluştu!");
-            });
-        }
-
-        gapi.load('auth2', function() {
-            gapi.auth2.init({
-                client_id: '149250423879-0kalkqucep4ra8qc3cu4fs9262pin6ir.apps.googleusercontent.com'
-            });
-        });
-
-        function googleSignUp() {
-            gapi.load("auth2", function () {
-                gapi.auth2.init({
-                    client_id: "149250423879-0kalkqucep4ra8qc3cu4fs9262pin6ir.apps.googleusercontent.com",
-                }).then(() => {
-                    const auth2 = gapi.auth2.getAuthInstance();
-                    auth2.signIn().then(googleUser => {
-                        onSignIn(googleUser);
-                    }).catch(error => {
-                        console.error("Google Sign-In Hatası:", error);
-                        alert("Google ile giriş yapılamadı!");
-                    });
-                }).catch(error => {
-                    console.error("Auth2 Init Hatası:", error);
-                    alert("Google auth2 başlatılamadı!");
-                });
-            });
-        }
-
     </script>
 </body>
 </html>
