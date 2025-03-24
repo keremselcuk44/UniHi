@@ -10,12 +10,20 @@
         body {
             background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
         }
+        .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
         .menu-item {
             position: relative;
             padding: 10px 15px;
             color: rgb(255, 255, 255);
             cursor: pointer;
             transition: background 0.3s;
+            font-weight: bold;
         }
         .menu-item:hover {
             background: rgb(0, 0, 0);
@@ -29,6 +37,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
             min-width: 200px;
+            z-index: 100;
         }
         .dropdown a {
             display: block;
@@ -48,6 +57,7 @@
             height: 300px;
             overflow: hidden;
             position: relative;
+            z-index: 1;
         }
         .slider img {
             width: 100%;
@@ -61,11 +71,11 @@
         .slider img.active {
             display: block;
         }
-        /* Profil resmi */
         .profile-menu {
             position: relative;
             display: flex;
             align-items: center;
+            gap: 10px;
             cursor: pointer;
         }
         .profile-menu img {
@@ -74,12 +84,6 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid white;
-        }
-        #mectrl_headerPicture {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: url('fotolar/profil.png') center/cover; /* Varsayılan profil fotoğrafı */
         }
         .profile-dropdown {
             display: none;
@@ -108,13 +112,8 @@
     </style>
 </head>
 <body class="bg-red min-h-screen flex flex-col">
-    
-    <!-- Üst Menü -->
     <header class="bg-red shadow-md py-4 px-6 flex justify-between items-center">
-        <div>
-            <img src="fotolar/unihilogo.png" alt="UniHi Logo" class="w-16">
-        </div>
-        <div class="flex space-x-6 items-center">
+        <nav class="menu">
             <div class="menu-item">FAKÜLTELER
                 <div class="dropdown">
                     <a href="#">Teknoloji Fakültesi</a>
@@ -125,20 +124,16 @@
             <div class="menu-item">YURTLAR</div>
             <div class="menu-item">ETKİNLİKLER</div>
             <div class="menu-item">DENEME 1</div>
-            
-            <!-- Profil Menüsü -->
-            <div class="profile-menu">
-                <div id="mectrl_headerPicture"></div>
-                <div><img src="fotolar/jonsnow.png" alt=""></div>
-                <div class="profile-dropdown">
-                    <a href="#">Ayarlar</a>
-                    <a href="#">Çıkış Yap</a>
-                </div>
+        </nav>
+        <div class="profile-menu">
+            <img src="fotolar/jonsnow.png" alt="Admin Profil">
+            <div class="profile-dropdown">
+                <a href="#">Ayarlar</a>
+                <a href="#">Çıkış Yap</a>
             </div>
         </div>
     </header>
 
-    <!-- Alt Panel -->
     <section class="flex mt-10 px-6">
         <div class="w-2/3">
             <p class="text-white text-lg">FIRAT'A HOŞ GELDİN</p>
