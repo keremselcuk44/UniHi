@@ -29,29 +29,59 @@
         <!-- Giriş Formu -->
         <div id="login-form" class="bg-white p-6 max-w-lg mx-auto rounded-2xl shadow-2xl">
             <p class="text-gray-700 text-lg mb-4">Giriş Yap</p>
-            <input type="text" id="login-username" placeholder="Kullanıcı Adı" class="w-full mb-2 p-2 border rounded text-black" />
-            <input type="password" id="login-password" placeholder="Şifre" class="w-full mb-4 p-2 border rounded text-black" />
-            <div class="flex justify-center space-x-4">
-                <button onclick="login()" class="bg-blue-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-blue-600">Giriş Yap</button>
-                <button onclick="toggleForms()" class="bg-green-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-green-600">Kayıt Ol</button>
-            </div>
-            <p id="login-message" class="text-red-500 mt-2"></p>
+            <form id="login-form-element" onsubmit="login(event)">
+                <input type="text" id="login-username" placeholder="Kullanıcı Adı" class="w-full mb-2 p-2 border rounded text-black" required />
+                <div class="relative w-full mb-4">
+                    <input type="password" id="login-password" placeholder="Şifre" class="w-full p-2 border rounded text-black" required />
+                    <button type="button" class="absolute right-2 top-2 text-gray-500" onclick="togglePasswordVisibility('login-password')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                            <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex justify-center space-x-4">
+                    <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-blue-600">Giriş Yap</button>
+                    <button type="button" onclick="toggleForms()" class="bg-green-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-green-600">Kayıt Ol</button>
+                </div>
+            </form>
+            <p id="login-message" class="mt-2"></p>
         </div>
 
         <!-- Kayıt Ol Formu -->
         <div id="register-form" class="bg-white p-6 max-w-lg mx-auto rounded-2xl shadow-2xl hidden">
             <p class="text-gray-700 text-lg mb-4">Kayıt Ol</p>
-            <input type="text" id="full-name" placeholder="Ad Soyad" class="w-full mb-2 p-2 border rounded text-black" />
-            <input type="text" id="faculty" placeholder="Fakülte" class="w-full mb-2 p-2 border rounded text-black" />
-            <input type="text" id="department" placeholder="Bölüm" class="w-full mb-2 p-2 border rounded text-black" />
-            <input type="text" id="student-number" placeholder="Öğrenci No" class="w-full mb-2 p-2 border rounded text-black" />
-            <input type="text" id="register-username" placeholder="Kullanıcı Adı" class="w-full mb-2 p-2 border rounded text-black" />
-            <input type="password" id="register-password" placeholder="Şifre" class="w-full mb-4 p-2 border rounded text-black" />
-            <div class="flex justify-center space-x-4">
-                <button onclick="register()" class="bg-green-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-green-600">Kaydı Tamamla</button>
-                <button onclick="toggleForms()" class="bg-gray-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-gray-600">Geri Dön</button>
-            </div>
-            <p id="register-message" class="text-green-500 mt-2"></p>
+            <form id="register-form-element" onsubmit="register(event)">
+                <input type="text" id="full-name" placeholder="Ad Soyad" class="w-full mb-2 p-2 border rounded text-black" required />
+                <input type="text" id="faculty" placeholder="Fakülte" class="w-full mb-2 p-2 border rounded text-black" required />
+                <input type="text" id="department" placeholder="Bölüm" class="w-full mb-2 p-2 border rounded text-black" required />
+                <input type="text" id="student-number" placeholder="Öğrenci No" class="w-full mb-2 p-2 border rounded text-black" required />
+                <input type="text" id="register-username" placeholder="Kullanıcı Adı" class="w-full mb-2 p-2 border rounded text-black" required />
+                <div class="w-full mb-4">
+                    <div class="relative">
+                        <input type="password" id="register-password" placeholder="Şifre" class="w-full p-2 border rounded text-black" 
+                               required oninput="checkPasswordStrength(this.value)" />
+                        <button type="button" class="absolute right-2 top-2 text-gray-500" onclick="togglePasswordVisibility('register-password')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="flex mt-1">
+                        <div id="strength-bar-1" class="h-1 w-1/4 bg-gray-200 mr-1 rounded"></div>
+                        <div id="strength-bar-2" class="h-1 w-1/4 bg-gray-200 mr-1 rounded"></div>
+                        <div id="strength-bar-3" class="h-1 w-1/4 bg-gray-200 mr-1 rounded"></div>
+                        <div id="strength-bar-4" class="h-1 w-1/4 bg-gray-200 rounded"></div>
+                    </div>
+                    <div id="password-strength-text" class="text-xs text-gray-500 mt-1 h-4">Şifreniz en az 6 karakter olmalıdır</div>
+                </div>
+                <div class="flex justify-center space-x-4">
+                    <button type="submit" class="bg-green-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-green-600">Kaydı Tamamla</button>
+                    <button type="button" onclick="toggleForms()" class="bg-gray-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-gray-600">Geri Dön</button>
+                </div>
+            </form>
+            <p id="register-message" class="mt-2"></p>
         </div>
     </div>
 
@@ -59,56 +89,174 @@
         function toggleForms() {
             document.getElementById("login-form").classList.toggle("hidden");
             document.getElementById("register-form").classList.toggle("hidden");
+            
+            // Mesaj alanlarını temizle
+            document.getElementById("login-message").textContent = "";
+            document.getElementById("register-message").textContent = "";
+            
+            // Form alanlarını sıfırla
+            document.getElementById("login-form-element").reset();
+            document.getElementById("register-form-element").reset();
         }
 
-        function register() {
-            const fullName = document.getElementById("full-name").value;
-            const faculty = document.getElementById("faculty").value;
-            const department = document.getElementById("department").value;
-            const studentNumber = document.getElementById("student-number").value;
-            const username = document.getElementById("register-username").value;
-            const password = document.getElementById("register-password").value;
+        function register(event) {
+            event.preventDefault();
+            
+            const fullName = document.getElementById("full-name").value.trim();
+            const faculty = document.getElementById("faculty").value.trim();
+            const department = document.getElementById("department").value.trim();
+            const studentNumber = document.getElementById("student-number").value.trim();
+            const username = document.getElementById("register-username").value.trim();
+            const password = document.getElementById("register-password").value.trim();
             const message = document.getElementById("register-message");
 
-            if (!fullName || !faculty || !department || !studentNumber || !username || !password) {
-                message.textContent = "Tüm alanları doldurun!";
-                message.classList.add("text-red-500");
+            // Kullanıcı adı kontrolü
+            if (localStorage.getItem(username)) {
+                message.textContent = "Bu kullanıcı adı zaten kullanılıyor!";
+                message.className = "text-red-500 mt-2";
+                return;
+            }
+
+            // Şifre güvenliği kontrolü
+            if (password.length < 6) {
+                message.textContent = "Şifre en az 6 karakter olmalıdır!";
+                message.className = "text-red-500 mt-2";
                 return;
             }
 
             // Kullanıcı bilgilerini Local Storage'a kaydet
-            localStorage.setItem(username, JSON.stringify({ fullName, faculty, department, studentNumber, password }));
+            localStorage.setItem(username, JSON.stringify({ 
+                fullName, 
+                faculty, 
+                department, 
+                studentNumber, 
+                password,
+                createdAt: new Date().toISOString()
+            }));
 
             message.textContent = "Kayıt başarılı! Giriş yapabilirsiniz.";
-            message.classList.remove("text-red-500");
-            message.classList.add("text-green-500");
+            message.className = "text-green-500 mt-2";
 
+            // Formu sıfırla
+            document.getElementById("register-form-element").reset();
+            
             setTimeout(toggleForms, 1500); // 1.5 saniye sonra giriş ekranına döndür
         }
 
-        function login() {
-            const username = document.getElementById("login-username").value;
+        function login(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById("login-username").value.trim();
             const password = document.getElementById("login-password").value;
             const message = document.getElementById("login-message");
+
+            if (!username || !password) {
+                message.textContent = "Kullanıcı adı ve şifre gereklidir!";
+                message.className = "text-red-500 mt-2";
+                return;
+            }
 
             const userData = localStorage.getItem(username);
             if (!userData) {
                 message.textContent = "Böyle bir kullanıcı bulunamadı!";
+                message.className = "text-red-500 mt-2";
                 return;
             }
 
             const user = JSON.parse(userData);
             if (user.password === password) {
-                message.textContent = "Giriş başarılı!";
-                message.classList.remove("text-red-500");
-                message.classList.add("text-green-500");
-
+                message.textContent = "Giriş başarılı! Yönlendiriliyorsunuz...";
+                message.className = "text-green-500 mt-2";
+                
+                // Aktif kullanıcı bilgisini sakla
+                sessionStorage.setItem("currentUser", username);
+                
                 // Kullanıcıyı modüller sayfasına yönlendir
                 setTimeout(() => window.location.href = "modules.html", 1500);
             } else {
                 message.textContent = "Şifre hatalı!";
+                message.className = "text-red-500 mt-2";
             }
         }
+
+        function togglePasswordVisibility(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        }
+
+        function checkPasswordStrength(password) {
+            // Şifre güçlülük kriterleri
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasNumber = /\d/.test(password);
+            const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            const isLongEnough = password.length >= 6;
+            
+            // Güçlülük puanı hesaplama (0-4)
+            let strength = 0;
+            if (isLongEnough) strength++;
+            if (hasLowerCase && hasUpperCase) strength++;
+            if (hasNumber) strength++;
+            if (hasSpecialChar) strength++;
+            
+            // Güçlülük çubuklarını güncelle
+            for (let i = 1; i <= 4; i++) {
+                const bar = document.getElementById(`strength-bar-${i}`);
+                if (i <= strength) {
+                    // Güçlülük seviyesine göre renk belirleme
+                    let color = "bg-red-500";
+                    if (strength === 2) color = "bg-orange-500";
+                    if (strength === 3) color = "bg-yellow-500";
+                    if (strength === 4) color = "bg-green-500";
+                    bar.className = `h-1 w-1/4 ${color} ${i < 4 ? 'mr-1' : ''} rounded`;
+                } else {
+                    bar.className = `h-1 w-1/4 bg-gray-200 ${i < 4 ? 'mr-1' : ''} rounded`;
+                }
+            }
+            
+            // Güçlülük metni güncelleme
+            const strengthText = document.getElementById("password-strength-text");
+            
+            // Önce mevcut içeriği temizle
+            strengthText.innerHTML = "";
+            
+            // Yeni içerik ve stil ekle
+            let textContent = "";
+            let textClass = "text-xs mt-1 h-4 ";
+            
+            if (password.length === 0) {
+                textContent = "Şifreniz en az 6 karakter olmalıdır";
+                textClass += "text-gray-500";
+            } else if (strength === 0) {
+                textContent = "Şifreniz çok zayıf";
+                textClass += "text-red-500";
+            } else if (strength === 1) {
+                textContent = "Şifreniz zayıf";
+                textClass += "text-red-500";
+            } else if (strength === 2) {
+                textContent = "Şifreniz orta";
+                textClass += "text-orange-500";
+            } else if (strength === 3) {
+                textContent = "Şifreniz güçlü";
+                textClass += "text-yellow-600";
+            } else {
+                textContent = "Şifreniz çok güçlü";
+                textClass += "text-green-500";
+            }
+            
+            strengthText.textContent = textContent;
+            strengthText.className = textClass;
+        }
+
+        // Enter tuşu ile form gönderimi
+        document.addEventListener("DOMContentLoaded", function() {
+            // Sayfa yüklendiğinde login formuna odaklan
+            document.getElementById("login-username").focus();
+        });
     </script>
 </body>
 </html>
