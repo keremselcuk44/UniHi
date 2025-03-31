@@ -8,47 +8,33 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(to right, #363636 , #363636 ); /* Bordo Tonları */
+            background: linear-gradient(to right, #9b1d48 , #9b1d48 ); /* Bordo Tonları */
             color: white;
             overflow-y: auto; /* Sayfa aşağı kaydırılabilir */
             min-height: 100vh;
             font-family: Arial, sans-serif;
         }
-
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 40px 20px;
-            text-align: center;
+        .welcome-text {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
         }
-
-        .box {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
-            margin-top: 40px;
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-
-        .fade-in {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-
         .image-container {
             margin-top: 60px;
             text-align: center;
+            width: 100%; /* Sayfanın tam genişliğinde olacak */
         }
 
         .image-container img {
-            width: 100%;
-            max-width: 600px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            width: 100%; /* Resmi tam genişlik yap */
+            max-width: none; /* Maksimum genişlik sınırlamasını kaldır */
+            height: auto; /* Oranları koru */
+            border-radius: 0; /* Köşeleri sıfırla, tam otursun */
+            box-shadow: none; /* Gölgeyi kaldır */
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 1s ease-out, transform 1s ease-out;
@@ -59,11 +45,6 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px;
-        }
-
-        .header-buttons {
-            display: flex;
-            gap: 10px;
         }
 
         .header-buttons a {
@@ -80,75 +61,82 @@
             background: #ddd;
         }
 
-        .top-image-container {
-            width: 100%;
-            text-align: center;
-            margin-top: 20px;
-            position: relative;
+        /* Yukarı Çık Butonu */
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            color: #9b1d48;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            display: none; /* Başlangıçta görünmez */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease;
         }
 
-        .orta-logo img {
-            position: absolute;
-            top: -150px; /* Sayfanın üst kısmına yakın */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px; /* Resmin boyutunu küçültmek için */
-            height: 300px; /* Boyutları oranlı tutmak için */
+        #scrollTopBtn:hover {
+            background: #a00030;
         }
     </style>
 </head>
 <body>
+    <div class="welcome-text text-center text-2xl font-bold mt-4">
+        Hoş Geldiniz
+    </div>
     <div class="header">
-        <div></div>
+        <div></div> 
         <div class="header-buttons">
             <a href="login.html">Giriş Yap</a>
-            <a href="register.html">Üye Ol</a>
         </div>
+       
     </div>
-    
-    <div class="top-image-container">
-        <div class="orta-logo">
-            <img src="C:\Users\kerem\Desktop\unihilogo.png" alt="Üst Görsel">
-        </div>
-    </div>
-    
-    <div class="container">
-        <h1 class="text-5xl font-bold">Hoş Geldiniz</h1>
-        <p class="text-lg mt-4">Üniversite hayatınıza rehberlik eden platform</p>
 
-        <div class="box">
-            <h2 class="text-3xl font-semibold">Misyonumuz</h2>
-            <p class="mt-2 text-lg">Üniversiteye yeni başlayan öğrencilerin, hem akademik hem de sosyal hayatlarını kolaylaştırmak için gerekli tüm bilgileri tek bir platformda sunmak.</p>
-        </div>
+    <!-- Resimler -->
+    <div class="image-container"><img src="Home1.svg" alt="UniHi Görsel 1" class="fade-image"></div>
+    <div class="image-container"><img src="Home2.svg" alt="UniHi Görsel 2" class="fade-image"></div>
+    <div class="image-container"><img src="Home3.svg" alt="UniHi Görsel 3" class="fade-image"></div>
+    <div class="image-container"><img src="" alt="UniHi Görsel 4" class="fade-image"></div>
+    <div class="image-container"><img src="" alt="UniHi Görsel 5" class="fade-image"></div>
+    <div class="image-container"><img src="" alt="UniHi Görsel 6" class="fade-image"></div>
 
-        <div class="box">
-            <h2 class="text-3xl font-semibold">Vizyonumuz</h2>
-            <p class="mt-2 text-lg">Öğrencilerin şehir ve üniversite hayatına hızlıca adapte olmasını sağlayan en kapsamlı ve kullanıcı dostu rehber platform olmak.</p>
-        </div>
-
-        <div class="image-container">
-            <img src="photos/foto1.png" alt="UniHi Görsel 1" class="fade-image">
-        </div>
-
-        <div class="image-container">
-            <img src="photos/foto2.png" alt="UniHi Görsel 2" class="fade-image">
-        </div>
-    </div>
+    <!-- Yukarı Çık Butonu -->
+    <button id="scrollTopBtn">Yukarı Çık</button>
 
     <script>
         function revealOnScroll() {
-            let elements = document.querySelectorAll(".box, .fade-image");
+            let elements = document.querySelectorAll(".fade-image");
             elements.forEach((element) => {
                 let position = element.getBoundingClientRect().top;
                 let windowHeight = window.innerHeight;
                 if (position < windowHeight - 100) {
-                    element.classList.add("fade-in");
+                    element.style.opacity = "1";
+                    element.style.transform = "translateY(0)";
                 }
             });
         }
 
         window.addEventListener("scroll", revealOnScroll);
         window.addEventListener("load", revealOnScroll);
+
+        // Yukarı Çık Butonunu Göster / Gizle
+        let scrollTopBtn = document.getElementById("scrollTopBtn");
+
+        window.addEventListener("scroll", function() {
+            if (window.scrollY > 200) { // 200px aşağı inildiğinde buton görünür olsun
+                scrollTopBtn.style.display = "block";
+            } else {
+                scrollTopBtn.style.display = "none";
+            }
+        });
+
+        // Butona tıklanınca sayfanın en üstüne kaydır
+        scrollTopBtn.addEventListener("click", function() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
     </script>
 </body>
 </html>
