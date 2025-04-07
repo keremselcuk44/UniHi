@@ -4,12 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teknoloji Fakültesi</title>
-    <link rel="icon" href="fotolar/unihilogo.png" type="image/png">
+    <link rel="icon" href="fotolar/UniHi!_.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
         body {
             background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
         }
+
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
         .menu {
             display: flex;
             justify-content: center;
@@ -46,6 +56,7 @@
         .dropdown a:hover {
             background: #f4f4f4;
         }
+
         .profile-menu {
             display: flex;
             align-items: center;
@@ -80,13 +91,113 @@
         .profile-dropdown a:hover {
             background: #f4f4f4;
         }
+
+        /* Slider stilleri */
+        .slider {
+            position: relative;
+            height: 400px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: scale(1.1) translateX(10%);
+        }
+        .slide.active {
+            opacity: 1;
+            transform: scale(1) translateX(0);
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-button:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Thumbnail stilleri */
+        .thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .thumbnail {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 3px solid transparent;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+        }
+        .thumbnail:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+        .thumbnail.active {
+            border-color: #2196f3;
+            opacity: 1;
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+
+        /* Kontrol butonları */
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        .control-button {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .control-button:hover {
+            background: #1976d2;
+            transform: scale(1.05);
+        }
     </style>
 </head>
-<body class="bg-red min-h-screen flex flex-col">
-    <header class="bg-#c32f52, #9b1d48, #6a0d45 shadow-md py-4 px-6 flex justify-between items-center">
-        <a href="index.html" class="text-white text-2xl font-bold">
-            <img src="fotolar/images-removebg-preview (1).png" alt="Anasayfa" class="w-8 h-8">
-        </a>
+<body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
+    <header class="bg-gradient-to-r from-[#c32f52] to-[#9b1d48] shadow-md py-4 px-6 flex justify-between items-center">
+        <button @click="open = !open" class="text-white text-3xl focus:outline-none">&#9776;</button>
         <nav class="menu text-white"> 
             <div class="menu-item">TEKNOLOJİ FAKÜLTESİ
                 <div class="dropdown">
@@ -106,5 +217,84 @@
             </div>
         </div>
     </header>
+
+    <!-- Slider -->
+    <div class="slider-container">
+        <div class="slider">
+            <img src="fotolar/unnamed (1).png" alt="Slide 1" class="slide active">
+            <img src="fotolar/unnamed (2).png" alt="Slide 2" class="slide">
+            <img src="fotolar/unnamed (3).png" alt="Slide 3" class="slide">
+        </div>
+        <button class="nav-button left">&lt;</button>
+        <button class="nav-button right">&gt;</button>
+    </div>
+
+    <!-- Thumbnail'ler -->
+    <div class="thumbnails">
+        <img src="fotolar/unnamed (1).png" alt="Thumbnail 1" class="thumbnail active">
+        <img src="fotolar/unnamed (2).png" alt="Thumbnail 2" class="thumbnail">
+        <img src="fotolar/unnamed (3).png" alt="Thumbnail 3" class="thumbnail">
+    </div>
+
+    <!-- Kontrol Butonları -->
+    <div class="controls">
+        <button class="control-button">Button 1</button>
+        <button class="control-button">Button 2</button>
+    </div>
+
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-40" x-show="open" @click="open = false"></div>
+    <aside class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 p-5 sidebar" :class="{'open': open}">
+        <button @click="open = false" class="text-black text-2xl absolute top-4 right-4">&times;</button>
+        <ul class="mt-10 space-y-4">
+            <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">ÜNİVERSİTE EVİ</a></li>
+            <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">YURTLAR</a></li>
+            <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">ETKİNLİKLER</a></li>
+            <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">DENEME 1</a></li>
+            <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">DENEME 2</a></li>
+        </ul>
+    </aside>
+
+    <script>
+        let slides = document.querySelectorAll('.slide');
+        let thumbnails = document.querySelectorAll('.thumbnail');
+        let leftButton = document.querySelector('.nav-button.left');
+        let rightButton = document.querySelector('.nav-button.right');
+        let currentSlideIndex = 0;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlideIndex) {
+                    slide.classList.add('active');
+                }
+            });
+
+            thumbnails.forEach((thumbnail, index) => {
+                thumbnail.classList.remove('active');
+                if (index === currentSlideIndex) {
+                    thumbnail.classList.add('active');
+                }
+            });
+        }
+
+        leftButton.addEventListener('click', () => {
+            currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+            updateSlides();
+        });
+
+        rightButton.addEventListener('click', () => {
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            updateSlides();
+        });
+
+        thumbnails.forEach((thumbnail, index) => {
+            thumbnail.addEventListener('click', () => {
+                currentSlideIndex = index;
+                updateSlides();
+            });
+        });
+
+        updateSlides();  // İlk slide'ı başlat
+    </script>
 </body>
 </html>
