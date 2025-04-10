@@ -22,11 +22,22 @@
             padding: 10px 15px;
             color: rgb(255, 255, 255);
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            overflow: hidden;
             font-weight: bold;
         }
-        .menu-item:hover {
-            background: rgb(0, 0, 0);
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+        .menu-item:hover::after {
+            width: 100%;
         }
         .dropdown {
             display: none;
@@ -54,22 +65,48 @@
         }
         .slider {
             width: 100%;
-            height: 300px;
+            height: 400px;
             overflow: hidden;
             position: relative;
             z-index: 1;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         .slider img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: none;
             position: absolute;
             top: 0;
             left: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+            transform: scale(1.1);
         }
         .slider img.active {
-            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+        .slider-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .slider-dot.active {
+            background: white;
+            transform: scale(1.2);
         }
         .profile-menu {
             position: relative;
@@ -79,11 +116,16 @@
             cursor: pointer;
         }
         .profile-menu img {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid white;
+            border: 3px solid white;
+            transition: all 0.3s ease;
+        }
+        .profile-menu:hover img {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
         .profile-dropdown {
             display: none;
@@ -109,6 +151,27 @@
         .profile-menu:hover .profile-dropdown {
             display: block;
         }
+        .welcome-text {
+            position: relative;
+            display: inline-block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textShine 3s ease-in-out infinite;
+        }
+        @keyframes textShine {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
     </style>
 </head>
 <body class="bg-red min-h-screen flex flex-col">
@@ -122,9 +185,7 @@
             </div>
             <div class="menu-item">ÜNİVERSİTE EVİ</div>
             <div class="menu-item">YURTLAR</div>
-            <div class="menu-item">
-                <a href="etkinlik.html">ETKİNLİKLER</a>
-            </div>
+            <div class="menu-item">ETKİNLİKLER</div>
             <div class="menu-item">DENEME 1</div>
         </nav>
         <div class="profile-menu">
@@ -138,7 +199,7 @@
 
     <section class="flex mt-10 px-6">
         <div class="w-2/3">
-            <p class="text-white text-lg">FIRAT'A HOŞ GELDİN</p>
+            <p class="welcome-text">FIRAT'A HOŞ GELDİN</p>
         </div>
         <div class="w-1/3 slider">
             <img src="fotolar/unnamed.png" class="active">
@@ -146,18 +207,53 @@
             <img src="fotolar/unnamed (2).png">
             <img src="fotolar/unnamed (3).png">
             <img src="fotolar/unnamed (4).png">
+            <div class="slider-controls">
+                <div class="slider-dot active"></div>
+                <div class="slider-dot"></div>
+                <div class="slider-dot"></div>
+                <div class="slider-dot"></div>
+                <div class="slider-dot"></div>
+            </div>
         </div>
     </section>
     
     <script>
         let index = 0;
         const images = document.querySelectorAll(".slider img");
+        const dots = document.querySelectorAll(".slider-dot");
+
         function changeImage() {
             images[index].classList.remove("active");
+            dots[index].classList.remove("active");
+            
             index = (index + 1) % images.length;
+            
             images[index].classList.add("active");
+            dots[index].classList.add("active");
         }
-        setInterval(changeImage, 3000);
+
+        dots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                images[index].classList.remove("active");
+                dots[index].classList.remove("active");
+                index = idx;
+                images[index].classList.add("active");
+                dots[index].classList.add("active");
+            });
+        });
+
+        setInterval(changeImage, 5000);
+
+        const slider = document.querySelector('.slider');
+        let interval;
+
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(interval);
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            interval = setInterval(changeImage, 5000);
+        });
     </script>
 </body>
 </html>
