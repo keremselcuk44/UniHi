@@ -23,7 +23,6 @@
             color: rgb(255, 255, 255);
             cursor: pointer;
             transition: all 0.3s ease;
-            overflow: hidden;
             font-weight: bold;
         }
         .menu-item::after {
@@ -44,24 +43,46 @@
             position: absolute;
             top: 100%;
             left: 0;
-            background: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            min-width: 200px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            min-width: 220px;
             z-index: 100;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
         .dropdown a {
             display: block;
-            padding: 10px;
-            color: black;
+            padding: 12px 20px;
+            color: #333;
             text-decoration: none;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
         }
         .dropdown a:hover {
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(0, 0, 0, 0.05);
+            padding-left: 25px;
+            color: #c32f52;
         }
         .menu-item:hover .dropdown {
             display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .menu-item:has(.dropdown)::before {
+            content: '▼';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.8em;
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+        .menu-item:has(.dropdown):hover::before {
+            transform: translateY(-50%) rotate(180deg);
         }
         .slider {
             width: 100%;
@@ -257,3 +278,4 @@
     </script>
 </body>
 </html>
+>
