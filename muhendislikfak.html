@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mühendislik Fakültesi</title>
+    <link rel="icon" href="fotolar/UniHi!_.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>
+        body {
+            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-item {
+            position: relative;
+            padding: 10px 15px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .menu-item:hover {
+            color: #ff6b6b;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            min-width: 250px;
+            padding: 10px 0;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .menu-item:hover .dropdown {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .dropdown a:hover {
+            background: rgba(0, 0, 0, 0.05);
+            padding-left: 25px;
+            color: #ff6b6b;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .slider {
+            position: relative;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: scale(1.1);
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-button.left {
+            left: 20px;
+        }
+
+        .nav-button.right {
+            right: 20px;
+        }
+
+        .thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .thumbnail {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            opacity: 0.7;
+        }
+
+        .thumbnail:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+
+        .thumbnail.active {
+            border-color: #ff6b6b;
+            opacity: 1;
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .control-button {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .control-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar a {
+            transition: all 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 107, 107, 0.1);
+            color: #ff6b6b;
+            padding-left: 25px;
+        }
+
+        .profile-menu {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .profile-menu img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .profile-menu:hover img {
+            transform: scale(1.1);
+            border-color: #ff6b6b;
+        }
+
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            min-width: 150px;
+            padding: 10px 0;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .profile-menu:hover .profile-dropdown {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .profile-dropdown a {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .profile-dropdown a:hover {
+            background: rgba(0, 0, 0, 0.05);
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+<body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
+    <header class="bg-gradient-to-r from-[#c32f52] to-[#9b1d48] shadow-md py-4 px-6 flex justify-between items-center">
+        <button @click="open = !open" class="text-white text-3xl focus:outline-none">&#9776;</button>
+        <nav class="menu text-white"> 
+            <div class="menu-item">MÜHENDİSLİK FAKÜLTESİ
+                <div class="dropdown">
+                    <a href="#">Bilgisayar Mühendisliği</a>
+                    <a href="#">Yazılım Mühendisliği</a>
+                    <a href="#">Elektrik-Elektronik Mühendisliği</a>
+                    <a href="#">Makine Mühendisliği</a>
+                    <a href="#">İnşaat Mühendisliği</a>
+                </div>
+            </div>
+        </nav>
+        <div class="profile-menu">
+            <img src="fotolar/jonsnow.png" alt="Admin Profil">
+            <div class="profile-dropdown">
+                <a href="#">Ayarlar</a>
+                <a href="login.html">Çıkış Yap</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Slider -->
+    <div class="slider-container">
+        <div class="slider">
+            <img src="photos/muhendislik1.jpg" alt="Slide 1" class="slide active">
+            <img src="photos/muhendislik2.jpg" alt="Slide 2" class="slide">
+            <img src="photos/muhendislik3.jpg" alt="Slide 3" class="slide">
+        </div>
+        <button class="nav-button left">&lt;</button>
+        <button class="nav-button right">&gt;</button>
+    </div>
+
+    <!-- Thumbnail'ler -->
+    <div class="thumbnails">
+        <img src="photos/muhendislik1.jpg" alt="Thumbnail 1" class="thumbnail active">
+        <img src="photos/muhendislik2.jpg" alt="Thumbnail 2" class="thumbnail">
+        <img src="photos/muhendislik3.jpg" alt="Thumbnail 3" class="thumbnail">
+    </div>
+
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-40" x-show="open" @click="open = false"></div>
+    <aside class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 p-5 sidebar" :class="{'open': open}">
+        <button @click="open = false" class="text-black text-2xl absolute top-4 right-4">&times;</button>
+        <ul class="mt-10 space-y-4">
+            <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">ÜNİVERSİTE EVİ</a></li>
+            <li><a href="YurtSayfasi.html" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">YURTLAR</a></li>
+            <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">ETKİNLİKLER</a></li>
+            <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">DENEME 1</a></li>
+            <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">DENEME 2</a></li>
+        </ul>
+    </aside>
+
+    <script>
+        let slides = document.querySelectorAll('.slide');
+        let thumbnails = document.querySelectorAll('.thumbnail');
+        let leftButton = document.querySelector('.nav-button.left');
+        let rightButton = document.querySelector('.nav-button.right');
+        let currentSlideIndex = 0;
+        let slideInterval;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlideIndex) {
+                    slide.classList.add('active');
+                }
+            });
+
+            thumbnails.forEach((thumbnail, index) => {
+                thumbnail.classList.remove('active');
+                if (index === currentSlideIndex) {
+                    thumbnail.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            updateSlides();
+        }
+
+        function prevSlide() {
+            currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+            updateSlides();
+        }
+
+        function startSlideShow() {
+            slideInterval = setInterval(nextSlide, 3000);
+        }
+
+        function stopSlideShow() {
+            clearInterval(slideInterval);
+        }
+
+        leftButton.addEventListener('click', () => {
+            stopSlideShow();
+            prevSlide();
+            startSlideShow();
+        });
+
+        rightButton.addEventListener('click', () => {
+            stopSlideShow();
+            nextSlide();
+            startSlideShow();
+        });
+
+        thumbnails.forEach((thumbnail, index) => {
+            thumbnail.addEventListener('click', () => {
+                stopSlideShow();
+                currentSlideIndex = index;
+                updateSlides();
+                startSlideShow();
+            });
+        });
+
+        // Slider'a hover olduğunda otomatik geçişi durdur
+        document.querySelector('.slider').addEventListener('mouseenter', stopSlideShow);
+        document.querySelector('.slider').addEventListener('mouseleave', startSlideShow);
+
+        updateSlides();
+        startSlideShow();
+    </script>
+</body>
+</html>
