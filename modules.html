@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UniHi - Ana Sayfa</title>
-    <link rel="icon" href="fotolar/unihilogo.png" type="image/png">
+    <link rel="icon" href="photos/unihilogo.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
@@ -200,7 +200,7 @@
         <nav class="menu">
             <div class="menu-item">FAKÜLTELER
                 <div class="dropdown">
-                    <a href="#"><a href="teknofak.html">Teknoloji Fakültesi</a></a>
+                    <a href="#"><a href="teknolojifak.html">Teknoloji Fakültesi</a></a>
                     <a href="#">Mühendislik Fakültesi</a>
                 </div>
             </div>
@@ -210,7 +210,7 @@
             <div class="menu-item">DENEME 1</div>
         </nav>
         <div class="profile-menu">
-            <img src="fotolar/jonsnow.png" alt="Admin Profil">
+            <img src="photos/jonsnow.png" alt="Admin Profil">
             <div class="profile-dropdown">
                 <a href="#">Ayarlar</a>
                 <a href="#">Çıkış Yap</a>
@@ -220,14 +220,14 @@
 
     <section class="flex mt-10 px-6">
         <div class="w-2/3">
-            <p class="welcome-text">FIRAT'A HOŞ GELDİN</p>
+            <p class="welcome-text" id="welcome-text">FIRAT'A HOŞ GELDİN</p>
         </div>
         <div class="w-1/3 slider">
-            <img src="fotolar/unnamed.png" class="active">
-            <img src="fotolar/unnamed (1).png">
-            <img src="fotolar/unnamed (2).png">
-            <img src="fotolar/unnamed (3).png">
-            <img src="fotolar/unnamed (4).png">
+            <img src="photos/unnamed.jpg" class="active">
+            <img src="photos/unnamed (1).jpg">
+            <img src="photos/unnamed (2).jpg">
+            <img src="photos/unnamed (3).jpg">
+            <img src="photos/unnamed (4).jpg">
             <div class="slider-controls">
                 <div class="slider-dot active"></div>
                 <div class="slider-dot"></div>
@@ -239,6 +239,14 @@
     </section>
     
     <script>
+        // Kullanıcı bilgilerini al ve hoşgeldin mesajını güncelle
+        const currentUser = sessionStorage.getItem("currentUser");
+        if (currentUser) {
+            const userData = JSON.parse(localStorage.getItem(currentUser));
+            const welcomeText = document.getElementById("welcome-text");
+            welcomeText.textContent = `HOŞGELDİN, ${userData.fullName.toUpperCase()}`;
+        }
+
         let index = 0;
         const images = document.querySelectorAll(".slider img");
         const dots = document.querySelectorAll(".slider-dot");
