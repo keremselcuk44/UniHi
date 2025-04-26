@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -265,10 +265,10 @@
             </div>
         </nav>
         <div class="profile-menu">
-            <img src="fotolar/jonsnow.png" alt="Admin Profil">
+            <img src="photos/logo_orj.png" alt="Admin Profil">
             <div class="profile-dropdown">
                 <a href="#">Ayarlar</a>
-                <a href="#">Çıkış Yap</a>
+                <a href="home.html">Çıkış Yap</a>
             </div>
         </div>
     </header>
@@ -293,7 +293,33 @@
             </div>
         </li>
 
-        <li><a href="etkinlik.html" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">ETKİNLİKLER</a></li>
+        <!-- ETKİNLİKLER-->
+        <li x-data="{ dropdownOpen: false }" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
+                ETKİNLİKLER
+            </button>
+            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
+                 class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
+                <a href="etkinlik.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Festivaller</a>
+                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">Söyleşiler</a>
+            </div>
+        </li>
+        
+        <!-- GEZİLER-->
+        <li x-data="{ dropdownOpen: false }" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
+                GEZİLER
+            </button>
+            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
+                 class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
+                <a href="harput.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Harput Kalesi</a>
+                <a href="hazar.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Hazar Gölü</a>
+                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">Buzluk Mağarası</a>
+                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">Çırçır Şelalesi</a>
+                <a href="kahvefincanimuzesi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Kahve Fincanı Müzesi</a>
+            </div>
+        </li>
+
         <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">DENEME 1</a></li>
        
     </ul>
