@@ -10,97 +10,84 @@
     <style>
         body {
             background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
+            color: white;
+            min-height: 100vh;
         }
 
-        .sidebar {
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
-        }
-        .sidebar.open {
-            transform: translateX(0);
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .menu {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            gap: 20px;
-            align-items: center;
-        }
         .menu-item {
             position: relative;
             padding: 10px 15px;
             cursor: pointer;
             color: white;
             font-weight: bold;
+            transition: all 0.3s ease;
+            z-index: 1000;
         }
-        .menu-item:hover .dropdown {
-            display: block;
+
+        .menu-item:hover {
+            color: #ff6b6b;
         }
+
         .dropdown {
             display: none;
             position: absolute;
-            top: 40px;
+            top: 100%;
             left: 0;
-            background: white;
-            border-radius: 5px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            min-width: 200px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            min-width: 250px;
+            padding: 10px 0;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
         }
+
+        .menu-item:hover .dropdown {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
         .dropdown a {
             display: block;
-            padding: 10px;
-            color: black;
+            padding: 12px 20px;
+            color: #333;
             text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
         }
+
         .dropdown a:hover {
-            background: #f4f4f4;
+            background: rgba(0, 0, 0, 0.05);
+            padding-left: 25px;
+            color: #ff6b6b;
         }
 
-        .profile-menu {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .slider-container {
             position: relative;
-            cursor: pointer;
-        }
-        .profile-menu img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-        .profile-dropdown {
-            display: none;
-            position: absolute;
-            top: 50px;
-            right: 0;
-            background: white;
-            border-radius: 5px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            min-width: 120px;
-        }
-        .profile-menu:hover .profile-dropdown {
-            display: block;
-        }
-        .profile-dropdown a {
-            display: block;
-            padding: 10px;
-            color: black;
-            text-decoration: none;
-        }
-        .profile-dropdown a:hover {
-            background: #f4f4f4;
+            width: 100%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
 
-        /* Slider stilleri */
         .slider {
             position: relative;
-            height: 400px;
-            margin-bottom: 20px;
+            height: 500px;
+            border-radius: 20px;
             overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
+
         .slide {
             position: absolute;
             width: 100%;
@@ -108,90 +95,158 @@
             object-fit: cover;
             transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             opacity: 0;
-            transform: scale(1.1) translateX(10%);
+            transform: scale(1.1);
         }
+
         .slide.active {
             opacity: 1;
-            transform: scale(1) translateX(0);
+            transform: scale(1);
         }
 
         .nav-button {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            color: #333;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
             border: none;
-            padding: 20px;
-            cursor: pointer;
-            font-size: 20px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 50px;
-            height: 50px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        .nav-button:hover {
-            background: white;
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
 
-        /* Thumbnail stilleri */
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-button.left {
+            left: 20px;
+        }
+
+        .nav-button.right {
+            right: 20px;
+        }
+
         .thumbnails {
             display: flex;
             justify-content: center;
             gap: 15px;
-            padding: 15px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
+
         .thumbnail {
-            width: 100px;
-            height: 70px;
+            width: 120px;
+            height: 80px;
             object-fit: cover;
+            border-radius: 10px;
             cursor: pointer;
-            border: 3px solid transparent;
-            border-radius: 8px;
             transition: all 0.3s ease;
+            border: 3px solid transparent;
             opacity: 0.7;
         }
+
         .thumbnail:hover {
             opacity: 1;
             transform: translateY(-5px);
         }
+
         .thumbnail.active {
-            border-color: #2196f3;
+            border-color: #ff6b6b;
             opacity: 1;
             transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
         }
 
-        /* Kontrol butonları */
-        .controls {
-            display: flex;
-            justify-content: center;
-            margin-top: 15px;
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
         }
-        .control-button {
-            background: #2196f3;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 16px;
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar a {
             transition: all 0.3s ease;
         }
 
-        .control-button:hover {
-            background: #1976d2;
-            transform: scale(1.05);
+        .sidebar a:hover {
+            background: rgba(255, 107, 107, 0.1);
+            color: #ff6b6b;
+            padding-left: 25px;
+        }
+
+        .profile-menu {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .profile-menu img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .profile-menu:hover img {
+            transform: scale(1.1);
+            border-color: #ff6b6b;
+        }
+
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            min-width: 150px;
+            padding: 10px 0;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .profile-menu:hover .profile-dropdown {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .profile-dropdown a {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .profile-dropdown a:hover {
+            background: rgba(0, 0, 0, 0.05);
+            color: #ff6b6b;
         }
     </style>
 </head>
@@ -213,7 +268,7 @@
             <img src="fotolar/jonsnow.png" alt="Admin Profil">
             <div class="profile-dropdown">
                 <a href="#">Ayarlar</a>
-                <a href="#">Çıkış Yap</a>
+                <a href="login.html">Çıkış Yap</a>
             </div>
         </div>
     </header>
@@ -236,12 +291,6 @@
         <img src="photos/unnamed (3).jpg" alt="Thumbnail 3" class="thumbnail">
     </div>
 
-    <!-- Kontrol Butonları -->
-    <div class="controls">
-        <button class="control-button">Button 1</button>
-        <button class="control-button">Button 2</button>
-    </div>
-
     <div class="fixed inset-0 bg-black bg-opacity-50 z-40" x-show="open" @click="open = false"></div>
     <aside class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 p-5 sidebar" :class="{'open': open}">
         <button @click="open = false" class="text-black text-2xl absolute top-4 right-4">&times;</button>
@@ -260,6 +309,7 @@
         let leftButton = document.querySelector('.nav-button.left');
         let rightButton = document.querySelector('.nav-button.right');
         let currentSlideIndex = 0;
+        let slideInterval;
 
         function updateSlides() {
             slides.forEach((slide, index) => {
@@ -277,24 +327,51 @@
             });
         }
 
-        leftButton.addEventListener('click', () => {
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            updateSlides();
+        }
+
+        function prevSlide() {
             currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
             updateSlides();
+        }
+
+        function startSlideShow() {
+            slideInterval = setInterval(nextSlide, 3000);
+        }
+
+        function stopSlideShow() {
+            clearInterval(slideInterval);
+        }
+
+        leftButton.addEventListener('click', () => {
+            stopSlideShow();
+            prevSlide();
+            startSlideShow();
         });
 
         rightButton.addEventListener('click', () => {
-            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-            updateSlides();
+            stopSlideShow();
+            nextSlide();
+            startSlideShow();
         });
 
         thumbnails.forEach((thumbnail, index) => {
             thumbnail.addEventListener('click', () => {
+                stopSlideShow();
                 currentSlideIndex = index;
                 updateSlides();
+                startSlideShow();
             });
         });
 
-        updateSlides();  // İlk slide'ı başlat
+        // Slider'a hover olduğunda otomatik geçişi durdur
+        document.querySelector('.slider').addEventListener('mouseenter', stopSlideShow);
+        document.querySelector('.slider').addEventListener('mouseleave', startSlideShow);
+
+        updateSlides();
+        startSlideShow();
     </script>
 </body>
 </html>
