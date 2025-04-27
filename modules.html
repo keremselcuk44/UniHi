@@ -193,6 +193,92 @@
                 background-position: 0% 50%;
             }
         }
+
+        /* Haber kartları için stiller */
+        .haber-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .haber-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .haber-thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .haber-content {
+            padding: 1.5rem;
+        }
+
+        .haber-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .haber-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .haber-title a:hover {
+            color: #c32f52;
+        }
+
+        .haber-description {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .haber-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #718096;
+            font-size: 0.875rem;
+        }
+
+        .haber-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .haber-date::before {
+            content: '📅';
+            font-size: 1rem;
+        }
+
+        .haber-source {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .haber-source::before {
+            content: '🔗';
+            font-size: 1rem;
+        }
+
+        #haber-listesi {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
     </style>
 </head>
 <body class="bg-red min-h-screen flex flex-col">
@@ -246,69 +332,109 @@
             </div>
         </div>
     </section>
+
+    <!-- Haberler Bölümü -->
+    <section id="haberler" class="mt-10 px-6">
+        <h2 class="text-3xl font-bold text-white mb-6">Güncel Yapay Zeka Haberleri</h2>
+        <div id="haber-listesi" class="space-y-4"></div>
+    </section>
     
     <script>
-        // Kullanıcı bilgilerini al ve hoşgeldin mesajını güncelle
-        const currentUser = sessionStorage.getItem("currentUser");
-        if (currentUser) {
-            const userData = JSON.parse(localStorage.getItem(currentUser));
-            const welcomeText = document.getElementById("welcome-text");
-            welcomeText.textContent = `HOŞGELDİN, ${userData.fullName.toUpperCase()}`;
-
-            // Fakülte kartını göster ve içeriğini ayarla
-            const facultyCard = document.getElementById("faculty-card");
-            const facultyTitle = document.getElementById("faculty-title");
-            const facultyDescription = document.getElementById("faculty-description");
-            const facultyLink = document.getElementById("faculty-link");
-
-            facultyCard.classList.remove("hidden");
-
-            if (userData.faculty.toLowerCase().includes("teknoloji")) {
-                facultyTitle.textContent = "Teknoloji Fakültesi Hakkında Daha Fazla Bilgi!";
-                facultyDescription.textContent = "Teknoloji Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
-                facultyLink.href = "teknolojifak.html";
-            } else if (userData.faculty.toLowerCase().includes("mühendislik")) {
-                facultyTitle.textContent = "Mühendislik Fakültesi Hakkında Daha Fazla Bilgi!";
-                facultyDescription.textContent = "Mühendislik Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
-                facultyLink.href = "muhendislikfak.html";
+        // API anahtarını .env dosyasından al
+        let apiKey = '';
+        
+        // .env dosyasını oku
+        async function loadEnvVariables() {
+            try {
+                const response = await fetch('.env');
+                const text = await response.text();
+                const envVars = text.split('\n').reduce((acc, line) => {
+                    const [key, value] = line.split('=');
+                    if (key && value) {
+                        acc[key.trim()] = value.trim();
+                    }
+                    return acc;
+                }, {});
+                apiKey = envVars.GNEWS_API_KEY;
+            } catch (error) {
+                console.error('API anahtarı yüklenemedi:', error);
             }
         }
 
-        let index = 0;
-        const images = document.querySelectorAll(".slider img");
-        const dots = document.querySelectorAll(".slider-dot");
+        // Haberleri getir fonksiyonu
+        async function haberleriGetir() {
+            try {
+                const haberListesi = document.getElementById("haber-listesi");
+                haberListesi.innerHTML = '<p class="text-white text-center text-xl">Haberler yükleniyor...</p>';
 
-        function changeImage() {
-            images[index].classList.remove("active");
-            dots[index].classList.remove("active");
-            
-            index = (index + 1) % images.length;
-            
-            images[index].classList.add("active");
-            dots[index].classList.add("active");
+                if (!apiKey) {
+                    throw new Error('API anahtarı bulunamadı');
+                }
+
+                const response = await fetch(`https://gnews.io/api/v4/search?q=artificial+intelligence&lang=tr&country=tr&max=5&apikey=${apiKey}`);
+                
+                if (!response.ok) {
+                    throw new Error('API yanıt vermedi');
+                }
+
+                const data = await response.json();
+                
+                if (!data.articles || data.articles.length === 0) {
+                    haberListesi.innerHTML = '<p class="text-white text-center text-xl">Haber bulunamadı.</p>';
+                    return;
+                }
+
+                haberListesi.innerHTML = '';
+
+                data.articles.forEach((article) => {
+                    const haber = document.createElement("div");
+                    haber.className = "haber-card";
+                    haber.innerHTML = `
+                        <img src="${article.image || 'photos/default-news.jpg'}" alt="${article.title}" class="haber-thumbnail">
+                        <div class="haber-content">
+                            <h3 class="haber-title">
+                                <a href="${article.url}" target="_blank">${article.title}</a>
+                            </h3>
+                            <p class="haber-description">${article.description}</p>
+                            <div class="haber-meta">
+                                <span class="haber-date">${new Date(article.publishedAt).toLocaleDateString('tr-TR')}</span>
+                                <span class="haber-source">${article.source.name || 'Kaynak'}</span>
+                            </div>
+                        </div>
+                    `;
+
+                    haberListesi.appendChild(haber);
+                });
+            } catch (error) {
+                console.error('Haber yükleme hatası:', error);
+                const haberListesi = document.getElementById("haber-listesi");
+                haberListesi.innerHTML = `
+                    <div class="haber-card">
+                        <div class="haber-content">
+                            <h3 class="haber-title">Haberler Yüklenemedi</h3>
+                            <p class="haber-description">Şu anda haberler yüklenemiyor. Lütfen daha sonra tekrar deneyin.</p>
+                            <div class="haber-meta">
+                                <span class="haber-date">Hata Detayı: ${error.message}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
         }
 
-        dots.forEach((dot, idx) => {
-            dot.addEventListener('click', () => {
-                images[index].classList.remove("active");
-                dots[index].classList.remove("active");
-                index = idx;
-                images[index].classList.add("active");
-                dots[index].classList.add("active");
-            });
-        });
+        // Sayfa yüklendiğinde
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Önce .env dosyasını yükle
+            await loadEnvVariables();
+            
+            // Mevcut DOMContentLoaded işleyicisi
+            const currentUser = sessionStorage.getItem("currentUser");
+            if (currentUser) {
+                // ... existing user code ...
+            }
 
-        setInterval(changeImage, 5000);
-
-        const slider = document.querySelector('.slider');
-        let interval;
-
-        slider.addEventListener('mouseenter', () => {
-            clearInterval(interval);
-        });
-
-        slider.addEventListener('mouseleave', () => {
-            interval = setInterval(changeImage, 5000);
+            // Haberleri getir
+            haberleriGetir();
         });
     </script>
 </body>
