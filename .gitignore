@@ -3,3 +3,5 @@ ESKİMOD.html
 node_modules/
 .env
 .DS_Store
+.vscode/
+deneme.html
