@@ -57,7 +57,11 @@
             <p class="text-gray-700 text-lg mb-4">Kayıt Ol</p>
             <form id="register-form-element" onsubmit="register(event)">
                 <input type="text" id="full-name" placeholder="Ad Soyad" class="w-full mb-2 p-2 border rounded text-black" required />
-                <input type="text" id="faculty" placeholder="Fakülte" class="w-full mb-2 p-2 border rounded text-black" required />
+                <select id="faculty" class="w-full mb-2 p-2 border rounded text-black bg-white" required>
+                    <option value="" disabled selected>Fakülte Seçiniz</option>
+                    <option value="Teknoloji Fakültesi">Teknoloji Fakültesi</option>
+                    <option value="Mühendislik Fakültesi">Mühendislik Fakültesi</option>
+                </select>
                 <input type="text" id="department" placeholder="Bölüm" class="w-full mb-2 p-2 border rounded text-black" required />
                 <input type="text" id="student-number" placeholder="Öğrenci No" class="w-full mb-2 p-2 border rounded text-black" required />
                 <input type="text" id="register-username" placeholder="Kullanıcı Adı" class="w-full mb-2 p-2 border rounded text-black" required />
