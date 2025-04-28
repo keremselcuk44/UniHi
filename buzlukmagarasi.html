@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buzluk Mağarası-UniHi!</title>
+    <link rel="icon" href="fotolar/UniHi!_.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>
+        body {
+            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
+            color: white;
+        }
+
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 20px;
+            align-items: center;
+        }
+        .menu-item {
+            position: relative;
+            padding: 10px 15px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+        .menu-item:hover .dropdown {
+            display: block;
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            min-width: 200px;
+        }
+        .dropdown a {
+            display: block;
+            padding: 10px;
+            color: black;
+            text-decoration: none;
+        }
+        .dropdown a:hover {
+            background: #f4f4f4;
+        }
+
+        .profile-menu {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+        .profile-menu img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+        }
+        .profile-menu:hover .profile-dropdown {
+            display: block;
+        }
+        .profile-dropdown a {
+            display: block;
+            padding: 10px;
+            color: black;
+            text-decoration: none;
+        }
+        .profile-dropdown a:hover {
+            background: #f4f4f4;
+        }
+
+        /* Slider stilleri */
+        .slider {
+            position: relative;
+            height: 400px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: scale(1.1) translateX(10%);
+        }
+        .slide.active {
+            opacity: 1;
+            transform: scale(1) translateX(0);
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-button:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .hover-dark:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        /* Resim Galerisi */
+        .image-gallery {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.image-container {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 8px;
+    height: 250px; /* Sabit yükseklik */
+}
+
+.image {
+    width: 100%; /* Resmin genişliği container genişliğine uyacak şekilde ayarlanır */
+    height: 100%; /* Resmin yüksekliği container yüksekliğine uyacak şekilde ayarlanır */
+    object-fit: cover; /* Resmin içerik kısmı kapsayıcıya sığacak şekilde yerleştirilir */
+    display: block; /* Boşlukları engellemek için */
+}
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 8px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
+    <header class="bg-gradient-to-r from-[#c32f52] to-[#9b1d48] shadow-md py-4 px-6 flex justify-between items-center">
+        <button @click="open = !open" class="text-white text-3xl focus:outline-none">&#9776;</button>
+        <nav class="menu text-white"> 
+            <div class="menu-item">BUZLUK MAĞARASI
+                <div class="dropdown">
+                 
+                </div>
+            </div>
+        </nav>
+        <div class="profile-menu">
+            <img src="photos/Turizm/gergingorunusluadam.jpg" alt="Admin Profil">
+            <div class="profile-dropdown">
+                <a href="#">Ayarlar</a>
+                <a href="#">Çıkış Yap</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-40" x-show="open" @click="open = false"></div>
+    <aside class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 p-5 sidebar" x-data="{ etkinlikOpen: false }" :class="{'open': open}">
+    <button @click="open = false" class="text-black text-2xl absolute top-4 right-4">&times;</button>
+    <ul class="mt-10 space-y-4">
+        <li><a href="modules.html" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">ANA SAYFA</a></li>
+        <li><a href="YurtSayfasi.html" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">KYK YURTLARI</a></li>
+
+        <!-- FAKÜLTELER-->
+        <li x-data="{ dropdownOpen: false }" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
+                FAKÜLTELER
+            </button>
+            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
+                 class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
+                <a href="teknolojifak.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Teknoloji Fakültesi</a>
+                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">Mühendislik Fakültesi</a>
+                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">X FAKÜLTESİ</a>
+            </div>
+        </li>
+
+        <!-- ETKİNLİKLER-->
+        <li x-data="{ dropdownOpen: false }" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
+                ETKİNLİKLER
+            </button>
+            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
+                 class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
+                <a href="festivaller.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Festivaller</a>
+                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">Söyleşiler</a>
+            </div>
+        </li>
+        
+        <!-- GEZİLER-->
+        <li x-data="{ dropdownOpen: false }" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
+                GEZİLER
+            </button>
+            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
+                 class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
+                <a href="harput.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Harput Kalesi</a>
+                <a href="hazar.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Hazar Gölü</a>
+                <a href="buzlukmagarasi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Buzluk Mağarası</a>
+                <a href="circirselalesi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Çırçır Şelalesi</a>
+                <a href="kahvefincanimuzesi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Kahve Fincanı Müzesi</a>
+            </div>
+        </li>
+
+        <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">DENEME 1</a></li>
+       
+    </ul>
+</aside>
+<main class="p-6">
+    <section id="tarihce" class="mb-6">
+        <h2 class="text-3xl font-bold">Buzluk Mağarası'nın Tarihi:</h2>
+        <p>Buzluk Mağarası, Elazığ'ın tarihi ve doğal zenginliklerinden biridir. Mağara, bölgenin en eski yerleşim alanlarından biri olup, aynı 
+            zamanda Buzluk olarak adlandırılmasının nedeni, içerisine girenlerin yazın dahi serinlik hissi duymasıdır. Geçmişte, Elazığ halkı için
+             özellikle yaz aylarında bir serinleme alanı olarak kullanılmıştır. Bu mağara, yerel halkın sıcak yaz günlerinde yiyeceklerini saklamak
+              için de kullanılmıştır. Günümüzde ise turistlerin ilgisini çeken önemli bir doğal miras haline gelmiştir. Mağaranın çevresinde 
+              yapılan kazılarda, pek çok tarihi eser ve taş yapılar bulunmuştur.</p>
+    </section>
+    
+    <section id="kurucusu" class="mb-6">
+        <h2 class="text-3xl font-bold">Buzluk Mağarası'nın Keşfi:</h2>
+        <p>Buzluk Mağarası'nın keşfi hakkında net bir tarih olmamakla birlikte, mağaranın keşfini bölge halkının yıllar süren ziyaretleriyle 
+            gelişen bir süreç olarak nitelendirilmektedir. Mağaranın kullanımı, özellikle 18. yüzyıldan sonra artmış ve bu dönemde daha geniş bir
+             alana yayılma süreci başlamıştır. Günümüzde bölgedeki koruma çalışmaları, yerel halk ve turizm yetkililerinin ortaklaşa yürüttüğü bir
+              projeyle sürdürülmektedir.</p>
+    </section>
+    
+    <section id="amac" class="mb-6">
+        <h2 class="text-3xl font-bold">Kuruluş Amacı:</h2>
+        <p>Buzluk Mağarası, bölgeye gelen turistlere hem doğal hem de tarihi bir deneyim sunmayı amaçlamaktadır. Mağara, serinliği ile bilindiği 
+            için, özellikle yaz aylarında ziyaretçilere doğal bir serinleme alanı sunmaktadır. Ayrıca, mağara çevresinde yapılan kazılarla, 
+            bölgenin tarihini keşfetmek isteyen ziyaretçilere farklı bir deneyim sunulmaktadır. Mağaranın korunması ve tanıtımı da bir diğer
+             önemli amacıdır.</p>
+    </section>
+    
+    <section id="fotolar" class="mb-6">
+        <h2 class="text-3xl font-bold">Buzluk Mağarası'ndan Bazı Fotoğraflar:</h2>
+        <br>
+        <div class="image-gallery">
+            <div class="image-container">
+                <img src="photos/Turizm/buzluk3.jpg" onclick="openModal(this)">
+            </div>
+            <div class="image-container">
+                <img src="photos/Turizm/buzluk2.jpg" onclick="openModal(this)">
+            </div>
+            <div class="image-container">
+                <img src="photos/Turizm/buzluk1.jpg" onclick="openModal(this)">
+            </div>
+        </div>
+    </section>    
+</main>
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
+<script>
+    function openModal(imgElement) {
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("modalImage");
+        modal.style.display = "flex";
+        modalImg.src = imgElement.src;
+    }
+
+    function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+    document.getElementById("imageModal").addEventListener("click", function(event) {
+        if (event.target.id === "imageModal") { 
+            closeModal(); 
+        }
+    });
+</script>
+</script>
+</body>
+</html>
