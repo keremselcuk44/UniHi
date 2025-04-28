@@ -4,85 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hazar Gölü-UniHi!</title>
+    <link rel="icon" href="fotolar/UniHi!_.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
-        /* Genel Ayarlar */
         body {
-            background: linear-gradient(to right, #6a0d45, #9b1d48, #c32f52);
+            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
             color: white;
-            padding-top: 70px;
         }
 
-        /* Header Stilleri */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
             width: 100%;
-            background: linear-gradient(to left, #6a0d45, #9b1d48, #c32f52);
-            z-index: 1000;
-            padding: 10px 20px;
+            gap: 20px;
+            align-items: center;
         }
-
-        header a {
-            padding: 5px; /* Normalde ne ise hover'da da o kalacak */
-            transition: background-color 0.3s;
-            border-radius: 8px;
+        .menu-item {
+            position: relative;
+            padding: 10px 15px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
         }
-
-        header a:hover {
-            background-color: rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            /* padding KALDIRILDI veya değişmedi */
-        }
-        /* Dropdown */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            z-index: 1000;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .dropdown:hover .dropdown-content {
+        .menu-item:hover .dropdown {
             display: block;
         }
-
-        /* Profil Dropdown */
-
-
-        .profile-menu {
+        .dropdown {
             display: none;
             position: absolute;
-            right: 0;
-            background-color: white;
-            min-width: 150px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            border-radius: 8px;
-            overflow: hidden;
+            top: 40px;
+            left: 0;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            min-width: 200px;
         }
-
-        .profile-dropdown:hover .profile-menu {
-            display: block;
-        }
-
-        .profile-menu a {
+        .dropdown a {
             display: block;
             padding: 10px;
             color: black;
             text-decoration: none;
         }
-
-        .profile-menu a:hover {
-            background-color: #f0f0f0;
+        .dropdown a:hover {
+            background: #f4f4f4;
         }
 
-        /* Etkinlik ve Profil Hover Arka Plan Karartma */
+        .profile-menu {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+        .profile-menu img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+        }
+        .profile-menu:hover .profile-dropdown {
+            display: block;
+        }
+        .profile-dropdown a {
+            display: block;
+            padding: 10px;
+            color: black;
+            text-decoration: none;
+        }
+        .profile-dropdown a:hover {
+            background: #f4f4f4;
+        }
+
+        /* Slider stilleri */
+        .slider {
+            position: relative;
+            height: 400px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: scale(1.1) translateX(10%);
+        }
+        .slide.active {
+            opacity: 1;
+            transform: scale(1) translateX(0);
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-button:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
         .hover-dark:hover {
             background-color: rgba(0, 0, 0, 0.3);
             border-radius: 8px;
@@ -139,101 +196,142 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
-    <header class="shadow-md py-4 px-6 flex justify-between items-center">
-        <div class="flex items-center space-x-6">
-            <a href="modules.html"><img src="photos/unihilogo.png" alt="UniHi Logo" class="w-12"></a>
-            <a href="#" class="text-2xl font-bold hover-dark">Fakülteler</a>
-            <a href="#" class="text-2xl font-bold hover-dark">Üniversite Evi</a>
-            <a href="#" class="text-2xl font-bold hover-dark">Yurtlar</a>
-            
-            <div class="dropdown">
-                <a href="etkinlik.html" class="text-2xl font-bold hover-dark">Etkinlikler</a>
-                <div class="dropdown-content p-2">
-                    <a href="gezi.html" class="block px-4 py-2 text-gray-700">Gezi</a>
-                    <a href="#" class="block px-4 py-2 text-gray-700">Söyleşiler</a>
-                    <a href="#" class="block px-4 py-2 text-gray-700">Festivaller</a>
+<body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
+    <header class="bg-gradient-to-r from-[#c32f52] to-[#9b1d48] shadow-md py-4 px-6 flex justify-between items-center">
+        <button @click="open = !open" class="text-white text-3xl focus:outline-none">&#9776;</button>
+        <nav class="menu text-white"> 
+            <div class="menu-item">HAZAR GÖLÜ
+                <div class="dropdown">
+                 
                 </div>
             </div>
-        </div>
-        
-        <div class="profile-dropdown">
-            <div class="flex items-center space-x-2 cursor-pointer p-2 hover-dark rounded-lg">
-                <span class="text-xl font-bold">Gergin Görünüşlü Adam</span>
-                <img src="photos/Turizm/gergingorunusluadam.jpg" alt="Profil" class="w-10 h-10 rounded-full">
-            </div>
-            <div class="profile-menu">
+        </nav>
+        <div class="profile-menu">
+            <img src="photos/Turizm/gergingorunusluadam.jpg" alt="Admin Profil">
+            <div class="profile-dropdown">
                 <a href="#">Ayarlar</a>
                 <a href="#">Çıkış Yap</a>
             </div>
         </div>
-    </header>    
-    <main class="p-6">
-        <section id="tarihi">
-            <h2 class="text-3xl font-bold">Hazar Gölü'nün Tarihi:</h2>
-            <p>Hazar Gölü, ismini bölgedeki Hazar köyünden alır ve bölgeye adını veren bu köyün de bulunduğu alanda tarihi ve kültürel zenginlikler
-                 bulunmaktadır. Göl çevresinde yapılan kazılarda, bölgedeki eski yerleşimlere ve kültürlere ait izlere rastlanmıştır. Antik 
-                 dönemlere kadar uzanan tarihi süreç, gölü çevreleyen yerleşim yerlerinin sürekli bir yerleşim yeri olarak kullanıldığını gösterir.</p>
-        </section>
-        <section id="yonetim">
-            <h2 class="text-3xl font-bold">Hazar Gölü'nü Kimler Yönetti?</h2>
-            <ul>
-                <li><strong>Urartular (MÖ 9. – 6. yüzyıl):</strong> Elazığ ve çevresini kapsayan bölgeyi yönetmiş ve Hazar Gölü'nün bulunduğu 
-                bölgeyi savunma amaçlı kullanmışlardır. Urartular döneminde pek çok kale ve su depoları yapılmıştır.</li>
-                <li><strong>Asurlar (MÖ 7. – 6. yüzyıl):</strong> Urartular’ın çöküşünün ardından, Asur İmparatorluğu bölgeyi ele geçirmiştir. 
-                Hazar Gölü çevresi, Asurlar için stratejik bir alan olmuştur.</li>
-                <li><strong>Persler (MÖ 6. – 4. yüzyıl):</strong> Büyük Kiros’un liderliğinde bölgeyi ele geçirerek Hazar Gölü’nün de dahil olduğu 
-                topraklarda hüküm sürmüşlerdir. Persler, bölgedeki Urartu ve Asur miraslarından yararlanmışlardır.</li>
-                <li><strong>Makedonya (MÖ 4. yüzyıl):</strong> Büyük İskender'in fetihleri sırasında Hazar Gölü çevresi, Makedon İmparatorluğu’nun 
-                sınırları içine girmiştir. Bu dönemde bölge, İskender’in genişleme stratejileri doğrultusunda yönetilmiştir.</li>
-                <li><strong>Roma İmparatorluğu (MÖ 1. yüzyıl – 5. yüzyıl):</strong> Hazar Gölü’nün bulunduğu bölgeyi de kapsayan geniş topraklara 
-                hükmetmiştir. Bu dönemde bölge, Roma İmparatorluğu’nun güney sınırlarını oluşturmuştur.</li>
-                <li><strong>Selçuklular (11. yüzyıl):</strong> Büyük Selçuklu İmparatorluğu'nun Anadolu’ya girmesiyle, Elazığ ve çevresi 
-                Selçuklular'ın egemenliğine girmiştir. Hazar Gölü çevresi, Selçuklular için stratejik bir bölge olmuştur.</li>
-                <li><strong>Osmanlı İmparatorluğu (15. yüzyıl – 19. yüzyıl):</strong> Osmanlı İmparatorluğu, Hazar Gölü’nün bulunduğu bölgeyi 
-                16. yüzyılda tamamen egemenliği altına almış ve bölgeyi Osmanlı İmparatorluğu’nun Erzincan eyaletine bağlı olarak yönetmiştir.</li>
-                <li><strong>Cumhuriyet Dönemi (1923 – günümüz):</strong> Türkiye Cumhuriyeti’nin kuruluşundan sonra, Hazar Gölü ve çevresi Elazığ 
-                il sınırları içinde yer almış ve modern Türkiye’nin yönetim yapısına dahil edilmiştir.</li>
-            </ul>
-        </section>
-        <section id="fotolar">
-            <h2 class="text-3xl font-bold">Hazar Gölü'nden Bazı Fotoğraflar:</h2>
-            <br>
-            <div class="image-gallery">
-                <div class="image-container">
-                    <img src="photos/Turizm/hazargolu1.jpg" class="image" alt="Harput Kale Fotoğraf 1" onclick="openModal(this)">
-                </div>
-                <div class="image-container">
-                    <img src="photos/Turizm/hazargolu2.jpg" class="image" alt="Harput Kale Fotoğraf 2" onclick="openModal(this)">
-                </div>
-                <div class="image-container">
-                    <img src="photos/Turizm/hazargolu3.jpeg" class="image" alt="Harput Kale Fotoğraf 3" onclick="openModal(this)">
-                </div>
+    </header>
+
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-40" x-show="open" @click="open = false"></div>
+    <aside class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 p-5 sidebar" x-data="{ etkinlikOpen: false }" :class="{'open': open}">
+    <button @click="open = false" class="text-black text-2xl absolute top-4 right-4">&times;</button>
+    <ul class="mt-10 space-y-4">
+        <li><a href="modules.html" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">ANA SAYFA</a></li>
+        <li><a href="YurtSayfasi.html" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">KYK YURTLARI</a></li>
+
+        <!-- FAKÜLTELER-->
+        <li x-data="{ dropdownOpen: false }" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
+                FAKÜLTELER
+            </button>
+            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
+                 class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
+                <a href="teknolojifak.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Teknoloji Fakültesi</a>
+                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">Mühendislik Fakültesi</a>
+                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">X FAKÜLTESİ</a>
             </div>
-        </section>
-    </main>
-    <div id="imageModal" class="modal">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage">
-    </div>
+        </li>
 
-    <script>
-        function openModal(imgElement) {
-            var modal = document.getElementById("imageModal");
-            var modalImg = document.getElementById("modalImage");
-            modal.style.display = "flex";
-            modalImg.src = imgElement.src;
-        }
+        <!-- ETKİNLİKLER-->
+        <li x-data="{ dropdownOpen: false }" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
+                ETKİNLİKLER
+            </button>
+            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
+                 class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
+                <a href="festivaller.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Festivaller</a>
+                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">Söyleşiler</a>
+            </div>
+        </li>
+        
+        <!-- GEZİLER-->
+        <li x-data="{ dropdownOpen: false }" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
+                GEZİLER
+            </button>
+            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
+                 class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
+                <a href="harput.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Harput Kalesi</a>
+                <a href="hazar.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Hazar Gölü</a>
+                <a href="buzlukmagarasi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Buzluk Mağarası</a>
+                <a href="circirselalesi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Çırçır Şelalesi</a>
+                <a href="kahvefincanimuzesi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Kahve Fincanı Müzesi</a>
+            </div>
+        </li>
 
-        function closeModal() {
-            document.getElementById("imageModal").style.display = "none";
+        <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">DENEME 1</a></li>
+       
+    </ul>
+</aside>
+<main class="p-6">
+    <section id="tarihi">
+        <h2 class="text-3xl font-bold">Hazar Gölü'nün Tarihi:</h2>
+        <p>Hazar Gölü, ismini bölgedeki Hazar köyünden alır ve bölgeye adını veren bu köyün de bulunduğu alanda tarihi ve kültürel zenginlikler
+             bulunmaktadır. Göl çevresinde yapılan kazılarda, bölgedeki eski yerleşimlere ve kültürlere ait izlere rastlanmıştır. Antik 
+             dönemlere kadar uzanan tarihi süreç, gölü çevreleyen yerleşim yerlerinin sürekli bir yerleşim yeri olarak kullanıldığını gösterir.</p>
+    </section>
+    <section id="yonetim">
+        <h2 class="text-3xl font-bold">Hazar Gölü'nü Kimler Yönetti?</h2>
+        <ul>
+            <li><strong>Urartular (MÖ 9. – 6. yüzyıl):</strong> Elazığ ve çevresini kapsayan bölgeyi yönetmiş ve Hazar Gölü'nün bulunduğu 
+            bölgeyi savunma amaçlı kullanmışlardır. Urartular döneminde pek çok kale ve su depoları yapılmıştır.</li>
+            <li><strong>Asurlar (MÖ 7. – 6. yüzyıl):</strong> Urartular’ın çöküşünün ardından, Asur İmparatorluğu bölgeyi ele geçirmiştir. 
+            Hazar Gölü çevresi, Asurlar için stratejik bir alan olmuştur.</li>
+            <li><strong>Persler (MÖ 6. – 4. yüzyıl):</strong> Büyük Kiros’un liderliğinde bölgeyi ele geçirerek Hazar Gölü’nün de dahil olduğu 
+            topraklarda hüküm sürmüşlerdir. Persler, bölgedeki Urartu ve Asur miraslarından yararlanmışlardır.</li>
+            <li><strong>Makedonya (MÖ 4. yüzyıl):</strong> Büyük İskender'in fetihleri sırasında Hazar Gölü çevresi, Makedon İmparatorluğu’nun 
+            sınırları içine girmiştir. Bu dönemde bölge, İskender’in genişleme stratejileri doğrultusunda yönetilmiştir.</li>
+            <li><strong>Roma İmparatorluğu (MÖ 1. yüzyıl – 5. yüzyıl):</strong> Hazar Gölü’nün bulunduğu bölgeyi de kapsayan geniş topraklara 
+            hükmetmiştir. Bu dönemde bölge, Roma İmparatorluğu’nun güney sınırlarını oluşturmuştur.</li>
+            <li><strong>Selçuklular (11. yüzyıl):</strong> Büyük Selçuklu İmparatorluğu'nun Anadolu’ya girmesiyle, Elazığ ve çevresi 
+            Selçuklular'ın egemenliğine girmiştir. Hazar Gölü çevresi, Selçuklular için stratejik bir bölge olmuştur.</li>
+            <li><strong>Osmanlı İmparatorluğu (15. yüzyıl – 19. yüzyıl):</strong> Osmanlı İmparatorluğu, Hazar Gölü’nün bulunduğu bölgeyi 
+            16. yüzyılda tamamen egemenliği altına almış ve bölgeyi Osmanlı İmparatorluğu’nun Erzincan eyaletine bağlı olarak yönetmiştir.</li>
+            <li><strong>Cumhuriyet Dönemi (1923 – günümüz):</strong> Türkiye Cumhuriyeti’nin kuruluşundan sonra, Hazar Gölü ve çevresi Elazığ 
+            il sınırları içinde yer almış ve modern Türkiye’nin yönetim yapısına dahil edilmiştir.</li>
+        </ul>
+    </section>
+    <section id="fotolar">
+        <h2 class="text-3xl font-bold">Hazar Gölü'nden Bazı Fotoğraflar:</h2>
+        <br>
+        <div class="image-gallery">
+            <div class="image-container">
+                <img src="photos/Turizm/hazargolu1.jpg" class="image" alt="Harput Kale Fotoğraf 1" onclick="openModal(this)">
+            </div>
+            <div class="image-container">
+                <img src="photos/Turizm/hazargolu2.jpg" class="image" alt="Harput Kale Fotoğraf 2" onclick="openModal(this)">
+            </div>
+            <div class="image-container">
+                <img src="photos/Turizm/hazargolu3.jpeg" class="image" alt="Harput Kale Fotoğraf 3" onclick="openModal(this)">
+            </div>
+        </div>
+    </section>
+</main>
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
+<script>
+    function openModal(imgElement) {
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("modalImage");
+        modal.style.display = "flex";
+        modalImg.src = imgElement.src;
+    }
+
+    function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+    document.getElementById("imageModal").addEventListener("click", function(event) {
+        if (event.target.id === "imageModal") { 
+            closeModal(); 
         }
-        document.getElementById("imageModal").addEventListener("click", function(event) {
-            if (event.target.id === "imageModal") { 
-                closeModal(); 
-            }
-        });
-    </script>
-    </script>
+    });
+</script>
+</script>
 </body>
 </html>
