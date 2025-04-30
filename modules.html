@@ -170,7 +170,6 @@
             border-color: rgba(255, 255, 255, 0.8);
         }
         .profile-dropdown {
-            display: none;
             position: absolute;
             top: 100%;
             right: 0;
@@ -179,6 +178,10 @@
             border-radius: 8px;
             min-width: 150px;
             z-index: 10;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
         .profile-dropdown a {
@@ -196,6 +199,11 @@
             background: rgba(195, 47, 82, 0.05);
             color: #c32f52;
             padding-left: 20px;
+        }
+        .profile-menu:hover .profile-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
         .welcome-text {
             position: relative;
