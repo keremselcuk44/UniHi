@@ -59,38 +59,61 @@
         }
 
         .profile-menu {
+            position: relative;
             display: flex;
             align-items: center;
             gap: 10px;
-            position: relative;
             cursor: pointer;
         }
         .profile-menu img {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+        .profile-menu:hover img {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.8);
         }
         .profile-dropdown {
-            display: none;
             position: absolute;
-            top: 50px;
+            top: 100%;
             right: 0;
             background: white;
-            border-radius: 5px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            min-width: 120px;
-        }
-        .profile-menu:hover .profile-dropdown {
-            display: block;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            min-width: 150px;
+            z-index: 10;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
         .profile-dropdown a {
             display: block;
-            padding: 10px;
-            color: black;
+            padding: 12px 16px;
+            color: #333;
             text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .profile-dropdown a:last-child {
+            border-bottom: none;
         }
         .profile-dropdown a:hover {
-            background: #f4f4f4;
+            background: rgba(195, 47, 82, 0.05);
+            color: #c32f52;
+            padding-left: 20px;
+        }
+        .profile-menu:hover .profile-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
         /* Slider stilleri */
@@ -239,10 +262,10 @@
             </div>
         </nav>
         <div class="profile-menu">
-            <img src="photos/Turizm/gergingorunusluadam.jpg" alt="Admin Profil">
+            <img src="photos/jonsnow.png" alt="Admin Profil">
             <div class="profile-dropdown">
                 <a href="#">Ayarlar</a>
-                <a href="#">Çıkış Yap</a>
+                <a href="Home.html">Çıkış Yap</a>
             </div>
         </div>
     </header>
@@ -331,7 +354,7 @@
     <p class="text-xl font-semibold mb-4">📌 Konu: "Veri Odaklı Bulut Hesaplama"</p>
     <p class="mb-4">Yapay zekânın teknolojik dönüşümdeki rolü, insanlık üzerindeki etkileri ve teknoloji felsefesi perspektifinden geleceğin trendleri üzerine bilgi paylaşımı. 💡🌐</p>
     <p class="text-xl font-semibold mb-4">👨‍💻 Konuşmacı: Taylan Lakerta</p>
-    <p class="mb-4">Taylan Lakerta, HAVELSAN’daki proje liderliği rolüyle büyük ölçekli veri yönetimi ve bulut teknolojileri konusundaki 
+    <p class="mb-4">Taylan Lakerta, HAVELSAN'daki proje liderliği rolüyle büyük ölçekli veri yönetimi ve bulut teknolojileri konusundaki 
         deneyimlerini bizlerle paylaşacak. </p>
     <p class="mb-4">Kendisi, veri odaklı sistemlerin geleceğini şekillendiren isimlerden biri!🌟</p>
     <p class="text-xl font-semibold mb-4">🔍 Peki bu etkinlikte neler konuşulacak?</p>
@@ -340,7 +363,7 @@
     <p class="mb-4">🔸Gerçek hayattan proje deneyimleri ve teknik ipuçları</p>
     <p class="mb-4">🔸Bulut bilişimin geleceği ve sektördeki fırsatlar</p>
     <p class="mt-2 text-pink-400 font-semibold">
-        Bulut teknolojilerine dair soruların varsa, bu etkinlik tam sana göre! Hazır ol, teknoloji dolu bir akşam bizi bekliyor. 🚀</p>
+        Bulut teknolojilerine dair soruların varsa, bu etkinlik tam sana göre! Hazır ol, teknoloji dolu bir akşam bizi bekliyor. 🚀</p>
 </section>
         </div>
 <div id="imageModal" class="modal">

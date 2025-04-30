@@ -59,38 +59,61 @@
         }
 
         .profile-menu {
+            position: relative;
             display: flex;
             align-items: center;
             gap: 10px;
-            position: relative;
             cursor: pointer;
         }
         .profile-menu img {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+        .profile-menu:hover img {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.8);
         }
         .profile-dropdown {
-            display: none;
             position: absolute;
-            top: 50px;
+            top: 100%;
             right: 0;
             background: white;
-            border-radius: 5px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            min-width: 120px;
-        }
-        .profile-menu:hover .profile-dropdown {
-            display: block;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            min-width: 150px;
+            z-index: 10;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
         .profile-dropdown a {
             display: block;
-            padding: 10px;
-            color: black;
+            padding: 12px 16px;
+            color: #333;
             text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .profile-dropdown a:last-child {
+            border-bottom: none;
         }
         .profile-dropdown a:hover {
-            background: #f4f4f4;
+            background: rgba(195, 47, 82, 0.05);
+            color: #c32f52;
+            padding-left: 20px;
+        }
+        .profile-menu:hover .profile-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
         /* Slider stilleri */
@@ -207,10 +230,10 @@
             </div>
         </nav>
         <div class="profile-menu">
-            <img src="photos/Turizm/gergingorunusluadam.jpg" alt="Admin Profil">
+            <img src="photos/jonsnow.png" alt="Admin Profil">
             <div class="profile-dropdown">
                 <a href="#">Ayarlar</a>
-                <a href="#">Çıkış Yap</a>
+                <a href="Home.html">Çıkış Yap</a>
             </div>
         </div>
     </header>
@@ -278,20 +301,20 @@
         <ul>
             <li><strong>Urartular (MÖ 9. – 6. yüzyıl):</strong> Elazığ ve çevresini kapsayan bölgeyi yönetmiş ve Hazar Gölü'nün bulunduğu 
             bölgeyi savunma amaçlı kullanmışlardır. Urartular döneminde pek çok kale ve su depoları yapılmıştır.</li>
-            <li><strong>Asurlar (MÖ 7. – 6. yüzyıl):</strong> Urartular’ın çöküşünün ardından, Asur İmparatorluğu bölgeyi ele geçirmiştir. 
+            <li><strong>Asurlar (MÖ 7. – 6. yüzyıl):</strong> Urartular'ın çöküşünün ardından, Asur İmparatorluğu bölgeyi ele geçirmiştir. 
             Hazar Gölü çevresi, Asurlar için stratejik bir alan olmuştur.</li>
-            <li><strong>Persler (MÖ 6. – 4. yüzyıl):</strong> Büyük Kiros’un liderliğinde bölgeyi ele geçirerek Hazar Gölü’nün de dahil olduğu 
+            <li><strong>Persler (MÖ 6. – 4. yüzyıl):</strong> Büyük Kiros'un liderliğinde bölgeyi ele geçirerek Hazar Gölü'nün de dahil olduğu 
             topraklarda hüküm sürmüşlerdir. Persler, bölgedeki Urartu ve Asur miraslarından yararlanmışlardır.</li>
-            <li><strong>Makedonya (MÖ 4. yüzyıl):</strong> Büyük İskender'in fetihleri sırasında Hazar Gölü çevresi, Makedon İmparatorluğu’nun 
-            sınırları içine girmiştir. Bu dönemde bölge, İskender’in genişleme stratejileri doğrultusunda yönetilmiştir.</li>
-            <li><strong>Roma İmparatorluğu (MÖ 1. yüzyıl – 5. yüzyıl):</strong> Hazar Gölü’nün bulunduğu bölgeyi de kapsayan geniş topraklara 
-            hükmetmiştir. Bu dönemde bölge, Roma İmparatorluğu’nun güney sınırlarını oluşturmuştur.</li>
-            <li><strong>Selçuklular (11. yüzyıl):</strong> Büyük Selçuklu İmparatorluğu'nun Anadolu’ya girmesiyle, Elazığ ve çevresi 
+            <li><strong>Makedonya (MÖ 4. yüzyıl):</strong> Büyük İskender'in fetihleri sırasında Hazar Gölü çevresi, Makedon İmparatorluğu'nun 
+            sınırları içine girmiştir. Bu dönemde bölge, İskender'in genişleme stratejileri doğrultusunda yönetilmiştir.</li>
+            <li><strong>Roma İmparatorluğu (MÖ 1. yüzyıl – 5. yüzyıl):</strong> Hazar Gölü'nün bulunduğu bölgeyi de kapsayan geniş topraklara 
+            hükmetmiştir. Bu dönemde bölge, Roma İmparatorluğu'nun güney sınırlarını oluşturmuştur.</li>
+            <li><strong>Selçuklular (11. yüzyıl):</strong> Büyük Selçuklu İmparatorluğu'nun Anadolu'ya girmesiyle, Elazığ ve çevresi 
             Selçuklular'ın egemenliğine girmiştir. Hazar Gölü çevresi, Selçuklular için stratejik bir bölge olmuştur.</li>
-            <li><strong>Osmanlı İmparatorluğu (15. yüzyıl – 19. yüzyıl):</strong> Osmanlı İmparatorluğu, Hazar Gölü’nün bulunduğu bölgeyi 
-            16. yüzyılda tamamen egemenliği altına almış ve bölgeyi Osmanlı İmparatorluğu’nun Erzincan eyaletine bağlı olarak yönetmiştir.</li>
-            <li><strong>Cumhuriyet Dönemi (1923 – günümüz):</strong> Türkiye Cumhuriyeti’nin kuruluşundan sonra, Hazar Gölü ve çevresi Elazığ 
-            il sınırları içinde yer almış ve modern Türkiye’nin yönetim yapısına dahil edilmiştir.</li>
+            <li><strong>Osmanlı İmparatorluğu (15. yüzyıl – 19. yüzyıl):</strong> Osmanlı İmparatorluğu, Hazar Gölü'nün bulunduğu bölgeyi 
+            16. yüzyılda tamamen egemenliği altına almış ve bölgeyi Osmanlı İmparatorluğu'nun Erzincan eyaletine bağlı olarak yönetmiştir.</li>
+            <li><strong>Cumhuriyet Dönemi (1923 – günümüz):</strong> Türkiye Cumhuriyeti'nin kuruluşundan sonra, Hazar Gölü ve çevresi Elazığ 
+            il sınırları içinde yer almış ve modern Türkiye'nin yönetim yapısına dahil edilmiştir.</li>
         </ul>
     </section>
     <section id="fotolar">
