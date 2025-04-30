@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kahve Fincanı Müzesi</title>
+    <title>Satranç Turnuvası-UniHi!</title>
     <link rel="icon" href="fotolar/UniHi!_.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
@@ -194,13 +194,46 @@
             color: white;
             cursor: pointer;
         }
+        .event-card {
+        background: white;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        color: black;
+    }
+
+    .event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .event-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 15px;
+    }
+
+    .event-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .event-description {
+        font-size: 1rem;
+        color: #555;
+    }
+
     </style>
 </head>
 <body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
     <header class="bg-gradient-to-r from-[#c32f52] to-[#9b1d48] shadow-md py-4 px-6 flex justify-between items-center">
         <button @click="open = !open" class="text-white text-3xl focus:outline-none">&#9776;</button>
         <nav class="menu text-white"> 
-            <div class="menu-item">KAHVE FİNCANI MÜZESİ
+            <div class="menu-item">FESTİVALLER
         
                 </div>
             </div>
@@ -265,51 +298,49 @@
        
     </ul>
 </aside>
-<main class="p-6">
-    <section id="tarihce" class="mb-6">
-        <h2 class="text-3xl font-bold">Kahve Fincanı Müzesi'nin Tarihi:</h2>
-        <p>Elazığ'ın tarihi Harput Mahallesi'nde bulunan Kahve Fincanı Müzesi, 29 Ekim 2023'te Cumhuriyet'in 100. yılı anısına açılmıştır. 
-            Türkiye'nin ilk ve tek kahve fincanı müzesi olma özelliğine sahip olan bu mekânda, başlangıçta 2.023 fincan sergilenirken, 
-            zamanla bu sayı 7.000'i aşmıştır. Müze, açılışından itibaren büyük ilgi görmüş ve ilk dört ayında yaklaşık 20.000 ziyaretçiyi 
-            ağırlamıştır. 2024 yılı Kasım ayı itibarıyla toplam ziyaretçi sayısı 300.000'i geçmiş olup, müze Guinness Rekorlar Kitabı'na 
-            girmeyi hedeflemektedir. Müzede sergilenen değerli fincanlar arasında, 1737'de İngiltere'den Osmanlı'ya gönderilen bir fincan, 
-            Harput kazılarında bulunan 12 hayvanlı Türk takvimli fincan ve ünlü fotoğrafçı Ara Güler'e ait kahve fincanları bulunmaktadır. 
-            Ayrıca, 17 Kasım 1937'de Elazığ'ı ziyaret eden Mustafa Kemal Atatürk'ün kahve içtiği fincan da müzede sergilenmektedir. 
-            Ziyaretçiler, müzede sergilenen fincanları bağışlayarak katkıda bulunabilir ve isimlerini bakır levhalara yazdırarak hatıralarını 
-            ölümsüzleştirebilirler. Müze, hem kahve kültürünü yaşatmakta hem de ziyaretçilere geçmişe dair anlamlı bir yolculuk sunmaktadır.​​</p>
-    </section>
-    <section id="kurucusu" class="mb-6">
-        <h2 class="text-3xl font-bold"> Kurucusu Kimdir?</h2>
-        <p>Elazığ Kahve Fincanı Müzesi'nin kurucusu, iş insanı ve turizmci olan Kemal Sülük'tür. Sülük, müzeyi 2023 yılında, Türkiye'nin ilk 
-            ve tek kahve fincanı müzesi olarak açmıştır. Müze, özellikle kahve kültürüne olan ilgisi ve koleksiyonculuk tutkusuyla dikkat 
-            çekmektedir.</p>
-    </section>
-    <section id="amac" class="mb-6">
-        <h2 class="text-3xl font-bold"> Kuruluş Amacı:</h2>
-        <p>Elazığ Kahve Fincanı Müzesi'nin kuruluş amacı, kahve kültürünü yaşatmak, kahvenin tarihsel ve kültürel önemini vurgulamak ve bu 
-            alandaki nadir koleksiyonları sergileyerek ziyaretçilere geçmişe dair bir yolculuk sunmaktır. Müze, kahve fincanlarının tarihi 
-            sürecini ve farklı kültürlerdeki yerini gösteren özel bir koleksiyon sunmaktadır.
-            <br>
-            Ayrıca, müze, kahve fincanlarının sadece birer eşya değil, aynı zamanda kültürel miras olarak değer taşıdığına dikkat çekmeyi 
-            amaçlamaktadır. Ziyaretçiler, müzeye bağışta bulunarak fincanları sergileyebilir ve kendi isimlerini bakır levhalara yazdırarak 
-            bu kültürel mirasa katkıda bulunabilirler. Bu şekilde, kahve kültürünün nesilden nesile aktarılmasına olanak tanınmaktadır.</p>
-    </section>
-    <section id="fotolar" class="mb-6">
-        <h2 class="text-3xl font-bold"> Kahve Fincanı Müzesi'nden Bazı Fotoğraflar:</h2>
-        <br>
-        <div class="image-gallery">
-            <div class="image-container">
-                <img src="photos/Turizm/kahvefincanı1.jpg" onclick="openModal(this)">
-            </div>
-            <div class="image-container">
-                <img src="photos/Turizm/kahvefincanı2.jpg" onclick="openModal(this)">
-            </div>
-            <div class="image-container">
-                <img src="photos/Turizm/kahvefincanı4.jpg" onclick="openModal(this)">
-            </div>
+
+
+<div class="mb-6 mt-6">
+    <img src="photos/Etkinlikler/25.04.2025 Satranç Etkinliği.jpeg" alt="Satranç Turnuvası" class="mx-auto rounded-xl shadow-lg max-w-md">
+</div>
+
+<!-- Bilgi Kartları -->
+<section class="w-full max-w-md mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 ">
+    <!-- Tarih -->
+    <div class="bg-white text-black p-6 rounded-xl shadow-md">
+        <h2 class="text-xl font-bold mb-2">🛎️ Tarih</h2>
+        <p>3 Mayıs 2025</p>
+    </div>
+
+    <!-- Yer -->
+    <div class="bg-white text-black p-6 rounded-xl shadow-md">
+        <h2 class="text-xl font-bold mb-2">📌 Yer</h2>
+        <p>GSB Satranç Ofisi</p>
+        <a href="https://maps.app.goo.gl/cnXi28Gm9rmKwzLVA" target="_blank" class="text-pink-700 underline text-sm mt-1 inline-block">Konuma Git</a>
+    </div>
+
+    <!-- Tempo -->
+    <div class="bg-white text-black p-6 rounded-xl shadow-md">
+        <h2 class="text-xl font-bold mb-2">⏱️ Tempo</h2>
+        <p>5+3 (Blitz)</p>
+    </div>
+
+    <!-- Kayıt -->
+    <div class="bg-white text-black p-6 rounded-xl shadow-md">
+        <h2 class="text-xl font-bold mb-2">📢 Kayıt Linki</h2>
+        <a href="https://forms.gle/W4J8W9euKT7nwj8Y7" target="_blank" class="bg-pink-700 text-white px-4 py-2 rounded-lg inline-block hover:bg-pink-800 transition">Hemen Kayıt Ol</a>
+    </div>
+</section>
+
+<!-- Alt bilgi -->
+ <section class="mt-10 text-center">
+    <p class="text-xl font-semibold mb-4">Zekânı Konuşturma Zamanı! ⚡</p>
+    <p class="mb-4">Akıl, strateji ve heyecanın buluştuğu bu turnuvada tahtada yerini al, rakiplerini mat et!</p>
+    <p class="mb-4">Ödüller, eğlence ve unutulmaz maçlar seni bekliyor!</p>
+    <p class="font-bold mt-6">* Son başvuru tarihi: 30 Nisan 2025 *</p>
+    <p class="mt-2 text-pink-400 font-semibold">Tüm öğrenciler davetlidir!</p>
+</section>
         </div>
-    </section>
-</main>
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
     <img class="modal-content" id="modalImage">

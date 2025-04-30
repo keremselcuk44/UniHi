@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code-Game Night-UniHi!</title>
+    <link rel="icon" href="fotolar/UniHi!_.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>
+        body {
+            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
+            color: white;
+        }
+
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 20px;
+            align-items: center;
+        }
+        .menu-item {
+            position: relative;
+            padding: 10px 15px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+        .menu-item:hover .dropdown {
+            display: block;
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            min-width: 200px;
+        }
+        .dropdown a {
+            display: block;
+            padding: 10px;
+            color: black;
+            text-decoration: none;
+        }
+        .dropdown a:hover {
+            background: #f4f4f4;
+        }
+
+        .profile-menu {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+        .profile-menu img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+        }
+        .profile-menu:hover .profile-dropdown {
+            display: block;
+        }
+        .profile-dropdown a {
+            display: block;
+            padding: 10px;
+            color: black;
+            text-decoration: none;
+        }
+        .profile-dropdown a:hover {
+            background: #f4f4f4;
+        }
+
+        /* Slider stilleri */
+        .slider {
+            position: relative;
+            height: 400px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: scale(1.1) translateX(10%);
+        }
+        .slide.active {
+            opacity: 1;
+            transform: scale(1) translateX(0);
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-button:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .hover-dark:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        /* Resim Galerisi */
+        .image-gallery {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .image-container {
+            flex: 1;
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .image {
+            width: 4000px;
+            height: 250px;
+            cursor: pointer;
+            object-fit: cover;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 8px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
+        .event-card {
+        background: white;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        color: black;
+    }
+
+    .event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .event-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+        margin-bottom: 15px;
+    }
+
+    .event-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .event-description {
+        font-size: 1rem;
+        color: #555;
+    }
+
+    </style>
+</head>
+<body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
+    <header class="bg-gradient-to-r from-[#c32f52] to-[#9b1d48] shadow-md py-4 px-6 flex justify-between items-center">
+        <button @click="open = !open" class="text-white text-3xl focus:outline-none">&#9776;</button>
+        <nav class="menu text-white"> 
+            <div class="menu-item">FESTİVALLER
+        
+                </div>
+            </div>
+        </nav>
+        <div class="profile-menu">
+            <img src="photos/Turizm/gergingorunusluadam.jpg" alt="Admin Profil">
+            <div class="profile-dropdown">
+                <a href="#">Ayarlar</a>
+                <a href="#">Çıkış Yap</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-40" x-show="open" @click="open = false"></div>
+    <aside class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 p-5 sidebar" x-data="{ etkinlikOpen: false }" :class="{'open': open}">
+    <button @click="open = false" class="text-black text-2xl absolute top-4 right-4">&times;</button>
+    <ul class="mt-10 space-y-4">
+        <li><a href="modules.html" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">ANA SAYFA</a></li>
+        <li><a href="YurtSayfasi.html" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">KYK YURTLARI</a></li>
+
+        <!-- FAKÜLTELER-->
+        <li x-data="{ dropdownOpen: false }" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
+                FAKÜLTELER
+            </button>
+            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
+                 class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
+                <a href="teknolojifak.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Teknoloji Fakültesi</a>
+                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">Mühendislik Fakültesi</a>
+                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">X FAKÜLTESİ</a>
+            </div>
+        </li>
+
+        <!-- ETKİNLİKLER-->
+        <li x-data="{ dropdownOpen: false }" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
+                ETKİNLİKLER
+            </button>
+            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
+                 class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
+                <a href="festivaller.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Festivaller</a>
+                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">Söyleşiler</a>
+            </div>
+        </li>
+        
+        <!-- GEZİLER-->
+        <li x-data="{ dropdownOpen: false }" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
+                GEZİLER
+            </button>
+            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
+                 class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
+                <a href="harput.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Harput Kalesi</a>
+                <a href="hazar.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Hazar Gölü</a>
+                <a href="buzlukmagarasi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Buzluk Mağarası</a>
+                <a href="circirselalesi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Çırçır Şelalesi</a>
+                <a href="kahvefincanimuzesi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Kahve Fincanı Müzesi</a>
+            </div>
+        </li>
+
+        <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">DENEME 1</a></li>
+       
+    </ul>
+</aside>
+
+
+<div class="mb-6 mt-6">
+    <img src="photos/Etkinlikler/22.04.2025 Code Game Night.jpg" alt="Code&Game Night" class="mx-auto rounded-xl shadow-lg max-w-md">
+</div>
+
+<!-- Bilgi Kartları -->
+<section class="w-full max-w-md mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 ">
+    <!-- Tarih -->
+    <div class="bg-white text-black p-6 rounded-xl shadow-md">
+        <h2 class="text-xl font-bold mb-2">🛎️ Tarih</h2>
+        <p>25 Nisan 2025</p>
+    </div>
+
+    <!-- Yer -->
+    <div class="bg-white text-black p-6 rounded-xl shadow-md">
+        <h2 class="text-xl font-bold mb-2">📌 Yer</h2>
+        <p>Fırat Üniversitesi Mimarlık Fakültesi</p>
+        <a href="https://maps.app.goo.gl/VQ4xbzchXHsbZ7jH8" target="_blank" class="text-pink-700 underline text-sm mt-1 inline-block">Konuma Git</a>
+    </div>
+
+    <!-- Tempo -->
+    <div class="bg-white text-black p-6 rounded-xl shadow-md">
+        <h2 class="text-xl font-bold mb-2">⏱️ Saat</h2>
+        <p>19.00(Cuma) - 6.00(Cumartesi)</p>
+    </div>
+
+    <!-- Kayıt -->
+    <div class="bg-white text-black p-6 rounded-xl shadow-md">
+        <h2 class="text-xl font-bold mb-2">📢 Kayıt Linki</h2>
+        <a href="https://forms.gle/jjKvAgsTw44hr5Fs7" target="_blank" class="bg-pink-700 text-white px-4 py-2 rounded-lg inline-block hover:bg-pink-800 transition">Hemen Kayıt Ol</a>
+    </div>
+</section>
+
+<!-- Alt bilgi -->
+ <section class="mt-10 text-center">
+    <p class="text-xl font-semibold mb-4">Bu gecede neler mi var?</p>
+    <p class="mb-4">🏆 35.000 TL’lik ÖDÜL HAVUZU</p>
+    <p class="mb-4">🎤 İlham veren konuk konuşmacılar</p>
+    <p class="mb-4">🧠 Bilgi dolu eğitim oturumları</p>
+    <p class="mb-4">🎓 Çeşitli staj imkanları</p>
+    <p class="mb-4">🎯 Sabaha kadar süren oyunlar & mini turnuvalar</p>
+    <p class="mb-4">🎁 Sürprizlerle dolu çekilişler</p>
+    <p class="mb-4">☕️ Sınırsız çay-kahve, bol bol atıştırmalık</p>
+    <p class="font-bold mt-6">💥 Kodla, oyna, öğren, eğlen, kazan! Gece boyunca seni bekleyen sürprizleri kaçırma!</p>
+    <p class="mt-2 text-pink-400 font-semibold">Takımını kur, yerini kap ve bu heyecan dolu gecede bizimle ol! Kontenjanla sınırlı bu gecede yerini al!</p>
+</section>
+        </div>
+<div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
+<script>
+    function openModal(imgElement) {
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("modalImage");
+        modal.style.display = "flex";
+        modalImg.src = imgElement.src;
+    }
+
+    function closeModal() {
+        document.getElementById("imageModal").style.display = "none";
+    }
+    document.getElementById("imageModal").addEventListener("click", function(event) {
+        if (event.target.id === "imageModal") { 
+            closeModal(); 
+        }
+    });
+</script>
+</body>
+</html>

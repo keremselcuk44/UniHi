@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kahve Fincanı Müzesi</title>
+    <title>Buzluk Mağarası-UniHi!</title>
     <link rel="icon" href="fotolar/UniHi!_.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
@@ -148,25 +148,27 @@
 
         /* Resim Galerisi */
         .image-gallery {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-        }
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
 
-        .image-container {
-            flex: 1;
-            text-align: center;
-            cursor: pointer;
-            overflow: hidden;
-            border-radius: 8px;
-        }
+.image-container {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 8px;
+    height: 250px; /* Sabit yükseklik */
+}
 
-        .image {
-            width: 4000px;
-            height: 250px;
-            cursor: pointer;
-            object-fit: cover;
-        }
+.image {
+    width: 100%; /* Resmin genişliği container genişliğine uyacak şekilde ayarlanır */
+    height: 100%; /* Resmin yüksekliği container yüksekliğine uyacak şekilde ayarlanır */
+    object-fit: cover; /* Resmin içerik kısmı kapsayıcıya sığacak şekilde yerleştirilir */
+    display: block; /* Boşlukları engellemek için */
+}
+
         .modal {
             display: none;
             position: fixed;
@@ -200,8 +202,9 @@
     <header class="bg-gradient-to-r from-[#c32f52] to-[#9b1d48] shadow-md py-4 px-6 flex justify-between items-center">
         <button @click="open = !open" class="text-white text-3xl focus:outline-none">&#9776;</button>
         <nav class="menu text-white"> 
-            <div class="menu-item">KAHVE FİNCANI MÜZESİ
-        
+            <div class="menu-item">BUZLUK MAĞARASI
+                <div class="dropdown">
+                 
                 </div>
             </div>
         </nav>
@@ -267,48 +270,45 @@
 </aside>
 <main class="p-6">
     <section id="tarihce" class="mb-6">
-        <h2 class="text-3xl font-bold">Kahve Fincanı Müzesi'nin Tarihi:</h2>
-        <p>Elazığ'ın tarihi Harput Mahallesi'nde bulunan Kahve Fincanı Müzesi, 29 Ekim 2023'te Cumhuriyet'in 100. yılı anısına açılmıştır. 
-            Türkiye'nin ilk ve tek kahve fincanı müzesi olma özelliğine sahip olan bu mekânda, başlangıçta 2.023 fincan sergilenirken, 
-            zamanla bu sayı 7.000'i aşmıştır. Müze, açılışından itibaren büyük ilgi görmüş ve ilk dört ayında yaklaşık 20.000 ziyaretçiyi 
-            ağırlamıştır. 2024 yılı Kasım ayı itibarıyla toplam ziyaretçi sayısı 300.000'i geçmiş olup, müze Guinness Rekorlar Kitabı'na 
-            girmeyi hedeflemektedir. Müzede sergilenen değerli fincanlar arasında, 1737'de İngiltere'den Osmanlı'ya gönderilen bir fincan, 
-            Harput kazılarında bulunan 12 hayvanlı Türk takvimli fincan ve ünlü fotoğrafçı Ara Güler'e ait kahve fincanları bulunmaktadır. 
-            Ayrıca, 17 Kasım 1937'de Elazığ'ı ziyaret eden Mustafa Kemal Atatürk'ün kahve içtiği fincan da müzede sergilenmektedir. 
-            Ziyaretçiler, müzede sergilenen fincanları bağışlayarak katkıda bulunabilir ve isimlerini bakır levhalara yazdırarak hatıralarını 
-            ölümsüzleştirebilirler. Müze, hem kahve kültürünü yaşatmakta hem de ziyaretçilere geçmişe dair anlamlı bir yolculuk sunmaktadır.​​</p>
+        <h2 class="text-3xl font-bold">Buzluk Mağarası'nın Tarihi:</h2>
+        <p>Buzluk Mağarası, Elazığ'ın tarihi ve doğal zenginliklerinden biridir. Mağara, bölgenin en eski yerleşim alanlarından biri olup, aynı 
+            zamanda Buzluk olarak adlandırılmasının nedeni, içerisine girenlerin yazın dahi serinlik hissi duymasıdır. Geçmişte, Elazığ halkı için
+             özellikle yaz aylarında bir serinleme alanı olarak kullanılmıştır. Bu mağara, yerel halkın sıcak yaz günlerinde yiyeceklerini saklamak
+              için de kullanılmıştır. Günümüzde ise turistlerin ilgisini çeken önemli bir doğal miras haline gelmiştir. Mağaranın çevresinde 
+              yapılan kazılarda, pek çok tarihi eser ve taş yapılar bulunmuştur.</p>
     </section>
+    
     <section id="kurucusu" class="mb-6">
-        <h2 class="text-3xl font-bold"> Kurucusu Kimdir?</h2>
-        <p>Elazığ Kahve Fincanı Müzesi'nin kurucusu, iş insanı ve turizmci olan Kemal Sülük'tür. Sülük, müzeyi 2023 yılında, Türkiye'nin ilk 
-            ve tek kahve fincanı müzesi olarak açmıştır. Müze, özellikle kahve kültürüne olan ilgisi ve koleksiyonculuk tutkusuyla dikkat 
-            çekmektedir.</p>
+        <h2 class="text-3xl font-bold">Buzluk Mağarası'nın Keşfi:</h2>
+        <p>Buzluk Mağarası'nın keşfi hakkında net bir tarih olmamakla birlikte, mağaranın keşfini bölge halkının yıllar süren ziyaretleriyle 
+            gelişen bir süreç olarak nitelendirilmektedir. Mağaranın kullanımı, özellikle 18. yüzyıldan sonra artmış ve bu dönemde daha geniş bir
+             alana yayılma süreci başlamıştır. Günümüzde bölgedeki koruma çalışmaları, yerel halk ve turizm yetkililerinin ortaklaşa yürüttüğü bir
+              projeyle sürdürülmektedir.</p>
     </section>
+    
     <section id="amac" class="mb-6">
-        <h2 class="text-3xl font-bold"> Kuruluş Amacı:</h2>
-        <p>Elazığ Kahve Fincanı Müzesi'nin kuruluş amacı, kahve kültürünü yaşatmak, kahvenin tarihsel ve kültürel önemini vurgulamak ve bu 
-            alandaki nadir koleksiyonları sergileyerek ziyaretçilere geçmişe dair bir yolculuk sunmaktır. Müze, kahve fincanlarının tarihi 
-            sürecini ve farklı kültürlerdeki yerini gösteren özel bir koleksiyon sunmaktadır.
-            <br>
-            Ayrıca, müze, kahve fincanlarının sadece birer eşya değil, aynı zamanda kültürel miras olarak değer taşıdığına dikkat çekmeyi 
-            amaçlamaktadır. Ziyaretçiler, müzeye bağışta bulunarak fincanları sergileyebilir ve kendi isimlerini bakır levhalara yazdırarak 
-            bu kültürel mirasa katkıda bulunabilirler. Bu şekilde, kahve kültürünün nesilden nesile aktarılmasına olanak tanınmaktadır.</p>
+        <h2 class="text-3xl font-bold">Kuruluş Amacı:</h2>
+        <p>Buzluk Mağarası, bölgeye gelen turistlere hem doğal hem de tarihi bir deneyim sunmayı amaçlamaktadır. Mağara, serinliği ile bilindiği 
+            için, özellikle yaz aylarında ziyaretçilere doğal bir serinleme alanı sunmaktadır. Ayrıca, mağara çevresinde yapılan kazılarla, 
+            bölgenin tarihini keşfetmek isteyen ziyaretçilere farklı bir deneyim sunulmaktadır. Mağaranın korunması ve tanıtımı da bir diğer
+             önemli amacıdır.</p>
     </section>
+    
     <section id="fotolar" class="mb-6">
-        <h2 class="text-3xl font-bold"> Kahve Fincanı Müzesi'nden Bazı Fotoğraflar:</h2>
+        <h2 class="text-3xl font-bold">Buzluk Mağarası'ndan Bazı Fotoğraflar:</h2>
         <br>
         <div class="image-gallery">
             <div class="image-container">
-                <img src="photos/Turizm/kahvefincanı1.jpg" onclick="openModal(this)">
+                <img src="photos/Turizm/buzluk3.jpg" onclick="openModal(this)">
             </div>
             <div class="image-container">
-                <img src="photos/Turizm/kahvefincanı2.jpg" onclick="openModal(this)">
+                <img src="photos/Turizm/buzluk2.jpg" onclick="openModal(this)">
             </div>
             <div class="image-container">
-                <img src="photos/Turizm/kahvefincanı4.jpg" onclick="openModal(this)">
+                <img src="photos/Turizm/buzluk1.jpg" onclick="openModal(this)">
             </div>
         </div>
-    </section>
+    </section>    
 </main>
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
@@ -331,6 +331,7 @@
             closeModal(); 
         }
     });
+</script>
 </script>
 </body>
 </html>
