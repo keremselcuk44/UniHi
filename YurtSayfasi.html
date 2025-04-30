@@ -63,38 +63,63 @@
         }
 
         .profile-menu {
+            position: relative;
             display: flex;
             align-items: center;
             gap: 10px;
-            position: relative;
             cursor: pointer;
         }
+
         .profile-menu img {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            transition: all 0.3s ease;
         }
+
+        .profile-menu:hover img {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
         .profile-dropdown {
             display: none;
             position: absolute;
-            top: 50px;
+            top: 100%;
             right: 0;
             background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            min-width: 120px;
+            min-width: 150px;
+            z-index: 10;
         }
-        .profile-menu:hover .profile-dropdown {
-            display: block;
-        }
+
         .profile-dropdown a {
             display: block;
             padding: 10px;
             color: black;
             text-decoration: none;
+            transition: background 0.3s;
         }
+
         .profile-dropdown a:hover {
-            background: #f4f4f4;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-menu:hover .profile-dropdown {
+            display: block;
+        }
+
+        /* Profil menüsünün açık kalması için ekstra alan */
+        .profile-menu::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 200px;
+            height: 20px;
         }
 
         /* Slider stilleri */
@@ -146,43 +171,147 @@
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: auto;
             padding: 40px 20px;
             text-align: center;
         }
 
         .yurt-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
             border-radius: 15px;
-            margin-top: 20px;
-            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+            margin: 30px 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .yurt-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
         }
 
         .yurt-card h2 {
             font-size: 24px;
-            color: #800020;
-            margin-bottom: 10px;
+            color: #c32f52;
+            margin-bottom: 15px;
+            font-weight: 700;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #c32f52;
         }
 
-        .yurt-card p {
-            font-size: 16px;
-            line-height: 1.6;
+        .yurt-content {
+            display: flex;
+            gap: 30px;
+        }
+
+        .yurt-info-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .yurt-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 8px;
+            background: rgba(195, 47, 82, 0.05);
+            border-radius: 8px;
+        }
+
+        .info-item strong {
+            color: #c32f52;
+            font-weight: 600;
+            min-width: 80px;
+        }
+
+        .info-item p {
+            margin: 0;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .yurt-slider {
+            width: 450px;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+        }
+
+        .yurt-slider img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .yurt-slider img.active {
+            opacity: 1;
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider-dot.active {
+            background: white;
+            transform: scale(1.2);
         }
 
         .map-container {
-            margin-top: 15px;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        iframe {
+        .map-container iframe {
             width: 100%;
-            height: 250px;
+            height: 350px;
             border: none;
-            border-radius: 10px;
+        }
+
+        .yurt-card .not {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 3px solid #ffd700;
+            color: #333;
+            font-size: 0.95em;
+        }
+
+        .yurt-card .not strong {
+            color: #c32f52;
+            display: block;
+            margin-bottom: 3px;
         }
 
         .top-buttons {
@@ -194,17 +323,20 @@
             background: white;
             color: #9b1d48;
             border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
+            padding: 12px 24px;
+            border-radius: 12px;
             font-size: 16px;
-            cursor: pointer;    
-            margin: 5px;
-            transition: background 0.3s ease;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Üst butonlar tıklama*/
-        .top-buttons button:hover, #scrollTopBtn:hover { 
+        .top-buttons button:hover, #scrollTopBtn:hover {
             background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
         #scrollTopBtn {
@@ -222,25 +354,30 @@
         }
 
         header .menu-item {
-            padding: 10px 15px;
-            cursor: pointer;
-        }
-
-        header .menu-item:hover {
-            background-color: #a00030;
+            color: white;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
 
         header .dropdown {
-            display: none;
-            position: absolute;
-            background-color: white;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        header .menu-item:hover .dropdown {
-            display: block;
+        header .profile-menu img {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        header .profile-dropdown {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         header .dropdown a {
@@ -252,6 +389,26 @@
 
         header .dropdown a:hover {
             background-color: #f0f0f0;
+        }
+
+        @media (max-width: 1024px) {
+            .yurt-slider {
+                width: 400px;
+                height: 450px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .yurt-content {
+                flex-direction: column;
+            }
+            
+            .yurt-slider {
+                width: 100%;
+                height: 400px;
+                position: relative;
+                top: 0;
+            }
         }
 
     </style>
@@ -289,7 +446,7 @@
             <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
                  class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
                 <a href="teknolojifak.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Teknoloji Fakültesi</a>
-                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">Mühendislik Fakültesi</a>
+                <a href="muhendislikfak.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Mühendislik Fakültesi</a>
                 <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">X FAKÜLTESİ</a>
             </div>
         </li>
@@ -342,42 +499,185 @@
 
         <div class="yurt-card">
             <h2>SARE ANA</h2>
-            <p><strong>Adres:</strong> Üniversite, Fırat Ünv., 23200 Elazığ Merkez/Elazığ, Türkiye</p>
-            <p><strong>Kapasite:</strong> 150 öğrenci</p>
-            <p><strong>Ulaşım:</strong>5 numarılı otobüs hattı</p>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1143.1541604619176!2d39.18465191237157!3d38.6749254689134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076c1722968db3d%3A0xcbea26afe26de2aa!2sSare%20Ana%20kyk%20kiz%20ogrenci%20yurdu!5e1!3m2!1str!2svi!4v1742418560637!5m2!1str!2svi" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            
+            <div class="yurt-content">
+                <div class="yurt-info-section">
+                    <div class="yurt-info">
+                        <div class="info-item">
+                            <strong>Adres:</strong>
+                            <p>Üniversite, Fırat Ünv., 23200 Elazığ Merkez/Elazığ, Türkiye</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Kapasite:</strong>
+                            <p>150 öğrenci</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Ulaşım:</strong>
+                            <p>5 numarılı otobüs hattı</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Not:</strong>
+                            <p>Kampüs içinde yer alan tek kız yurdudur.</p>
+                        </div>
+                    </div>
+
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1143.1541604619176!2d39.18465191237157!3d38.6749254689134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076c1722968db3d%3A0xcbea26afe26de2aa!2sSare%20Ana%20kyk%20kiz%20ogrenci%20yurdu!5e1!3m2!1str!2svi!4v1742418560637!5m2!1str!2svi" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <div class="yurt-slider">
+                    <img src="fotolar/sareana1.jpg" alt="Sare Ana Yurdu 1" class="active">
+                    <img src="fotolar/sareana2.jpg" alt="Sare Ana Yurdu 2">
+                    <img src="fotolar/sareana3.jpg" alt="Sare Ana Yurdu 3">
+                    <img src="fotolar/sareana4.jpg" alt="Sare Ana Yurdu 4">
+                    <img src="fotolar/sareana5.jpg" alt="Sare Ana Yurdu 5">
+                    <div class="slider-controls">
+                        <div class="slider-dot active" data-slide="0"></div>
+                        <div class="slider-dot" data-slide="1"></div>
+                        <div class="slider-dot" data-slide="2"></div>
+                        <div class="slider-dot" data-slide="3"></div>
+                        <div class="slider-dot" data-slide="4"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="yurt-card">
             <h2>HARPUT</h2>
-            <p><strong>Adres:</strong> Üniversite, Üniversite Sk., 23190 Elazığ Merkez/Elazığ, Türkiye</p>
-            <p><strong>Kapasite:</strong> 180 öğrenci</p>
-            <p><strong>Ulaşım:</strong>5 numarılı otobüs hattı</p>
-            <p><strong>Not:</strong> Girişler "Sare Ana" yurdunun girişinden yapılmaktadır!</p>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1602.339233022252!2d39.182991699161136!3d38.67629678811054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076c037c20a2c0d%3A0x2f60898f3330d025!2sHarput%20Kyk%20K%C4%B1z%20Yurdu!5e1!3m2!1str!2svi!4v1742418753392!5m2!1str!2svi" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            
+            <div class="yurt-content">
+                <div class="yurt-info-section">
+                    <div class="yurt-info">
+                        <div class="info-item">
+                            <strong>Adres:</strong>
+                            <p>Üniversite, Üniversite Sk., 23190 Elazığ Merkez/Elazığ, Türkiye</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Kapasite:</strong>
+                            <p>180 öğrenci</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Ulaşım:</strong>
+                            <p>5 numarılı otobüs hattı</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Not:</strong>
+                            <p>Girişler "Sare Ana" yurdunun girişinden yapılmaktadır!</p>
+                        </div>
+                    </div>
+
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1602.339233022252!2d39.182991699161136!3d38.67629678811054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076c037c20a2c0d%3A0x2f60898f3330d025!2sHarput%20Kyk%20K%C4%B1z%20Yurdu!5e1!3m2!1str!2svi!4v1742418753392!5m2!1str!2svi" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <div class="yurt-slider">
+                    <img src="fotolar/harput1.jpg" alt="Harput Yurdu 1" class="active">
+                    <img src="fotolar/harput2.jpg" alt="Harput Yurdu 2">
+                    <img src="fotolar/harput3.jpg" alt="Harput Yurdu 3">
+                    <img src="fotolar/harput4.jpg" alt="Harput Yurdu 4">
+                    <img src="fotolar/harput5.jpg" alt="Harput Yurdu 5">
+                    <div class="slider-controls">
+                        <div class="slider-dot active" data-slide="0"></div>
+                        <div class="slider-dot" data-slide="1"></div>
+                        <div class="slider-dot" data-slide="2"></div>
+                        <div class="slider-dot" data-slide="3"></div>
+                        <div class="slider-dot" data-slide="4"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="yurt-card">
             <h2>FETHİ SEKİN</h2>
-            <p><strong>Adres:</strong>Ataşehir, Orcikli Sk No:10, 23040, 23040 Elazığ Merkez/Elazığ, Türkiye</p>
-            <p><strong>Kapasite:</strong> 200 öğrenci</p>
-            <p><strong>Ulaşım:</strong>60 numarılı otobüs hattı</p>
-            <div class="map-container">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1720.3151282960189!2d39.15908344331092!3d38.652544786629896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076ebb0d69801a1%3A0x97c2e8f3b5c96542!2zRkVUSMSwIFNFS8SwTiBLSVogw5bEnlJFTkPEsCBZVVJEVQ!5e1!3m2!1str!2svi!4v1742419112633!5m2!1str!2svi" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            
+            <div class="yurt-content">
+                <div class="yurt-info-section">
+                    <div class="yurt-info">
+                        <div class="info-item">
+                            <strong>Adres:</strong>
+                            <p>Ataşehir, Orcikli Sk No:10, 23040, 23040 Elazığ Merkez/Elazığ, Türkiye</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Kapasite:</strong>
+                            <p>200 öğrenci</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Ulaşım:</strong>
+                            <p>60 numarılı otobüs hattı</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Not:</strong>
+                            <p>Şehir merkezine yakın konumdadır.</p>
+                        </div>
+                    </div>
+
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1720.3151282960189!2d39.15908344331092!3d38.652544786629896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076ebb0d69801a1%3A0x97c2e8f3b5c96542!2zRkVUSMSwIFNFS8SwTiBLSVogw5bEnlJFTkPEsCBZVVJEVQ!5e1!3m2!1str!2svi!4v1742419112633!5m2!1str!2svi" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <div class="yurt-slider">
+                    <img src="fotolar/fethisekin1.jpg" alt="Fethi Sekin Yurdu 1" class="active">
+                    <img src="fotolar/fethisekin2.jpg" alt="Fethi Sekin Yurdu 2">
+                    <img src="fotolar/fethisekin3.jpg" alt="Fethi Sekin Yurdu 3">
+                    <img src="fotolar/fethisekin4.jpg" alt="Fethi Sekin Yurdu 4">
+                    <img src="fotolar/fethisekin5.jpg" alt="Fethi Sekin Yurdu 5">
+                    <div class="slider-controls">
+                        <div class="slider-dot active" data-slide="0"></div>
+                        <div class="slider-dot" data-slide="1"></div>
+                        <div class="slider-dot" data-slide="2"></div>
+                        <div class="slider-dot" data-slide="3"></div>
+                        <div class="slider-dot" data-slide="4"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="yurt-card">
             <h2>İZZET PAŞA</h2>
-            <p><strong>Adres:</strong> Şahinkaya, 23000 Elazığ Merkez/Elazığ, Türkiye</p>
-            <p><strong>Kapasite:</strong> 250 öğrenci</p>
-            <p><strong>Ulaşım:</strong> xx numarılı otobüs hattı</p>
-            <div class="map-container">
-           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1920.2223234197702!2d39.1574573031436!3d38.677988405785605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076c16db07193cd%3A0xabba33137cb4dee7!2zSXp6ZXRwYcWfYSBLWUsgS8SxeiDDlsSfcmVuY2kgWXVyZHU!5e1!3m2!1str!2svi!4v1742419019720!5m2!1str!2svi" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            
+            <div class="yurt-content">
+                <div class="yurt-info-section">
+                    <div class="yurt-info">
+                        <div class="info-item">
+                            <strong>Adres:</strong>
+                            <p>Şahinkaya, 23000 Elazığ Merkez/Elazığ, Türkiye</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Kapasite:</strong>
+                            <p>250 öğrenci</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Ulaşım:</strong>
+                            <p>xx numarılı otobüs hattı</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Not:</strong>
+                            <p>Şehir merkezine uzak konumdadır.</p>
+                        </div>
+                    </div>
+
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1920.2223234197702!2d39.1574573031436!3d38.677988405785605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076c16db07193cd%3A0xabba33137cb4dee7!2zSXp6ZXRwYcWfYSBLWUsgS8SxeiDDlsSfcmVuY2kgWXVyZHU!5e1!3m2!1str!2svi!4v1742419019720!5m2!1str!2svi" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <div class="yurt-slider">
+                    <img src="fotolar/izzetpas1.jpg" alt="İzzet Paşa Yurdu 1" class="active">
+                    <img src="fotolar/izzetpas2.jpg" alt="İzzet Paşa Yurdu 2">
+                    <img src="fotolar/izzetpas3.jpg" alt="İzzet Paşa Yurdu 3">
+                    <img src="fotolar/izzetpas4.jpg" alt="İzzet Paşa Yurdu 4">
+                    <img src="fotolar/izzetpas5.jpg" alt="İzzet Paşa Yurdu 5">
+                    <div class="slider-controls">
+                        <div class="slider-dot active" data-slide="0"></div>
+                        <div class="slider-dot" data-slide="1"></div>
+                        <div class="slider-dot" data-slide="2"></div>
+                        <div class="slider-dot" data-slide="3"></div>
+                        <div class="slider-dot" data-slide="4"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -388,35 +688,143 @@
 
         <div class="yurt-card">
             <h2>AHMET KABAKLI</h2>
-            <p><strong>Adres:</strong> Çaydaçıra, Anguzu Baba Sokak 50/1, 23350 Merkez/Elazığ Merkez/Elazığ, Türkiye</p>
-            <p><strong>Kapasite:</strong> 160 öğrenci</p>
-            <p><strong>Ulaşım:</strong>6, 7 ve 22 numarılı otobüs hattı</p>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3138.3637273964696!2d39.169111752570636!3d38.69218772385662!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076c1a4cef088d5%3A0xd13681e8d6ac5d41!2sAhmet%20Kabakl%C4%B1%20KYK!5e1!3m2!1str!2svi!4v1742418946495!5m2!1str!2svi" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            
+            <div class="yurt-content">
+                <div class="yurt-info-section">
+                    <div class="yurt-info">
+                        <div class="info-item">
+                            <strong>Adres:</strong>
+                            <p>Çaydaçıra, Anguzu Baba Sokak 50/1, 23350 Merkez/Elazığ Merkez/Elazığ, Türkiye</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Kapasite:</strong>
+                            <p>160 öğrenci</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Ulaşım:</strong>
+                            <p>6, 7 ve 22 numarılı otobüs hattı</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Not:</strong>
+                            <p>Şehirin merkezine yakın konumdadır.</p>
+                        </div>
+                    </div>
+
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3138.3637273964696!2d39.169111752570636!3d38.69218772385662!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076c1a4cef088d5%3A0xd13681e8d6ac5d41!2sAhmet%20Kabakl%C4%B1%20KYK!5e1!3m2!1str!2svi!4v1742418946495!5m2!1str!2svi" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <div class="yurt-slider">
+                    <img src="fotolar/ahmetkabakli1.jpg" alt="Ahmet Kabaklı Yurdu 1" class="active">
+                    <img src="fotolar/ahmetkabakli2.jpg" alt="Ahmet Kabaklı Yurdu 2">
+                    <img src="fotolar/ahmetkabakli3.jpg" alt="Ahmet Kabaklı Yurdu 3">
+                    <img src="fotolar/ahmetkabakli4.jpg" alt="Ahmet Kabaklı Yurdu 4">
+                    <img src="fotolar/ahmetkabakli5.jpg" alt="Ahmet Kabaklı Yurdu 5">
+                    <div class="slider-controls">
+                        <div class="slider-dot active" data-slide="0"></div>
+                        <div class="slider-dot" data-slide="1"></div>
+                        <div class="slider-dot" data-slide="2"></div>
+                        <div class="slider-dot" data-slide="3"></div>
+                        <div class="slider-dot" data-slide="4"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="yurt-card">
             <h2>ÖMER BİLGİNOĞLU</h2>
-            <p><strong>Adres:</strong> Ataşehir, 23040 Elazığ Merkez/Elazığ, Türkiye</p>
-            <p><strong>Kapasite:</strong> 190 öğrenci</p>
-            <p><strong>Ulaşım:</strong> xx numarılı otobüs hattı</p>
-            <p><strong>Not:</strong> "Fırat" yurdu ile yan yanadır!</p>
-            <div class="map-container">
-               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d572.0844009167107!2d39.15542976737375!3d38.65613553688857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076ea917f917ae9%3A0x6ce11fe2ce8195d8!2zw5ZtZXIgQmlsZ2lub8SfbHUgRXJrZWsgw5bEn3JlbmNpIFl1cmR1!5e1!3m2!1str!2svi!4v1742419196261!5m2!1str!2svi" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            
+            <div class="yurt-content">
+                <div class="yurt-info-section">
+                    <div class="yurt-info">
+                        <div class="info-item">
+                            <strong>Adres:</strong>
+                            <p>Ataşehir, 23040 Elazığ Merkez/Elazığ, Türkiye</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Kapasite:</strong>
+                            <p>190 öğrenci</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Ulaşım:</strong>
+                            <p>xx numarılı otobüs hattı</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Not:</strong>
+                            <p>"Fırat" yurdu ile yan yanadır!</p>
+                        </div>
+                    </div>
+
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d572.0844009167107!2d39.15542976737375!3d38.65613553688857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076ea917f917ae9%3A0x6ce11fe2ce8195d8!2zw5ZtZXIgQmlsZ2lub8SfbHUgRXJrZWsgw5bEn3JlbmNpIFl1cmR1!5e1!3m2!1str!2svi!4v1742419196261!5m2!1str!2svi" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <div class="yurt-slider">
+                    <img src="fotolar/omerbilginoglu1.jpg" alt="Ömer Bilginoğlu Yurdu 1" class="active">
+                    <img src="fotolar/omerbilginoglu2.jpg" alt="Ömer Bilginoğlu Yurdu 2">
+                    <img src="fotolar/omerbilginoglu3.jpg" alt="Ömer Bilginoğlu Yurdu 3">
+                    <img src="fotolar/omerbilginoglu4.jpg" alt="Ömer Bilginoğlu Yurdu 4">
+                    <img src="fotolar/omerbilginoglu5.jpg" alt="Ömer Bilginoğlu Yurdu 5">
+                    <div class="slider-controls">
+                        <div class="slider-dot active" data-slide="0"></div>
+                        <div class="slider-dot" data-slide="1"></div>
+                        <div class="slider-dot" data-slide="2"></div>
+                        <div class="slider-dot" data-slide="3"></div>
+                        <div class="slider-dot" data-slide="4"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="yurt-card">
             <h2>FIRAT</h2>
-            <p><strong>Adres:</strong>Ataşehir, Mazı Sk. No:3, 23040 Elazığ Merkez/Elazığ, Türkiye</p>
-            <p><strong>Kapasite:</strong> 200 öğrenci</p>
-            <p><strong>Ulaşım:</strong>5 numarılı otobüs hattı</p>
-            <p><strong>Not:</strong> "Ömer Bilginoğlu" yurdu ile yan yanadır!</p>
-            <div class="map-container">
-               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d572.0844009167107!2d39.15542976737375!3d38.65613553688857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076ea91809aa157%3A0x2ce1fadc9fc3825e!2sF%C4%B1rat%20Erkek%20%C3%96%C4%9Frenci%20Yurdu%20A%20Blok!5e1!3m2!1str!2svi!4v1742419219941!5m2!1str!2svi" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            
+            <div class="yurt-content">
+                <div class="yurt-info-section">
+                    <div class="yurt-info">
+                        <div class="info-item">
+                            <strong>Adres:</strong>
+                            <p>Ataşehir, Mazı Sk. No:3, 23040 Elazığ Merkez/Elazığ, Türkiye</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Kapasite:</strong>
+                            <p>200 öğrenci</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Ulaşım:</strong>
+                            <p>5 numarılı otobüs hattı</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Not:</strong>
+                            <p>"Ömer Bilginoğlu" yurdu ile yan yanadır!</p>
+                        </div>
+                    </div>
+
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d572.0844009167107!2d39.15542976737375!3d38.65613553688857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076ea91809aa157%3A0x2ce1fadc9fc3825e!2sF%C4%B1rat%20Erkek%20%C3%96%C4%9Frenci%20Yurdu%20A%20Blok!5e1!3m2!1str!2svi!4v1742419219941!5m2!1str!2svi" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <div class="yurt-slider">
+                    <img src="fotolar/firat1.jpg" alt="Fırat Yurdu 1" class="active">
+                    <img src="fotolar/firat2.jpg" alt="Fırat Yurdu 2">
+                    <img src="fotolar/firat3.jpg" alt="Fırat Yurdu 3">
+                    <img src="fotolar/firat4.jpg" alt="Fırat Yurdu 4">
+                    <img src="fotolar/firat5.jpg" alt="Fırat Yurdu 5">
+                    <div class="slider-controls">
+                        <div class="slider-dot active" data-slide="0"></div>
+                        <div class="slider-dot" data-slide="1"></div>
+                        <div class="slider-dot" data-slide="2"></div>
+                        <div class="slider-dot" data-slide="3"></div>
+                        <div class="slider-dot" data-slide="4"></div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+
 <button id="scrollTopBtn" onclick="scrollToTop()">Yukarı Çık</button>
 
 <script>
@@ -434,6 +842,42 @@
     function scrollToSection(id) {
         document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Her yurt kartı için slider fonksiyonunu çalıştır
+        document.querySelectorAll('.yurt-slider').forEach(slider => {
+            const images = slider.querySelectorAll('img');
+            const dots = slider.querySelectorAll('.slider-dot');
+            let currentSlide = 0;
+
+            // Otomatik geçiş fonksiyonu
+            function nextSlide() {
+                images[currentSlide].classList.remove('active');
+                dots[currentSlide].classList.remove('active');
+                
+                currentSlide = (currentSlide + 1) % images.length;
+                
+                images[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+
+            // Her 5 saniyede bir geçiş yap
+            setInterval(nextSlide, 5000);
+
+            // Noktalara tıklama işlevi
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    images[currentSlide].classList.remove('active');
+                    dots[currentSlide].classList.remove('active');
+                    
+                    currentSlide = index;
+                    
+                    images[currentSlide].classList.add('active');
+                    dots[currentSlide].classList.add('active');
+                });
+            });
+        });
+    });
 </script>
 
 </body>

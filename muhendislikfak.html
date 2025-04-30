@@ -290,7 +290,7 @@
             </div>
         </nav>
         <div class="profile-menu">
-            <img src="fotolar/jonsnow.png" alt="Admin Profil">
+            <img src="photos/logo_orj.png" alt="Admin Profil">
             <div class="profile-dropdown">
                 <a href="#">Ayarlar</a>
                 <a href="Home.html">Çıkış Yap </a>
@@ -317,16 +317,56 @@
     </div>
 
     <div class="fixed inset-0 bg-black bg-opacity-50 z-40" x-show="open" @click="open = false"></div>
-    <aside class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 p-5 sidebar" :class="{'open': open}">
-        <button @click="open = false" class="text-black text-2xl absolute top-4 right-4">&times;</button>
-        <ul class="mt-10 space-y-4">
-            <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">ÜNİVERSİTE EVİ</a></li>
-            <li><a href="YurtSayfasi.html" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">YURTLAR</a></li>
-            <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">ETKİNLİKLER</a></li>
-            <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">DENEME 1</a></li>
-            <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">DENEME 2</a></li>
-        </ul>
-    </aside>
+    <aside class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 p-5 sidebar" x-data="{ etkinlikOpen: false }" :class="{'open': open}">
+    <button @click="open = false" class="text-black text-2xl absolute top-4 right-4">&times;</button>
+    <ul class="mt-10 space-y-4">
+        <li><a href="modules.html" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">ANA SAYFA</a></li>
+        <li><a href="YurtSayfasi.html" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">KYK YURTLARI</a></li>
+
+        <!-- FAKÜLTELER-->
+        <li x-data="{ dropdownOpen: false }" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
+                FAKÜLTELER
+            </button>
+            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
+                 class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
+                <a href="teknolojifak.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Teknoloji Fakültesi</a>
+                <a href="muhendislikfak.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Mühendislik Fakültesi</a>
+                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">X FAKÜLTESİ</a>
+            </div>
+        </li>
+
+        <!-- ETKİNLİKLER-->
+        <li x-data="{ dropdownOpen: false }" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
+                ETKİNLİKLER
+            </button>
+            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
+                 class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
+                <a href="festivaller.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Festivaller</a>
+                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">Söyleşiler</a>
+            </div>
+        </li>
+        
+        <!-- GEZİLER-->
+        <li x-data="{ dropdownOpen: false }" class="relative">
+            <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
+                GEZİLER
+            </button>
+            <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
+                 class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
+                <a href="harput.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Harput Kalesi</a>
+                <a href="hazar.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Hazar Gölü</a>
+                <a href="buzlukmagarasi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Buzluk Mağarası</a>
+                <a href="circirselalesi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Çırçır Şelalesi</a>
+                <a href="kahvefincanimuzesi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Kahve Fincanı Müzesi</a>
+            </div>
+        </li>
+
+        <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">DENEME 1</a></li>
+       
+    </ul>
+</aside>
 
     <script>
         let slides = document.querySelectorAll('.slide');
