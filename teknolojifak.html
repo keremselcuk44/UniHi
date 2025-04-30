@@ -204,13 +204,14 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            object-fit: cover;
+            border: 3px solid white;
             transition: all 0.3s ease;
         }
 
         .profile-menu:hover img {
             transform: scale(1.1);
-            border-color: #ff6b6b;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
 
         .profile-dropdown {
@@ -218,35 +219,27 @@
             position: absolute;
             top: 100%;
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
             min-width: 150px;
-            padding: 10px 0;
-            transform: translateY(10px);
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .profile-menu:hover .profile-dropdown {
-            display: block;
-            transform: translateY(0);
-            opacity: 1;
+            z-index: 10;
         }
 
         .profile-dropdown a {
             display: block;
-            padding: 12px 20px;
-            color: #333;
+            padding: 10px;
+            color: black;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: background 0.3s;
         }
 
         .profile-dropdown a:hover {
-            background: rgba(0, 0, 0, 0.05);
-            color: #ff6b6b;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-menu:hover .profile-dropdown {
+            display: block;
         }
     </style>
 </head>
