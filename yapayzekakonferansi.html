@@ -8,54 +8,90 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
-        body {
+         body {
             background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
             color: white;
+            min-height: 100vh;
         }
 
-        .sidebar {
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
-        }
-        .sidebar.open {
-            transform: translateX(0);
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .menu {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            gap: 20px;
-            align-items: center;
-        }
         .menu-item {
             position: relative;
             padding: 10px 15px;
             cursor: pointer;
             color: white;
             font-weight: bold;
+            transition: all 0.3s ease;
+            z-index: 1000;
         }
-        .menu-item:hover .dropdown {
-            display: block;
+
+        .menu-item:hover {
+            color: #ff6b6b;
         }
+
         .dropdown {
             display: none;
             position: absolute;
-            top: 40px;
+            top: 100%;
             left: 0;
-            background: white;
-            border-radius: 5px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            min-width: 200px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            min-width: 250px;
+            padding: 10px 0;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
         }
+
+        .menu-item:hover .dropdown {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
         .dropdown a {
             display: block;
-            padding: 10px;
-            color: black;
+            padding: 12px 20px;
+            color: #333;
             text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
         }
+
         .dropdown a:hover {
-            background: #f4f4f4;
+            background: rgba(0, 0, 0, 0.05);
+            padding-left: 25px;
+            color: #ff6b6b;
+        }
+
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar a {
+            transition: all 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 107, 107, 0.1);
+            color: #ff6b6b;
+            padding-left: 25px;
         }
 
         .profile-menu {
@@ -65,6 +101,7 @@
             gap: 10px;
             cursor: pointer;
         }
+
         .profile-menu img {
             width: 45px;
             height: 45px;
@@ -72,48 +109,39 @@
             object-fit: cover;
             border: 3px solid white;
             transition: all 0.3s ease;
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
         }
+
         .profile-menu:hover img {
             transform: scale(1.1);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-            border-color: rgba(255, 255, 255, 0.8);
         }
+
         .profile-dropdown {
+            display: none;
             position: absolute;
             top: 100%;
             right: 0;
             background: white;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            border-radius: 5px;
             min-width: 150px;
             z-index: 10;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
         }
+
         .profile-dropdown a {
             display: block;
-            padding: 12px 16px;
-            color: #333;
+            padding: 10px;
+            color: black;
             text-decoration: none;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: background 0.3s;
         }
-        .profile-dropdown a:last-child {
-            border-bottom: none;
-        }
+
         .profile-dropdown a:hover {
-            background: rgba(195, 47, 82, 0.05);
-            color: #c32f52;
-            padding-left: 20px;
+            background: rgba(0, 0, 0, 0.1);
         }
+
         .profile-menu:hover .profile-dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+            display: block;
         }
 
         /* Slider stilleri */
