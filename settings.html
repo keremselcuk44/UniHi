@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayarlar - UniHi!</title>
+    <link rel="icon" href="fotolar/UniHi!_.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>
+        body {
+            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
+            color: white;
+            min-height: 100vh;
+        }
+
+        .settings-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .profile-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .profile-preview:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .input-field {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 10px 15px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #c32f52;
+            box-shadow: 0 0 0 2px rgba(195, 47, 82, 0.2);
+        }
+
+        .save-button {
+            background: #c32f52;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .save-button:hover {
+            background: #9b1d48;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .file-input-label {
+            cursor: pointer;
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .file-input-label:hover {
+            background: #e0e0e0;
+        }
+
+        #photoInput {
+            display: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-6">
+    <div class="max-w-3xl mx-auto">
+        <div class="settings-card p-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-8">Profil Ayarları</h1>
+            
+            <div class="flex flex-col items-center mb-8">
+                <img id="profilePreview" src="photos/jonsnow.png" alt="Profil Fotoğrafı" class="profile-preview mb-4">
+                <label class="file-input-label text-gray-700">
+                    <input type="file" id="photoInput" accept="image/*">
+                    Fotoğraf Seç
+                </label>
+            </div>
+
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-gray-700 mb-2">İsim</label>
+                    <input type="text" id="nameInput" class="input-field text-gray-800" placeholder="İsminizi girin">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 mb-2">Fakülte</label>
+                    <select id="facultyInput" class="input-field text-gray-800">
+                        <option value="">Fakülte Seçin</option>
+                        <option value="teknoloji">Teknoloji Fakültesi</option>
+                        <option value="muhendislik">Mühendislik Fakültesi</option>
+                        <option value="diger">Diğer</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 mb-2">Bölüm</label>
+                    <select id="departmentInput" class="input-field text-gray-800">
+                        <option value="">Bölüm Seçin</option>
+                        <option value="bilgisayar">Bilgisayar Mühendisliği</option>
+                        <option value="yazilim">Yazılım Mühendisliği</option>
+                        <option value="elektrik">Elektrik-Elektronik Mühendisliği</option>
+                        <option value="makine">Makine Mühendisliği</option>
+                        <option value="insaat">İnşaat Mühendisliği</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 mb-2">Şifre Değiştir</label>
+                    <input type="password" id="passwordInput" class="input-field text-gray-800 mb-2" placeholder="Yeni şifre">
+                    <input type="password" id="confirmPasswordInput" class="input-field text-gray-800" placeholder="Şifreyi tekrar girin">
+                </div>
+
+                <div class="flex justify-between items-center pt-6">
+                    <a href="modules.html" class="text-gray-600 hover:text-gray-800">Geri Dön</a>
+                    <button id="saveButton" class="save-button">Değişiklikleri Kaydet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="profile-updater.js"></script>
+</body>
+</html> 
