@@ -1,143 +1,410 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <link rel="icon" type="image/png" href="photos/logo_orj.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UniHi - Ana Sayfa</title>
+    <link rel="icon" href="photos/unihilogo.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
-            background: linear-gradient(to right, #9b1d48 , #9b1d48 ); /* Bordo Tonları */
+            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
             color: white;
-            overflow-y: auto; /* Sayfa aşağı kaydırılabilir */
             min-height: 100vh;
-            font-family: Arial, sans-serif;
-        }
-        .welcome-text {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .image-container {
-            margin-top: 60px;
-            text-align: center;
-            width: 100%; /* Sayfanın tam genişliğinde olacak */
-        }
-
-        .image-container img {
-            width: 100%; /* Resmi tam genişlik yap */
-            max-width: none; /* Maksimum genişlik sınırlamasını kaldır */
-            height: auto; /* Oranları koru */
-            border-radius: 0; /* Köşeleri sıfırla, tam otursun */
-            box-shadow: none; /* Gölgeyi kaldır */
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
         }
 
         .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .header-buttons a {
-            background: white;
-            color: #800020;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-
-        .header-buttons a:hover {
-            background: #ddd;
-        }
-
-        /* Yukarı Çık Butonu */
-        #scrollTopBtn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            color: #9b1d48;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-size: 16px;
+        .menu-item {
+            position: relative;
+            padding: 10px 15px;
             cursor: pointer;
-            display: none; /* Başlangıçta görünmez */
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            transition: background 0.3s ease;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            z-index: 1000;
         }
 
-        #scrollTopBtn:hover {
-            background: #a00030;
+        .menu-item:hover {
+            color: #ff6b6b;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            min-width: 250px;
+            padding: 10px 0;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .menu-item:hover .dropdown {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .dropdown a:hover {
+            background: rgba(0, 0, 0, 0.05);
+            color: #ff6b6b;
+        }
+
+        .profile-menu {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .profile-menu img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            min-width: 200px;
+            padding: 10px 0;
+            margin-top: 10px;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .profile-menu:hover .profile-dropdown {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .profile-dropdown a {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .profile-dropdown a:hover {
+            background: rgba(0, 0, 0, 0.05);
+            color: #ff6b6b;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 80vh;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+            width: 80%;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .feature-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+        }
+
+        .news-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .news-date {
+            font-size: 0.9rem;
+            color: #ff6b6b;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 107, 107, 0.2);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #ff6b6b;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            transform: translateX(5px);
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #c32f52;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #ffffff;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hero Section Animations */
+        .hero-content h1 {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-content p {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero-content a {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .discover-button {
+            display: inline-block;
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .discover-button:hover {
+            background-color: #9b1d48;
+            border-color: #9b1d48;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
-<body>
-    <div class="welcome-text text-center text-2xl font-bold mt-4">
-        Hoş Geldiniz
+<body class="bg-red min-h-screen flex flex-col" x-data="{ open: false, loading: true }" x-init="setTimeout(() => loading = false, 1000)">
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" x-show="loading" x-transition:leave="transition ease-out duration-300">
+        <div class="loading-spinner"></div>
     </div>
-    <div class="header">
-        <div></div> 
-        <div class="header-buttons">
-            <a href="login.html">Giriş Yap</a>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <img src="photos/unnamed.jpg" alt="Fırat Üniversitesi" class="w-full h-full object-cover">
+        <div class="hero-content">
+            <h1 class="text-5xl font-bold mb-6">UniHi'ye Hoş Geldiniz</h1>
+            <p class="text-xl mb-8">Üniversite ve şehir rehberiniz</p>
+            <a href="login.html" class="discover-button">
+                Keşfet <i class="fas fa-arrow-right ml-2"></i>
+            </a>
         </div>
-       
-    </div>
+    </section>
 
-    <!-- Resimler -->
-    <div class="image-container"><img src="photos/Home/1.svg" alt="UniHi Görsel 1" class="fade-image"></div>
-    <div class="image-container"><img src="photos/Home/2.svg" alt="UniHi Görsel 2" class="fade-image"></div>
-    <div class="image-container"><img src="photos/Home/3.svg" alt="UniHi Görsel 3" class="fade-image"></div>
-    <div class="image-container"><img src="" alt="UniHi Görsel 4" class="fade-image"></div>
-    <div class="image-container"><img src="" alt="UniHi Görsel 5" class="fade-image"></div>
-    <div class="image-container"><img src="" alt="UniHi Görsel 6" class="fade-image"></div>
+    <!-- Features Section -->
+    <section class="py-16 px-6">
+        <h2 class="text-3xl font-bold text-center mb-12">Neden UniHi?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="feature-card p-6">
+                <i class="fas fa-building feature-icon"></i>
+                <h3 class="text-xl font-bold mb-4">Yurt ve Konaklama</h3>
+                <p class="text-gray-200">Yeni yurdunuza yerleşmek için ihtiyacınız olan tüm bilgileri burada bulabilirsiniz. Ayrıca çevredeki diğer konaklama seçeneklerini de keşfedin.</p>
+            </div>
+            <div class="feature-card p-6">
+                <i class="fas fa-bus feature-icon"></i>
+                <h3 class="text-xl font-bold mb-4">Ulaşım Bilgileri</h3>
+                <p class="text-gray-200">Şehir içi ulaşım hakkında detaylı bilgilere buradan ulaşabilirsiniz. Toplu taşıma, bisiklet yolları, yürüyüş rotaları ve araç kiralama seçenekleri sizi bekliyor.</p>
+            </div>
+            <div class="feature-card p-6">
+                <i class="fas fa-map-marker-alt feature-icon"></i>
+                <h3 class="text-xl font-bold mb-4">Şehir Hakkında</h3>
+                <p class="text-gray-200">Şehre yeni geldiniz ve keşfetmeniz gereken çok şey var. Şehirdeki en önemli yerler, parklar, alışveriş merkezleri ve etkinlikler hakkında bilgi alabilirsiniz.</p>
+            </div>
+        </div>
+    </section>
 
-    <!-- Yukarı Çık Butonu -->
-    <button id="scrollTopBtn">Yukarı Çık</button>
+    <!-- News Section -->
+    <section class="py-16 px-6 bg-opacity-50 bg-black">
+        <h2 class="text-3xl font-bold text-center mb-12">Son Haberler</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div class="news-card p-6">
+                <img src="photos/Etkinlikler/08.04.2025 Yapay Zeka Konferansı.jpg" alt="Yapay Zeka Konferansı" class="w-full h-48 object-cover rounded-lg mb-4">
+                <span class="news-category">Konferans</span>
+                <span class="news-date ml-2">8 Nisan 2025</span>
+                <h3 class="text-xl font-bold mb-2">Yapay Zeka Konferansı</h3>
+                <p class="text-gray-200">Fırat Üniversitesi'nde düzenlenecek olan yapay zeka konferansında alanında uzman konuşmacılar yer alacak.</p>
+                <a href="login.html" class="read-more">Detaylar <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+            <div class="news-card p-6">
+                <img src="photos/Etkinlikler/02.05.2025 Satranç Turnuvası.jpeg" alt="Satranç Turnuvası" class="w-full h-48 object-cover rounded-lg mb-4">
+                <span class="news-category">Spor</span>
+                <span class="news-date ml-2">2 Mayıs 2025</span>
+                <h3 class="text-xl font-bold mb-2">Üniversiteler Arası Satranç Turnuvası</h3>
+                <p class="text-gray-200">Fırat Üniversitesi ev sahipliğinde düzenlenecek satranç turnuvasına tüm öğrenciler davetlidir.</p>
+                <a href="login.html" class="read-more">Detaylar <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+            <div class="news-card p-6">
+                <img src="photos/Etkinlikler/26.03.2025 Sektör Üstü Buluşmalar.jpg" alt="Sektör Buluşmaları" class="w-full h-48 object-cover rounded-lg mb-4">
+                <span class="news-category">Kariyer</span>
+                <span class="news-date ml-2">26 Mart 2025</span>
+                <h3 class="text-xl font-bold mb-2">Sektör Buluşmaları</h3>
+                <p class="text-gray-200">Öğrencilerimizi sektör profesyonelleriyle buluşturan etkinlikte kariyer fırsatları değerlendirilecek.</p>
+                <a href="login.html" class="read-more">Detaylar <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+        </div>
+    </section>
 
-    <script>
-        function revealOnScroll() {
-            let elements = document.querySelectorAll(".fade-image");
-            elements.forEach((element) => {
-                let position = element.getBoundingClientRect().top;
-                let windowHeight = window.innerHeight;
-                if (position < windowHeight - 100) {
-                    element.style.opacity = "1";
-                    element.style.transform = "translateY(0)";
-                }
-            });
-        }
-
-        window.addEventListener("scroll", revealOnScroll);
-        window.addEventListener("load", revealOnScroll);
-
-        // Yukarı Çık Butonunu Göster / Gizle
-        let scrollTopBtn = document.getElementById("scrollTopBtn");
-
-        window.addEventListener("scroll", function() {
-            if (window.scrollY > 200) { // 200px aşağı inildiğinde buton görünür olsun
-                scrollTopBtn.style.display = "block";
-            } else {
-                scrollTopBtn.style.display = "none";
-            }
-        });
-
-        // Butona tıklanınca sayfanın en üstüne kaydır
-        scrollTopBtn.addEventListener("click", function() {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-    </script>
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-50 py-8 mt-auto">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-xl font-bold mb-4">İletişim</h4>
+                    <p class="text-gray-300"><i class="fas fa-envelope mr-2"></i>info@firat.edu.tr</p>
+                    <p class="text-gray-300"><i class="fas fa-phone mr-2"></i>+90 424 237 00 00</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4">Hızlı Bağlantılar</h4>
+                    <ul class="space-y-2">
+                        <li><a href="https://obs.firat.edu.tr/" class="text-gray-300 hover:text-white"><i class="fas fa-user-graduate mr-2"></i>Öğrenci Bilgi Sistemi</a></li>
+                        <li><a href="https://www.firat.edu.tr/documents/1724661122.pdf" class="text-gray-300 hover:text-white"><i class="fas fa-calendar-alt mr-2"></i>Akademik Takvim</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white"><i class="fas fa-book mr-2"></i>Kütüphane</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold mb-4">Sosyal Medya</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2025 UniHi </U>. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
 </body>
-</html>
-
+</html> 
