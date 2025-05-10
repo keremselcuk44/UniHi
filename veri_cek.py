@@ -192,13 +192,18 @@ kyk_menu_section["class"] = "bg-white rounded-lg shadow-lg p-6 w-full md:w-1/2"
 kyk_menu_section.append(soup.new_tag("h2", **{"class": "text-2xl font-bold text-center text-gray-800 mb-4"}))
 kyk_menu_section.h2.string = "KYK Akşam Menüsü"
 
-# Bugünün tarihini al
+# Tarih bilgisi
 today = datetime.now().strftime("%Y-%m-%d")
 kyk_menu_section.append(soup.new_tag("p", **{"class": "text-center text-gray-600 mb-6"}))
 kyk_menu_section.p.string = today
 
 # Bugünün menüsünü bul
-today_menu = kyk_menu.get(today, None)
+today_menu = None
+for date, menu in kyk_menu.items():
+    if date == today:
+        today_menu = menu
+        break
+
 if today_menu:
     menu_list = soup.new_tag("ul", **{"class": "space-y-4"})
     for index, (category, item) in enumerate(today_menu.items()):
@@ -264,7 +269,12 @@ kyk_sabah_menu_section.append(soup.new_tag("p", **{"class": "text-center text-gr
 kyk_sabah_menu_section.p.string = today
 
 # Bugünün kahvaltı menüsünü bul
-today_sabah_menu = kyk_sabah_menu["Mayis_Ayi_Kahvalti_Menusu"].get(today, None)
+today_sabah_menu = None
+for date, menu in kyk_sabah_menu["Mayis_Ayi_Kahvalti_Menusu"].items():
+    if date == today:
+        today_sabah_menu = menu
+        break
+
 if today_sabah_menu:
     menu_list = soup.new_tag("ul", **{"class": "space-y-4"})
     for index, item in enumerate(today_sabah_menu["menü"]):

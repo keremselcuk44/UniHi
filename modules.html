@@ -510,205 +510,181 @@ function updateLikes(menuId, action, type) {
 </script><h2 class="text-2xl font-bold text-center text-gray-800 mb-4">Üniversite Günün Menüsü</h2><p class="text-center text-gray-600 mb-6">Menü bilgisi alınamadı</p><ul class="flex flex-wrap justify-center gap-4"><li class="bg-gray-100 p-4 rounded-lg shadow-md w-full"><div class="text-center font-medium text-gray-800">Menü bilgisi alınamadı</div></li></ul></div><div class="flex flex-col md:flex-row gap-8" id="kyk-container"><div class="bg-white rounded-lg shadow-lg p-6 w-full md:w-1/2" id="kyk-menu"><h2 class="text-2xl font-bold text-center text-gray-800 mb-4">KYK Akşam Menüsü</h2><p class="text-center text-gray-600 mb-6">2025-05-10</p><ul class="space-y-4"><li class="bg-gray-100 p-4 rounded-lg shadow-md"><div class="text-center font-medium text-gray-800 mb-2">Çorba: Süzme Çorba / Tarhana Çorba</div><div class="flex justify-center space-x-4 mt-2"><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors" id="kyk-like-btn-0" onclick="updateLikes(0, 'like', 'kyk')"><span class="text-lg">👍</span><span id="kyk-like-count-0">0</span></button><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors" id="kyk-dislike-btn-0" onclick="updateLikes(0, 'dislike', 'kyk')"><span class="text-lg">👎</span><span id="kyk-dislike-count-0">0</span></button></div></li><li class="bg-gray-100 p-4 rounded-lg shadow-md"><div class="text-center font-medium text-gray-800 mb-2">Ana Yemek: Tavuk Fajita / Yoğurtlu Mantı</div><div class="flex justify-center space-x-4 mt-2"><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors" id="kyk-like-btn-1" onclick="updateLikes(1, 'like', 'kyk')"><span class="text-lg">👍</span><span id="kyk-like-count-1">0</span></button><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors" id="kyk-dislike-btn-1" onclick="updateLikes(1, 'dislike', 'kyk')"><span class="text-lg">👎</span><span id="kyk-dislike-count-1">0</span></button></div></li><li class="bg-gray-100 p-4 rounded-lg shadow-md"><div class="text-center font-medium text-gray-800 mb-2">Ek Yemek: Şehriyeli Bulgur Pilavı</div><div class="flex justify-center space-x-4 mt-2"><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors" id="kyk-like-btn-2" onclick="updateLikes(2, 'like', 'kyk')"><span class="text-lg">👍</span><span id="kyk-like-count-2">0</span></button><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors" id="kyk-dislike-btn-2" onclick="updateLikes(2, 'dislike', 'kyk')"><span class="text-lg">👎</span><span id="kyk-dislike-count-2">0</span></button></div></li><li class="bg-gray-100 p-4 rounded-lg shadow-md"><div class="text-center font-medium text-gray-800 mb-2">Tatlı: İrmik Tatlısı</div><div class="flex justify-center space-x-4 mt-2"><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors" id="kyk-like-btn-3" onclick="updateLikes(3, 'like', 'kyk')"><span class="text-lg">👍</span><span id="kyk-like-count-3">0</span></button><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors" id="kyk-dislike-btn-3" onclick="updateLikes(3, 'dislike', 'kyk')"><span class="text-lg">👎</span><span id="kyk-dislike-count-3">0</span></button></div></li><li class="bg-gray-100 p-4 rounded-lg shadow-md"><div class="text-center font-medium text-gray-800 mb-2">İçecek: 500 ml Su</div><div class="flex justify-center space-x-4 mt-2"><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors" id="kyk-like-btn-4" onclick="updateLikes(4, 'like', 'kyk')"><span class="text-lg">👍</span><span id="kyk-like-count-4">0</span></button><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors" id="kyk-dislike-btn-4" onclick="updateLikes(4, 'dislike', 'kyk')"><span class="text-lg">👎</span><span id="kyk-dislike-count-4">0</span></button></div></li></ul></div><div class="bg-white rounded-lg shadow-lg p-6 w-full md:w-1/2" id="kyk-sabah-menu"><h2 class="text-2xl font-bold text-center text-gray-800 mb-4">KYK Kahvaltı Menüsü</h2><p class="text-center text-gray-600 mb-6">2025-05-10</p><ul class="space-y-4"><li class="bg-gray-100 p-4 rounded-lg shadow-md"><div class="text-center font-medium text-gray-800 mb-2">Sucuklu Yumurta (1 adet L boy adet) - 25 g sucuk</div><div class="flex justify-center space-x-4 mt-2"><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors" id="kyk-sabah-like-btn-0" onclick="updateLikes(0, 'like', 'kyk-sabah')"><span class="text-lg">👍</span><span id="kyk-sabah-like-count-0">0</span></button><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors" id="kyk-sabah-dislike-btn-0" onclick="updateLikes(0, 'dislike', 'kyk-sabah')"><span class="text-lg">👎</span><span id="kyk-sabah-dislike-count-0">0</span></button></div></li><li class="bg-gray-100 p-4 rounded-lg shadow-md"><div class="text-center font-medium text-gray-800 mb-2">Sade Açma (1 adet)</div><div class="flex justify-center space-x-4 mt-2"><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors" id="kyk-sabah-like-btn-1" onclick="updateLikes(1, 'like', 'kyk-sabah')"><span class="text-lg">👍</span><span id="kyk-sabah-like-count-1">0</span></button><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors" id="kyk-sabah-dislike-btn-1" onclick="updateLikes(1, 'dislike', 'kyk-sabah')"><span class="text-lg">👎</span><span id="kyk-sabah-dislike-count-1">0</span></button></div></li><li class="bg-gray-100 p-4 rounded-lg shadow-md"><div class="text-center font-medium text-gray-800 mb-2">Siyah Zeytin (40 g)</div><div class="flex justify-center space-x-4 mt-2"><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors" id="kyk-sabah-like-btn-2" onclick="updateLikes(2, 'like', 'kyk-sabah')"><span class="text-lg">👍</span><span id="kyk-sabah-like-count-2">0</span></button><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors" id="kyk-sabah-dislike-btn-2" onclick="updateLikes(2, 'dislike', 'kyk-sabah')"><span class="text-lg">👎</span><span id="kyk-sabah-dislike-count-2">0</span></button></div></li><li class="bg-gray-100 p-4 rounded-lg shadow-md"><div class="text-center font-medium text-gray-800 mb-2">Beyaz Peynir (60 g)</div><div class="flex justify-center space-x-4 mt-2"><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors" id="kyk-sabah-like-btn-3" onclick="updateLikes(3, 'like', 'kyk-sabah')"><span class="text-lg">👍</span><span id="kyk-sabah-like-count-3">0</span></button><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors" id="kyk-sabah-dislike-btn-3" onclick="updateLikes(3, 'dislike', 'kyk-sabah')"><span class="text-lg">👎</span><span id="kyk-sabah-dislike-count-3">0</span></button></div></li><li class="bg-gray-100 p-4 rounded-lg shadow-md"><div class="text-center font-medium text-gray-800 mb-2">Domates (100 g)</div><div class="flex justify-center space-x-4 mt-2"><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors" id="kyk-sabah-like-btn-4" onclick="updateLikes(4, 'like', 'kyk-sabah')"><span class="text-lg">👍</span><span id="kyk-sabah-like-count-4">0</span></button><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors" id="kyk-sabah-dislike-btn-4" onclick="updateLikes(4, 'dislike', 'kyk-sabah')"><span class="text-lg">👎</span><span id="kyk-sabah-dislike-count-4">0</span></button></div></li><li class="bg-gray-100 p-4 rounded-lg shadow-md"><div class="text-center font-medium text-gray-800 mb-2">Reçel (20 g)</div><div class="flex justify-center space-x-4 mt-2"><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors" id="kyk-sabah-like-btn-5" onclick="updateLikes(5, 'like', 'kyk-sabah')"><span class="text-lg">👍</span><span id="kyk-sabah-like-count-5">0</span></button><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors" id="kyk-sabah-dislike-btn-5" onclick="updateLikes(5, 'dislike', 'kyk-sabah')"><span class="text-lg">👎</span><span id="kyk-sabah-dislike-count-5">0</span></button></div></li><li class="bg-gray-100 p-4 rounded-lg shadow-md"><div class="text-center font-medium text-gray-800 mb-2">Tereyağı (10 g)</div><div class="flex justify-center space-x-4 mt-2"><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors" id="kyk-sabah-like-btn-6" onclick="updateLikes(6, 'like', 'kyk-sabah')"><span class="text-lg">👍</span><span id="kyk-sabah-like-count-6">0</span></button><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors" id="kyk-sabah-dislike-btn-6" onclick="updateLikes(6, 'dislike', 'kyk-sabah')"><span class="text-lg">👎</span><span id="kyk-sabah-dislike-count-6">0</span></button></div></li><li class="bg-gray-100 p-4 rounded-lg shadow-md"><div class="text-center font-medium text-gray-800 mb-2">Süt</div><div class="flex justify-center space-x-4 mt-2"><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors" id="kyk-sabah-like-btn-7" onclick="updateLikes(7, 'like', 'kyk-sabah')"><span class="text-lg">👍</span><span id="kyk-sabah-like-count-7">0</span></button><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors" id="kyk-sabah-dislike-btn-7" onclick="updateLikes(7, 'dislike', 'kyk-sabah')"><span class="text-lg">👎</span><span id="kyk-sabah-dislike-count-7">0</span></button></div></li><li class="bg-gray-100 p-4 rounded-lg shadow-md"><div class="text-center font-medium text-gray-800 mb-2">Çay</div><div class="flex justify-center space-x-4 mt-2"><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors" id="kyk-sabah-like-btn-8" onclick="updateLikes(8, 'like', 'kyk-sabah')"><span class="text-lg">👍</span><span id="kyk-sabah-like-count-8">0</span></button><button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors" id="kyk-sabah-dislike-btn-8" onclick="updateLikes(8, 'dislike', 'kyk-sabah')"><span class="text-lg">👎</span><span id="kyk-sabah-dislike-count-8">0</span></button></div></li></ul></div></div></div>
 </div>
 <div class="mt-8 hidden" id="faculty-card">
-<div class="bg-white bg-opacity-90 p-6 rounded-2xl shadow-xl backdrop-blur-sm transform transition-all duration-300 hover:scale-105">
-<h3 class="text-2xl font-bold text-gray-800 mb-4" id="faculty-title">Fakülteniz Hakkında Daha Fazla Bilgi</h3>
-<p class="text-gray-600 mb-6" id="faculty-description">Fakülteniz hakkında detaylı bilgi almak için aşağıdaki butona tıklayın.</p>
-<a class="inline-block bg-gradient-to-r from-pink-500 to-red-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105" href="#" id="faculty-link">
-                            Göz At!
-                        </a>
-<<<<<<< HEAD
-</div>
+    <div class="bg-white bg-opacity-90 p-6 rounded-2xl shadow-xl backdrop-blur-sm transform transition-all duration-300 hover:scale-105">
+        <h3 class="text-2xl font-bold text-gray-800 mb-4" id="faculty-title">Fakülteniz Hakkında Daha Fazla Bilgi</h3>
+        <p class="text-gray-600 mb-6" id="faculty-description">Fakülteniz hakkında detaylı bilgi almak için aşağıdaki butona tıklayın.</p>
+        <a class="inline-block bg-gradient-to-r from-pink-500 to-red-600 text-white px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105" href="#" id="faculty-link">
+            Göz At!
+        </a>
+    </div>
 </div>
 </div>
 <div class="w-1/3">
-<div class="bg-white bg-opacity-90 rounded-2xl shadow-xl p-4 backdrop-blur-sm">
-<div class="flex items-center justify-between mb-3">
-<h2 class="haber-baslik flex items-center">
-<span class="mr-2">Güncel Yapay Zeka Haberleri</span>
-<button class="refresh-icon" id="refresh-news">
-<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
-</h2>
-</div>
-<div class="space-y-2 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar" id="haber-listesi"></div>
-</div>
+    <div class="bg-white bg-opacity-90 rounded-2xl shadow-xl p-4 backdrop-blur-sm">
+        <div class="flex items-center justify-between mb-3">
+            <h2 class="haber-baslik flex items-center">
+                <span class="mr-2">Güncel Yapay Zeka Haberleri</span>
+                <button class="refresh-icon" id="refresh-news">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    </svg>
+                </button>
+            </h2>
+        </div>
+        <div class="space-y-2 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar" id="haber-listesi"></div>
+    </div>
 </div>
 </div>
 </section>
+
 <script>
-=======
-                    </div>
-                </div>
-            </div>
-            <div class="w-1/3">
-                <div class="bg-white bg-opacity-90 rounded-2xl shadow-xl p-4 backdrop-blur-sm">
-                    <div class="flex items-center justify-between mb-3">
-                        <h2 class="haber-baslik flex items-center">
-                            <span class="mr-2">Güncel Yapay Zeka Haberleri</span>
-                            <button id="refresh-news" class="refresh-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                                </svg>
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="haber-listesi" class="space-y-2 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+// GNews API Key - Ücretsiz API anahtarı
+// Bu API anahtarı GNews'in ücretsiz planına aittir ve günlük sınırlı sayıda istek yapılabilir
+// Kendi API anahtarınızı almak için: https://gnews.io/register
+const apiKey = '41dcd5c7b4490d899a7dcb713289d9cd';
 
-    <script>
->>>>>>> 7cbdb8c462c732a45fe8bb2016aad55cb4e5a9db
-        // GNews API Key - Ücretsiz API anahtarı
-        // Bu API anahtarı GNews'in ücretsiz planına aittir ve günlük sınırlı sayıda istek yapılabilir
-        // Kendi API anahtarınızı almak için: https://gnews.io/register
-        const apiKey = '41dcd5c7b4490d899a7dcb713289d9cd';
+// Kullanıcı bilgilerini al ve hoşgeldin mesajını güncelle
+function updateWelcomeMessage() {
+    const currentUser = sessionStorage.getItem("currentUser");
+    if (currentUser) {
+        const userData = JSON.parse(localStorage.getItem(currentUser));
+        const welcomeText = document.getElementById("welcome-text");
+        welcomeText.textContent = `HOŞ GELDİN, ${userData.fullName.toUpperCase()}`;
 
-        // Kullanıcı bilgilerini al ve hoşgeldin mesajını güncelle
-        function updateWelcomeMessage() {
-            const currentUser = sessionStorage.getItem("currentUser");
-            if (currentUser) {
-                const userData = JSON.parse(localStorage.getItem(currentUser));
-                const welcomeText = document.getElementById("welcome-text");
-                welcomeText.textContent = `HOŞ GELDİN, ${userData.fullName.toUpperCase()}`;
+        // Fakülte kartını göster ve içeriğini ayarla
+        const facultyCard = document.getElementById("faculty-card");
+        const facultyTitle = document.getElementById("faculty-title");
+        const facultyDescription = document.getElementById("faculty-description");
+        const facultyLink = document.getElementById("faculty-link");
 
-                // Fakülte kartını göster ve içeriğini ayarla
-                const facultyCard = document.getElementById("faculty-card");
-                const facultyTitle = document.getElementById("faculty-title");
-                const facultyDescription = document.getElementById("faculty-description");
-                const facultyLink = document.getElementById("faculty-link");
+        facultyCard.classList.remove("hidden");
 
-                facultyCard.classList.remove("hidden");
-
-                if (userData.faculty.toLowerCase().includes("teknoloji")) {
-                    facultyTitle.textContent = "Teknoloji Fakültesi Hakkında Daha Fazla Bilgi!";
-                    facultyDescription.textContent = "Teknoloji Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
-                    facultyLink.href = "teknolojifak.html";
-                } else if (userData.faculty.toLowerCase().includes("mühendislik")) {
-                    facultyTitle.textContent = "Mühendislik Fakültesi Hakkında Daha Fazla Bilgi!";
-                    facultyDescription.textContent = "Mühendislik Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
-                    facultyLink.href = "muhendislikfak.html";
-                }
-            }
+        if (userData.faculty.toLowerCase().includes("teknoloji")) {
+            facultyTitle.textContent = "Teknoloji Fakültesi Hakkında Daha Fazla Bilgi!";
+            facultyDescription.textContent = "Teknoloji Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
+            facultyLink.href = "teknolojifak.html";
+        } else if (userData.faculty.toLowerCase().includes("mühendislik")) {
+            facultyTitle.textContent = "Mühendislik Fakültesi Hakkında Daha Fazla Bilgi!";
+            facultyDescription.textContent = "Mühendislik Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
+            facultyLink.href = "muhendislikfak.html";
         }
+    }
+}
 
-        // Slider fonksiyonları
-        let index = 0;
-        const images = document.querySelectorAll(".slider img");
-        const dots = document.querySelectorAll(".slider-dot");
+// Slider fonksiyonları
+let index = 0;
+const images = document.querySelectorAll(".slider img");
+const dots = document.querySelectorAll(".slider-dot");
 
-        function changeImage() {
+function changeImage() {
+    images[index].classList.remove("active");
+    dots[index].classList.remove("active");
+    
+    index = (index + 1) % images.length;
+    
+    images[index].classList.add("active");
+    dots[index].classList.add("active");
+}
+
+function initializeSlider() {
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
             images[index].classList.remove("active");
             dots[index].classList.remove("active");
-            
-            index = (index + 1) % images.length;
-            
+            index = idx;
             images[index].classList.add("active");
             dots[index].classList.add("active");
-        }
-
-        function initializeSlider() {
-            dots.forEach((dot, idx) => {
-                dot.addEventListener('click', () => {
-                    images[index].classList.remove("active");
-                    dots[index].classList.remove("active");
-                    index = idx;
-                    images[index].classList.add("active");
-                    dots[index].classList.add("active");
-                });
-            });
-
-            setInterval(changeImage, 5000);
-
-            const slider = document.querySelector('.slider');
-            let interval;
-
-            slider.addEventListener('mouseenter', () => {
-                clearInterval(interval);
-            });
-
-            slider.addEventListener('mouseleave', () => {
-                interval = setInterval(changeImage, 5000);
-            });
-        }
-
-        // Haberleri getir fonksiyonu
-        async function haberleriGetir() {
-            try {
-                const haberListesi = document.getElementById("haber-listesi");
-                haberListesi.innerHTML = '<div class="flex justify-center items-center h-32"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500"></div></div>';
-
-                const response = await fetch(`https://gnews.io/api/v4/search?q=artificial+intelligence&lang=tr&country=tr&max=5&apikey=${apiKey}`);
-                
-                if (!response.ok) {
-                    throw new Error('API yanıt vermedi');
-                }
-
-                const data = await response.json();
-                
-                if (!data.articles || data.articles.length === 0) {
-                    haberListesi.innerHTML = '<p class="text-gray-600 text-center py-8">Haber bulunamadı.</p>';
-                    return;
-                }
-
-                haberListesi.innerHTML = '';
-
-                data.articles.forEach((article) => {
-                    const haber = document.createElement("div");
-                    haber.className = "haber-card";
-                    haber.innerHTML = `
-                        <img src="${article.image || 'photos/default-news.jpg'}" alt="${article.title}" class="haber-thumbnail">
-                        <div class="haber-content">
-                            <h3 class="haber-title">
-                                <a href="${article.url}" target="_blank">${article.title}</a>
-                            </h3>
-                            <p class="haber-description">${article.description}</p>
-                            <div class="haber-meta">
-                                <span class="haber-date">${new Date(article.publishedAt).toLocaleDateString('tr-TR')}</span>
-                                <span class="haber-source">${article.source.name || 'Kaynak'}</span>
-                            </div>
-                        </div>
-                    `;
-
-                    haberListesi.appendChild(haber);
-                });
-            } catch (error) {
-                console.error('Haber yükleme hatası:', error);
-                const haberListesi = document.getElementById("haber-listesi");
-                haberListesi.innerHTML = `
-                    <div class="haber-card">
-                        <div class="haber-content">
-                            <h3 class="haber-title">Haberler Yüklenemedi</h3>
-                            <p class="haber-description">Şu anda haberler yüklenemiyor. Lütfen daha sonra tekrar deneyin.</p>
-                            <div class="haber-meta">
-                                <span class="haber-date">Hata Detayı: ${error.message}</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }
-        }
-
-        // Sayfa yüklendiğinde
-        document.addEventListener('DOMContentLoaded', () => {
-            // Hoşgeldin mesajını güncelle
-            updateWelcomeMessage();
-            
-            // Slider'ı başlat
-            initializeSlider();
-            
-            // Haberleri getir
-            haberleriGetir();
-
-            // Yenileme butonuna tıklama olayı ekle
-            document.getElementById('refresh-news').addEventListener('click', () => {
-                haberleriGetir();
-            });
         });
-    </script>
+    });
+
+    setInterval(changeImage, 5000);
+
+    const slider = document.querySelector('.slider');
+    let interval;
+
+    slider.addEventListener('mouseenter', () => {
+        clearInterval(interval);
+    });
+
+    slider.addEventListener('mouseleave', () => {
+        interval = setInterval(changeImage, 5000);
+    });
+}
+
+// Haberleri getir fonksiyonu
+async function haberleriGetir() {
+    try {
+        const haberListesi = document.getElementById("haber-listesi");
+        haberListesi.innerHTML = '<div class="flex justify-center items-center h-32"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500"></div></div>';
+
+        const response = await fetch(`https://gnews.io/api/v4/search?q=artificial+intelligence&lang=tr&country=tr&max=5&apikey=${apiKey}`);
+        
+        if (!response.ok) {
+            throw new Error('API yanıt vermedi');
+        }
+
+        const data = await response.json();
+        
+        if (!data.articles || data.articles.length === 0) {
+            haberListesi.innerHTML = '<p class="text-gray-600 text-center py-8">Haber bulunamadı.</p>';
+            return;
+        }
+
+        haberListesi.innerHTML = '';
+
+        data.articles.forEach((article) => {
+            const haber = document.createElement("div");
+            haber.className = "haber-card";
+            haber.innerHTML = `
+                <img src="${article.image || 'photos/default-news.jpg'}" alt="${article.title}" class="haber-thumbnail">
+                <div class="haber-content">
+                    <h3 class="haber-title">
+                        <a href="${article.url}" target="_blank">${article.title}</a>
+                    </h3>
+                    <p class="haber-description">${article.description}</p>
+                    <div class="haber-meta">
+                        <span class="haber-date">${new Date(article.publishedAt).toLocaleDateString('tr-TR')}</span>
+                        <span class="haber-source">${article.source.name || 'Kaynak'}</span>
+                    </div>
+                </div>
+            `;
+
+            haberListesi.appendChild(haber);
+        });
+    } catch (error) {
+        console.error('Haber yükleme hatası:', error);
+        const haberListesi = document.getElementById("haber-listesi");
+        haberListesi.innerHTML = `
+            <div class="haber-card">
+                <div class="haber-content">
+                    <h3 class="haber-title">Haberler Yüklenemedi</h3>
+                    <p class="haber-description">Şu anda haberler yüklenemiyor. Lütfen daha sonra tekrar deneyin.</p>
+                    <div class="haber-meta">
+                        <span class="haber-date">Hata Detayı: ${error.message}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// Sayfa yüklendiğinde
+document.addEventListener('DOMContentLoaded', () => {
+    // Hoşgeldin mesajını güncelle
+    updateWelcomeMessage();
+    
+    // Slider'ı başlat
+    initializeSlider();
+    
+    // Haberleri getir
+    haberleriGetir();
+
+    // Yenileme butonuna tıklama olayı ekle
+    document.getElementById('refresh-news').addEventListener('click', () => {
+        haberleriGetir();
+    });
+});
+</script>
 <script src="profile-updater.js"></script>
 </body>
 </html>
