@@ -303,12 +303,7 @@
         }
     </style>
 </head>
-<body class="bg-red min-h-screen flex flex-col" x-data="{ open: false, loading: true }" x-init="setTimeout(() => loading = false, 1000)">
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" x-show="loading" x-transition:leave="transition ease-out duration-300">
-        <div class="loading-spinner"></div>
-    </div>
-
+<body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-overlay"></div>
