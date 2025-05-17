@@ -6,6 +6,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
+import requests
+import os
+import subprocess
+import paramiko
 
 # Chrome seçeneklerini ayarla
 chrome_options = Options()
@@ -340,3 +344,134 @@ with open("modules.html", "w", encoding="utf-8") as f:
     f.write(str(soup))
 
 print("Günün menüsü ve tarihi başarıyla güncellendi.")
+
+def send_to_server(local_file, remote_path, server_config):
+    """
+    Dosyayı sunucuya gönderir
+    """
+    try:
+        # SSH bağlantısı oluştur
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(
+            server_config['host'],
+            username=server_config['username'],
+            password=server_config['password']
+        )
+        
+        # SFTP istemcisi oluştur
+        sftp = ssh.open_sftp()
+        
+        # Dosyayı sunucuya gönder
+        sftp.put(local_file, remote_path)
+        
+        # Bağlantıları kapat
+        sftp.close()
+        ssh.close()
+        
+        print(f"Dosya başarıyla sunucuya gönderildi: {remote_path}")
+        return True
+    except Exception as e:
+        print(f"Sunucuya gönderme hatası: {str(e)}")
+        return False
+
+def push_to_github(file_path, commit_message):
+    """
+    Dosyayı GitHub'a push eder
+    """
+    try:
+        # Git komutlarını çalıştır
+        subprocess.run(['git', 'add', file_path], check=True)
+        subprocess.run(['git', 'commit', '-m', commit_message], check=True)
+        subprocess.run(['git', 'push'], check=True)
+        
+        print(f"Dosya başarıyla GitHub'a push edildi: {file_path}")
+        return True
+    except Exception as e:
+        print(f"GitHub'a push hatası: {str(e)}")
+        return False
+
+def update_menus():
+    """
+    Menüleri günceller ve hem GitHub'a hem de sunucuya gönderir
+    """
+    # Sunucu yapılandırması
+    server_config = {
+        'host': 'your_server_host',
+        'username': 'your_username',
+        'password': 'your_password'
+    }
+    
+    # Sunucu dosya yolları
+    remote_paths = {
+        'kykmenusabah.json': '/var/www/html/kykmenusabah.json',
+        'kykmenuaksam.json': '/var/www/html/kykmenuaksam.json',
+        'unimenus.json': '/var/www/html/unimenus.json'
+    }
+    
+    # KYK sabah menüsünü güncelle
+    kyk_sabah_url = "https://www.kyk.gov.tr/kyk-yurtlari-yemek-listesi"
+    kyk_sabah_response = requests.get(kyk_sabah_url)
+    kyk_sabah_soup = BeautifulSoup(kyk_sabah_response.text, 'html.parser')
+    
+    # KYK akşam menüsünü güncelle
+    kyk_aksam_url = "https://www.kyk.gov.tr/kyk-yurtlari-aksam-yemek-listesi"
+    kyk_aksam_response = requests.get(kyk_aksam_url)
+    kyk_aksam_soup = BeautifulSoup(kyk_aksam_response.text, 'html.parser')
+    
+    # Üniversite menüsünü güncelle
+    uni_menu_url = "https://www.firat.edu.tr/yemek-listesi"
+    uni_menu_response = requests.get(uni_menu_url)
+    uni_menu_soup = BeautifulSoup(uni_menu_response.text, 'html.parser')
+    
+    # Menüleri JSON formatına dönüştür
+    kyk_sabah_data = {
+        "Mayis_Ayi_Kahvalti_Menusu": {
+            datetime.now().strftime("%Y-%m-%d"): {
+                "menü": [
+                    {"isim": item.text.strip()} for item in kyk_sabah_soup.select(".menu-item")
+                ]
+            }
+        }
+    }
+    
+    kyk_aksam_data = {
+        "Mayis_Ayi_Aksam_Menusu": {
+            datetime.now().strftime("%Y-%m-%d"): {
+                "menü": [
+                    {"isim": item.text.strip()} for item in kyk_aksam_soup.select(".menu-item")
+                ]
+            }
+        }
+    }
+    
+    uni_menu_data = {
+        datetime.now().strftime("%Y-%m-%d"): {
+            "menü": [
+                {"isim": item.text.strip()} for item in uni_menu_soup.select(".menu-item")
+            ]
+        }
+    }
+    
+    # JSON dosyalarını kaydet
+    with open("kykmenusabah.json", "w", encoding="utf-8") as f:
+        json.dump(kyk_sabah_data, f, ensure_ascii=False, indent=4)
+    
+    with open("kykmenuaksam.json", "w", encoding="utf-8") as f:
+        json.dump(kyk_aksam_data, f, ensure_ascii=False, indent=4)
+    
+    with open("unimenus.json", "w", encoding="utf-8") as f:
+        json.dump(uni_menu_data, f, ensure_ascii=False, indent=4)
+    
+    # Dosyaları hem GitHub'a hem de sunucuya gönder
+    commit_message = f"Menüler güncellendi: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+    
+    for file_name, remote_path in remote_paths.items():
+        # GitHub'a push et
+        push_to_github(file_name, commit_message)
+        
+        # Sunucuya gönder
+        send_to_server(file_name, remote_path, server_config)
+
+if __name__ == "__main__":
+    update_menus()
