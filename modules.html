@@ -1110,7 +1110,7 @@ function updateLikes(menuId, action, type) {
             const haberListesi = document.getElementById("haber-listesi");
             haberListesi.innerHTML = '<div class="flex justify-center items-center h-32"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500"></div></div>';
 
-            const response = await fetch('http://localhost:3000/api/news');
+            const response = await fetch('http://13.53.117.47:8080/api/news');
             
             if (!response.ok) {
                 throw new Error('API yanıt vermedi');
@@ -1396,7 +1396,7 @@ function updateLikes(menuId, action, type) {
     // Gemini API'ye istek gönderme
     async function getAIResponse(message) {
         try {
-            const response = await fetch('http://localhost:3000/api/gemini', {
+            const response = await fetch('http://13.53.117.47:8080/api/gemini', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
