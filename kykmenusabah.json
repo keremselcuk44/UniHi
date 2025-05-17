@@ -289,7 +289,7 @@
     "2025-05-23": {
       "gun": "Cuma",
       "menü": [
-        {"isim": "Sade Omlet",
+        {"isim": "Sade Omlet"},
         {"isim": "Çikolatalı Kek"}, 
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Yöresel Peynir"},
@@ -316,7 +316,7 @@
       "gun": "Pazar",
       "menü": [
         {"isim": "Menemen"},
-        {"isim": "Dere Otlu Poğaça",
+        {"isim": "Dere Otlu Poğaça"},
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Beyaz Peynir"},
         {"isim": "Reçel Çeşitleri"},
@@ -393,7 +393,7 @@
     "2025-05-31": {
       "gun": "Cumartesi",
       "menü": [
-        {"isim": "Sade Omlet",
+        {"isim": "Sade Omlet"},
         {"isim": "Dere"}, 
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Kaşar Peyniri"},
