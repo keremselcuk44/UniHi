@@ -1838,5 +1838,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 </script>
+<script>
+// Menüleri güncelleme fonksiyonu
+async function updateMenus() {
+    try {
+        // KYK sabah menüsünü güncelle
+        const kykSabahResponse = await fetch('kykmenusabah.json');
+        const kykSabahData = await kykSabahResponse.json();
+        
+        // KYK akşam menüsünü güncelle
+        const kykAksamResponse = await fetch('kykmenuaksam.json');
+        const kykAksamData = await kykAksamResponse.json();
+        
+        // Üniversite menüsünü güncelle
+        const uniMenuResponse = await fetch('unimenus.json');
+        const uniMenuData = await uniMenuResponse.json();
+        
+        // Bugünün tarihini al
+        const today = new Date().toISOString().split('T')[0];
+        
+        // KYK sabah menüsünü güncelle
+        const kykSabahMenu = document.getElementById('kyk-sabah-menu');
+        if (kykSabahMenu && kykSabahData.Mayis_Ayi_Kahvalti_Menusu[today]) {
+            const menu = kykSabahData.Mayis_Ayi_Kahvalti_Menusu[today].menü;
+            kykSabahMenu.innerHTML = menu.map(item => `<li>${item.isim}</li>`).join('');
+        }
+        
+        // KYK akşam menüsünü güncelle
+        const kykAksamMenu = document.getElementById('kyk-aksam-menu');
+        if (kykAksamMenu && kykAksamData.Mayis_Ayi_Aksam_Menusu[today]) {
+            const menu = kykAksamData.Mayis_Ayi_Aksam_Menusu[today].menü;
+            kykAksamMenu.innerHTML = menu.map(item => `<li>${item.isim}</li>`).join('');
+        }
+        
+        // Üniversite menüsünü güncelle
+        const uniMenu = document.getElementById('gunun-menusu');
+        if (uniMenu && uniMenuData[today]) {
+            const menu = uniMenuData[today].menü;
+            uniMenu.innerHTML = menu.map(item => `<li>${item.isim}</li>`).join('');
+        }
+    } catch (error) {
+        console.error('Menü güncelleme hatası:', error);
+    }
+}
+
+// Sayfa yüklendiğinde menüleri güncelle
+document.addEventListener('DOMContentLoaded', () => {
+    updateMenus();
+    
+    // Her 5 dakikada bir menüleri güncelle
+    setInterval(updateMenus, 5 * 60 * 1000);
+});
+</script>
 </body>
 </html>

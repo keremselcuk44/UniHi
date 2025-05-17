@@ -3,155 +3,182 @@
     "2025-05-01": {
       "gun": "Perşembe",
       "menü": [
-        {"isim": "Sade Omlet", "gramaj": "150 g"},
-        {"isim": "Dere Otlu Poğaça", "adet": 1},
-        {"isim": "Siyah Zeytin", "gramaj": "40 g"},
-        {"isim": "Beyaz Peynir", "gramaj": "60 g"},
-        {"isim": "Domates", "gramaj": "100 g"},
-        {"isim": "Reçel", "gramaj": "20 g"},
-        {"isim": "Tereyağı", "gramaj": "10 g"},
-        {"isim": "Süt", "miktar": "200 ml"},
-        {"isim": "Çay", "miktar": "200 ml"}
+        {"isim": "Sade Omlet"},
+        {"isim": "Dere Otlu Poğaça"},
+        {"isim": "Siyah Zeytin"},
+        {"isim": "Beyaz Peynir"},
+        {"isim": "Domates"},
+        {"isim": "Reçel"},
+        {"isim": "Tereyağı"},
+        {"isim": "Çay"}
       ]
     },
     "2025-05-02": {
       "gun": "Cuma",
       "menü": [
-        {"isim": "Haşlanmış Yumurta", "adet": 1},
-        {"isim": "Simit", "adet": 1},
-        {"isim": "Siyah Zeytin", "gramaj": "40 g"},
-        {"isim": "Beyaz Peynir", "gramaj": "60 g"},
-        {"isim": "Domates", "gramaj": "100 g"},
-        {"isim": "Reçel", "gramaj": "20 g"},
-        {"isim": "Tereyağı", "gramaj": "10 g"},
-        {"isim": "Süt", "miktar": "200 ml"},
-        {"isim": "Çay", "miktar": "200 ml"}
+        {"isim": "Haşlanmış Yumurta"},
+        {"isim": "Simit"},
+        {"isim": "Siyah Zeytin"},
+        {"isim": "Beyaz Peynir"},
+        {"isim": "Domates"},
+        {"isim": "Reçel"},
+        {"isim": "Tereyağı"},
+        {"isim": "Çay"}
       ]
     },
     "2025-05-03": {
       "gun": "Cumartesi",
       "menü": [
-        {"isim": "Sucuklu Yumurta", "adet": "1 adet L boy", "ek": "25 g sucuk"},
-        {"isim": "Sade Açma", "adet": 1},
-        {"isim": "Siyah Zeytin", "gramaj": "40 g"},
-        {"isim": "Beyaz Peynir", "gramaj": "60 g"},
-        {"isim": "Domates", "gramaj": "100 g"},
-        {"isim": "Reçel", "gramaj": "20 g"},
-        {"isim": "Tereyağı", "gramaj": "10 g"},
-        {"isim": "Süt", "miktar": "200 ml"},
-        {"isim": "Çay", "miktar": "200 ml"}
+        {"isim": "Sucuklu Yumurta"},
+        {"isim": "Sade Açma"},
+        {"isim": "Siyah Zeytin"},
+        {"isim": "Beyaz Peynir"},
+        {"isim": "Domates"},
+        {"isim": "Reçel"},
+        {"isim": "Tereyağı"},
+        {"isim": "Çay"}
       ]
     },
     "2025-05-04": {
       "gun": "Pazar",
       "menü": [
-        {"isim": "Patates Kızartması", "gramaj": "150 g"},
-        {"isim": "Kaşarlı Omlet", "adet": "2 adet L boy", "ek": "30 g kaşar"},
-        {"isim": "Siyah Zeytin", "gramaj": "40 g"},
-        {"isim": "Beyaz Peynir", "gramaj": "60 g"},
-        {"isim": "Domates", "gramaj": "100 g"},
-        {"isim": "Reçel", "gramaj": "20 g"},
-        {"isim": "Tereyağı", "gramaj": "10 g"},
-        {"isim": "Süt", "miktar": "200 ml"},
-        {"isim": "Çay", "miktar": "200 ml"}
+        {"isim": "Patates Kızartması"},
+        {"isim": "Kaşarlı Omlet"},
+        {"isim": "Siyah Zeytin"},
+        {"isim": "Beyaz Peynir"},
+        {"isim": "Domates"},
+        {"isim": "Reçel"},
+        {"isim": "Tereyağı"},
+        {"isim": "Çay"}
       ]
     },
     "2025-05-05": {
       "gun": "Pazartesi",
       "menü": [
-        {"isim": "Menemen", "gramaj": "150 g"},
-        {"isim": "Sade Omlet", "adet": "1 adet L boy yumurta"},
-        {"isim": "Siyah Zeytin", "gramaj": "40 g"},
-        {"isim": "Beyaz Peynir", "gramaj": "60 g"},
-        {"isim": "Domates", "gramaj": "100 g"},
-        {"isim": "Reçel", "gramaj": "20 g"},
-        {"isim": "Tereyağı", "gramaj": "10 g"},
-        {"isim": "Süt", "miktar": "200 ml"},
-        {"isim": "Çay", "miktar": "200 ml"}
+        {"isim": "Menemen"},
+        {"isim": "Sade Omlet"},
+        {"isim": "Siyah Zeytin"},
+        {"isim": "Beyaz Peynir"},
+        {"isim": "Domates"},
+        {"isim": "Reçel"},
+        {"isim": "Tereyağı"},
+        {"isim": "Çay"}
       ]
     },
     "2025-05-06": {
       "gun": "Salı",
       "menü": [
-        {"isim": "Sucuklu-Kaşarlı Omlet", "adet": "2 yumurta", "ek": "25 g sucuk, 30 g kaşar"},
-        {"isim": "Kek", "gramaj": "80 g"},
-        {"isim": "Siyah Zeytin", "gramaj": "40 g"},
-        {"isim": "Beyaz Peynir", "gramaj": "60 g"},
-        {"isim": "Domates", "gramaj": "100 g"},
-        {"isim": "Reçel", "gramaj": "20 g"},
-        {"isim": "Tereyağı", "gramaj": "10 g"},
-        {"isim": "Süt", "miktar": "200 ml"},
-        {"isim": "Çay", "miktar": "200 ml"}
+        {"isim": "Sucuklu-Kaşarlı Omlet"},
+        {"isim": "Kek"},
+        {"isim": "Siyah Zeytin"},
+        {"isim": "Beyaz Peynir"},
+        {"isim": "Domates"},
+        {"isim": "Reçel"},
+        {"isim": "Tereyağı"},
+        {"isim": "Çay"}
       ]
     },
     "2025-05-07": {
       "gun": "Çarşamba",
       "menü": [
-        {"isim": "Kaşarlı Omlet", "adet": "2 yumurta", "ek": "30 g kaşar"},
-        {"isim": "Kakaolu Kek", "gramaj": "80 g"},
-        {"isim": "Siyah Zeytin", "gramaj": "40 g"},
-        {"isim": "Beyaz Peynir", "gramaj": "60 g"},
-        {"isim": "Domates", "gramaj": "100 g"},
-        {"isim": "Reçel", "gramaj": "20 g"},
-        {"isim": "Tereyağı", "gramaj": "10 g"},
-        {"isim": "Süt", "miktar": "200 ml"},
-        {"isim": "Çay", "miktar": "200 ml"}
+        {"isim": "Kaşarlı Omlet"},
+        {"isim": "Kakaolu Kek"},
+        {"isim": "Siyah Zeytin"},
+        {"isim": "Beyaz Peynir"},
+        {"isim": "Domates"},
+        {"isim": "Reçel"},
+        {"isim": "Tereyağı"},
+        {"isim": "Çay"}
       ]
     },
     "2025-05-08": {
       "gun": "Perşembe",
       "menü": [
-        {"isim": "Patates Kavurması", "gramaj": "150 g"},
-        {"isim": "Haşlanmış Yumurta", "adet": "1 adet"},
-        {"isim": "Siyah Zeytin", "gramaj": "40 g"},
-        {"isim": "Beyaz Peynir", "gramaj": "60 g"},
-        {"isim": "Domates", "gramaj": "100 g"},
-        {"isim": "Reçel", "gramaj": "20 g"},
-        {"isim": "Tereyağı", "gramaj": "10 g"},
-        {"isim": "Süt", "miktar": "200 ml"},
-        {"isim": "Çay", "miktar": "200 ml"}
+        {"isim": "Patates Kavurması"},
+        {"isim": "Haşlanmış Yumurta"},
+        {"isim": "Siyah Zeytin"},
+        {"isim": "Beyaz Peynir"},
+        {"isim": "Domates"},
+        {"isim": "Reçel"},
+        {"isim": "Tereyağı"},
+        {"isim": "Çay"}
       ]
     },
     "2025-05-09": {
       "gun": "Cuma",
       "menü": [
-        {"isim": "Kaşarlı Pide", "gramaj": "150 g"},
-        {"isim": "Haşlanmış Yumurta", "adet": "1 adet"},
-        {"isim": "Siyah Zeytin", "gramaj": "40 g"},
-        {"isim": "Beyaz Peynir", "gramaj": "60 g"},
-        {"isim": "Domates", "gramaj": "100 g"},
-        {"isim": "Reçel", "gramaj": "20 g"},
-        {"isim": "Tereyağı", "gramaj": "10 g"},
-        {"isim": "Süt", "miktar": "200 ml"},
-        {"isim": "Çay", "miktar": "200 ml"}
+        {"isim": "Kaşarlı Pide"},
+        {"isim": "Haşlanmış Yumurta"},
+        {"isim": "Siyah Zeytin"},
+        {"isim": "Beyaz Peynir"},
+        {"isim": "Domates"},
+        {"isim": "Reçel"},
+        {"isim": "Tereyağı"},
+        {"isim": "Çay"}
       ]
     },
     "2025-05-10": {
       "gun": "Cumartesi",
       "menü": [
-        {"isim": "Sucuklu Yumurta", "adet": "1 adet L boy", "ek": "25 g sucuk"},
-        {"isim": "Sade Açma", "adet": 1},
-        {"isim": "Siyah Zeytin", "gramaj": "40 g"},
-        {"isim": "Beyaz Peynir", "gramaj": "60 g"},
-        {"isim": "Domates", "gramaj": "100 g"},
-        {"isim": "Reçel", "gramaj": "20 g"},
-        {"isim": "Tereyağı", "gramaj": "10 g"},
-        {"isim": "Süt", "miktar": "200 ml"},
-        {"isim": "Çay", "miktar": "200 ml"}
+        {"isim": "Sucuklu Yumurta"},
+        {"isim": "Sade Açma"},
+        {"isim": "Siyah Zeytin"},
+        {"isim": "Beyaz Peynir"},
+        {"isim": "Domates"},
+        {"isim": "Reçel"},
+        {"isim": "Tereyağı"},
+        {"isim": "Çay"}
       ]
     },
     "2025-05-11": {
       "gun": "Pazar",
       "menü": [
-        {"isim": "Sade Omlet", "gramaj": "150 g"},
-        {"isim": "Zeytinli/Peynirli Açma", "adet": 1},
-        {"isim": "Siyah Zeytin", "gramaj": "40 g"},
-        {"isim": "Beyaz Peynir", "gramaj": "60 g"},
-        {"isim": "Domates", "gramaj": "100 g"},
-        {"isim": "Reçel", "gramaj": "20 g"},
-        {"isim": "Tereyağı", "gramaj": "10 g"},
-        {"isim": "Süt", "miktar": "200 ml"},
-        {"isim": "Çay", "miktar": "200 ml"}
+        {"isim": "Sade Omlet"},
+        {"isim": "Zeytinli/Peynirli Açma"},
+        {"isim": "Siyah Zeytin"},
+        {"isim": "Beyaz Peynir"},
+        {"isim": "Domates"},
+        {"isim": "Reçel"},
+        {"isim": "Tereyağı"},
+        {"isim": "Çay"}
+      ]
+    },
+    "2025-05-12": {
+      "gun": "Pazartesi",
+      "menü": [
+        {"isim": "Peynirli Börek"},
+        {"isim": "Sade Omlet"},
+        {"isim": "Siyah/Yeşil Zeytin"},
+        {"isim": "Krem Peynir"},
+        {"isim": "Mevsim Sebzeleri Söğüş"},
+        {"isim": "Çeyrek Ekmek"},
+        {"isim": "500 ml Su"},
+        {"isim": "Çay"}
+      ]
+    },
+    "2025-05-13": {
+      "gun": "Salı",
+      "menü": [
+        {"isim": "Sucuklu Yumurta"},
+        {"isim": "Kek"},
+        {"isim": "Siyah/Yeşil Zeytin"},
+        {"isim": "Beyaz Peynir"},
+        {"isim": "Reçel Çeşitleri"},
+        {"isim": "Çeyrek Ekmek"},
+        {"isim": "500 ml Su"},
+        {"isim": "Çay"}
+      ]
+    },
+    "2025-05-14": {
+      "gun": "Çarşamba",
+      "menü": [
+        {"isim": "Sucuklu Yumurta"},
+        {"isim": "Kek"},
+        {"isim": "Siyah/Yeşil Zeytin"},
+        {"isim": "Beyaz Peynir"},
+        {"isim": "Reçel Çeşitleri"},
+        {"isim": "Çeyrek Ekmek"},
+        {"isim": "500 ml Su"}
       ]
     }
   }
