@@ -136,4 +136,4 @@ UniHi Ekibi:
 - Recep Yıldırım - [@recepyildirim](https://github.com/recepyildirim)
 - Emir Ali Eşkili - [@emirali](https://github.com/emirali)
 
-Proje Linki: [https://github.com/yourusername/unihi](https://github.com/yourusername/unihi)
+Proje Linki: [https://github.com/keremselcuk44/unihi](https://github.com/yourusername/unihi)
