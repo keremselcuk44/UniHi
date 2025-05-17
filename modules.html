@@ -1396,6 +1396,7 @@ function updateLikes(menuId, action, type) {
     // Gemini API'ye istek gönderme
     async function getAIResponse(message) {
         try {
+            console.log('Sending message to AI:', message);
             const response = await fetch('http://13.53.117.47:8080/api/gemini', {
                 method: 'POST',
                 headers: {
@@ -1405,16 +1406,20 @@ function updateLikes(menuId, action, type) {
             });
 
             if (!response.ok) {
-                throw new Error(`API yanıt vermedi: ${response.status}`);
+                const errorData = await response.json();
+                console.error('API Error:', errorData);
+                throw new Error(errorData.error || 'API yanıt vermedi');
             }
 
             const data = await response.json();
+            console.log('AI Response:', data);
             
             if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
                 throw new Error('Geçersiz API yanıtı');
             }
 
             let responseText = data.candidates[0].content.parts[0].text;
+            console.log('Processed response:', responseText);
 
             // HTML bağlantılarını işle
             responseText = responseText.replace(
@@ -1424,8 +1429,8 @@ function updateLikes(menuId, action, type) {
 
             return responseText;
         } catch (error) {
-            console.error('API Hatası:', error);
-            return 'Üzgünüm, şu anda yanıt veremiyorum. Lütfen daha sonra tekrar deneyin.';
+            console.error('AI Response Error:', error);
+            return `Üzgünüm, bir hata oluştu: ${error.message}. Lütfen daha sonra tekrar deneyin.`;
         }
     }
 </script>
