@@ -669,6 +669,226 @@
             width: 8px;
             height: 8px;
         }
+
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .chat-widget-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #818cf8, #6366f1);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .chat-widget-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-widget-icon {
+            font-size: 24px;
+            color: white;
+        }
+
+        .chat-widget-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-widget-header {
+            padding: 15px;
+            background: linear-gradient(135deg, #818cf8, #6366f1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-widget-header .status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .chat-widget-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .chat-widget-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .chat-message.bot {
+            background: #f3f4f6;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            position: relative;
+        }
+
+        .chat-message.bot::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 8px solid #f3f4f6;
+        }
+
+        .chat-message.user {
+            background: #818cf8;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            position: relative;
+        }
+
+        .chat-message.user::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 8px solid #818cf8;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 10px 15px;
+            background: #f3f4f6;
+            border-radius: 12px;
+            width: fit-content;
+            margin: 5px 0;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: #818cf8;
+            border-radius: 50%;
+            animation: typing 1s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .chat-widget-input {
+            padding: 15px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-widget-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .chat-widget-input input:focus {
+            border-color: #818cf8;
+        }
+
+        .chat-widget-input button {
+            padding: 8px 16px;
+            background: #818cf8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .chat-widget-input button:hover {
+            background: #6366f1;
+        }
     </style>
 </head>
 <body class="bg-red min-h-screen flex flex-col">
@@ -811,371 +1031,520 @@ function updateLikes(menuId, action, type) {
 <div class="mt-4 space-y-2 max-h-[200px] overflow-y-auto pr-2 custom-scrollbar" id="events-list"></div>
 </div>
 </div>
-</div>
 </div></section>
-<script>
-// GNews API Key - Ücretsiz API anahtarı
-// Bu API anahtarı GNews'in ücretsiz planına aittir ve günlük sınırlı sayıda istek yapılabilir
-// Kendi API anahtarınızı almak için: https://gnews.io/register
-const apiKey = '41dcd5c7b4490d899a7dcb713289d9cd';
+<script type="module">
+    // Backend üzerinden API anahtarlarını gizliyoruz
+    // Artık doğrudan API anahtarı yok, tüm istekler backend'e gidecek
 
-// Kullanıcı bilgilerini al ve hoşgeldin mesajını güncelle
-function updateWelcomeMessage() {
-    const currentUser = sessionStorage.getItem("currentUser");
-    if (currentUser) {
-        const userData = JSON.parse(localStorage.getItem(currentUser));
-        const welcomeText = document.getElementById("welcome-text");
-        welcomeText.textContent = `HOŞ GELDİN, ${userData.fullName.toUpperCase()}`;
+    // Kullanıcı bilgilerini al ve hoşgeldin mesajını güncelle
+    function updateWelcomeMessage() {
+        const currentUser = sessionStorage.getItem("currentUser");
+        if (currentUser) {
+            const userData = JSON.parse(localStorage.getItem(currentUser));
+            const welcomeText = document.getElementById("welcome-text");
+            welcomeText.textContent = `HOŞ GELDİN, ${userData.fullName.toUpperCase()}`;
 
-        // Fakülte kartını göster ve içeriğini ayarla
-        const facultyCard = document.getElementById("faculty-card");
-        const facultyTitle = document.getElementById("faculty-title");
-        const facultyDescription = document.getElementById("faculty-description");
-        const facultyLink = document.getElementById("faculty-link");
+            // Fakülte kartını göster ve içeriğini ayarla
+            const facultyCard = document.getElementById("faculty-card");
+            const facultyTitle = document.getElementById("faculty-title");
+            const facultyDescription = document.getElementById("faculty-description");
+            const facultyLink = document.getElementById("faculty-link");
 
-        facultyCard.classList.remove("hidden");
+            facultyCard.classList.remove("hidden");
 
-        if (userData.faculty.toLowerCase().includes("teknoloji")) {
-            facultyTitle.textContent = "Teknoloji Fakültesi Hakkında Daha Fazla Bilgi!";
-            facultyDescription.textContent = "Teknoloji Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
-            facultyLink.href = "teknolojifak.html";
-        } else if (userData.faculty.toLowerCase().includes("mühendislik")) {
-            facultyTitle.textContent = "Mühendislik Fakültesi Hakkında Daha Fazla Bilgi!";
-            facultyDescription.textContent = "Mühendislik Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
-            facultyLink.href = "muhendislikfak.html";
+            if (userData.faculty.toLowerCase().includes("teknoloji")) {
+                facultyTitle.textContent = "Teknoloji Fakültesi Hakkında Daha Fazla Bilgi!";
+                facultyDescription.textContent = "Teknoloji Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
+                facultyLink.href = "teknolojifak.html";
+            } else if (userData.faculty.toLowerCase().includes("mühendislik")) {
+                facultyTitle.textContent = "Mühendislik Fakültesi Hakkında Daha Fazla Bilgi!";
+                facultyDescription.textContent = "Mühendislik Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
+                facultyLink.href = "muhendislikfak.html";
+            }
         }
     }
-}
 
-// Slider fonksiyonları
-let index = 0;
-const images = document.querySelectorAll(".slider img");
-const dots = document.querySelectorAll(".slider-dot");
+    // Slider fonksiyonları
+    let index = 0;
+    const images = document.querySelectorAll(".slider img");
+    const dots = document.querySelectorAll(".slider-dot");
 
-function changeImage() {
-    images[index].classList.remove("active");
-    dots[index].classList.remove("active");
-    
-    index = (index + 1) % images.length;
-    
-    images[index].classList.add("active");
-    dots[index].classList.add("active");
-}
+    function changeImage() {
+        images[index].classList.remove("active");
+        dots[index].classList.remove("active");
+        
+        index = (index + 1) % images.length;
+        
+        images[index].classList.add("active");
+        dots[index].classList.add("active");
+    }
 
-function initializeSlider() {
-    dots.forEach((dot, idx) => {
-        dot.addEventListener('click', () => {
-            images[index].classList.remove("active");
-            dots[index].classList.remove("active");
-            index = idx;
-            images[index].classList.add("active");
-            dots[index].classList.add("active");
+    function initializeSlider() {
+        dots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                images[index].classList.remove("active");
+                dots[index].classList.remove("active");
+                index = idx;
+                images[index].classList.add("active");
+                dots[index].classList.add("active");
+            });
         });
-    });
 
-    setInterval(changeImage, 5000);
+        setInterval(changeImage, 5000);
 
-    const slider = document.querySelector('.slider');
-    let interval;
+        const slider = document.querySelector('.slider');
+        let interval;
 
-    slider.addEventListener('mouseenter', () => {
-        clearInterval(interval);
-    });
-
-    slider.addEventListener('mouseleave', () => {
-        interval = setInterval(changeImage, 5000);
-    });
-}
-
-// Haberleri getir fonksiyonu
-async function haberleriGetir() {
-    try {
-        const haberListesi = document.getElementById("haber-listesi");
-        haberListesi.innerHTML = '<div class="flex justify-center items-center h-32"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500"></div></div>';
-
-        const response = await fetch(`https://gnews.io/api/v4/search?q=artificial+intelligence&lang=tr&country=tr&max=5&apikey=${apiKey}`);
-        
-        if (!response.ok) {
-            throw new Error('API yanıt vermedi');
-        }
-
-        const data = await response.json();
-        
-        if (!data.articles || data.articles.length === 0) {
-            haberListesi.innerHTML = '<p class="text-gray-600 text-center py-8">Haber bulunamadı.</p>';
-            return;
-        }
-
-        haberListesi.innerHTML = '';
-
-        data.articles.forEach((article) => {
-            const haber = document.createElement("div");
-            haber.className = "haber-card";
-            haber.innerHTML = `
-                <img src="${article.image || 'photos/default-news.jpg'}" alt="${article.title}" class="haber-thumbnail">
-                <div class="haber-content">
-                    <h3 class="haber-title">
-                        <a href="${article.url}" target="_blank">${article.title}</a>
-                    </h3>
-                    <p class="haber-description">${article.description}</p>
-                    <div class="haber-meta">
-                        <span class="haber-date">${new Date(article.publishedAt).toLocaleDateString('tr-TR')}</span>
-                        <span class="haber-source">${article.source.name || 'Kaynak'}</span>
-                    </div>
-                </div>
-            `;
-
-            haberListesi.appendChild(haber);
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(interval);
         });
-    } catch (error) {
-        console.error('Haber yükleme hatası:', error);
-        const haberListesi = document.getElementById("haber-listesi");
-        haberListesi.innerHTML = `
-            <div class="haber-card">
-                <div class="haber-content">
-                    <h3 class="haber-title">Haberler Yüklenemedi</h3>
-                    <p class="haber-description">Şu anda haberler yüklenemiyor. Lütfen daha sonra tekrar deneyin.</p>
-                    <div class="haber-meta">
-                        <span class="haber-date">Hata Detayı: ${error.message}</span>
-                    </div>
-                </div>
-            </div>
-        `;
-    }
-}
 
-// Takvim fonksiyonları
-class Calendar {
-    constructor(container) {
-        this.container = container;
-        this.date = new Date();
-        this.events = JSON.parse(localStorage.getItem('calendarEvents')) || {};
-        this.finalWeekStart = new Date('2024-06-19');
-        this.finalWeekEnd = new Date('2024-06-29');
-        this.init();
+        slider.addEventListener('mouseleave', () => {
+            interval = setInterval(changeImage, 5000);
+        });
     }
 
-    init() {
-        this.render();
-        this.attachEventListeners();
-    }
+    // Haberleri getir fonksiyonu
+    async function haberleriGetir() {
+        try {
+            const haberListesi = document.getElementById("haber-listesi");
+            haberListesi.innerHTML = '<div class="flex justify-center items-center h-32"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500"></div></div>';
 
-    render() {
-        const year = this.date.getFullYear();
-        const month = this.date.getMonth();
-        
-        const firstDay = new Date(year, month, 1);
-        const lastDay = new Date(year, month + 1, 0);
-        
-        const monthNames = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 
-                          'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
-        
-        const days = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
-        
-        let html = `
-            <div class="calendar-header">
-                <button class="prev-month">←</button>
-                <h3>${monthNames[month]} ${year}</h3>
-                <button class="next-month">→</button>
-            </div>
-            <div class="calendar-grid">
-                ${days.map(day => `<div class="calendar-day-name">${day}</div>`).join('')}
-        `;
-        
-        let firstDayIndex = firstDay.getDay() || 7;
-        firstDayIndex = firstDayIndex === 1 ? 0 : firstDayIndex - 1;
-        
-        for (let i = 0; i < firstDayIndex; i++) {
-            html += '<div class="calendar-day empty"></div>';
-        }
-        
-        for (let day = 1; day <= lastDay.getDate(); day++) {
-            const currentDate = new Date(year, month, day);
-            const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-            const isToday = this.isToday(year, month, day);
-            const hasEvent = this.events[dateStr] && this.events[dateStr].length > 0;
-            const isFinalWeek = this.isFinalWeek(currentDate);
-            const isWeekend = this.isWeekend(currentDate);
+            const response = await fetch('http://localhost:3000/api/news');
             
-            html += `
-                <div class="calendar-day ${isToday ? 'today' : ''} ${hasEvent ? 'has-event' : ''} 
-                    ${isFinalWeek ? 'final-week' : ''} ${isWeekend ? 'weekend' : ''}" 
-                    data-date="${dateStr}">
-                    ${day}
+            if (!response.ok) {
+                throw new Error('API yanıt vermedi');
+            }
+
+            const data = await response.json();
+            
+            if (!data.articles || data.articles.length === 0) {
+                haberListesi.innerHTML = '<p class="text-gray-600 text-center py-8">Haber bulunamadı.</p>';
+                return;
+            }
+
+            haberListesi.innerHTML = '';
+
+            data.articles.forEach((article) => {
+                const haber = document.createElement("div");
+                haber.className = "haber-card";
+                haber.innerHTML = `
+                    <img src="${article.image || 'photos/default-news.jpg'}" alt="${article.title}" class="haber-thumbnail">
+                    <div class="haber-content">
+                        <h3 class="haber-title">
+                            <a href="${article.url}" target="_blank">${article.title}</a>
+                        </h3>
+                        <p class="haber-description">${article.description}</p>
+                        <div class="haber-meta">
+                            <span class="haber-date">${new Date(article.publishedAt).toLocaleDateString('tr-TR')}</span>
+                            <span class="haber-source">${article.source.name || 'Kaynak'}</span>
+                        </div>
+                    </div>
+                `;
+
+                haberListesi.appendChild(haber);
+            });
+        } catch (error) {
+            console.error('Haber yükleme hatası:', error);
+            const haberListesi = document.getElementById("haber-listesi");
+            haberListesi.innerHTML = `
+                <div class="haber-card">
+                    <div class="haber-content">
+                        <h3 class="haber-title">Haberler Yüklenemedi</h3>
+                        <p class="haber-description">Şu anda haberler yüklenemiyor. Lütfen daha sonra tekrar deneyin.</p>
+                        <div class="haber-meta">
+                            <span class="haber-date">Hata Detayı: ${error.message}</span>
+                        </div>
+                    </div>
                 </div>
             `;
         }
-        
-        html += '</div>';
-        
-        // Takvim açıklaması ekle
-        html += `
-            <div class="calendar-legend">
-                <div class="calendar-legend-item today">Bugün</div>
-                <div class="calendar-legend-item final-week">Final Haftası</div>
-                <div class="calendar-legend-item event">Etkinlik</div>
-            </div>
-        `;
-        
-        this.container.innerHTML = html;
     }
 
-    isToday(year, month, day) {
-        const today = new Date();
-        return today.getFullYear() === year && 
-               today.getMonth() === month && 
-               today.getDate() === day;
-    }
-
-    isFinalWeek(date) {
-        return date >= this.finalWeekStart && date <= this.finalWeekEnd;
-    }
-
-    isWeekend(date) {
-        const day = date.getDay();
-        return day === 0 || day === 6;
-    }
-
-    attachEventListeners() {
-        this.container.addEventListener('click', (e) => {
-            if (e.target.classList.contains('prev-month')) {
-                this.date.setMonth(this.date.getMonth() - 1);
-                this.render();
-            } else if (e.target.classList.contains('next-month')) {
-                this.date.setMonth(this.date.getMonth() + 1);
-                this.render();
-            } else if (e.target.classList.contains('calendar-day') && !e.target.classList.contains('empty')) {
-                const date = e.target.dataset.date;
-                this.showEventForm(date);
-            }
-        });
-    }
-
-    showEventForm(date) {
-        const form = document.getElementById('event-form');
-        form.classList.remove('hidden');
-        document.getElementById('event-date').value = date;
-    }
-
-    addEvent(date, title, description) {
-        if (!this.events[date]) {
-            this.events[date] = [];
+    // Takvim fonksiyonları
+    class Calendar {
+        constructor(container) {
+            this.container = container;
+            this.date = new Date();
+            this.events = JSON.parse(localStorage.getItem('calendarEvents')) || {};
+            this.finalWeekStart = new Date('2024-06-19');
+            this.finalWeekEnd = new Date('2024-06-29');
+            this.init();
         }
-        
-        this.events[date].push({
-            id: Date.now(),
-            title,
-            description,
-            date
-        });
-        
-        localStorage.setItem('calendarEvents', JSON.stringify(this.events));
-        this.render();
-        this.renderEventsList();
-    }
 
-    deleteEvent(date, eventId) {
-        if (this.events[date]) {
-            this.events[date] = this.events[date].filter(event => event.id !== eventId);
-            if (this.events[date].length === 0) {
-                delete this.events[date];
+        init() {
+            this.render();
+            this.attachEventListeners();
+        }
+
+        render() {
+            const year = this.date.getFullYear();
+            const month = this.date.getMonth();
+            
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+            
+            const monthNames = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 
+                              'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+            
+            const days = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
+            
+            let html = `
+                <div class="calendar-header">
+                    <button class="prev-month">←</button>
+                    <h3>${monthNames[month]} ${year}</h3>
+                    <button class="next-month">→</button>
+                </div>
+                <div class="calendar-grid">
+                    ${days.map(day => `<div class="calendar-day-name">${day}</div>`).join('')}
+            `;
+            
+            let firstDayIndex = firstDay.getDay() || 7;
+            firstDayIndex = firstDayIndex === 1 ? 0 : firstDayIndex - 1;
+            
+            for (let i = 0; i < firstDayIndex; i++) {
+                html += '<div class="calendar-day empty"></div>';
             }
+            
+            for (let day = 1; day <= lastDay.getDate(); day++) {
+                const currentDate = new Date(year, month, day);
+                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const isToday = this.isToday(year, month, day);
+                const hasEvent = this.events[dateStr] && this.events[dateStr].length > 0;
+                const isFinalWeek = this.isFinalWeek(currentDate);
+                const isWeekend = this.isWeekend(currentDate);
+                
+                html += `
+                    <div class="calendar-day ${isToday ? 'today' : ''} ${hasEvent ? 'has-event' : ''} 
+                        ${isFinalWeek ? 'final-week' : ''} ${isWeekend ? 'weekend' : ''}" 
+                        data-date="${dateStr}">
+                        ${day}
+                    </div>
+                `;
+            }
+            
+            html += '</div>';
+            
+            // Takvim açıklaması ekle
+            html += `
+                <div class="calendar-legend">
+                    <div class="calendar-legend-item today">Bugün</div>
+                    <div class="calendar-legend-item final-week">Final Haftası</div>
+                    <div class="calendar-legend-item event">Etkinlik</div>
+                </div>
+            `;
+            
+            this.container.innerHTML = html;
+        }
+
+        isToday(year, month, day) {
+            const today = new Date();
+            return today.getFullYear() === year && 
+                   today.getMonth() === month && 
+                   today.getDate() === day;
+        }
+
+        isFinalWeek(date) {
+            return date >= this.finalWeekStart && date <= this.finalWeekEnd;
+        }
+
+        isWeekend(date) {
+            const day = date.getDay();
+            return day === 0 || day === 6;
+        }
+
+        attachEventListeners() {
+            this.container.addEventListener('click', (e) => {
+                if (e.target.classList.contains('prev-month')) {
+                    this.date.setMonth(this.date.getMonth() - 1);
+                    this.render();
+                } else if (e.target.classList.contains('next-month')) {
+                    this.date.setMonth(this.date.getMonth() + 1);
+                    this.render();
+                } else if (e.target.classList.contains('calendar-day') && !e.target.classList.contains('empty')) {
+                    const date = e.target.dataset.date;
+                    this.showEventForm(date);
+                }
+            });
+        }
+
+        showEventForm(date) {
+            const form = document.getElementById('event-form');
+            form.classList.remove('hidden');
+            document.getElementById('event-date').value = date;
+        }
+
+        addEvent(date, title, description) {
+            if (!this.events[date]) {
+                this.events[date] = [];
+            }
+            
+            this.events[date].push({
+                id: Date.now(),
+                title,
+                description,
+                date
+            });
+            
             localStorage.setItem('calendarEvents', JSON.stringify(this.events));
             this.render();
             this.renderEventsList();
         }
+
+        deleteEvent(date, eventId) {
+            if (this.events[date]) {
+                this.events[date] = this.events[date].filter(event => event.id !== eventId);
+                if (this.events[date].length === 0) {
+                    delete this.events[date];
+                }
+                localStorage.setItem('calendarEvents', JSON.stringify(this.events));
+                this.render();
+                this.renderEventsList();
+            }
+        }
+
+        renderEventsList() {
+            const eventsList = document.getElementById('events-list');
+            const today = new Date().toISOString().split('T')[0];
+            
+            let html = '';
+            
+            // Final haftısı etkinliğini ekle
+            const finalWeekEvent = {
+                id: 'final-week-2024',
+                title: 'Final Haftası',
+                description: '2023-2024 Bahar Dönemi Final Sınavları',
+                date: '2024-06-19',
+                isFinal: true
+            };
+            
+            // Bugünün ve gelecek etkinliklerini göster
+            const allEvents = [
+                finalWeekEvent,
+                ...Object.entries(this.events)
+                    .filter(([date]) => date >= today)
+                    .flatMap(([date, events]) => events.map(event => ({...event, date})))
+            ].sort((a, b) => a.date.localeCompare(b.date));
+            
+            allEvents.forEach(event => {
+                html += `
+                    <div class="event-item ${event.isFinal ? 'final-exam' : ''}">
+                        <div class="event-title">${event.title}</div>
+                        <div class="event-time">${new Date(event.date).toLocaleDateString('tr-TR')}</div>
+                        <div class="event-description">${event.description}</div>
+                        ${!event.isFinal ? `
+                            <div class="event-actions">
+                                <button class="delete-btn" onclick="calendar.deleteEvent('${event.date}', ${event.id})">Sil</button>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+            
+            eventsList.innerHTML = html || '<p class="text-gray-500 text-center">Henüz etkinlik yok</p>';
+        }
     }
 
-    renderEventsList() {
-        const eventsList = document.getElementById('events-list');
-        const today = new Date().toISOString().split('T')[0];
+    // Sayfa yüklendiğinde
+    document.addEventListener('DOMContentLoaded', () => {
+        // Hoşgeldin mesajını güncelle
+        updateWelcomeMessage();
         
-        let html = '';
+        // Slider'ı başlat
+        initializeSlider();
         
-        // Final haftısı etkinliğini ekle
-        const finalWeekEvent = {
-            id: 'final-week-2024',
-            title: 'Final Haftası',
-            description: '2023-2024 Bahar Dönemi Final Sınavları',
-            date: '2024-06-19',
-            isFinal: true
-        };
+        // Haberleri getir
+        haberleriGetir();
+
+        // Yenileme butonuna tıklama olayı ekle
+        document.getElementById('refresh-news').addEventListener('click', () => {
+            haberleriGetir();
+        });
+
+        // Takvimi başlat
+        const calendar = new Calendar(document.getElementById('calendar'));
+        window.calendar = calendar; // Global erişim için
         
-        // Bugünün ve gelecek etkinliklerini göster
-        const allEvents = [
-            finalWeekEvent,
-            ...Object.entries(this.events)
-                .filter(([date]) => date >= today)
-                .flatMap(([date, events]) => events.map(event => ({...event, date})))
-        ].sort((a, b) => a.date.localeCompare(b.date));
-        
-        allEvents.forEach(event => {
-            html += `
-                <div class="event-item ${event.isFinal ? 'final-exam' : ''}">
-                    <div class="event-title">${event.title}</div>
-                    <div class="event-time">${new Date(event.date).toLocaleDateString('tr-TR')}</div>
-                    <div class="event-description">${event.description}</div>
-                    ${!event.isFinal ? `
-                        <div class="event-actions">
-                            <button class="delete-btn" onclick="calendar.deleteEvent('${event.date}', ${event.id})">Sil</button>
-                        </div>
-                    ` : ''}
-                </div>
-            `;
+        // Etkinlik formu işlemleri
+        document.getElementById('add-event').addEventListener('click', () => {
+            const form = document.getElementById('event-form');
+            form.classList.toggle('hidden');
         });
         
-        eventsList.innerHTML = html || '<p class="text-gray-500 text-center">Henüz etkinlik yok</p>';
-    }
-}
-
-// Sayfa yüklendiğinde
-document.addEventListener('DOMContentLoaded', () => {
-    // Hoşgeldin mesajını güncelle
-    updateWelcomeMessage();
-    
-    // Slider'ı başlat
-    initializeSlider();
-    
-    // Haberleri getir
-    haberleriGetir();
-
-    // Yenileme butonuna tıklama olayı ekle
-    document.getElementById('refresh-news').addEventListener('click', () => {
-        haberleriGetir();
-    });
-
-    // Takvimi başlat
-    const calendar = new Calendar(document.getElementById('calendar'));
-    window.calendar = calendar; // Global erişim için
-    
-    // Etkinlik formu işlemleri
-    document.getElementById('add-event').addEventListener('click', () => {
-        const form = document.getElementById('event-form');
-        form.classList.toggle('hidden');
-    });
-    
-    document.getElementById('cancel-event').addEventListener('click', () => {
-        document.getElementById('event-form').classList.add('hidden');
-    });
-    
-    document.getElementById('save-event').addEventListener('click', () => {
-        const title = document.getElementById('event-title').value;
-        const date = document.getElementById('event-date').value;
-        const description = document.getElementById('event-description').value;
-        
-        if (title && date) {
-            calendar.addEvent(date, title, description);
+        document.getElementById('cancel-event').addEventListener('click', () => {
             document.getElementById('event-form').classList.add('hidden');
-            document.getElementById('event-title').value = '';
-            document.getElementById('event-date').value = '';
-            document.getElementById('event-description').value = '';
-        }
+        });
+        
+        document.getElementById('save-event').addEventListener('click', () => {
+            const title = document.getElementById('event-title').value;
+            const date = document.getElementById('event-date').value;
+            const description = document.getElementById('event-description').value;
+            
+            if (title && date) {
+                calendar.addEvent(date, title, description);
+                document.getElementById('event-form').classList.add('hidden');
+                document.getElementById('event-title').value = '';
+                document.getElementById('event-date').value = '';
+                document.getElementById('event-description').value = '';
+            }
+        });
+        
+        // İlk etkinlik listesini göster
+        calendar.renderEventsList();
     });
-    
-    // İlk etkinlik listesini göster
-    calendar.renderEventsList();
-});
+
+    // Gemini API'ye istek gönderme
+    async function getAIResponse(message) {
+        try {
+            const response = await fetch('http://localhost:3000/api/gemini', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message })
+            });
+
+            if (!response.ok) {
+                throw new Error(`API yanıt vermedi: ${response.status}`);
+            }
+
+            const data = await response.json();
+            
+            if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
+                throw new Error('Geçersiz API yanıtı');
+            }
+
+            let responseText = data.candidates[0].content.parts[0].text;
+
+            // HTML bağlantılarını işle
+            responseText = responseText.replace(
+                /\[([^\]]+)\]\(([^)]+)\)/g,
+                '<a href="$2" class="text-blue-600 hover:text-blue-800 underline">$1</a>'
+            );
+
+            return responseText;
+        } catch (error) {
+            console.error('API Hatası:', error);
+            return 'Üzgünüm, şu anda yanıt veremiyorum. Lütfen daha sonra tekrar deneyin.';
+        }
+    }
 </script>
 <script src="profile-updater.js"></script>
+
+<!-- Chat Widget -->
+<div class="chat-widget">
+    <button class="chat-widget-button" id="chat-widget-button">
+        <span class="chat-widget-icon">💬</span>
+    </button>
+    <div class="chat-widget-container" id="chat-widget-container">
+        <div class="chat-widget-header">
+            <div>
+                <h3>Uni</h3>
+                <div class="status">
+                    <div class="status-dot"></div>
+                    <span>AI Asistan</span>
+                </div>
+            </div>
+            <button class="chat-widget-close" id="chat-widget-close">×</button>
+        </div>
+        <div class="chat-widget-messages" id="chat-widget-messages">
+            <div class="chat-message bot">
+                Merhaba! Ben Uni, yapay zeka destekli asistanınız. Size nasıl yardımcı olabilirim?
+            </div>
+        </div>
+        <div class="chat-widget-input">
+            <input type="text" id="chat-widget-input" placeholder="Mesajınızı yazın...">
+            <button id="chat-widget-send">Gönder</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Chat Widget JavaScript
+    document.addEventListener('DOMContentLoaded', () => {
+        const chatButton = document.getElementById('chat-widget-button');
+        const chatContainer = document.getElementById('chat-widget-container');
+        const chatClose = document.getElementById('chat-widget-close');
+        const chatInput = document.getElementById('chat-widget-input');
+        const chatSend = document.getElementById('chat-widget-send');
+        const chatMessages = document.getElementById('chat-widget-messages');
+
+        // Sohbet geçmişini tutmak için dizi
+        let conversationHistory = [];
+
+        // Yazma animasyonu gösterme fonksiyonu
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.innerHTML = `
+                <span></span>
+                <span></span>
+                <span></span>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return typingDiv;
+        }
+
+        // Mesaj ekleme fonksiyonu
+        function addMessage(text, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${type}`;
+            messageDiv.innerHTML = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Mesaj gönderme fonksiyonu
+        async function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                // Kullanıcı mesajını ekle
+                addMessage(message, 'user');
+                chatInput.value = '';
+
+                // Yazma animasyonunu göster
+                const typingIndicator = showTypingIndicator();
+
+                try {
+                    // AI'dan yanıt al
+                    const response = await getAIResponse(message);
+                    
+                    // Yazma animasyonunu kaldır
+                    typingIndicator.remove();
+                    
+                    // AI yanıtını ekle
+                    addMessage(response, 'bot');
+                } catch (error) {
+                    // Hata durumunda
+                    console.error('Mesaj Gönderme Hatası:', error);
+                    typingIndicator.remove();
+                    addMessage('Üzgünüm, bir hata oluştu. Lütfen daha sonra tekrar deneyin.', 'bot');
+                }
+            }
+        }
+
+        // Enter tuşu ile mesaj gönderme
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Gönder butonu ile mesaj gönderme
+        chatSend.addEventListener('click', sendMessage);
+
+        // Chat widget açma/kapama fonksiyonları
+        chatButton.addEventListener('click', () => {
+            chatContainer.style.display = 'flex';
+            chatButton.style.display = 'none';
+        });
+
+        chatClose.addEventListener('click', () => {
+            chatContainer.style.display = 'none';
+            chatButton.style.display = 'block';
+        });
+    });
+</script>
 </body>
 </html>
