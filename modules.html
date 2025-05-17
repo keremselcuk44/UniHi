@@ -457,8 +457,16 @@
         }
 
         .calendar-day.today {
-            background-color: #c32f52;
+            background-color: #3b82f6;
             color: white;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            position: relative;
+            border: 2px solid white;
+        }
+
+        .calendar-day.today::after {
+            display: none;
         }
 
         .calendar-day.has-event {
@@ -471,15 +479,15 @@
             bottom: 2px;
             width: 4px;
             height: 4px;
-            background-color: #c32f52;
+            background-color: #3b82f6;
             border-radius: 50%;
         }
 
         .calendar-day.final-week {
-            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 193, 7, 0.25));
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.25));
             position: relative;
-            border: 1px solid rgba(255, 193, 7, 0.3);
-            box-shadow: 0 2px 4px rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
         }
 
         .calendar-day.final-week::before {
@@ -495,9 +503,9 @@
         }
 
         .calendar-day.final-week:hover {
-            background: linear-gradient(135deg, rgba(255, 193, 7, 0.25), rgba(255, 193, 7, 0.35));
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(59, 130, 246, 0.35));
             transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(255, 193, 7, 0.2);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);
         }
 
         .calendar-day-name {
@@ -508,16 +516,23 @@
         }
 
         .calendar-day.weekend {
-            color: #c32f52;
+            color: #3b82f6;
+            font-weight: 500;
+        }
+
+        .calendar-day.weekend.today {
+            background-color: white;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
         }
 
         .calendar-day.weekend.final-week {
-            color: #c32f52;
+            color: #3b82f6;
         }
 
         .event-item {
             background: white;
-            border-left: 3px solid #c32f52;
+            border-left: 3px solid #3b82f6;
             padding: 12px;
             margin-bottom: 8px;
             border-radius: 4px;
@@ -531,25 +546,25 @@
         }
 
         .event-item.final-exam {
-            border-left: 4px solid #ffc107;
-            background: linear-gradient(to right, rgba(255, 193, 7, 0.1), rgba(255, 255, 255, 0.95));
-            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.15);
+            border-left: 4px solid #3b82f6;
+            background: linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(255, 255, 255, 0.95));
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
         }
 
         .event-item.final-exam:hover {
             transform: translateX(5px);
-            box-shadow: 0 6px 16px rgba(255, 193, 7, 0.2);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.2);
         }
 
         .event-item.final-exam .event-title {
-            color: #b45309;
+            color: #1e40af;
             font-weight: 700;
         }
 
         .event-item.final-exam .event-title::before {
             content: '📚';
             font-size: 1.2em;
-            background: rgba(255, 193, 7, 0.2);
+            background: rgba(59, 130, 246, 0.2);
             padding: 4px;
             border-radius: 50%;
         }
@@ -592,12 +607,12 @@
         }
 
         .event-actions .edit-btn {
-            background: #f0f0f0;
-            color: #333;
+            background: #eff6ff;
+            color: #3b82f6;
         }
 
         .event-actions .edit-btn:hover {
-            background: #e0e0e0;
+            background: #dbeafe;
         }
 
         .event-actions .delete-btn {
@@ -613,7 +628,7 @@
             background: none;
             border: none;
             font-size: 1.2rem;
-            color: #666;
+            color: #3b82f6;
             cursor: pointer;
             padding: 5px 10px;
             border-radius: 5px;
@@ -621,14 +636,14 @@
         }
 
         .calendar-header button:hover {
-            background: rgba(195, 47, 82, 0.1);
-            color: #c32f52;
+            background: rgba(59, 130, 246, 0.1);
+            color: #1e40af;
         }
 
         .calendar-header h3 {
             font-size: 1.2rem;
             font-weight: 600;
-            color: #333;
+            color: #1e40af;
         }
 
         .calendar-legend {
@@ -655,19 +670,41 @@
         }
 
         .calendar-legend-item.today::before {
-            background-color: #c32f52;
+            background-color: #3b82f6;
         }
 
         .calendar-legend-item.final-week::before {
-            background: linear-gradient(135deg, rgba(255, 193, 7, 0.3), rgba(255, 193, 7, 0.5));
-            border: 1px solid rgba(255, 193, 7, 0.5);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.5));
+            border: 1px solid rgba(59, 130, 246, 0.5);
         }
 
         .calendar-legend-item.event::before {
-            background-color: #c32f52;
+            background-color: #3b82f6;
             border-radius: 50%;
             width: 8px;
             height: 8px;
+        }
+
+        #event-form button {
+            transition: all 0.3s ease;
+        }
+
+        #event-form .cancel-btn {
+            background: #eff6ff;
+            color: #3b82f6;
+        }
+
+        #event-form .cancel-btn:hover {
+            background: #dbeafe;
+        }
+
+        #event-form .save-btn {
+            background: #3b82f6;
+            color: white;
+        }
+
+        #event-form .save-btn:hover {
+            background: #2563eb;
         }
     </style>
 </head>
@@ -799,11 +836,11 @@ function updateLikes(menuId, action, type) {
 <h3 class="text-lg font-semibold mb-3">Yeni Etkinlik Ekle</h3>
 <div class="space-y-3">
 <input class="w-full p-2 border rounded" id="event-title" placeholder="Etkinlik Başlığı" type="text"/>
-<input class="w-full p-2 border rounded" id="event-date" type="datetime-local"/>
+<input class="w-full p-2 border rounded" id="event-date" type="date"/>
 <textarea class="w-full p-2 border rounded" id="event-description" placeholder="Etkinlik Açıklaması"></textarea>
 <div class="flex justify-end gap-2">
-<button class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300" id="cancel-event">İptal</button>
-<button class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600" id="save-event">Kaydet</button>
+<button class="px-4 py-2 rounded cancel-btn" id="cancel-event">İptal</button>
+<button class="px-4 py-2 rounded save-btn" id="save-event">Kaydet</button>
 </div>
 </div>
 </div>
@@ -1062,7 +1099,7 @@ class Calendar {
         }
         
         this.events[date].push({
-            id: Date.now(),
+            id: Date.now().toString(),
             title,
             description,
             date
@@ -1075,7 +1112,7 @@ class Calendar {
 
     deleteEvent(date, eventId) {
         if (this.events[date]) {
-            this.events[date] = this.events[date].filter(event => event.id !== eventId);
+            this.events[date] = this.events[date].filter(event => event.id !== eventId.toString());
             if (this.events[date].length === 0) {
                 delete this.events[date];
             }
@@ -1091,7 +1128,7 @@ class Calendar {
         
         let html = '';
         
-        // Final haftısı etkinliğini ekle
+        // Final haftısı etkinliğini sadece bir kez ekle
         const finalWeekEvent = {
             id: 'final-week-2024',
             title: 'Final Haftası',
@@ -1116,7 +1153,7 @@ class Calendar {
                     <div class="event-description">${event.description}</div>
                     ${!event.isFinal ? `
                         <div class="event-actions">
-                            <button class="delete-btn" onclick="calendar.deleteEvent('${event.date}', ${event.id})">Sil</button>
+                            <button class="delete-btn" onclick="calendar.deleteEvent('${event.date}', '${event.id}')">Sil</button>
                         </div>
                     ` : ''}
                 </div>
