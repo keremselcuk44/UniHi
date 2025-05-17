@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
          body {
-            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
+            background: linear-gradient(135deg, #818cf8, #6366f1, #4f46e5);
             color: white;
             min-height: 100vh;
         }
@@ -245,6 +245,320 @@
             color: white;
             cursor: pointer;
         }
+
+        /* Hero Section Styles */
+        .hero-section {
+            position: relative;
+            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('photos/Turizm/hazargolu1.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        /* Animasyonlar */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        /* Content Section Styles */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section-card h2 {
+            color: #6366f1;
+            margin-bottom: 1.5rem;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .section-card p {
+            color: #4b5563;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #6366f1;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid #6366f1;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -16px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-content h3 {
+            color: #6366f1;
+            margin-bottom: 0.5rem;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .timeline-content p {
+            color: #4b5563;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        /* Gallery Improvements */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .image-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover .image {
+            transform: scale(1.05);
+        }
+
+        /* Weather Section Styles */
+        .weather-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .weather-card h2 {
+            color: #6366f1;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .weather-info {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .weather-detail {
+            text-align: center;
+        }
+
+        .weather-icon {
+            width: 100px;
+            height: 100px;
+        }
+
+        .weather-temp {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .weather-desc {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .weather-detail-item {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            color: #4b5563;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            animation: fadeInUp 0.8s ease-out;
+            transition: transform 0.3s ease;
+        }
+
+        .weather-detail-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .weather-detail-item .text-lg {
+            color: #6366f1;
+            font-weight: 600;
+        }
+
+        /* Scroll Reveal Animasyonları */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
@@ -317,49 +631,110 @@
        
     </ul>
 </aside>
-<main class="p-6">
-    <section id="tarihi">
-        <h2 class="text-3xl font-bold">Hazar Gölü'nün Tarihi:</h2>
-        <p>Hazar Gölü, ismini bölgedeki Hazar köyünden alır ve bölgeye adını veren bu köyün de bulunduğu alanda tarihi ve kültürel zenginlikler
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title reveal">Hazar Gölü</h1>
+        <p class="hero-subtitle reveal">Doğanın ve Tarihin Buluştuğu Nokta</p>
+    </div>
+</div>
+
+<main class="content-section">
+    <div class="section-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Hazar Gölü'nün Tarihi</h2>
+        <p class="text-lg leading-relaxed reveal">Hazar Gölü, ismini bölgedeki Hazar köyünden alır ve bölgeye adını veren bu köyün de bulunduğu alanda tarihi ve kültürel zenginlikler
              bulunmaktadır. Göl çevresinde yapılan kazılarda, bölgedeki eski yerleşimlere ve kültürlere ait izlere rastlanmıştır. Antik 
              dönemlere kadar uzanan tarihi süreç, gölü çevreleyen yerleşim yerlerinin sürekli bir yerleşim yeri olarak kullanıldığını gösterir.</p>
-    </section>
-    <section id="yonetim">
-        <h2 class="text-3xl font-bold">Hazar Gölü'nü Kimler Yönetti?</h2>
-        <ul>
-            <li><strong>Urartular (MÖ 9. – 6. yüzyıl):</strong> Elazığ ve çevresini kapsayan bölgeyi yönetmiş ve Hazar Gölü'nün bulunduğu 
-            bölgeyi savunma amaçlı kullanmışlardır. Urartular döneminde pek çok kale ve su depoları yapılmıştır.</li>
-            <li><strong>Asurlar (MÖ 7. – 6. yüzyıl):</strong> Urartular'ın çöküşünün ardından, Asur İmparatorluğu bölgeyi ele geçirmiştir. 
-            Hazar Gölü çevresi, Asurlar için stratejik bir alan olmuştur.</li>
-            <li><strong>Persler (MÖ 6. – 4. yüzyıl):</strong> Büyük Kiros'un liderliğinde bölgeyi ele geçirerek Hazar Gölü'nün de dahil olduğu 
-            topraklarda hüküm sürmüşlerdir. Persler, bölgedeki Urartu ve Asur miraslarından yararlanmışlardır.</li>
-            <li><strong>Makedonya (MÖ 4. yüzyıl):</strong> Büyük İskender'in fetihleri sırasında Hazar Gölü çevresi, Makedon İmparatorluğu'nun 
-            sınırları içine girmiştir. Bu dönemde bölge, İskender'in genişleme stratejileri doğrultusunda yönetilmiştir.</li>
-            <li><strong>Roma İmparatorluğu (MÖ 1. yüzyıl – 5. yüzyıl):</strong> Hazar Gölü'nün bulunduğu bölgeyi de kapsayan geniş topraklara 
-            hükmetmiştir. Bu dönemde bölge, Roma İmparatorluğu'nun güney sınırlarını oluşturmuştur.</li>
-            <li><strong>Selçuklular (11. yüzyıl):</strong> Büyük Selçuklu İmparatorluğu'nun Anadolu'ya girmesiyle, Elazığ ve çevresi 
-            Selçuklular'ın egemenliğine girmiştir. Hazar Gölü çevresi, Selçuklular için stratejik bir bölge olmuştur.</li>
-            <li><strong>Osmanlı İmparatorluğu (15. yüzyıl – 19. yüzyıl):</strong> Osmanlı İmparatorluğu, Hazar Gölü'nün bulunduğu bölgeyi 
-            16. yüzyılda tamamen egemenliği altına almış ve bölgeyi Osmanlı İmparatorluğu'nun Erzincan eyaletine bağlı olarak yönetmiştir.</li>
-            <li><strong>Cumhuriyet Dönemi (1923 – günümüz):</strong> Türkiye Cumhuriyeti'nin kuruluşundan sonra, Hazar Gölü ve çevresi Elazığ 
-            il sınırları içinde yer almış ve modern Türkiye'nin yönetim yapısına dahil edilmiştir.</li>
-        </ul>
-    </section>
-    <section id="fotolar">
-        <h2 class="text-3xl font-bold">Hazar Gölü'nden Bazı Fotoğraflar:</h2>
-        <br>
-        <div class="image-gallery">
-            <div class="image-container">
-                <img src="photos/Turizm/hazargolu1.jpg" class="image" alt="Harput Kale Fotoğraf 1" onclick="openModal(this)">
+    </div>
+
+    <div class="section-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Tarihsel Yolculuk</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Urartular (MÖ 9. – 6. yüzyıl)</h3>
+                    <p>Elazığ ve çevresini kapsayan bölgeyi yönetmiş ve Hazar Gölü'nün bulunduğu bölgeyi savunma amaçlı kullanmışlardır.</p>
+                </div>
             </div>
-            <div class="image-container">
-                <img src="photos/Turizm/hazargolu2.jpg" class="image" alt="Harput Kale Fotoğraf 2" onclick="openModal(this)">
+            <div class="timeline-item">
+                <div class="timeline-content reveal-right">
+                    <h3 class="font-bold text-xl mb-2">Asurlar (MÖ 7. – 6. yüzyıl)</h3>
+                    <p>Urartular'ın çöküşünün ardından, Asur İmparatorluğu bölgeyi ele geçirmiştir.</p>
+                </div>
             </div>
-            <div class="image-container">
-                <img src="photos/Turizm/hazargolu3.jpeg" class="image" alt="Harput Kale Fotoğraf 3" onclick="openModal(this)">
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Persler (MÖ 6. – 4. yüzyıl)</h3>
+                    <p>Büyük Kiros'un liderliğinde bölgeyi ele geçirerek Hazar Gölü'nün de dahil olduğu topraklarda hüküm sürmüşlerdir.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-right">
+                    <h3 class="font-bold text-xl mb-2">Roma İmparatorluğu (MÖ 1. yüzyıl – 5. yüzyıl)</h3>
+                    <p>Hazar Gölü'nün bulunduğu bölgeyi de kapsayan geniş topraklara hükmetmiştir.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Selçuklular (11. yüzyıl)</h3>
+                    <p>Büyük Selçuklu İmparatorluğu'nun Anadolu'ya girmesiyle, Elazığ ve çevresi Selçuklular'ın egemenliğine girmiştir.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-right">
+                    <h3 class="font-bold text-xl mb-2">Osmanlı İmparatorluğu (15. yüzyıl – 19. yüzyıl)</h3>
+                    <p>Osmanlı İmparatorluğu, Hazar Gölü'nün bulunduğu bölgeyi 16. yüzyılda tamamen egemenliği altına almıştır.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Cumhuriyet Dönemi (1923 – günümüz)</h3>
+                    <p>Türkiye Cumhuriyeti'nin kuruluşundan sonra, Hazar Gölü ve çevresi Elazığ il sınırları içinde yer almıştır.</p>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="section-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Galeri</h2>
+        <div class="image-gallery">
+            <div class="image-container reveal">
+                <img src="photos/Turizm/hazargolu1.jpg" class="image" alt="Hazar Gölü Fotoğraf 1" onclick="openModal(this)">
+            </div>
+            <div class="image-container reveal">
+                <img src="photos/Turizm/hazargolu2.jpg" class="image" alt="Hazar Gölü Fotoğraf 2" onclick="openModal(this)">
+            </div>
+            <div class="image-container reveal">
+                <img src="photos/Turizm/hazargolu3.jpeg" class="image" alt="Hazar Gölü Fotoğraf 3" onclick="openModal(this)">
+            </div>
+        </div>
+    </div>
+
+    <div class="section-card weather-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Hazar Gölü Hava Durumu</h2>
+        <div id="weather-container" class="reveal">
+            <div class="weather-info">
+                <img id="weather-icon" class="weather-icon" src="" alt="Hava Durumu">
+                <div>
+                    <div id="weather-temp" class="weather-temp">--°C</div>
+                    <div id="weather-desc" class="weather-desc">Yükleniyor...</div>
+                </div>
+            </div>
+            <div class="weather-details">
+                <div class="weather-detail-item reveal">
+                    <div class="text-lg font-semibold">Nem</div>
+                    <div id="humidity">--%</div>
+                </div>
+                <div class="weather-detail-item reveal">
+                    <div class="text-lg font-semibold">Rüzgar</div>
+                    <div id="wind">-- km/s</div>
+                </div>
+                <div class="weather-detail-item reveal">
+                    <div class="text-lg font-semibold">Hissedilen</div>
+                    <div id="feels-like">--°C</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
@@ -381,6 +756,78 @@
         if (event.target.id === "imageModal") { 
             closeModal(); 
         }
+    });
+
+    // Hava durumu API'si için yeni kod
+    const API_KEY = 'f1a808f3105f266330b6103e472957e8'; // OpenWeatherMap API anahtarı
+    const CITY = 'Elazig';
+    const COUNTRY_CODE = 'TR';
+
+    async function getWeather() {
+        try {
+            console.log('Hava durumu verisi alınıyor...');
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${CITY},${COUNTRY_CODE}&appid=${API_KEY}&units=metric&lang=tr`;
+            console.log('API URL:', url);
+            
+            const response = await fetch(url);
+            console.log('API Yanıt Durumu:', response.status);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log('Alınan veri:', data);
+
+            document.getElementById('weather-temp').textContent = `${Math.round(data.main.temp)}°C`;
+            document.getElementById('weather-desc').textContent = data.weather[0].description;
+            document.getElementById('humidity').textContent = `${data.main.humidity}%`;
+            document.getElementById('wind').textContent = `${Math.round(data.wind.speed * 3.6)} km/s`;
+            document.getElementById('feels-like').textContent = `${Math.round(data.main.feels_like)}°C`;
+            
+            const iconCode = data.weather[0].icon;
+            document.getElementById('weather-icon').src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+        } catch (error) {
+            console.error('Hava durumu verisi alınamadı:', error);
+            document.getElementById('weather-desc').textContent = 'Hava durumu bilgisi alınamadı';
+            document.getElementById('weather-temp').textContent = '--°C';
+            document.getElementById('humidity').textContent = '--%';
+            document.getElementById('wind').textContent = '-- km/s';
+            document.getElementById('feels-like').textContent = '--°C';
+        }
+    }
+
+    // Sayfa yüklendiğinde hava durumunu getir
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('Sayfa yüklendi, hava durumu alınıyor...');
+        getWeather();
+    });
+
+    // Her 30 dakikada bir hava durumunu güncelle
+    setInterval(() => {
+        console.log('Hava durumu yenileniyor...');
+        getWeather();
+    }, 30 * 60 * 1000);
+
+    // Scroll Reveal için Intersection Observer
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    // Tüm reveal elementlerini seç ve gözlemle
+    document.addEventListener('DOMContentLoaded', () => {
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        revealElements.forEach(element => observer.observe(element));
     });
 </script>
 <script src="profile-updater.js"></script>
