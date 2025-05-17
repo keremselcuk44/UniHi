@@ -1,24 +1,7 @@
-# Configuration files
-config.js
-
-# Node modules
-node_modules/
-
-# Environment files
-.env
-.env.local
-.env.*.local
-
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS files
-.DS_Store
-Thumbs.db
-
 ESKİMOD.html
 *.log
+node_modules/
+.env
+.DS_Store
+.vscode/
 deneme.html

@@ -1032,407 +1032,368 @@ function updateLikes(menuId, action, type) {
 </div>
 </div>
 </div></section>
-<script type="module">
-    // Backend üzerinden API anahtarlarını gizliyoruz
-    // Artık doğrudan API anahtarı yok, tüm istekler backend'e gidecek
+<script>
+// GNews API Key - Ücretsiz API anahtarı
+// Bu API anahtarı GNews'in ücretsiz planına aittir ve günlük sınırlı sayıda istek yapılabilir
+// Kendi API anahtarınızı almak için: https://gnews.io/register
+const apiKey = '41dcd5c7b4490d899a7dcb713289d9cd';
 
-    // Kullanıcı bilgilerini al ve hoşgeldin mesajını güncelle
-    function updateWelcomeMessage() {
-        const currentUser = sessionStorage.getItem("currentUser");
-        if (currentUser) {
-            const userData = JSON.parse(localStorage.getItem(currentUser));
-            const welcomeText = document.getElementById("welcome-text");
-            welcomeText.textContent = `HOŞ GELDİN, ${userData.fullName.toUpperCase()}`;
+// Kullanıcı bilgilerini al ve hoşgeldin mesajını güncelle
+function updateWelcomeMessage() {
+    const currentUser = sessionStorage.getItem("currentUser");
+    if (currentUser) {
+        const userData = JSON.parse(localStorage.getItem(currentUser));
+        const welcomeText = document.getElementById("welcome-text");
+        welcomeText.textContent = `HOŞ GELDİN, ${userData.fullName.toUpperCase()}`;
 
-            // Fakülte kartını göster ve içeriğini ayarla
-            const facultyCard = document.getElementById("faculty-card");
-            const facultyTitle = document.getElementById("faculty-title");
-            const facultyDescription = document.getElementById("faculty-description");
-            const facultyLink = document.getElementById("faculty-link");
+        // Fakülte kartını göster ve içeriğini ayarla
+        const facultyCard = document.getElementById("faculty-card");
+        const facultyTitle = document.getElementById("faculty-title");
+        const facultyDescription = document.getElementById("faculty-description");
+        const facultyLink = document.getElementById("faculty-link");
 
-            facultyCard.classList.remove("hidden");
+        facultyCard.classList.remove("hidden");
 
-            if (userData.faculty.toLowerCase().includes("teknoloji")) {
-                facultyTitle.textContent = "Teknoloji Fakültesi Hakkında Daha Fazla Bilgi!";
-                facultyDescription.textContent = "Teknoloji Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
-                facultyLink.href = "teknolojifak.html";
-            } else if (userData.faculty.toLowerCase().includes("mühendislik")) {
-                facultyTitle.textContent = "Mühendislik Fakültesi Hakkında Daha Fazla Bilgi!";
-                facultyDescription.textContent = "Mühendislik Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
-                facultyLink.href = "muhendislikfak.html";
-            }
+        if (userData.faculty.toLowerCase().includes("teknoloji")) {
+            facultyTitle.textContent = "Teknoloji Fakültesi Hakkında Daha Fazla Bilgi!";
+            facultyDescription.textContent = "Teknoloji Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
+            facultyLink.href = "teknolojifak.html";
+        } else if (userData.faculty.toLowerCase().includes("mühendislik")) {
+            facultyTitle.textContent = "Mühendislik Fakültesi Hakkında Daha Fazla Bilgi!";
+            facultyDescription.textContent = "Mühendislik Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
+            facultyLink.href = "muhendislikfak.html";
         }
     }
+}
 
-    // Slider fonksiyonları
-    let index = 0;
-    const images = document.querySelectorAll(".slider img");
-    const dots = document.querySelectorAll(".slider-dot");
+// Slider fonksiyonları
+let index = 0;
+const images = document.querySelectorAll(".slider img");
+const dots = document.querySelectorAll(".slider-dot");
 
-    function changeImage() {
-        images[index].classList.remove("active");
-        dots[index].classList.remove("active");
+function changeImage() {
+    images[index].classList.remove("active");
+    dots[index].classList.remove("active");
+    
+    index = (index + 1) % images.length;
+    
+    images[index].classList.add("active");
+    dots[index].classList.add("active");
+}
+
+function initializeSlider() {
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+            images[index].classList.remove("active");
+            dots[index].classList.remove("active");
+            index = idx;
+            images[index].classList.add("active");
+            dots[index].classList.add("active");
+        });
+    });
+
+    setInterval(changeImage, 5000);
+
+    const slider = document.querySelector('.slider');
+    let interval;
+
+    slider.addEventListener('mouseenter', () => {
+        clearInterval(interval);
+    });
+
+    slider.addEventListener('mouseleave', () => {
+        interval = setInterval(changeImage, 5000);
+    });
+}
+
+// Haberleri getir fonksiyonu
+async function haberleriGetir() {
+    try {
+        const haberListesi = document.getElementById("haber-listesi");
+        haberListesi.innerHTML = '<div class="flex justify-center items-center h-32"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500"></div></div>';
+
+        const response = await fetch(`https://gnews.io/api/v4/search?q=artificial+intelligence&lang=tr&country=tr&max=5&apikey=${apiKey}`);
         
-        index = (index + 1) % images.length;
+        if (!response.ok) {
+            throw new Error('API yanıt vermedi');
+        }
+
+        const data = await response.json();
         
-        images[index].classList.add("active");
-        dots[index].classList.add("active");
-    }
+        if (!data.articles || data.articles.length === 0) {
+            haberListesi.innerHTML = '<p class="text-gray-600 text-center py-8">Haber bulunamadı.</p>';
+            return;
+        }
 
-    function initializeSlider() {
-        dots.forEach((dot, idx) => {
-            dot.addEventListener('click', () => {
-                images[index].classList.remove("active");
-                dots[index].classList.remove("active");
-                index = idx;
-                images[index].classList.add("active");
-                dots[index].classList.add("active");
-            });
-        });
+        haberListesi.innerHTML = '';
 
-        setInterval(changeImage, 5000);
-
-        const slider = document.querySelector('.slider');
-        let interval;
-
-        slider.addEventListener('mouseenter', () => {
-            clearInterval(interval);
-        });
-
-        slider.addEventListener('mouseleave', () => {
-            interval = setInterval(changeImage, 5000);
-        });
-    }
-
-    // Haberleri getir fonksiyonu
-    async function haberleriGetir() {
-        try {
-            const haberListesi = document.getElementById("haber-listesi");
-            haberListesi.innerHTML = '<div class="flex justify-center items-center h-32"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500"></div></div>';
-
-            const response = await fetch('http://13.53.117.47:8080/api/news');
-            
-            if (!response.ok) {
-                throw new Error('API yanıt vermedi');
-            }
-
-            const data = await response.json();
-            
-            if (!data.articles || data.articles.length === 0) {
-                haberListesi.innerHTML = '<p class="text-gray-600 text-center py-8">Haber bulunamadı.</p>';
-                return;
-            }
-
-            haberListesi.innerHTML = '';
-
-            data.articles.forEach((article) => {
-                const haber = document.createElement("div");
-                haber.className = "haber-card";
-                haber.innerHTML = `
-                    <img src="${article.image || 'photos/default-news.jpg'}" alt="${article.title}" class="haber-thumbnail">
-                    <div class="haber-content">
-                        <h3 class="haber-title">
-                            <a href="${article.url}" target="_blank">${article.title}</a>
-                        </h3>
-                        <p class="haber-description">${article.description}</p>
-                        <div class="haber-meta">
-                            <span class="haber-date">${new Date(article.publishedAt).toLocaleDateString('tr-TR')}</span>
-                            <span class="haber-source">${article.source.name || 'Kaynak'}</span>
-                        </div>
-                    </div>
-                `;
-
-                haberListesi.appendChild(haber);
-            });
-        } catch (error) {
-            console.error('Haber yükleme hatası:', error);
-            const haberListesi = document.getElementById("haber-listesi");
-            haberListesi.innerHTML = `
-                <div class="haber-card">
-                    <div class="haber-content">
-                        <h3 class="haber-title">Haberler Yüklenemedi</h3>
-                        <p class="haber-description">Şu anda haberler yüklenemiyor. Lütfen daha sonra tekrar deneyin.</p>
-                        <div class="haber-meta">
-                            <span class="haber-date">Hata Detayı: ${error.message}</span>
-                        </div>
+        data.articles.forEach((article) => {
+            const haber = document.createElement("div");
+            haber.className = "haber-card";
+            haber.innerHTML = `
+                <img src="${article.image || 'photos/default-news.jpg'}" alt="${article.title}" class="haber-thumbnail">
+                <div class="haber-content">
+                    <h3 class="haber-title">
+                        <a href="${article.url}" target="_blank">${article.title}</a>
+                    </h3>
+                    <p class="haber-description">${article.description}</p>
+                    <div class="haber-meta">
+                        <span class="haber-date">${new Date(article.publishedAt).toLocaleDateString('tr-TR')}</span>
+                        <span class="haber-source">${article.source.name || 'Kaynak'}</span>
                     </div>
                 </div>
             `;
-        }
+
+            haberListesi.appendChild(haber);
+        });
+    } catch (error) {
+        console.error('Haber yükleme hatası:', error);
+        const haberListesi = document.getElementById("haber-listesi");
+        haberListesi.innerHTML = `
+            <div class="haber-card">
+                <div class="haber-content">
+                    <h3 class="haber-title">Haberler Yüklenemedi</h3>
+                    <p class="haber-description">Şu anda haberler yüklenemiyor. Lütfen daha sonra tekrar deneyin.</p>
+                    <div class="haber-meta">
+                        <span class="haber-date">Hata Detayı: ${error.message}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// Takvim fonksiyonları
+class Calendar {
+    constructor(container) {
+        this.container = container;
+        this.date = new Date();
+        this.events = JSON.parse(localStorage.getItem('calendarEvents')) || {};
+        this.finalWeekStart = new Date('2024-06-19');
+        this.finalWeekEnd = new Date('2024-06-29');
+        this.init();
     }
 
-    // Takvim fonksiyonları
-    class Calendar {
-        constructor(container) {
-            this.container = container;
-            this.date = new Date();
-            this.events = JSON.parse(localStorage.getItem('calendarEvents')) || {};
-            this.finalWeekStart = new Date('2024-06-19');
-            this.finalWeekEnd = new Date('2024-06-29');
-            this.init();
-        }
+    init() {
+        this.render();
+        this.attachEventListeners();
+    }
 
-        init() {
-            this.render();
-            this.attachEventListeners();
+    render() {
+        const year = this.date.getFullYear();
+        const month = this.date.getMonth();
+        
+        const firstDay = new Date(year, month, 1);
+        const lastDay = new Date(year, month + 1, 0);
+        
+        const monthNames = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 
+                          'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+        
+        const days = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
+        
+        let html = `
+            <div class="calendar-header">
+                <button class="prev-month">←</button>
+                <h3>${monthNames[month]} ${year}</h3>
+                <button class="next-month">→</button>
+            </div>
+            <div class="calendar-grid">
+                ${days.map(day => `<div class="calendar-day-name">${day}</div>`).join('')}
+        `;
+        
+        let firstDayIndex = firstDay.getDay() || 7;
+        firstDayIndex = firstDayIndex === 1 ? 0 : firstDayIndex - 1;
+        
+        for (let i = 0; i < firstDayIndex; i++) {
+            html += '<div class="calendar-day empty"></div>';
         }
-
-        render() {
-            const year = this.date.getFullYear();
-            const month = this.date.getMonth();
+        
+        for (let day = 1; day <= lastDay.getDate(); day++) {
+            const currentDate = new Date(year, month, day);
+            const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+            const isToday = this.isToday(year, month, day);
+            const hasEvent = this.events[dateStr] && this.events[dateStr].length > 0;
+            const isFinalWeek = this.isFinalWeek(currentDate);
+            const isWeekend = this.isWeekend(currentDate);
             
-            const firstDay = new Date(year, month, 1);
-            const lastDay = new Date(year, month + 1, 0);
-            
-            const monthNames = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 
-                              'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
-            
-            const days = ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'];
-            
-            let html = `
-                <div class="calendar-header">
-                    <button class="prev-month">←</button>
-                    <h3>${monthNames[month]} ${year}</h3>
-                    <button class="next-month">→</button>
-                </div>
-                <div class="calendar-grid">
-                    ${days.map(day => `<div class="calendar-day-name">${day}</div>`).join('')}
-            `;
-            
-            let firstDayIndex = firstDay.getDay() || 7;
-            firstDayIndex = firstDayIndex === 1 ? 0 : firstDayIndex - 1;
-            
-            for (let i = 0; i < firstDayIndex; i++) {
-                html += '<div class="calendar-day empty"></div>';
-            }
-            
-            for (let day = 1; day <= lastDay.getDate(); day++) {
-                const currentDate = new Date(year, month, day);
-                const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-                const isToday = this.isToday(year, month, day);
-                const hasEvent = this.events[dateStr] && this.events[dateStr].length > 0;
-                const isFinalWeek = this.isFinalWeek(currentDate);
-                const isWeekend = this.isWeekend(currentDate);
-                
-                html += `
-                    <div class="calendar-day ${isToday ? 'today' : ''} ${hasEvent ? 'has-event' : ''} 
-                        ${isFinalWeek ? 'final-week' : ''} ${isWeekend ? 'weekend' : ''}" 
-                        data-date="${dateStr}">
-                        ${day}
-                    </div>
-                `;
-            }
-            
-            html += '</div>';
-            
-            // Takvim açıklaması ekle
             html += `
-                <div class="calendar-legend">
-                    <div class="calendar-legend-item today">Bugün</div>
-                    <div class="calendar-legend-item final-week">Final Haftası</div>
-                    <div class="calendar-legend-item event">Etkinlik</div>
+                <div class="calendar-day ${isToday ? 'today' : ''} ${hasEvent ? 'has-event' : ''} 
+                    ${isFinalWeek ? 'final-week' : ''} ${isWeekend ? 'weekend' : ''}" 
+                    data-date="${dateStr}">
+                    ${day}
                 </div>
             `;
-            
-            this.container.innerHTML = html;
         }
+        
+        html += '</div>';
+        
+        // Takvim açıklaması ekle
+        html += `
+            <div class="calendar-legend">
+                <div class="calendar-legend-item today">Bugün</div>
+                <div class="calendar-legend-item final-week">Final Haftası</div>
+                <div class="calendar-legend-item event">Etkinlik</div>
+            </div>
+        `;
+        
+        this.container.innerHTML = html;
+    }
 
-        isToday(year, month, day) {
-            const today = new Date();
-            return today.getFullYear() === year && 
-                   today.getMonth() === month && 
-                   today.getDate() === day;
-        }
+    isToday(year, month, day) {
+        const today = new Date();
+        return today.getFullYear() === year && 
+               today.getMonth() === month && 
+               today.getDate() === day;
+    }
 
-        isFinalWeek(date) {
-            return date >= this.finalWeekStart && date <= this.finalWeekEnd;
-        }
+    isFinalWeek(date) {
+        return date >= this.finalWeekStart && date <= this.finalWeekEnd;
+    }
 
-        isWeekend(date) {
-            const day = date.getDay();
-            return day === 0 || day === 6;
-        }
+    isWeekend(date) {
+        const day = date.getDay();
+        return day === 0 || day === 6;
+    }
 
-        attachEventListeners() {
-            this.container.addEventListener('click', (e) => {
-                if (e.target.classList.contains('prev-month')) {
-                    this.date.setMonth(this.date.getMonth() - 1);
-                    this.render();
-                } else if (e.target.classList.contains('next-month')) {
-                    this.date.setMonth(this.date.getMonth() + 1);
-                    this.render();
-                } else if (e.target.classList.contains('calendar-day') && !e.target.classList.contains('empty')) {
-                    const date = e.target.dataset.date;
-                    this.showEventForm(date);
-                }
-            });
-        }
-
-        showEventForm(date) {
-            const form = document.getElementById('event-form');
-            form.classList.remove('hidden');
-            document.getElementById('event-date').value = date;
-        }
-
-        addEvent(date, title, description) {
-            if (!this.events[date]) {
-                this.events[date] = [];
+    attachEventListeners() {
+        this.container.addEventListener('click', (e) => {
+            if (e.target.classList.contains('prev-month')) {
+                this.date.setMonth(this.date.getMonth() - 1);
+                this.render();
+            } else if (e.target.classList.contains('next-month')) {
+                this.date.setMonth(this.date.getMonth() + 1);
+                this.render();
+            } else if (e.target.classList.contains('calendar-day') && !e.target.classList.contains('empty')) {
+                const date = e.target.dataset.date;
+                this.showEventForm(date);
             }
-            
-            this.events[date].push({
-                id: Date.now(),
-                title,
-                description,
-                date
-            });
-            
+        });
+    }
+
+    showEventForm(date) {
+        const form = document.getElementById('event-form');
+        form.classList.remove('hidden');
+        document.getElementById('event-date').value = date;
+    }
+
+    addEvent(date, title, description) {
+        if (!this.events[date]) {
+            this.events[date] = [];
+        }
+        
+        this.events[date].push({
+            id: Date.now(),
+            title,
+            description,
+            date
+        });
+        
+        localStorage.setItem('calendarEvents', JSON.stringify(this.events));
+        this.render();
+        this.renderEventsList();
+    }
+
+    deleteEvent(date, eventId) {
+        if (this.events[date]) {
+            this.events[date] = this.events[date].filter(event => event.id !== eventId);
+            if (this.events[date].length === 0) {
+                delete this.events[date];
+            }
             localStorage.setItem('calendarEvents', JSON.stringify(this.events));
             this.render();
             this.renderEventsList();
         }
-
-        deleteEvent(date, eventId) {
-            if (this.events[date]) {
-                this.events[date] = this.events[date].filter(event => event.id !== eventId);
-                if (this.events[date].length === 0) {
-                    delete this.events[date];
-                }
-                localStorage.setItem('calendarEvents', JSON.stringify(this.events));
-                this.render();
-                this.renderEventsList();
-            }
-        }
-
-        renderEventsList() {
-            const eventsList = document.getElementById('events-list');
-            const today = new Date().toISOString().split('T')[0];
-            
-            let html = '';
-            
-            // Final haftısı etkinliğini ekle
-            const finalWeekEvent = {
-                id: 'final-week-2024',
-                title: 'Final Haftası',
-                description: '2023-2024 Bahar Dönemi Final Sınavları',
-                date: '2024-06-19',
-                isFinal: true
-            };
-            
-            // Bugünün ve gelecek etkinliklerini göster
-            const allEvents = [
-                finalWeekEvent,
-                ...Object.entries(this.events)
-                    .filter(([date]) => date >= today)
-                    .flatMap(([date, events]) => events.map(event => ({...event, date})))
-            ].sort((a, b) => a.date.localeCompare(b.date));
-            
-            allEvents.forEach(event => {
-                html += `
-                    <div class="event-item ${event.isFinal ? 'final-exam' : ''}">
-                        <div class="event-title">${event.title}</div>
-                        <div class="event-time">${new Date(event.date).toLocaleDateString('tr-TR')}</div>
-                        <div class="event-description">${event.description}</div>
-                        ${!event.isFinal ? `
-                            <div class="event-actions">
-                                <button class="delete-btn" onclick="calendar.deleteEvent('${event.date}', ${event.id})">Sil</button>
-                            </div>
-                        ` : ''}
-                    </div>
-                `;
-            });
-            
-            eventsList.innerHTML = html || '<p class="text-gray-500 text-center">Henüz etkinlik yok</p>';
-        }
     }
 
-    // Sayfa yüklendiğinde
-    document.addEventListener('DOMContentLoaded', () => {
-        // Hoşgeldin mesajını güncelle
-        updateWelcomeMessage();
+    renderEventsList() {
+        const eventsList = document.getElementById('events-list');
+        const today = new Date().toISOString().split('T')[0];
         
-        // Slider'ı başlat
-        initializeSlider();
+        let html = '';
         
-        // Haberleri getir
+        // Final haftısı etkinliğini ekle
+        const finalWeekEvent = {
+            id: 'final-week-2024',
+            title: 'Final Haftası',
+            description: '2023-2024 Bahar Dönemi Final Sınavları',
+            date: '2024-06-19',
+            isFinal: true
+        };
+        
+        // Bugünün ve gelecek etkinliklerini göster
+        const allEvents = [
+            finalWeekEvent,
+            ...Object.entries(this.events)
+                .filter(([date]) => date >= today)
+                .flatMap(([date, events]) => events.map(event => ({...event, date})))
+        ].sort((a, b) => a.date.localeCompare(b.date));
+        
+        allEvents.forEach(event => {
+            html += `
+                <div class="event-item ${event.isFinal ? 'final-exam' : ''}">
+                    <div class="event-title">${event.title}</div>
+                    <div class="event-time">${new Date(event.date).toLocaleDateString('tr-TR')}</div>
+                    <div class="event-description">${event.description}</div>
+                    ${!event.isFinal ? `
+                        <div class="event-actions">
+                            <button class="delete-btn" onclick="calendar.deleteEvent('${event.date}', ${event.id})">Sil</button>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+        });
+        
+        eventsList.innerHTML = html || '<p class="text-gray-500 text-center">Henüz etkinlik yok</p>';
+    }
+}
+
+// Sayfa yüklendiğinde
+document.addEventListener('DOMContentLoaded', () => {
+    // Hoşgeldin mesajını güncelle
+    updateWelcomeMessage();
+    
+    // Slider'ı başlat
+    initializeSlider();
+    
+    // Haberleri getir
+    haberleriGetir();
+
+    // Yenileme butonuna tıklama olayı ekle
+    document.getElementById('refresh-news').addEventListener('click', () => {
         haberleriGetir();
-
-        // Yenileme butonuna tıklama olayı ekle
-        document.getElementById('refresh-news').addEventListener('click', () => {
-            haberleriGetir();
-        });
-
-        // Takvimi başlat
-        const calendar = new Calendar(document.getElementById('calendar'));
-        window.calendar = calendar; // Global erişim için
-        
-        // Etkinlik formu işlemleri
-        document.getElementById('add-event').addEventListener('click', () => {
-            const form = document.getElementById('event-form');
-            form.classList.toggle('hidden');
-        });
-        
-        document.getElementById('cancel-event').addEventListener('click', () => {
-            document.getElementById('event-form').classList.add('hidden');
-        });
-        
-        document.getElementById('save-event').addEventListener('click', () => {
-            const title = document.getElementById('event-title').value;
-            const date = document.getElementById('event-date').value;
-            const description = document.getElementById('event-description').value;
-            
-            if (title && date) {
-                calendar.addEvent(date, title, description);
-                document.getElementById('event-form').classList.add('hidden');
-                document.getElementById('event-title').value = '';
-                document.getElementById('event-date').value = '';
-                document.getElementById('event-description').value = '';
-            }
-        });
-        
-        // İlk etkinlik listesini göster
-        calendar.renderEventsList();
     });
 
-    // Gemini API'ye istek gönderme
-    async function getAIResponse(message) {
-        try {
-            console.log('Sending message to AI:', message);
-            const response = await fetch('http://13.53.117.47:8080/api/gemini', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message })
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                console.error('API Error:', errorData);
-                throw new Error(errorData.error || 'API yanıt vermedi');
-            }
-
-            const data = await response.json();
-            console.log('AI Response:', data);
-            
-            if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
-                throw new Error('Geçersiz API yanıtı');
-            }
-
-            let responseText = data.candidates[0].content.parts[0].text;
-            console.log('Processed response:', responseText);
-
-            // HTML bağlantılarını işle
-            responseText = responseText.replace(
-                /\[([^\]]+)\]\(([^)]+)\)/g,
-                '<a href="$2" class="text-blue-600 hover:text-blue-800 underline">$1</a>'
-            );
-
-            return responseText;
-        } catch (error) {
-            console.error('AI Response Error:', error);
-            return `Üzgünüm, bir hata oluştu: ${error.message}. Lütfen daha sonra tekrar deneyin.`;
+    // Takvimi başlat
+    const calendar = new Calendar(document.getElementById('calendar'));
+    window.calendar = calendar; // Global erişim için
+    
+    // Etkinlik formu işlemleri
+    document.getElementById('add-event').addEventListener('click', () => {
+        const form = document.getElementById('event-form');
+        form.classList.toggle('hidden');
+    });
+    
+    document.getElementById('cancel-event').addEventListener('click', () => {
+        document.getElementById('event-form').classList.add('hidden');
+    });
+    
+    document.getElementById('save-event').addEventListener('click', () => {
+        const title = document.getElementById('event-title').value;
+        const date = document.getElementById('event-date').value;
+        const description = document.getElementById('event-description').value;
+        
+        if (title && date) {
+            calendar.addEvent(date, title, description);
+            document.getElementById('event-form').classList.add('hidden');
+            document.getElementById('event-title').value = '';
+            document.getElementById('event-date').value = '';
+            document.getElementById('event-description').value = '';
         }
-    }
+    });
+    
+    // İlk etkinlik listesini göster
+    calendar.renderEventsList();
+});
 </script>
 <script src="profile-updater.js"></script>
 
@@ -1474,8 +1435,48 @@ function updateLikes(menuId, action, type) {
         const chatSend = document.getElementById('chat-widget-send');
         const chatMessages = document.getElementById('chat-widget-messages');
 
+        // Gemini API anahtarı ve URL
+        const GEMINI_API_KEY = 'AIzaSyBRKdhJtvqcQBR82hEzVa27N-hHkkzz7jk'; // Ücretsiz API anahtarı - Günlük sınırlı istek hakkı
+        const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+
         // Sohbet geçmişini tutmak için dizi
         let conversationHistory = [];
+
+        // Güncel bilgileri al
+        async function getCurrentInfo() {
+            const now = new Date();
+            const currentDate = now.toLocaleDateString('tr-TR');
+            const currentTime = now.toLocaleTimeString('tr-TR');
+            const currentHour = now.getHours();
+            const currentDay = now.getDay(); // 0: Pazar, 1: Pazartesi, ...
+
+            // Yemekhane saatleri kontrolü
+            const isYemekhaneOpen = (currentHour >= 11 && currentHour <= 14) || (currentHour >= 17 && currentHour <= 19);
+            
+            // Kütüphane saatleri kontrolü
+            const isKutuphaneOpen = currentHour >= 8 && currentHour <= 22;
+
+            // Hafta sonu kontrolü
+            const isWeekend = currentDay === 0 || currentDay === 6;
+
+            // Mevsim kontrolü
+            const currentMonth = now.getMonth();
+            let season = '';
+            if (currentMonth >= 2 && currentMonth <= 4) season = 'İlkbahar';
+            else if (currentMonth >= 5 && currentMonth <= 7) season = 'Yaz';
+            else if (currentMonth >= 8 && currentMonth <= 10) season = 'Sonbahar';
+            else season = 'Kış';
+
+            return {
+                currentDate,
+                currentTime,
+                currentHour,
+                isYemekhaneOpen,
+                isKutuphaneOpen,
+                isWeekend,
+                season
+            };
+        }
 
         // Yazma animasyonu gösterme fonksiyonu
         function showTypingIndicator() {
@@ -1489,6 +1490,292 @@ function updateLikes(menuId, action, type) {
             chatMessages.appendChild(typingDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
             return typingDiv;
+        }
+
+        // Gemini API'ye istek gönderme
+        async function getAIResponse(message) {
+            try {
+                // Güncel bilgileri al
+                const currentInfo = await getCurrentInfo();
+                
+                // Sohbet geçmişini oluştur
+                let conversationContext = conversationHistory
+                    .slice(-5) // Son 5 mesajı al
+                    .map(msg => `${msg.role}: ${msg.content}`)
+                    .join('\n');
+
+                console.log('API İsteği Gönderiliyor...');
+                const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: `Sen UniHi platformunun yapay zeka asistanısın. Adın Uni. 
+                                Şu anki durum:
+                                - Tarih: ${currentInfo.currentDate}
+                                - Saat: ${currentInfo.currentTime}
+                                - Yemekhane durumu: ${currentInfo.isYemekhaneOpen ? 'Açık' : 'Kapalı'}
+                                - Kütüphane durumu: ${currentInfo.isKutuphaneOpen ? 'Açık' : 'Kapalı'}
+                                - Hafta sonu: ${currentInfo.isWeekend ? 'Evet' : 'Hayır'}
+                                - Mevsim: ${currentInfo.season}
+
+                                [SOHBET YÖNETİMİ]
+                                1. Sohbet geçmişini hatırla
+                                2. Önceki sorulara referans ver
+                                3. Bağlamı koru
+                                4. Konuyu takip et
+                                5. Kullanıcı ilgi alanlarını not al
+
+                                [YÖNLENDİRME ÖNCELİKLERİ]
+                                1. Öncelikle UniHi sayfalarına yönlendir
+                                2. UniHi sayfaları yoksa Fırat Üniversitesi sayfalarına yönlendir
+                                3. UniHi sayfaları mevcutken dış bağlantıları kullanma
+                                4. UniHi içeriğini öncelikli olarak kullan
+                                5. UniHi sayfalarındaki bilgileri tercih et
+
+                                [UNİHİ SAYFALARI]
+                                1. KYK Yurtları (yurtsayfasi.html)
+                                  * Yurt listesi ve bilgileri
+                                  * Başvuru koşulları
+                                  * Yurt kuralları
+                                  * Menü bilgileri
+                                  * İletişim bilgileri
+                                2. Yurt Menüleri
+                                  * KYK Sabah Menüsü (kykmenusabah.json)
+                                  * KYK Akşam Menüsü (kykmenuaksam.json)
+                                3. Diğer UniHi Sayfaları
+                                  * Ana Sayfa (modules.html)
+                                  * Giriş (login.html)
+                                  * Ayarlar (settings.html)
+                                  * Fakülteler
+                                  * Etkinlikler
+                                  * Geziler
+
+                                [YANIT VERME KURALLARI]
+                                1. Sadece sorulan sorulara cevap ver
+                                2. Ekstra bilgi verme
+                                3. Kısa ve öz cevaplar ver
+                                4. Soru dışına çıkma
+                                5. Gereksiz detaylara girme
+                                6. Sadece istenen bilgiyi ver
+                                7. Tahmin yürütme
+                                8. Varsayımda bulunma
+                                9. Konuyu değiştirme
+                                10. Sadece mevcut bilgileri kullan
+
+                                [KONUŞMA TARZI]
+                                1. Samimi ve arkadaşça bir dil kullan
+                                2. Resmi ifadelerden kaçın
+                                3. Doğal ve akıcı bir konuşma tarzı benimse
+                                4. Emoji kullan (😊, 👍, 🎓, 📚, 🎯, 💡, ⭐)
+                                5. Kısa ve net cümleler kur
+                                6. Günlük konuşma dilini kullan
+                                7. Öğrenci dostu bir yaklaşım sergile
+                                8. Enerjik ve pozitif bir ton kullan
+                                9. Abartılı ifadelerden kaçın
+                                10. Sohbeti doğal akışında tut
+
+                                [YANIT FORMATI]
+                                1. Doğrudan soruya cevap
+                                2. Gerekirse kısa açıklama
+                                3. Öncelikle UniHi sayfalarına yönlendir
+                                4. Sadece güncel bilgiler
+                                5. Net ve anlaşılır dil
+
+                                [SOHBET GEÇMİŞİ]
+                                ${conversationContext}
+
+                                [KİMLİK BİLGİLERİ]
+                                - Yaratıcı: UniHi Ekibi
+                                - Platform: UniHi
+                                - Amacın: Öğrencilere yardımcı olmak
+                                - Yeteneklerin: Yapay zeka destekli asistanlık
+                                - Sorumlulukların: Bilgi verme, yönlendirme, yardım etme
+                                - Kısıtlamaların: Sadece platform, üniversite, şehir ve ülke ile ilgili bilgiler
+                                - Güncelleme: UniHi Ekibi tarafından düzenli olarak
+                                - Versiyon: 2.0
+                                - Dil: Türkçe
+                                - Hedef Kitle: Fırat Üniversitesi öğrencileri
+
+                                [UNİHİ EKİBİ]
+                                - Kerem Selçuk: UniHi'nin kurucu üyesi ve geliştiricisi
+                                - Kenan Acımış: UniHi'nin kurucu üyesi ve geliştiricisi
+                                - Recep Yıldırım: UniHi'nin kurucu üyesi ve geliştiricisi
+                                - Emir Ali Eşkili: UniHi'nin kurucu üyesi ve geliştiricisi
+
+                                [EKİP ÜYELERİ HAKKINDA YANIT KURALLARI]
+                                1. "Seni kim yaptı?" gibi genel sorularda sadece "UniHi ekibi" olarak cevap ver
+                                2. Ekip üyelerinin isimleri özellikle sorulduğunda (örn: "UniHi ekibinde kimler var?") isimleri say
+                                3. Ekip üyelerinin isimleri geçtiğinde saygılı ve teşekkür dolu bir dil kullan
+                                4. UniHi'nin başarısında ekip üyelerinin rolünü belirt
+                                5. Ekip üyelerinin isimleri sorulduğunda "UniHi'yi geliştiren değerli ekip üyelerimiz" ifadesini kullan
+
+                                [GÜNCEL BİLGİLER VE KAYNAKLAR]
+                                1. FIRAT ÜNİVERSİTESİ RESMİ KAYNAKLARI:
+                                - Web Sitesi: https://www.firat.edu.tr
+                                - Öğrenci Bilgi Sistemi: https://obs.firat.edu.tr
+                                - Akademik Takvim: https://www.firat.edu.tr/akademik-takvim
+                                - Duyurular: https://www.firat.edu.tr/duyurular
+                                - Etkinlikler: https://www.firat.edu.tr/etkinlikler
+
+                                2. ELAZIĞ ŞEHRİ BİLGİLERİ:
+                                - Nüfus: 600.000+
+                                - İlçe Sayısı: 11
+                                - Yükseklik: 1067 metre
+                                - İklim: Karasal iklim
+                                - Ekonomi: Tarım, sanayi, ticaret
+                                - Turizm: Harput Kalesi, Hazar Gölü, Buzluk Mağarası
+                                - Ulaşım: Havayolu, karayolu, demiryolu
+                                - Eğitim: 1 üniversite, 1000+ okul
+                                - Sağlık: 5 hastane, 50+ sağlık merkezi
+                                - Alışveriş: 5 AVM, çarşılar, pazarlar
+
+                                3. TÜRKİYE GÜNCEL BİLGİLERİ:
+                                - Nüfus: 85 milyon+
+                                - Başkent: Ankara
+                                - Büyük Şehirler: İstanbul, Ankara, İzmir, Bursa, Antalya
+                                - Ekonomi: G20 üyesi, gelişmekte olan ülke
+                                - Eğitim: 200+ üniversite, 20 milyon+ öğrenci
+                                - Sağlık: Evrensel sağlık sistemi
+                                - Ulaşım: Modern karayolu, demiryolu, havayolu ağı
+                                - Turizm: Dünyanın en çok ziyaret edilen 10 ülkesinden biri
+                                - Kültür: UNESCO Dünya Mirası Listesi'nde 19 alan
+                                - Teknoloji: Yerli otomobil, uydu, savunma sanayi
+
+                                4. FIRAT ÜNİVERSİTESİ GÜNCEL BİLGİLERİ:
+                                - Rektör: Prof. Dr. Fahrettin Göktaş
+                                - Öğrenci Sayısı: 80.000+
+                                - Akademik Personel: 2.000+
+                                - Fakülte Sayısı: 17
+                                - Kampüs Sayısı: 3 (Merkez, Hastane, Keban)
+                                - Araştırma Merkezleri: 40+
+                                - Kütüphane: 1.000.000+ kitap
+                                - Laboratuvarlar: 200+
+                                - Spor Tesisleri: 10+
+                                - Yurt Kapasitesi: 10.000+
+                                - Mezun Sayısı: 200.000+
+                                - Uluslararası İşbirlikleri: 100+ üniversite
+                                - Patent Sayısı: 100+
+                                - TÜBİTAK Projeleri: 500+
+                                - Öğrenci Kulüpleri: 100+
+                                - Yıllık Etkinlik: 500+
+
+                                5. AKADEMİK TAKVİM (2024-2025):
+                                - Güz Dönemi: 30 Eylül 2024 - 15 Ocak 2025
+                                - Bahar Dönemi: 24 Şubat 2025 - 18 Haziran 2025
+                                - Ara Sınav Haftası (Güz): 25 Kasım - 1 Aralık 2024
+                                - Ara Sınav Haftası (Bahar): 14-20 Nisan 2025
+                                - Final Sınavları (Güz): 16-26 Ocak 2025
+                                - Final Sınavları (Bahar): 19-29 Haziran 2025
+                                - Bütünleme Sınavları (Güz): 3-9 Şubat 2025
+                                - Bütünleme Sınavları (Bahar): 7-13 Temmuz 2025
+                                - Ders Kayıt Dönemi (Güz): 20-25 Eylül 2024
+                                - Ders Kayıt Dönemi (Bahar): 14-19 Şubat 2025
+                                - Ders Ekle-Bırak (Güz): 9-11 Ekim 2024
+                                - Ders Ekle-Bırak (Bahar): 5-7 Mart 2025
+
+                                6. KAMPÜS OLANAKLARI:
+                                - Yemekhane: 5.000 kişilik
+                                - Kütüphane: 7/24 açık
+                                - Spor Kompleksi: Olimpik yüzme havuzu
+                                - Sağlık Merkezi: 24 saat
+                                - Ulaşım: Ring servisleri
+                                - Banka Şubeleri: 5+
+                                - Marketler: 10+
+                                - Kafeteryalar: 20+
+                                - Konferans Salonları: 10+
+                                - Laboratuvarlar: 200+
+
+                                7. ÖĞRENCİ HİZMETLERİ:
+                                - Sağlık Sigortası: Ücretsiz
+                                - Ulaşım: İndirimli
+                                - Yurt: 10+ yurt binası
+                                - Burs: 50+ farklı burs
+                                - Staj: 1000+ firma
+                                - Kariyer: Kariyer merkezi
+                                - Psikolojik Danışmanlık: Ücretsiz
+                                - Engelli Öğrenci: Özel hizmetler
+                                - Uluslararası Öğrenci: Özel destek
+                                - Mezun: Mezun derneği
+
+                                8. SOSYAL VE KÜLTÜREL YAŞAM:
+                                - Öğrenci Kulüpleri: 100+
+                                - Spor Takımları: 20+
+                                - Festival ve Şenlikler: 10+
+                                - Konserler: Aylık 5+
+                                - Tiyatro: Haftalık
+                                - Sinema: Haftalık
+                                - Kültür Gezileri: Aylık
+                                - Turnuvalar: Sezonluk
+                                - Etkinlikler: Günlük
+
+                                Özelliklerin:
+                                1. Her türlü soruya cevap ver
+                                2. Güncel bilgileri kullan
+                                3. Resmi kaynaklardan bilgi al
+                                4. Doğru ve net cevaplar ver
+                                5. Bağlama uygun yanıtlar ver
+                                6. Sohbet geçmişini hatırla
+                                7. Kullanıcıyı yönlendir
+                                8. Detaylı bilgi sağla
+                                9. Güncel olayları takip et
+                                10. Profesyonel ve samimi ol
+
+                                Öğrenci dostu ve samimi bir dil kullan.
+                                Kısa ve öz cevaplar ver.
+                                Sayfalara yönlendirme yaparken HTML bağlantıları kullan.
+                                Her zaman güncel bilgileri kullan.
+                                Zaman bazlı yanıtlar ver.
+                                Mevsimsel bilgileri kullan.
+                                Sohbeti doğal ve akıcı tut.
+                                Önceki konulara doğal referanslar ver.
+                                Kullanıcının ilgi alanlarını takip et.
+
+                                Soru: ${message}`
+                            }]
+                        }]
+                    })
+                });
+
+                if (!response.ok) {
+                    console.error('API Yanıt Hatası:', response.status);
+                    throw new Error(`API yanıt vermedi: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('API Yanıtı:', data);
+                
+                if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
+                    throw new Error('Geçersiz API yanıtı');
+                }
+
+                let responseText = data.candidates[0].content.parts[0].text;
+
+                // HTML bağlantılarını işle
+                responseText = responseText.replace(
+                    /\[([^\]]+)\]\(([^)]+)\)/g,
+                    '<a href="$2" class="text-blue-600 hover:text-blue-800 underline">$1</a>'
+                );
+
+                // Sohbet geçmişine ekle
+                conversationHistory.push(
+                    { role: 'user', content: message },
+                    { role: 'assistant', content: responseText }
+                );
+
+                // Geçmişi 20 mesajla sınırla
+                if (conversationHistory.length > 20) {
+                    conversationHistory = conversationHistory.slice(-20);
+                }
+
+                return responseText;
+            } catch (error) {
+                console.error('API Hatası:', error);
+                return 'Üzgünüm, şu anda yanıt veremiyorum. Lütfen daha sonra tekrar deneyin.';
+            }
         }
 
         // Mesaj ekleme fonksiyonu
