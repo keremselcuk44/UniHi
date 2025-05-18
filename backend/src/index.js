@@ -7,9 +7,21 @@ const aiRoutes = require('./routes/ai');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware
-app.use(helmet()); // Security headers
-app.use(cors()); // Enable CORS
+// CORS configuration
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-goog-api-key'],
+  credentials: true
+}));
+
+// Helmet configuration with relaxed settings
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" },
+  crossOriginOpenerPolicy: { policy: "unsafe-none" },
+  contentSecurityPolicy: false,
+}));
+
 app.use(express.json()); // Parse JSON bodies
 
 // Routes

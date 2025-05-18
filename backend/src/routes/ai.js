@@ -1,7 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
+const cors = require('cors');
 
+// CORS options
+const corsOptions = {
+  origin: ['http://13.53.117.47', 'http://localhost:3000'],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+router.use(cors(corsOptions));
+
+// Update Gemini API URL without the API key in the URL
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
 // Helper function to determine if a facility is open
@@ -251,57 +262,27 @@ ${conversationContext}
 - Turnuvalar: Sezonluk
 - Etkinlikler: Günlük`;
 
-    const response = await fetch(`${GEMINI_API_URL}?key=${process.env.GEMINI_API_KEY}`, {
+    const response = await fetch(GEMINI_API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'x-goog-api-key': process.env.GEMINI_API_KEY
       },
       body: JSON.stringify({
         contents: [{
-          parts: [{
-            text: `${systemPrompt}\n\n${prompt}`
-          }]
-        }],
-        generationConfig: {
-          temperature: 0.7,
-          topK: 40,
-          topP: 0.95,
-          maxOutputTokens: 1024,
-        },
-        safetySettings: [{
-          category: "HARM_CATEGORY_HARASSMENT",
-          threshold: "BLOCK_MEDIUM_AND_ABOVE"
+          parts: [{ text: `${systemPrompt}\n\nKullanıcı: ${prompt}` }]
         }]
       })
     });
 
     if (!response.ok) {
-      console.error('API Error:', await response.text());
-      throw new Error(`API yanıt vermedi: ${response.status}`);
+      const errorText = await response.text();
+      console.error('API Error:', errorText);
+      throw new Error(`API yanıt vermedi: ${response.status}, Detay: ${errorText}`);
     }
 
     const data = await response.json();
-    
-    if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
-      throw new Error('Geçersiz API yanıtı');
-    }
-
-    // HTML bağlantılarını işle
-    let responseText = data.candidates[0].content.parts[0].text;
-    responseText = responseText.replace(
-      /\[([^\]]+)\]\(([^)]+)\)/g,
-      '<a href="$2" class="text-blue-600 hover:text-blue-800 underline">$1</a>'
-    );
-
-    res.json({
-      candidates: [{
-        content: {
-          parts: [{
-            text: responseText
-          }]
-        }
-      }]
-    });
+    res.json(data);
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'Internal server error', details: error.message });
