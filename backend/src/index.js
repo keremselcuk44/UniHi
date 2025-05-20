@@ -5,7 +5,9 @@ const helmet = require('helmet');
 const aiRoutes = require('./routes/ai');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3001;
+
+console.log("API KEY:", process.env.GEMINI_API_KEY);
 
 // CORS configuration
 app.use(cors({

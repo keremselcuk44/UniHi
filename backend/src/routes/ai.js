@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const fetch = require('node-fetch');
+const axios = require('axios');
 const cors = require('cors');
+require('dotenv').config();
 
 // CORS options
 const corsOptions = {
@@ -13,7 +14,8 @@ const corsOptions = {
 router.use(cors(corsOptions));
 
 // Update Gemini API URL without the API key in the URL
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const GEMINI_API_URL = process.env.GEMINI_API_URL;
 
 // Helper function to determine if a facility is open
 function isFacilityOpen(facility) {
@@ -262,26 +264,19 @@ ${conversationContext}
 - Turnuvalar: Sezonluk
 - Etkinlikler: Günlük`;
 
-    const response = await fetch(GEMINI_API_URL, {
-      method: 'POST',
+    const body = {
+      contents: [{
+        parts: [{ text: `${systemPrompt}\n\nKullanıcı: ${prompt}` }]
+      }]
+    };
+
+    const response = await axios.post(GEMINI_API_URL, body, {
       headers: {
-        'Content-Type': 'application/json',
-        'x-goog-api-key': process.env.GEMINI_API_KEY
-      },
-      body: JSON.stringify({
-        contents: [{
-          parts: [{ text: `${systemPrompt}\n\nKullanıcı: ${prompt}` }]
-        }]
-      })
+        'Content-Type': 'application/json'
+      }
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('API Error:', errorText);
-      throw new Error(`API yanıt vermedi: ${response.status}, Detay: ${errorText}`);
-    }
-
-    const data = await response.json();
+    const data = response.data;
     res.json(data);
   } catch (error) {
     console.error('Error:', error);
