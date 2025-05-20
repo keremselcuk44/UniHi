@@ -10,12 +10,7 @@ const port = 3001;
 console.log("API KEY:", process.env.GEMINI_API_KEY);
 
 // CORS configuration
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'x-goog-api-key'],
-  credentials: true
-}));
+app.use(cors());
 
 // Helmet configuration with relaxed settings
 app.use(helmet({
