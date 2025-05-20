@@ -12,10 +12,11 @@
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^4.21.2",
-    "helmet": "^7.1.0",
+    "helmet": "^7.2.0",
     "node-fetch": "^2.7.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2"
+    "nodemon": "^3.0.2",
+    "pm2": "^6.0.6"
   }
 }
