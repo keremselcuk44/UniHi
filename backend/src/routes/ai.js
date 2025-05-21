@@ -6,7 +6,7 @@ require('dotenv').config();
 
 // CORS options
 const corsOptions = {
-  origin: ['http://13.53.117.47', 'http://localhost:3000'],
+  origin: '*',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
@@ -21,12 +21,12 @@ const GEMINI_API_URL = process.env.GEMINI_API_URL;
 function isFacilityOpen(facility) {
   const now = new Date();
   const hour = now.getHours();
-  
+
   switch(facility) {
     case 'yemekhane':
       // Yemekhane hours: 7-10, 12-14, 17-20
-      return (hour >= 7 && hour < 10) || 
-             (hour >= 12 && hour < 14) || 
+      return (hour >= 7 && hour < 10) ||
+             (hour >= 12 && hour < 14) ||
              (hour >= 17 && hour < 20);
     case 'kutuphane':
       // Kütüphane is 24/7
@@ -40,7 +40,7 @@ function isFacilityOpen(facility) {
 function getCurrentSeason() {
   const now = new Date();
   const month = now.getMonth();
-  
+
   if (month >= 2 && month <= 4) return 'İlkbahar';
   if (month >= 5 && month <= 7) return 'Yaz';
   if (month >= 8 && month <= 10) return 'Sonbahar';
@@ -64,8 +64,8 @@ router.post('/generate', async (req, res) => {
   try {
     const { prompt, conversationContext = '' } = req.body;
     const currentInfo = getCurrentInfo();
-    
-    const systemPrompt = `Sen UniHi platformunun yapay zeka asistanısın. Adın Uni. 
+
+    const systemPrompt = `Sen UniHi platformunun yapay zeka asistanısın. Adın Uni.
 Şu anki durum:
 - Tarih: ${currentInfo.currentDate}
 - Saat: ${currentInfo.currentTime}
@@ -284,4 +284,4 @@ ${conversationContext}
   }
 });
 
-module.exports = router; 
+module.exports = router;
