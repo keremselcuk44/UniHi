@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
-            background: linear-gradient(135deg, #818cf8, #6366f1, #4f46e5);
+            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
             color: white;
             min-height: 100vh;
         }
@@ -32,7 +32,7 @@
         }
 
         .menu-item:hover {
-            color: rgba(255, 255, 255, 0.8);
+            color: #ff6b6b;
         }
 
         .dropdown {
@@ -69,7 +69,7 @@
 
         .dropdown a:hover {
             background: rgba(0, 0, 0, 0.05);
-            color: #6366f1;
+            color: #ff6b6b;
         }
 
         .profile-menu {
@@ -118,12 +118,12 @@
 
         .profile-dropdown a:hover {
             background: rgba(0, 0, 0, 0.05);
-            color: #6366f1;
+            color: #ff6b6b;
         }
 
         .hero-section {
             position: relative;
-            height: 100vh;
+            height: 80vh;
             overflow: hidden;
         }
 
@@ -134,8 +134,7 @@
             transform: translate(-50%, -50%);
             text-align: center;
             z-index: 2;
-            width: 90%;
-            padding: 0 20px;
+            width: 80%;
         }
 
         .hero-overlay {
@@ -156,7 +155,6 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
-            height: 100%;
         }
 
         .feature-card::before {
@@ -183,13 +181,12 @@
         .feature-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: white;
+            color: #ff6b6b;
             transition: transform 0.3s ease;
         }
 
         .feature-card:hover .feature-icon {
             transform: scale(1.1);
-            color: rgba(255, 255, 255, 0.8);
         }
 
         .news-card {
@@ -199,7 +196,6 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
             overflow: hidden;
-            height: 100%;
         }
 
         .news-card:hover {
@@ -209,14 +205,14 @@
 
         .news-date {
             font-size: 0.9rem;
-            color: white;
+            color: #ff6b6b;
             margin-bottom: 0.5rem;
         }
 
         .news-category {
             display: inline-block;
             padding: 0.25rem 0.75rem;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 107, 107, 0.2);
             border-radius: 20px;
             font-size: 0.8rem;
             margin-bottom: 0.5rem;
@@ -225,14 +221,68 @@
         .read-more {
             display: inline-block;
             margin-top: 1rem;
-            color: white;
+            color: #ff6b6b;
             font-weight: bold;
             transition: all 0.3s ease;
         }
 
         .read-more:hover {
             transform: translateX(5px);
-            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #c32f52;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #ffffff;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hero Section Animations */
+        .hero-content h1 {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-content p {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero-content a {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .discover-button {
@@ -247,121 +297,20 @@
         }
 
         .discover-button:hover {
-            background-color: white;
-            border-color: white;
-            color: #6366f1;
+            background-color: #9b1d48;
+            border-color: #9b1d48;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Mobil Menü */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            padding: 20px;
-        }
-
-        .mobile-menu.active {
-            display: block;
-        }
-
-        .mobile-menu-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .mobile-menu-items {
-            margin-top: 60px;
-        }
-
-        .mobile-menu-item {
-            padding: 15px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu-item a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            display: block;
-        }
-
-        /* Responsive Düzenlemeler */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .feature-card, .news-card {
-                margin-bottom: 20px;
-            }
-
-            .grid {
-                gap: 20px;
-            }
-
-            .footer {
-                text-align: center;
-            }
-
-            .footer .grid {
-                gap: 30px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 1.5rem;
-            }
-
-            .discover-button {
-                padding: 0.5rem 1.5rem;
-                font-size: 0.9rem;
-            }
-
-            .feature-icon {
-                font-size: 2rem;
-            }
         }
     </style>
 </head>
 <body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
-    <!-- Mobil Menü -->
-    <div class="mobile-menu" :class="{ 'active': open }">
-        <div class="mobile-menu-close" @click="open = false">&times;</div>
-        <div class="mobile-menu-items">
-            <div class="mobile-menu-item">
-                <a href="login.html">Giriş Yap</a>
-            </div>
-            <div class="mobile-menu-item">
-                <a href="modules.html">Ana Sayfa</a>
-            </div>
-            <div class="mobile-menu-item">
-                <a href="yurtsayfasi.html">KYK Yurtları</a>
-            </div>
-        </div>
-    </div>
-
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-overlay"></div>
         <img src="photos/unnamed.jpg" alt="Fırat Üniversitesi" class="w-full h-full object-cover">
         <div class="hero-content">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6">UniHi'ye Hoş Geldiniz :)</h1>
-            <p class="text-lg md:text-xl mb-8">Üniversite ve şehir rehberiniz</p>
+            <h1 class="text-5xl font-bold mb-6">UniHi'ye Hoş Geldiniz :))</h1>
+            <p class="text-xl mb-8">Üniversite ve şehir rehberiniz</p>
             <a href="login.html" class="discover-button">
                 Keşfet <i class="fas fa-arrow-right ml-2"></i>
             </a>
@@ -369,30 +318,30 @@
     </section>
 
     <!-- Features Section -->
-    <section class="py-16 px-4 md:px-6">
-        <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">Neden UniHi?</h2>
+    <section class="py-16 px-6">
+        <h2 class="text-3xl font-bold text-center mb-12">Neden UniHi?</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div class="feature-card p-6">
                 <i class="fas fa-building feature-icon"></i>
                 <h3 class="text-xl font-bold mb-4">Yurt ve Konaklama</h3>
-                <p class="text-gray-200">Yeni yurdunuza yerleşmek için ihtiyacınız olan tüm bilgileri burada bulabilirsiniz.</p>
+                <p class="text-gray-200">Yeni yurdunuza yerleşmek için ihtiyacınız olan tüm bilgileri burada bulabilirsiniz. Ayrıca çevredeki diğer konaklama seçeneklerini de keşfedin.</p>
             </div>
             <div class="feature-card p-6">
                 <i class="fas fa-bus feature-icon"></i>
                 <h3 class="text-xl font-bold mb-4">Ulaşım Bilgileri</h3>
-                <p class="text-gray-200">Şehir içi ulaşım hakkında detaylı bilgilere buradan ulaşabilirsiniz.</p>
+                <p class="text-gray-200">Şehir içi ulaşım hakkında detaylı bilgilere buradan ulaşabilirsiniz. Toplu taşıma, bisiklet yolları, yürüyüş rotaları ve araç kiralama seçenekleri sizi bekliyor.</p>
             </div>
             <div class="feature-card p-6">
                 <i class="fas fa-map-marker-alt feature-icon"></i>
                 <h3 class="text-xl font-bold mb-4">Şehir Hakkında</h3>
-                <p class="text-gray-200">Şehre yeni geldiniz ve keşfetmeniz gereken çok şey var.</p>
+                <p class="text-gray-200">Şehre yeni geldiniz ve keşfetmeniz gereken çok şey var. Şehirdeki en önemli yerler, parklar, alışveriş merkezleri ve etkinlikler hakkında bilgi alabilirsiniz.</p>
             </div>
         </div>
     </section>
 
     <!-- News Section -->
-    <section class="py-16 px-4 md:px-6 bg-opacity-50 bg-black">
-        <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">Son Haberler</h2>
+    <section class="py-16 px-6 bg-opacity-50 bg-black">
+        <h2 class="text-3xl font-bold text-center mb-12">Son Haberler</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div class="news-card p-6">
                 <img src="photos/Etkinlikler/08.04.2025 Yapay Zeka Konferansı.jpg" alt="Yapay Zeka Konferansı" class="w-full h-48 object-cover rounded-lg mb-4">
@@ -423,7 +372,7 @@
 
     <!-- Footer -->
     <footer class="bg-black bg-opacity-50 py-8 mt-auto">
-        <div class="max-w-6xl mx-auto px-4 md:px-6">
+        <div class="max-w-6xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <h4 class="text-xl font-bold mb-4">İletişim</h4>
@@ -440,7 +389,7 @@
                 </div>
                 <div>
                     <h4 class="text-xl font-bold mb-4">Sosyal Medya</h4>
-                    <div class="flex space-x-4 justify-center md:justify-start">
+                    <div class="flex space-x-4">
                         <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-linkedin"></i></a>
@@ -448,7 +397,7 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
-                <p>&copy; 2025 UniHi. Tüm hakları saklıdır.</p>
+                <p>&copy; 2025 UniHi </U>. Tüm hakları saklıdır.</p>
             </div>
         </div>
     </footer>
