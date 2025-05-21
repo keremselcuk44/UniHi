@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45); /* Bordo Tonları */
+            background: linear-gradient(135deg, #818cf8, #6366f1, #4f46e5); /* Modules sayfası renkleri */
             color: white;
             overflow-y: auto; /* Sayfa aşağı kaydırılabilir */
             min-height: 100vh;
@@ -22,6 +22,11 @@
             height: 200px;
         }
         .hidden { display: none; }
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen relative">

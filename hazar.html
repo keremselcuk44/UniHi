@@ -2,16 +2,29 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Hazar Gölü-UniHi!</title>
     <link rel="icon" href="fotolar/UniHi!_.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
-         body {
+        /* Temel Mobil Uyumluluk Stilleri */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
             background: linear-gradient(135deg, #818cf8, #6366f1, #4f46e5);
             color: white;
             min-height: 100vh;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
         }
 
         .header {
@@ -229,12 +242,14 @@
             background-color: rgba(0, 0, 0, 0.8);
             justify-content: center;
             align-items: center;
+            touch-action: manipulation;
         }
 
         .modal-content {
             max-width: 80%;
             max-height: 80%;
             border-radius: 8px;
+            object-fit: contain;
         }
 
         .close {
@@ -244,26 +259,213 @@
             font-size: 40px;
             color: white;
             cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
         }
 
-        /* Hero Section Styles */
-        .hero-section {
-            position: relative;
-            height: 70vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                        url('photos/Turizm/hazargolu1.jpg');
-            background-size: cover;
-            background-position: center;
+        /* Modal Gezinme Düğmeleri */
+        .modal .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 20px;
+            cursor: pointer;
+            font-size: 24px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            margin-bottom: 4rem;
+            z-index: 1001;
         }
 
-        .hero-content {
-            max-width: 800px;
-            padding: 2rem;
+        .modal .nav-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .modal .nav-button.prev {
+            left: 20px;
+        }
+
+        .modal .nav-button.next {
+            right: 20px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .hero-section {
+                height: 50vh;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .content-section {
+                padding: 1rem;
+            }
+
+            .section-card {
+                padding: 1.5rem;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item::after {
+                left: 15px;
+            }
+
+            .timeline-item:nth-child(even)::after {
+                left: 15px;
+            }
+
+            .image-gallery {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .image-container {
+                margin-bottom: 1rem;
+            }
+
+            .image {
+                height: 200px;
+            }
+
+            .weather-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .weather-details {
+                grid-template-columns: 1fr;
+            }
+
+            .weather-card {
+                padding: 1.5rem;
+            }
+
+            .weather-temp {
+                font-size: 2.5rem;
+            }
+
+            .weather-icon {
+                width: 80px;
+                height: 80px;
+            }
+
+            .header {
+                padding: 0.5rem;
+            }
+
+            .menu-item {
+                padding: 8px 12px;
+            }
+
+            .dropdown {
+                min-width: 200px;
+            }
+
+            .profile-menu img {
+                width: 35px;
+                height: 35px;
+            }
+
+            /* Mobil için Modal Düzenlemeleri */
+            .modal {
+                padding: 0;
+            }
+
+            .modal-content {
+                max-width: 95%;
+                max-height: 80vh;
+                margin: auto;
+            }
+
+            .modal .nav-button {
+                width: 40px;
+                height: 40px;
+                padding: 8px;
+                font-size: 18px;
+                background: rgba(255, 255, 255, 0.3);
+            }
+
+            .modal .nav-button.prev {
+                left: 10px;
+            }
+
+            .modal .nav-button.next {
+                right: 10px;
+            }
+
+            .close {
+                top: 10px;
+                right: 10px;
+                font-size: 30px;
+                padding: 5px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-card h2 {
+                font-size: 1.5rem;
+            }
+
+            .timeline-content h3 {
+                font-size: 1.2rem;
+            }
+
+            .weather-temp {
+                font-size: 2rem;
+            }
+
+            .weather-desc {
+                font-size: 1rem;
+            }
+
+            .image {
+                height: 180px;
+            }
+
+            .modal-content {
+                max-width: 100%;
+                max-height: 70vh;
+            }
+
+            .modal .nav-button {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
         }
 
         /* Animasyonlar */
@@ -559,6 +761,63 @@
             opacity: 1;
             transform: translateX(0);
         }
+
+        /* Dokunmatik cihazlar için iyileştirmeler */
+        @media (hover: none) {
+            .menu-item:hover .dropdown {
+                display: none;
+            }
+
+            .menu-item:active .dropdown {
+                display: block;
+            }
+
+            .profile-menu:hover .profile-dropdown {
+                display: none;
+            }
+
+            .profile-menu:active .profile-dropdown {
+                display: block;
+            }
+
+            .image-container:hover {
+                transform: none;
+            }
+
+            .weather-detail-item:hover {
+                transform: none;
+            }
+
+            .modal .nav-button:hover {
+                transform: translateY(-50%);
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            .modal .nav-button:active {
+                background: rgba(255, 255, 255, 0.3);
+                transform: translateY(-50%) scale(0.95);
+            }
+        }
+
+        /* Hero Section Styles */
+        .hero-section {
+            position: relative;
+            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('photos/Turizm/hazargolu1.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
     </style>
 </head>
 <body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
@@ -738,20 +997,52 @@
 </main>
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
+    <button class="nav-button prev" onclick="changeImage(-1)">❮</button>
     <img class="modal-content" id="modalImage">
+    <button class="nav-button next" onclick="changeImage(1)">❯</button>
 </div>
 
 <script>
+    let currentImageIndex = 0;
+    const images = [
+        'photos/Turizm/hazargolu1.jpg',
+        'photos/Turizm/hazargolu2.jpg',
+        'photos/Turizm/hazargolu3.jpeg'
+    ];
+
     function openModal(imgElement) {
         var modal = document.getElementById("imageModal");
         var modalImg = document.getElementById("modalImage");
         modal.style.display = "flex";
         modalImg.src = imgElement.src;
+        
+        // Tıklanan resmin indeksini bul
+        currentImageIndex = images.indexOf(imgElement.src.split('/').pop());
     }
 
     function closeModal() {
         document.getElementById("imageModal").style.display = "none";
     }
+
+    function changeImage(direction) {
+        currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
+        document.getElementById("modalImage").src = images[currentImageIndex];
+    }
+
+    // Klavye ile gezinme
+    document.addEventListener('keydown', function(event) {
+        if (document.getElementById("imageModal").style.display === "flex") {
+            if (event.key === "ArrowLeft") {
+                changeImage(-1);
+            } else if (event.key === "ArrowRight") {
+                changeImage(1);
+            } else if (event.key === "Escape") {
+                closeModal();
+            }
+        }
+    });
+
+    // Modal dışına tıklayınca kapatma
     document.getElementById("imageModal").addEventListener("click", function(event) {
         if (event.target.id === "imageModal") { 
             closeModal(); 
