@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body {
-            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
+            background: linear-gradient(135deg, #818cf8, #6366f1, #4f46e5);
             color: white;
             min-height: 100vh;
         }
@@ -181,12 +181,13 @@
         .feature-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #ff6b6b;
+            color: white;
             transition: transform 0.3s ease;
         }
 
         .feature-card:hover .feature-icon {
             transform: scale(1.1);
+            color: #818cf8;
         }
 
         .news-card {
@@ -205,14 +206,14 @@
 
         .news-date {
             font-size: 0.9rem;
-            color: #ff6b6b;
+            color: white;
             margin-bottom: 0.5rem;
         }
 
         .news-category {
             display: inline-block;
             padding: 0.25rem 0.75rem;
-            background: rgba(255, 107, 107, 0.2);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 20px;
             font-size: 0.8rem;
             margin-bottom: 0.5rem;
@@ -221,7 +222,7 @@
         .read-more {
             display: inline-block;
             margin-top: 1rem;
-            color: #ff6b6b;
+            color: white;
             font-weight: bold;
             transition: all 0.3s ease;
         }
@@ -297,9 +298,64 @@
         }
 
         .discover-button:hover {
-            background-color: #9b1d48;
-            border-color: #9b1d48;
+            background-color: #818cf8;
+            border-color: #818cf8;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .feature-card, .news-card {
+                margin-bottom: 1rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu-item {
+            color: white;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-item:last-child {
+            border-bottom: none;
         }
     </style>
 </head>
@@ -309,7 +365,7 @@
         <div class="hero-overlay"></div>
         <img src="photos/unnamed.jpg" alt="Fırat Üniversitesi" class="w-full h-full object-cover">
         <div class="hero-content">
-            <h1 class="text-5xl font-bold mb-6">UniHi'ye Hoş Geldiniz :))</h1>
+            <h1 class="text-5xl font-bold mb-6">UniHi'a Hoş Geldiniz :)</h1>
             <p class="text-xl mb-8">Üniversite ve şehir rehberiniz</p>
             <a href="login.html" class="discover-button">
                 Keşfet <i class="fas fa-arrow-right ml-2"></i>
