@@ -1,0 +1,44 @@
+{
+  "uni_menu": {
+    "date": "23 Mayıs 2025 Cuma",
+    "items": [
+      "ETLİ BEZELYE",
+      "BULGUR PİLAVI",
+      "TULMBA TATLISI",
+      "YOĞURT"
+    ]
+  },
+  "kyk_menus": {
+    "aksam": null,
+    "sabah": {
+      "gun": "Cuma",
+      "menü": [
+        {
+          "isim": "Sade Omlet"
+        },
+        {
+          "isim": "Çikolatalı Kek"
+        },
+        {
+          "isim": "Siyah/Yeşil Zeytin"
+        },
+        {
+          "isim": "Yöresel Peynir"
+        },
+        {
+          "isim": "Mevsim Sebzeleri Söğüş"
+        },
+        {
+          "isim": "Çeyrek Ekmek"
+        },
+        {
+          "isim": "500 ml Su"
+        },
+        {
+          "isim": "Çay"
+        }
+      ]
+    }
+  },
+  "last_updated": "2025-05-23 11:07:41"
+}

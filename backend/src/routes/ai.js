@@ -1,19 +1,32 @@
 const express = require('express');
 const router = express.Router();
-const fetch = require('node-fetch');
+const axios = require('axios');
+const cors = require('cors');
+require('dotenv').config();
 
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+// CORS options
+const corsOptions = {
+  origin: '*',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+router.use(cors(corsOptions));
+
+// Update Gemini API URL without the API key in the URL
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const GEMINI_API_URL = process.env.GEMINI_API_URL;
 
 // Helper function to determine if a facility is open
 function isFacilityOpen(facility) {
   const now = new Date();
   const hour = now.getHours();
-  
+
   switch(facility) {
     case 'yemekhane':
       // Yemekhane hours: 7-10, 12-14, 17-20
-      return (hour >= 7 && hour < 10) || 
-             (hour >= 12 && hour < 14) || 
+      return (hour >= 7 && hour < 10) ||
+             (hour >= 12 && hour < 14) ||
              (hour >= 17 && hour < 20);
     case 'kutuphane':
       // Kütüphane is 24/7
@@ -27,7 +40,7 @@ function isFacilityOpen(facility) {
 function getCurrentSeason() {
   const now = new Date();
   const month = now.getMonth();
-  
+
   if (month >= 2 && month <= 4) return 'İlkbahar';
   if (month >= 5 && month <= 7) return 'Yaz';
   if (month >= 8 && month <= 10) return 'Sonbahar';
@@ -51,8 +64,8 @@ router.post('/generate', async (req, res) => {
   try {
     const { prompt, conversationContext = '' } = req.body;
     const currentInfo = getCurrentInfo();
-    
-    const systemPrompt = `Sen UniHi platformunun yapay zeka asistanısın. Adın Uni. 
+
+    const systemPrompt = `Sen UniHi platformunun yapay zeka asistanısın. Adın Uni.
 Şu anki durum:
 - Tarih: ${currentInfo.currentDate}
 - Saat: ${currentInfo.currentTime}
@@ -251,61 +264,24 @@ ${conversationContext}
 - Turnuvalar: Sezonluk
 - Etkinlikler: Günlük`;
 
-    const response = await fetch(`${GEMINI_API_URL}?key=${process.env.GEMINI_API_KEY}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        contents: [{
-          parts: [{
-            text: `${systemPrompt}\n\n${prompt}`
-          }]
-        }],
-        generationConfig: {
-          temperature: 0.7,
-          topK: 40,
-          topP: 0.95,
-          maxOutputTokens: 1024,
-        },
-        safetySettings: [{
-          category: "HARM_CATEGORY_HARASSMENT",
-          threshold: "BLOCK_MEDIUM_AND_ABOVE"
-        }]
-      })
-    });
-
-    if (!response.ok) {
-      console.error('API Error:', await response.text());
-      throw new Error(`API yanıt vermedi: ${response.status}`);
-    }
-
-    const data = await response.json();
-    
-    if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
-      throw new Error('Geçersiz API yanıtı');
-    }
-
-    // HTML bağlantılarını işle
-    let responseText = data.candidates[0].content.parts[0].text;
-    responseText = responseText.replace(
-      /\[([^\]]+)\]\(([^)]+)\)/g,
-      '<a href="$2" class="text-blue-600 hover:text-blue-800 underline">$1</a>'
-    );
-
-    res.json({
-      candidates: [{
-        content: {
-          parts: [{
-            text: responseText
-          }]
-        }
+    const body = {
+      contents: [{
+        parts: [{ text: `${systemPrompt}\n\nKullanıcı: ${prompt}` }]
       }]
+    };
+
+    const response = await axios.post(GEMINI_API_URL, body, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
     });
+
+    const data = response.data;
+    res.json(data);
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'Internal server error', details: error.message });
   }
 });
 
-module.exports = router; 
+module.exports = router;

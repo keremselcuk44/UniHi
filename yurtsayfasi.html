@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
         body {
-            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
+            background: linear-gradient(135deg, #818cf8, #6366f1, #4f46e5);
             color: white;
             font-family: Arial, sans-serif;
             overflow-y: auto;
@@ -33,7 +33,7 @@
         }
 
         .menu-item:hover {
-            color: #ff6b6b;
+            color: white;
         }
 
         .dropdown {
@@ -212,12 +212,14 @@
         }
 
         .yurt-card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
             padding: 30px;
             border-radius: 15px;
             margin: 30px 0;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            color: #333;
         }
 
         .yurt-card:hover {
@@ -227,11 +229,11 @@
 
         .yurt-card h2 {
             font-size: 24px;
-            color: #c32f52;
+            color: #6366f1;
             margin-bottom: 15px;
             font-weight: 700;
             padding-bottom: 8px;
-            border-bottom: 2px solid #c32f52;
+            border-bottom: 2px solid #6366f1;
         }
 
         .yurt-content {
@@ -257,20 +259,25 @@
             align-items: flex-start;
             gap: 8px;
             padding: 8px;
-            background: rgba(195, 47, 82, 0.05);
+            background: rgba(99, 102, 241, 0.05);
             border-radius: 8px;
         }
 
         .info-item strong {
-            color: #c32f52;
+            color: #6366f1;
             font-weight: 600;
             min-width: 80px;
         }
 
         .info-item p {
             margin: 0;
-            color: #333;
+            color: #4b5563;
             line-height: 1.4;
+        }
+
+        .info-item a {
+            color: #6366f1;
+            text-decoration: underline;
         }
 
         .yurt-slider {
@@ -316,7 +323,7 @@
         }
 
         .slider-dot.active {
-            background: white;
+            background: #6366f1;
             transform: scale(1.2);
         }
 
@@ -333,17 +340,17 @@
         }
 
         .yurt-card .not {
-            background: rgba(255, 215, 0, 0.1);
+            background: rgba(99, 102, 241, 0.1);
             padding: 10px;
             border-radius: 8px;
             margin-top: 10px;
-            border-left: 3px solid #ffd700;
-            color: #333;
+            border-left: 3px solid #6366f1;
+            color: #4b5563;
             font-size: 0.95em;
         }
 
         .yurt-card .not strong {
-            color: #c32f52;
+            color: #6366f1;
             display: block;
             margin-bottom: 3px;
         }
@@ -354,8 +361,8 @@
         }
 
         .top-buttons button, #scrollTopBtn {
-            background: white;
-            color: #9b1d48;
+            background: rgba(255, 255, 255, 0.9);
+            color: #6366f1;
             border: none;
             padding: 12px 24px;
             border-radius: 12px;
@@ -432,16 +439,125 @@
             }
         }
 
-        @media (max-width: 768px) {
+        /* Mobil Uyumluluk için Medya Sorguları */
+        @media screen and (max-width: 768px) {
             .yurt-content {
                 flex-direction: column;
+                gap: 20px;
             }
             
             .yurt-slider {
                 width: 100%;
-                height: 400px;
+                height: 300px;
                 position: relative;
                 top: 0;
+                margin-bottom: 20px;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            .yurt-card {
+                padding: 20px;
+                margin: 20px 0;
+            }
+
+            .info-item {
+                flex-direction: column;
+                gap: 4px;
+                padding: 10px;
+            }
+
+            .info-item strong {
+                min-width: auto;
+                margin-bottom: 4px;
+            }
+
+            .map-container {
+                margin-top: 20px;
+            }
+
+            .map-container iframe {
+                height: 250px;
+            }
+
+            .top-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin: 15px 0;
+            }
+
+            .top-buttons button {
+                width: 100%;
+                margin: 0;
+            }
+
+            #scrollTopBtn {
+                width: auto;
+                padding: 10px 20px;
+                right: 15px;
+                bottom: 15px;
+            }
+
+            .slider-controls {
+                bottom: 10px;
+            }
+
+            .slider-dot {
+                width: 8px;
+                height: 8px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .yurt-slider {
+                height: 250px;
+            }
+
+            .yurt-card h2 {
+                font-size: 20px;
+            }
+
+            .top-buttons button, #scrollTopBtn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            .info-item {
+                font-size: 14px;
+            }
+
+            .map-container iframe {
+                height: 200px;
+            }
+
+            .container h1 {
+                font-size: 28px;
+            }
+
+            .container p {
+                font-size: 16px;
+            }
+
+            .yurt-card .not {
+                font-size: 13px;
+            }
+        }
+
+        /* Dokunmatik cihazlar için iyileştirmeler */
+        @media (hover: none) {
+            .yurt-card:hover {
+                transform: none;
+            }
+
+            .top-buttons button:active, #scrollTopBtn:active {
+                transform: scale(0.98);
+            }
+
+            .slider-dot:active {
+                transform: scale(1.1);
             }
         }
 
@@ -647,7 +763,7 @@
                         </div>
                         <div class="info-item">
                             <strong>Aylık Ücret:</strong>
-                            <p>720 TL</p>
+                            <p>875 TL</p>
                         </div>
                         <div class="info-item">
                             <strong>Ulaşım:</strong>
@@ -697,7 +813,7 @@
                         </div>
                         <div class="info-item">
                             <strong>Aylık Ücret:</strong>
-                            <p>875 TL</p>
+                            <p>720 TL</p>
                         </div>
                         <div class="info-item">
                             <strong>Ulaşım:</strong>

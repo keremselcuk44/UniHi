@@ -5,11 +5,19 @@ const helmet = require('helmet');
 const aiRoutes = require('./routes/ai');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3001;
 
-// Middleware
-app.use(helmet()); // Security headers
-app.use(cors()); // Enable CORS
+
+// CORS configuration
+app.use(cors());
+
+// Helmet configuration with relaxed settings
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" },
+  crossOriginOpenerPolicy: { policy: "unsafe-none" },
+  contentSecurityPolicy: false,
+}));
+
 app.use(express.json()); // Parse JSON bodies
 
 // Routes
