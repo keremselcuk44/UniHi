@@ -169,10 +169,10 @@ Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICE
 ## 📞 İletişim
 
 ### UniHi Ekibi
-- Kerem Selçuk - Frontend Geliştirici [@keremselcuk](https://github.com/keremselcuk)
-- Kenan Acımış - Backend Geliştirici [@kenanacimis](https://github.com/kenanacimis)
-- Recep Yıldırım - UI/UX Tasarımcı [@recepyildirim](https://github.com/recepyildirim)
-- Emir Ali Eşkili - Yapay Zeka Entegrasyonu [@emirali](https://github.com/emirali)
+- Kerem Selçuk - Frontend Geliştirici [@keremselcuk44](https://github.com/keremselcuk44)
+- Kenan Acımış - Backend Geliştirici [@acimisk](https://github.com/acimisk)
+- Recep Yıldırım - UI/UX Tasarımcı [@Recep231](https://github.com/Recep231)
+- Emir Ali Eşkili - Yapay Zeka Entegrasyonu [@emiralieskili](https://github.com/emiralieskili)
 
 ### Proje Linkleri
 - GitHub: [https://github.com/keremselcuk44/unihi](https://github.com/keremselcuk44/unihi)
