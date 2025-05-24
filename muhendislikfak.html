@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
         body {
-            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
+            background: linear-gradient(135deg, #818cf8, #6366f1, #4f46e5);
             color: white;
             min-height: 100vh;
         }
@@ -74,15 +74,15 @@
 
         .slider-container {
             position: relative;
-            width: 100%;
-            max-width: 1200px;
-            margin: 2rem auto;
+            width: 60%;
+            max-width: 800px;
+            margin: 2rem 0 2rem 2rem;
             padding: 0 1rem;
         }
 
         .slider {
             position: relative;
-            height: 500px;
+            height: 350px;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
@@ -133,41 +133,6 @@
 
         .nav-button.right {
             right: 20px;
-        }
-
-        .thumbnails {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .thumbnail {
-            width: 120px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 3px solid transparent;
-            opacity: 0.7;
-        }
-
-        .thumbnail:hover {
-            opacity: 1;
-            transform: translateY(-5px);
-        }
-
-        .thumbnail.active {
-            border-color: #ff6b6b;
-            opacity: 1;
-            transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
         }
 
         .controls {
@@ -273,6 +238,123 @@
             background: rgba(0, 0, 0, 0.05);
             color: #ff6b6b;
         }
+
+        /* Haber kartları için stiller */
+        .haber-card {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
+            display: flex;
+            margin-bottom: 8px;
+            height: 80px;
+            position: relative;
+            padding-left: 12px;
+        }
+
+        .haber-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #818cf8, #6366f1);
+            border-radius: 2px;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .haber-card:hover {
+            transform: translateX(5px);
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .haber-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 2px;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .haber-title a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .haber-title a:hover {
+            color: #ffffff;
+        }
+
+        .haber-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.75rem;
+            line-height: 1.2;
+            margin-bottom: 2px;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .haber-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.65rem;
+        }
+
+        .haber-date {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .haber-date::before {
+            content: '📅';
+            font-size: 0.7rem;
+        }
+
+        .haber-source {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .haber-source::before {
+            content: '🔗';
+            font-size: 0.7rem;
+        }
+
+        .haber-baslik {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .haber-baslik::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0.8));
+            border-radius: 2px;
+        }
     </style>
 </head>
 <body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
@@ -301,6 +383,9 @@
     <!-- Slider -->
     <div class="slider-container">
         <div class="slider">
+            <img src="photos/13938774921737632619.m3 (Orta).jpg" alt="Yeni Görsel 1" class="slide">
+            <img src="photos/13611568701737632720.m6 (Orta).jpeg" alt="Yeni Görsel 2" class="slide">
+            <img src="photos/home-new-img.jpeg" alt="Yeni Görsel 3" class="slide">
             <img src="photos/muhendislik1.jpg" alt="Slide 1" class="slide active">
             <img src="photos/muhendislik2.jpg" alt="Slide 2" class="slide">
             <img src="photos/muhendislik3.jpg" alt="Slide 3" class="slide">
@@ -309,11 +394,85 @@
         <button class="nav-button right">&gt;</button>
     </div>
 
-    <!-- Thumbnail'ler -->
-    <div class="thumbnails">
-        <img src="photos/muhendislik1.jpg" alt="Thumbnail 1" class="thumbnail active">
-        <img src="photos/muhendislik2.jpg" alt="Thumbnail 2" class="thumbnail">
-        <img src="photos/muhendislik3.jpg" alt="Thumbnail 3" class="thumbnail">
+    <!-- Final Takvimi Haberi -->
+    <div class="rounded-2xl shadow-xl p-4 backdrop-blur-sm mt-8 mx-4" style="position: absolute; top: 100px; right: 2rem; width: 30%;">
+        <div class="flex items-center justify-between mb-3">
+            <h2 class="haber-baslik flex items-center">
+                <span class="mr-2">19.05.2025 Bahar Dönemi Final Takvimi</span>
+            </h2>
+        </div>
+        <div class="haber-card">
+            <div class="haber-content">
+                <h3 class="haber-title">
+                    <a href="#" target="_blank">Final Takvimi Yayınlandı</a>
+                </h3>
+                <p class="haber-description">2024-2025 Bahar Dönemi Final Sınav Takvimi yayınlanmıştır. Takvimi görüntülemek için tıklayınız.</p>
+                <div class="haber-meta">
+                    <span class="haber-date">19.05.2025</span>
+                    <span class="haber-source">Mühendislik Fakültesi</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="haber-card mt-4">
+            <div class="haber-content">
+                <h3 class="haber-title">
+                    <a href="#" target="_blank">Vize Mazeret Sınav Yerleri Değişikliği</a>
+                </h3>
+                <p class="haber-description">Yabancı Dil, Tarih ve Türk Dili derslerimizin VİZE MAZERET sınav yerleri değişmiştir.</p>
+                <p class="haber-description mt-2">Odek-3 kapsamındaki YDİ kodlu dersler Yabancı Diller Yüksekokulu binasında, Odek-2 kapsamındaki TRD ve AİT kodlu dersler ise İnsan Toplum Bilimler Fakültesi A2 sınıfında yapılacaktır.</p>
+                <div class="haber-meta">
+                    <span class="haber-date">14.05.2025</span>
+                    <span class="haber-source">Mühendislik Fakültesi</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Takvim ve İletişim Kutucukları -->
+    <div class="flex justify-center gap-8 mt-8 mb-8">
+        <a href="https://www.firat.edu.tr/tr/document?file_category_id=66&menu_id=406" target="_blank" class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 w-64 text-center transform hover:scale-105 transition-all duration-300 cursor-pointer no-underline">
+            <div class="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+                <svg width="70" height="50" viewBox="0 0 70 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="5" y="10" width="60" height="35" rx="8" fill="#fafafa" stroke="#e5e5e5" stroke-width="2"/>
+                    <rect x="22" y="22" width="26" height="16" rx="2" fill="none" stroke="#9b1d48" stroke-width="3"/>
+                    <rect x="5" y="10" width="60" height="35" rx="8" fill="none" stroke="#e5e5e5" stroke-width="2"/>
+                    <rect x="22" y="22" width="26" height="16" rx="2" fill="none" stroke="#9b1d48" stroke-width="3"/>
+                    <rect x="18" y="5" width="4" height="10" rx="2" fill="#9b1d48"/>
+                    <rect x="48" y="5" width="4" height="10" rx="2" fill="#9b1d48"/>
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Takvim</h3>
+            <p class="text-white text-opacity-80">Akademik takvim ve etkinlikler</p>
+        </a>
+        <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 w-64 text-center transform hover:scale-105 transition-all duration-300 cursor-pointer" id="iletisimBtn">
+            <div class="w-24 h-24 mx-auto mb-4 flex items-center justify-center">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="2" width="56" height="56" rx="16" fill="#fafafa" stroke="#e5e5e5" stroke-width="2"/>
+                    <path d="M40.5 36.5c-2.5 2.5-4.5 2.5-7 1-2.2-1.3-5.7-4.7-7-7-1.5-2.5-1.5-4.5 1-7l2-2c0.5-0.5 0.5-1.5 0-2l-4-4c-0.5-0.5-1.5-0.5-2 0l-3 3c-2.5 2.5-3 6.5-0.5 11 2.2 4 6.2 8 10.2 10.2 4.5 2.5 8.5 2 11-0.5l3-3c0.5-0.5 0.5-1.5 0-2l-4-4c-0.5-0.5-1.5-0.5-2 0l-2 2z" stroke="#9b1d48" stroke-width="3" fill="none"/>
+                </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">İletişim</h3>
+            <p class="text-white text-opacity-80">İletişim bilgileri ve harita</p>
+        </div>
+    </div>
+
+    <!-- İletişim Modalı -->
+    <div id="iletisimModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-lg w-full relative" id="iletisimModalContent">
+            <button id="closeIletisim" class="absolute top-3 right-3 text-gray-500 hover:text-red-600 text-2xl font-bold">&times;</button>
+            <h2 class="text-2xl font-bold mb-4 text-[#9b1d48]">İletişim Bilgileri</h2>
+            <table class="w-full text-left mb-2">
+                <tbody class="text-gray-800">
+                    <tr><th class="py-1 pr-2 text-[#9b1d48]">Telefon</th><td>Mühendislik Fakültesi Dekanlığı</td><td class="font-semibold">+90 424 2415525</td></tr>
+                    <tr><th class="py-1 pr-2 text-[#9b1d48]">Faks</th><td>Mühendislik Fakültesi Dekanlığı</td><td class="font-semibold">+90 424 2415526</td></tr>
+                    <tr><th class="py-1 pr-2 text-[#9b1d48]">Fakülte Sekreteri</th><td>Yasin CAN</td><td class="font-semibold">0424 237 0000 / 5004<br><span class='text-xs'>E-Posta: ycan@firat.edu.tr</span></td></tr>
+                    <tr><th class="py-1 pr-2 text-[#9b1d48]">Dekan Sekreteri</th><td></td><td class="font-semibold">0424 237 0000 / 5001</td></tr>
+                    <tr><th class="py-1 pr-2 text-[#9b1d48]">Web Sorumlusu</th><td>Doç. Dr. Fatih ÖZYURT</td><td class="font-semibold">0424 237 0000 / 5002<br><span class='text-xs'>E-Posta: fatihozyurt@firat.edu.tr</span></td></tr>
+                    <tr><th class="py-1 pr-2 text-[#9b1d48]">Adres</th><td colspan="2">Fırat Üniversitesi Mühendislik Fakültesi Dekanlığı 23119 Elazığ – TÜRKİYE</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="fixed inset-0 bg-black bg-opacity-50 z-40" x-show="open" @click="open = false"></div>
@@ -437,6 +596,20 @@
 
         updateSlides();
         startSlideShow();
+
+        // İletişim Modalı Açma/Kapama
+        document.getElementById('iletisimBtn').onclick = function() {
+            document.getElementById('iletisimModal').classList.remove('hidden');
+        };
+        document.getElementById('closeIletisim').onclick = function() {
+            document.getElementById('iletisimModal').classList.add('hidden');
+        };
+        // Modal dışında bir yere tıklanınca kapansın
+        document.getElementById('iletisimModal').addEventListener('mousedown', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
     </script>
     <script src="profile-updater.js"></script>
 </body>
