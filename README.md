@@ -5,8 +5,10 @@
 ![UniHi Logo](photos/unihilogo.png)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/Version-2.0-blue.svg)](https://github.com/yourusername/unihi)
-[![Status](https://img.shields.io/badge/Status-Active-success.svg)](https://github.com/yourusername/unihi)
+[![Version](https://img.shields.io/badge/Version-2.0-blue.svg)](https://github.com/keremselcuk44/unihi)
+[![Status](https://img.shields.io/badge/Status-Active-success.svg)](https://github.com/keremselcuk44/unihi)
+[![Contributors](https://img.shields.io/github/contributors/keremselcuk44/unihi)](https://github.com/keremselcuk44/unihi/graphs/contributors)
+[![Stars](https://img.shields.io/github/stars/keremselcuk44/unihi)](https://github.com/keremselcuk44/unihi/stargazers)
 
 </div>
 
@@ -27,20 +29,35 @@
 
 ## 🎯 Proje Hakkında
 
-UniHi, Fırat Üniversitesi öğrencileri için geliştirilmiş kapsamlı bir bilgi ve etkileşim platformudur. Platform, öğrencilerin akademik ve sosyal yaşamlarını kolaylaştırmak için tasarlanmış modern ve kullanıcı dostu bir arayüz sunmaktadır.
+UniHi, Fırat Üniversitesi öğrencileri için geliştirilmiş yenilikçi bir bilgi ve etkileşim platformudur. Yapay zeka destekli akıllı asistanımız, öğrencilerin akademik ve sosyal yaşamlarını kolaylaştırmak için tasarlanmış modern ve kullanıcı dostu bir arayüz sunmaktadır.
+
+### 🌟 Neden UniHi?
+
+- 🤖 Yapay zeka destekli kişiselleştirilmiş deneyim
+- 📱 Responsive tasarım ile her cihazda mükemmel kullanım
+- 🔒 Güvenlik odaklı geliştirme
+- 🚀 Sürekli güncellenen içerik ve özellikler
+- 💡 Kullanıcı geri bildirimleri ile sürekli iyileştirme
 
 ## ✨ Özellikler
 
-- 🔐 Güvenli kullanıcı girişi ve kayıt sistemi
-- 🏛️ Detaylı fakülte ve bölüm bilgileri
-- 🏠 KYK yurt bilgileri ve başvuru sistemi
-- 📅 Etkinlik takibi ve kişisel takvim
-- 🤖 Yapay zeka destekli asistan
-- 📰 Güncel yapay zeka haberleri
+### 🎓 Akademik Özellikler
+- 📚 Detaylı fakülte ve bölüm bilgileri
+- 📅 Akademik takvim entegrasyonu
+- 📝 Ders programı görüntüleme
+- 📊 Not takip sistemi
+
+### 🏠 Kampüs Yaşamı
+- 🏛️ KYK yurt bilgileri ve başvuru sistemi
 - 🍽️ Yemekhane menü takibi
-- 📚 Kütüphane durumu ve bilgileri
-- 🎓 Akademik takvim entegrasyonu
-- 📱 Responsive tasarım
+- 📚 Kütüphane durumu ve rezervasyon sistemi
+- 🎯 Etkinlik takibi ve kişisel takvim
+
+### 🤖 Yapay Zeka Özellikleri
+- 💬 Akıllı asistan desteği
+- 📰 Güncel yapay zeka haberleri
+- 🎯 Kişiselleştirilmiş öneriler
+- 🔍 Gelişmiş arama özellikleri
 
 ## 🚀 Başlangıç
 
@@ -54,7 +71,7 @@ UniHi, Fırat Üniversitesi öğrencileri için geliştirilmiş kapsamlı bir bi
 
 1. Projeyi klonlayın:
 ```bash
-git clone https://github.com/yourusername/unihi.git
+git clone https://github.com/keremselcuk44/unihi.git
 ```
 
 2. Proje dizinine gidin:
@@ -72,12 +89,15 @@ cd unihi
 
 ## 🔌 API Entegrasyonu
 
-Projede kullanılan API'ler:
-
 ### GNews API
 - Haberler bölümü için kullanılmaktadır
 - Ücretsiz API planı mevcuttur
 - Günlük istek limiti: 100 istek
+
+### Gemini API
+- Yapay zeka asistanı için kullanılmaktadır
+- Gelişmiş doğal dil işleme özellikleri
+- Gerçek zamanlı yanıt sistemi
 
 ### Kendi API Anahtarınızı Almak İçin
 
@@ -88,9 +108,8 @@ Projede kullanılan API'ler:
 
 ## 🔒 Güvenlik
 
-Proje güvenliği için alınan önlemler:
-
-- API anahtarları environment variables olarak saklanmalı
+### Güvenlik Önlemleri
+- API anahtarları environment variables olarak saklanır
 - Backend proxy kullanımı
 - Rate limiting uygulaması
 - Güvenli API anahtarı yönetimi
@@ -98,23 +117,36 @@ Proje güvenliği için alınan önlemler:
 - Input validasyonu
 - Güvenli şifreleme
 
+### Veri Güvenliği
+- SSL/TLS şifreleme
+- Güvenli oturum yönetimi
+- Düzenli güvenlik güncellemeleri
+- Veri yedekleme sistemi
+
 ## 🛠️ Teknolojiler
 
-- **Frontend:**
-  - HTML5
-  - CSS3
-  - JavaScript (ES6+)
-  - Tailwind CSS
-  - Responsive Design
+### Frontend
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- Tailwind CSS
+- Responsive Design
 
-- **API'ler:**
-  - GNews API
-  - Gemini API
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- RESTful API
 
-- **Araçlar:**
-  - Git
-  - VS Code
-  - Chrome DevTools
+### API'ler
+- GNews API
+- Gemini API
+
+### Araçlar
+- Git
+- VS Code
+- Chrome DevTools
+- Postman
 
 ## 🤝 Katkıda Bulunma
 
@@ -124,16 +156,29 @@ Proje güvenliği için alınan önlemler:
 4. Branch'inizi push edin (`git push origin feature/amazing-feature`)
 5. Pull Request oluşturun
 
+### Katkıda Bulunma Kuralları
+- Kod standartlarına uygun yazım
+- Test coverage sağlama
+- Dökümantasyon güncelleme
+- Code review sürecine katılım
+
 ## 📄 Lisans
 
 Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
 
 ## 📞 İletişim
 
-UniHi Ekibi:
-- Kerem Selçuk - [@keremselcuk](https://github.com/keremselcuk)
-- Kenan Acımış - [@kenanacimis](https://github.com/kenanacimis)
-- Recep Yıldırım - [@recepyildirim](https://github.com/recepyildirim)
-- Emir Ali Eşkili - [@emirali](https://github.com/emirali)
+### UniHi Ekibi
+- Kerem Selçuk - Frontend Geliştirici [@keremselcuk](https://github.com/keremselcuk)
+- Kenan Acımış - Backend Geliştirici [@kenanacimis](https://github.com/kenanacimis)
+- Recep Yıldırım - UI/UX Tasarımcı [@recepyildirim](https://github.com/recepyildirim)
+- Emir Ali Eşkili - Yapay Zeka Entegrasyonu [@emirali](https://github.com/emirali)
 
-Proje Linki: [https://github.com/keremselcuk44/unihi](https://github.com/yourusername/unihi)
+### Proje Linkleri
+- GitHub: [https://github.com/keremselcuk44/unihi](https://github.com/keremselcuk44/unihi)
+
+---
+
+<div align="center">
+Made with ❤️ by UniHi Team
+</div>
