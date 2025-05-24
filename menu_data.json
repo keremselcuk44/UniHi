@@ -1,32 +1,27 @@
 {
   "uni_menu": {
-    "date": "23 Mayıs 2025 Cuma",
-    "items": [
-      "ETLİ BEZELYE",
-      "BULGUR PİLAVI",
-      "TULMBA TATLISI",
-      "YOĞURT"
-    ]
+    "date": "Menü bilgisi alınamadı",
+    "items": []
   },
   "kyk_menus": {
     "aksam": null,
     "sabah": {
-      "gun": "Cuma",
+      "gun": "Cumartesi",
       "menü": [
         {
-          "isim": "Sade Omlet"
+          "isim": "Patates Kızartması"
         },
         {
-          "isim": "Çikolatalı Kek"
+          "isim": "Haşlanmış Yumurta"
         },
         {
           "isim": "Siyah/Yeşil Zeytin"
         },
         {
-          "isim": "Yöresel Peynir"
+          "isim": "Labne Peyniri"
         },
         {
-          "isim": "Mevsim Sebzeleri Söğüş"
+          "isim": "Tahinli Pekmez"
         },
         {
           "isim": "Çeyrek Ekmek"
@@ -40,5 +35,5 @@
       ]
     }
   },
-  "last_updated": "2025-05-23 11:07:41"
+  "last_updated": "2025-05-24 10:30:35"
 }
