@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Çırçır Şelalesi-UniHi!</title>
+    <title>Çırçır Şelalesi!</title>
     <link rel="icon" href="fotolar/UniHi!_.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
-        body {
-            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
+         body {
+            background: linear-gradient(135deg, #818cf8, #6366f1, #4f46e5);
             color: white;
             min-height: 100vh;
         }
@@ -207,12 +207,14 @@
         .image-container {
             flex: 1;
             text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 8px;
         }
 
         .image {
             width: 4000px;
             height: 250px;
-            border-radius: 8px;
             cursor: pointer;
             object-fit: cover;
         }
@@ -243,22 +245,334 @@
             color: white;
             cursor: pointer;
         }
+
+        /* Hero Section Styles */
+        .hero-section {
+            position: relative;
+            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('photos/Turizm/circirselalesi2.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        /* Animasyonlar */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        /* Content Section Styles */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section-card h2 {
+            color: #6366f1;
+            margin-bottom: 1.5rem;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .section-card p {
+            color: #4b5563;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #6366f1;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid #6366f1;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -16px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-content h3 {
+            color: #6366f1;
+            margin-bottom: 0.5rem;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .timeline-content p {
+            color: #4b5563;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        /* Gallery Improvements */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .image-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover .image {
+            transform: scale(1.05);
+        }
+
+        /* Weather Section Styles */
+        .weather-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .weather-card h2 {
+            color: #6366f1;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .weather-info {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .weather-detail {
+            text-align: center;
+        }
+
+        .weather-icon {
+            width: 100px;
+            height: 100px;
+        }
+
+        .weather-temp {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .weather-desc {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .weather-detail-item {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            color: #4b5563;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            animation: fadeInUp 0.8s ease-out;
+            transition: transform 0.3s ease;
+        }
+
+        .weather-detail-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .weather-detail-item .text-lg {
+            color: #6366f1;
+            font-weight: 600;
+        }
+
+        /* Scroll Reveal Animasyonları */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
     <header class="bg-gradient-to-r from-[#c32f52] to-[#9b1d48] shadow-md py-4 px-6 flex justify-between items-center">
         <button @click="open = !open" class="text-white text-3xl focus:outline-none">&#9776;</button>
         <nav class="menu text-white"> 
-            <div class="menu-item">ÇIRÇIR ŞELALESİ
-                <div class="dropdown">
-                </div>
+            <div class="menu-item">Çırçır Şelalesi
             </div>
         </nav>
         <div class="profile-menu">
             <img src="photos/jonsnow.png" alt="Admin Profil">
             <div class="profile-dropdown">
                 <a href="settings.html">Ayarlar</a>
-                <a href="Home.html">Çıkış Yap</a>
+                <a href="home.html">Çıkış Yap</a>
             </div>
         </div>
     </header>
@@ -314,47 +628,134 @@
        
     </ul>
 </aside>
-<main class="p-6">
-    <section id="tarihce" class="mb-6">
-        <h2 class="text-3xl font-bold">Çırçır Şelalesi'nin Tarihi:</h2>
-        <p>Çırçır Şelalesi, Elazığ il sınırlarında yer alan ve bölgenin en önemli doğal zenginliklerinden biri olarak bilinen bir şelaledir. 
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title reveal">Çırçır Şelalesi</h1>
+        <p class="hero-subtitle reveal">Doğanın Huzurlu Çağlayışı</p>
+    </div>
+</div>
+
+<main class="content-section">
+    <div class="section-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Çırçır Şelalesi'nin Tarihi:</h2>
+        <p class="text-lg leading-relaxed reveal">Çırçır Şelalesi, Elazığ il sınırlarında yer alan ve bölgenin en önemli doğal zenginliklerinden biri olarak bilinen bir şelaledir. 
             Tarih boyunca hem doğal güzellikleri hem de stratejik konumu ile dikkat çekmiştir. Bu bölge, farklı medeniyetlerin yerleşim alanları 
-            arasında yer almış ve her dönem, şelalenin çevresini kullanmış ya da çevreye yerleşim kurmuştur.p>
-    </section>
-    <section id="yonetim">
-        <h2 class="text-3xl font-bold">Çırçır Şelalesi'ni Kimler Yönetti?</h2>
-        <ul>
-            <li><strong>Urartular (MÖ 9. – 6. yüzyıl):</strong> Çırçır Şelalesi ve çevresindeki doğal alanlar, Urartular döneminde bölgenin savunma amacıyla kullanılmıştır.</li>
-            <li><strong>Asurlar (MÖ 7. – 6. yüzyıl):</strong> Asurlar, bölgedeki su kaynaklarını stratejik bir şekilde kullanmış ve Çırçır Şelalesi'nin çevresindeki arazilerde tarım yapmışlardır.</li>
-            <li><strong>Roma İmparatorluğu (MÖ 1. yüzyıl – 5. yüzyıl):</strong> Roma İmparatorluğu döneminde, bölge doğal güzellikleriyle tanınmış ve bu alan, Roma'ya bağlı halkların yaşam alanı olmuştur.</li>
-            <li><strong>Selçuklular (11. yüzyıl):</strong> Selçuklular, bölgedeki su kaynaklarını kullanarak sulama sistemleri kurmuş ve bölgeyi tarımsal olarak verimli hale getirmiştir.</li>
-            <li><strong>Osmanlı İmparatorluğu (15. yüzyıl – 19. yüzyıl):</strong> Osmanlı döneminde, Çırçır Şelalesi'nin çevresi koruma altına alınmış ve bölge halkı su kaynaklarını kullanarak çeşitli yerleşimler kurmuştur.</li>
-            <li><strong>Cumhuriyet Dönemi (1923 – günümüz):</strong> Cumhuriyetin kuruluşu ile birlikte, bölge çevre düzenlemeleri yapılmış ve Çırçır Şelalesi, doğa turizminin merkezi haline gelmiştir.</li>
-        </ul>
-    </section>
-    <section id="yapilar">
-        <h2 class="text-3xl font-bold">Çırçır Şelalesi'ndeki Yapılar</h2>
-        <ul>
-            <li><strong>Hediyelik Eşya Dükkanları:</strong> Çırçır Şelalesi'ni ziyaret ettiğinizde, girişte yöresel leblebi gibi atıştırmalıkların satıldığı stantlarla karşılaşabilirsiniz. Ayrıca, tesis içinde hediyelik eşya ve yöresel ürünlerin satıldığı alanlar bulunmaktadır. Bu sayede sevdiklerinize veya kendinize Elazığ'a özgü hatıralar alabilirsiniz. ​            </li>
-            <li><strong>Restoranlar:</strong> Çırçır Şelalesi'nin üzerinde kurulu olan Keban Alabalık Tesisleri, şelale manzarası eşliğinde 23 çeşit alabalık menüsü sunmaktadır. Menüde ızgara alabalık, alabalık köfte, alabalık sote, alabalık katmer ve Adana gibi seçenekler bulunmaktadır. Tesis, yaz döneminde misafirlerini ağırlamaya devam etmektedir. </li>
-        </ul>
-    </section>
-    <section id="fotolar">
-        <h2 class="text-3xl font-bold">Çırçır Şelalesi'nden Bazı Fotoğraflar:</h2>
-        <br>
-        <div class="image-gallery">
-            <div class="image-container">
-                <img src="photos/Turizm/circirselalesi1.jpg" class="image" alt="Çırçır Şelalesi Fotoğraf 1" onclick="openModal(this)">
+            arasında yer almış ve her dönem, şelalenin çevresini kullanmış ya da çevreye yerleşim kurmuştur.</p>
+    </div>
+
+    <div class="section-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Tarihsel Yolculuk</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Urartular (MÖ 9. – 6. yüzyıl)</h3>
+                    <p>Urartular, Elazığ bölgesini askeri ve ekonomik açıdan geliştiren güçlü bir krallıktı. Bölgede kaleler, sulama sistemleri ve savunma yapıları inşa ettiler. Doğu Anadolu’nun önemli merkezlerinden biri olarak uzun süre hüküm sürdüler. Bölgenin kültürel yapısında Urartu izleri halen görülür.</p>
+                </div>
             </div>
-            <div class="image-container">
-                <img src="photos/Turizm/circirselalesi2.jpg" class="image" alt="Çırçır Şelalesi Fotoğraf 2" onclick="openModal(this)">
+            <div class="timeline-item">
+                <div class="timeline-content reveal-right">
+                    <h3 class="font-bold text-xl mb-2">Asurlar (MÖ 7. – 6. yüzyıl)</h3>
+                    <p>Asurlar, Mezopotamya merkezli bir imparatorluk olarak zaman zaman Elazığ çevresine baskınlar düzenledi. Bölgede ticaret yollarını kontrol etmeye çalıştılar. Ancak kalıcı bir egemenlik kuramadılar ve bölge üzerinde tam hakimiyetleri olmadı. Etkileri daha çok askeri ve ekonomik amaçlıydı.</p>
+                </div>
             </div>
-            <div class="image-container">
-                <img src="photos/Turizm/circirselalesi3.webp" class="image" alt="Çırçır Şelalesi Fotoğraf 3" onclick="openModal(this)">
+            <div class="timeline-item">
+                <div class="timeline-content reveal-right">
+                    <h3 class="font-bold text-xl mb-2">Medler (MÖ 7. yüzyıl)</h3>
+                    <p>Medler, İran’ın kuzeybatısında güçlü bir krallıktı ve Anadolu’nun doğusuna kadar etki alanları vardı. Elazığ bölgesine yakın olsalar da, burada doğrudan kalıcı bir yönetimleri olduğuna dair kesin kanıtlar sınırlıdır. Bölge üzerindeki etkileri daha çok kültürel ve dolaylıdır. Medler, bölgedeki diğer kavimlerle ilişkiler kurdu.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Persler (MÖ 6. – 4. yüzyıl)</h3>
+                    <p>Pers İmparatorluğu, Anadolu’nun büyük bölümünü kapsayan geniş bir alanı yönetti. Elazığ bölgesi, Perslerin merkezi yönetim sistemine dahil edildi. Bölgedeki altyapı yatırımları arttı, yollar ve kamu yapıları inşa edildi. Persler, bölgenin ekonomik ve kültürel gelişimine önemli katkılar sağladı.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-right">
+                    <h3 class="font-bold text-xl mb-2">Makedonya Krallığı (MÖ 4. yüzyıl)</h3>
+                    <p>Büyük İskender’in doğu seferinden sonra Elazığ ve çevresi Seleukoslar gibi Helenistik krallıkların kontrolüne geçti. Bu dönemde bölge şehirleşme, sanat ve ticarette gelişti. Helenistik kültürün etkisiyle farklı medeniyetler kaynaştı. Bölge, ticaret yollarının önemli bir kavşağı oldu.</p>
+                </div>
+            </div>
+             <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Roma İmparatorluğu (M.Ö. 1. yüzyıl – M.S. 4. yüzyıl)</h3>
+                    <p>Elazığ bölgesi, Roma İmparatorluğu’nun Anadolu’yu kontrolü altına almasından sonra önemli bir yerleşim yeri oldu. Bizans döneminde ise Hristiyanlık yaygınlaştı, kiliseler ve kaleler inşa edildi. Bölge, hem askeri hem de kültürel açıdan stratejik öneme sahipti. Zaman zaman Arap akınları gibi tehditlerle karşılaştı.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Büyük Selçuklular (11. yüzyıl - 12. yüzyıl)</h3>
+                    <p>Büyük Selçuklular, Orta Asya’dan Anadolu’ya doğru ilerleyerek bölgenin kontrolünü ele geçirdiler. 1071 Malazgirt Savaşı ile Anadolu kapılarını Türklere açtılar. Elazığ ve çevresi bu dönemde Selçuklu yönetimine dahil oldu. Bölgeye Türk-İslam kültürünü yaydılar ve yerleşimleri güçlendirdiler.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-right">
+                    <h3 class="font-bold text-xl mb-2">Anadolu Selçukluları (12. – 13. yüzyıl)</h3>
+                    <p>Büyük Selçuklu devletinin Anadolu’daki kolu olan Anadolu Selçukluları, bölgenin siyasi ve kültürel merkezi oldular. Elazığ çevresinde kervansaraylar, camiler ve medreseler inşa ederek bölgeyi imar ettiler. Anadolu Selçukluları dönemi, yerel yönetimlerin ve sanatın geliştiği bir dönem olarak dikkat çeker. Bölgeyi Moğol akınlarına kadar yönettiler.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Beylikler Dönemi (13. – 15. yüzyıl)</h3>
+                    <p>Büyük Selçuklu Devleti’nin zayıflamasıyla Anadolu’da birçok Türk beylikleri ortaya çıktı. Elazığ çevresi de bu beyliklerin kontrolüne girdi ve yerel yönetimler güçlendi. Bölge, siyasi karışıklıkların ve mücadelelerin yaşandığı bir alan oldu. Bu dönemde kültürel ve mimari faaliyetler devam etti, bölgenin yapısı şekillendi.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Osmanlı Dönemi (15. – 20. yüzyıl)</h3>
+                    <p>Osmanlılar, Anadolu’daki beylikleri yavaş yavaş topraklarına kattılar ve Elazığ bölgesini kesin olarak kontrol altına aldılar. Bölge, Osmanlı idaresiyle siyasi ve ekonomik açıdan istikrar kazandı. Osmanlı mimarisi, sosyal yaşam ve kültürel yapı bölgeyi derinden etkiledi. Bu dönem, Elazığ’ın gelişiminde uzun süreli bir istikrar ve bütünlük dönemi oldu.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Cumhuriyet Dönemi (1923 – Günümüz)</h3>
+                    <p>Elazığ, Cumhuriyetin ilanından sonra Türkiye’nin modernleşme hamlelerinden doğrudan etkilendi. Bölgedeki altyapı, eğitim ve sağlık hizmetleri hızla geliştirildi. Sanayi ve tarımda yatırımlar arttı, Elazığ kültürel ve ekonomik açıdan büyüdü. Cumhuriyet dönemi, bölgenin çağdaş bir kent haline gelmesinde önemli rol oynadı.</p>
+                </div>
             </div>
         </div>
-    </section>
-    
+    </div>
+
+    <div class="section-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Galeri</h2>
+        <div class="image-gallery">
+            <div class="image-container reveal">
+                <img src="photos/Turizm/circir-selalesi.jpg" class="image" alt="Hazar Gölü Fotoğraf 1" onclick="openModal(this)">
+            </div>
+            <div class="image-container reveal">
+                <img src="photos/Turizm/circirselalesi1.jpg" class="image" alt="Hazar Gölü Fotoğraf 2" onclick="openModal(this)">
+            </div>
+            <div class="image-container reveal">
+                <img src="photos/Turizm/circirselalesi2.jpg" class="image" alt="Hazar Gölü Fotoğraf 3" onclick="openModal(this)">
+            </div>
+        </div>
+    </div>
+
+    <div class="section-card weather-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Çırçır Şelalesi Hava Durumu</h2>
+        <div id="weather-container" class="reveal">
+            <div class="weather-info">
+                <img id="weather-icon" class="weather-icon" src="" alt="Hava Durumu">
+                <div>
+                    <div id="weather-temp" class="weather-temp">--°C</div>
+                    <div id="weather-desc" class="weather-desc">Yükleniyor...</div>
+                </div>
+            </div>
+            <div class="weather-details">
+                <div class="weather-detail-item reveal">
+                    <div class="text-lg font-semibold">Nem</div>
+                    <div id="humidity">--%</div>
+                </div>
+                <div class="weather-detail-item reveal">
+                    <div class="text-lg font-semibold">Rüzgar</div>
+                    <div id="wind">-- km/s</div>
+                </div>
+                <div class="weather-detail-item reveal">
+                    <div class="text-lg font-semibold">Hissedilen</div>
+                    <div id="feels-like">--°C</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
@@ -376,6 +777,78 @@
         if (event.target.id === "imageModal") { 
             closeModal(); 
         }
+    });
+
+    // Hava durumu API'si için yeni kod
+    const API_KEY = 'f1a808f3105f266330b6103e472957e8'; // OpenWeatherMap API anahtarı
+    const CITY = 'Elazig';
+    const COUNTRY_CODE = 'TR';
+
+    async function getWeather() {
+        try {
+            console.log('Hava durumu verisi alınıyor...');
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${CITY},${COUNTRY_CODE}&appid=${API_KEY}&units=metric&lang=tr`;
+            console.log('API URL:', url);
+            
+            const response = await fetch(url);
+            console.log('API Yanıt Durumu:', response.status);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log('Alınan veri:', data);
+
+            document.getElementById('weather-temp').textContent = `${Math.round(data.main.temp)}°C`;
+            document.getElementById('weather-desc').textContent = data.weather[0].description;
+            document.getElementById('humidity').textContent = `${data.main.humidity}%`;
+            document.getElementById('wind').textContent = `${Math.round(data.wind.speed * 3.6)} km/s`;
+            document.getElementById('feels-like').textContent = `${Math.round(data.main.feels_like)}°C`;
+            
+            const iconCode = data.weather[0].icon;
+            document.getElementById('weather-icon').src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+        } catch (error) {
+            console.error('Hava durumu verisi alınamadı:', error);
+            document.getElementById('weather-desc').textContent = 'Hava durumu bilgisi alınamadı';
+            document.getElementById('weather-temp').textContent = '--°C';
+            document.getElementById('humidity').textContent = '--%';
+            document.getElementById('wind').textContent = '-- km/s';
+            document.getElementById('feels-like').textContent = '--°C';
+        }
+    }
+
+    // Sayfa yüklendiğinde hava durumunu getir
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('Sayfa yüklendi, hava durumu alınıyor...');
+        getWeather();
+    });
+
+    // Her 30 dakikada bir hava durumunu güncelle
+    setInterval(() => {
+        console.log('Hava durumu yenileniyor...');
+        getWeather();
+    }, 30 * 60 * 1000);
+
+    // Scroll Reveal için Intersection Observer
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    // Tüm reveal elementlerini seç ve gözlemle
+    document.addEventListener('DOMContentLoaded', () => {
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        revealElements.forEach(element => observer.observe(element));
     });
 </script>
 <script src="profile-updater.js"></script>

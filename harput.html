@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
          body {
-            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
+            background: linear-gradient(135deg, #818cf8, #6366f1, #4f46e5);
             color: white;
             min-height: 100vh;
         }
@@ -245,6 +245,320 @@
             color: white;
             cursor: pointer;
         }
+
+        /* Hero Section Styles */
+        .hero-section {
+            position: relative;
+            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('photos/Turizm/harput.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        /* Animasyonlar */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        /* Content Section Styles */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section-card h2 {
+            color: #6366f1;
+            margin-bottom: 1.5rem;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .section-card p {
+            color: #4b5563;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #6366f1;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid #6366f1;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -16px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-content h3 {
+            color: #6366f1;
+            margin-bottom: 0.5rem;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .timeline-content p {
+            color: #4b5563;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        /* Gallery Improvements */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .image-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover .image {
+            transform: scale(1.05);
+        }
+
+        /* Weather Section Styles */
+        .weather-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .weather-card h2 {
+            color: #6366f1;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .weather-info {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .weather-detail {
+            text-align: center;
+        }
+
+        .weather-icon {
+            width: 100px;
+            height: 100px;
+        }
+
+        .weather-temp {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .weather-desc {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .weather-detail-item {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            color: #4b5563;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            animation: fadeInUp 0.8s ease-out;
+            transition: transform 0.3s ease;
+        }
+
+        .weather-detail-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .weather-detail-item .text-lg {
+            color: #6366f1;
+            font-weight: 600;
+        }
+
+        /* Scroll Reveal Animasyonları */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
@@ -252,7 +566,6 @@
         <button @click="open = !open" class="text-white text-3xl focus:outline-none">&#9776;</button>
         <nav class="menu text-white"> 
             <div class="menu-item">HARPUT KALESİ
-                </div>
             </div>
         </nav>
         <div class="profile-menu">
@@ -315,47 +628,128 @@
        
     </ul>
 </aside>
-<main class="p-6">
-    <section id="tarihce" class="mb-6">
-        <h2 class="text-3xl font-bold">Harput Kalesi'nin Tarihi:</h2>
-        <p>Harput Kalesi, Elazığ il sınırlarında yer alan ve şehri yüksekten görebileceğiniz tarihi bir yapıdır. 
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title reveal">HARPUT KALESİ</h1>
+        <p class="hero-subtitle reveal">Tarihin sessiz Bekçisi</p>
+    </div>
+</div>
+
+<main class="content-section">
+    <div class="section-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Harput Kalesi'nin Tarihi</h2>
+        <p class="text-lg leading-relaxed reveal">Harput Kalesi, Elazığ il sınırlarında yer alan ve şehri yüksekten görebileceğiniz tarihi bir yapıdır. 
             Harput Kalesi, MÖ 8. yüzyıldan günümüze kadar farklı medeniyetler tarafından kullanılmıştır ve bu durum, 
-            kalenin tarih boyunca birçok farklı kültür ve medeniyet tarafından şekillendirilmesine olanak sağlamıştır.</p>
-    </section>
-    <section id="yonetim" class="mb-6">
-        <h2 class="text-3xl font-bold">Tarih Boyunca Kimler Yönetti?</h2>
-        <ul>
-            <li><strong>Urartular (MÖ 9. – 6. yüzyıl):</strong> Harput, ilk olarak Urartular tarafından surlarla çevrilmiş ve bölgenin savunma amaçlı kullanıldığı bir kale olarak inşa edilmiştir.</li>
-            <li><strong>Asurlar (MÖ 7. yüzyıl):</strong> Urartular'ın yıkılmasının ardından, Asurlar da Harput'u ele geçirmiş ve kale burada askeri bir üs olarak kullanılmıştır.</li>
-            <li><strong>Roma ve Bizans Dönemi (M.S. 1. – 11. yüzyıl):</strong> Harput, Roma ve Bizans İmparatorlukları döneminde stratejik bir kale olarak önemli bir yerleşim alanı olmuştur.</li>
-            <li><strong>Selçuklular (11. yüzyıl):</strong> Selçuklular, bölgeye geldiklerinde Harput Kalesi'ni yeniden güçlendirmişlerdir.</li>
-            <li><strong>Osmanlı Dönemi (15. yüzyıl – 19. yüzyıl):</strong> Osmanlı İmparatorluğu döneminde, Harput Kalesi önemli bir askeri ve idari merkez olmaya devam etmiştir.</li>
-        </ul>
-    </section>
-    <section id="yapilar" class="mb-6">
-        <h2 class="text-3xl font-bold">Harput Kalesi'nde Bulunan Yapılar:</h2>
-        <ul>
-            <li><strong>Kale Sur ve Kapıları:</strong> Harput Kalesi, dik kayalıklar üzerine inşa edilmiştir ve sağlam surları ile ünlüdür.</li>
-            <li><strong>Saray ve Zindanlar:</strong> Kalenin içinde bazı saray kalıntıları ve zindanlar da bulunmaktadır.</li>
-            <li><strong>Cami ve Mezarlıklar:</strong> Harput Kalesi'nin içinde bir cami (Harput Ulu Camii) ve etrafında mezarlık alanları da bulunmaktadır.</li>
-            <li><strong>Tarihi Su Depoları:</strong> Kalede, suyun sürekli sağlanabilmesi için yapılmış eski su depoları bulunmaktadır.</li>
-        </ul>
-    </section>
-    <section id="fotolar" class="mb-6">
-        <h2 class="text-3xl font-bold">Harput Kalesi'nden Bazı Fotoğraflar:</h2>
-        <br>
-        <div class="image-gallery">
-            <div class="image-container">
-                <img src="photos/Turizm/harput.jpg" class="image" alt="Harput Kale Fotoğraf 1" onclick="openModal(this)">
+            kalenin tarih boyunca birçok farklı kültür ve medeniyet tarafından şekillendirilmesine olanak sağlamıştır.  </p>
+    </div>
+
+    <div class="section-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Tarihsel Yolculuk</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Urartular (MÖ 9. – 6. yüzyıl)</h3>
+                    <p>Harput Kalesi’nin kökeni, bölgedeki en eski uygarlıklardan biri olan Urartulara dayanır. Urartular, Doğu Anadolu’da M.Ö. 9. ve 6. yüzyıllar arasında hüküm sürmüş ve bölgeyi güçlü bir şekilde kontrol etmişlerdir. Harput Kalesi gibi birçok stratejik noktada sağlam yapılar inşa ederek bölgeyi korumuşlardır.</p>
+                </div>
             </div>
-            <div class="image-container">
-                <img src="photos/Turizm/harput2.jpg" class="image" alt="Harput Kale Fotoğraf 2" onclick="openModal(this)">
+            <div class="timeline-item">
+                <div class="timeline-content reveal-right">
+                    <h3 class="font-bold text-xl mb-2">Medler (MÖ 7. – 6. yüzyıl)</h3>
+                    <p>Urartuların ardından bölge, Medler’in egemenliğine girmiştir. Medler, İran kökenli bir topluluk olup, Anadolu’nun doğusundaki topraklarda varlık göstermişlerdir. Bölgedeki hakimiyetleri, Perslerin yükselişiyle sona ermiştir.</p>
+                </div>
             </div>
-            <div class="image-container">
-                <img src="photos/Turizm/harput3.jpg" class="image" alt="Harput Kale Fotoğraf 3" onclick="openModal(this)">
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Persler (MÖ 6. – 4. yüzyıl)</h3>
+                    <p>Büyük Pers İmparatorluğu’nun kurucusu II. Kiros döneminde bölge, Ahamenişler tarafından ele geçirilmiştir. Persler, Anadolu’nun doğu bölgelerini merkezi yönetimlerine bağlamış, Harput Kalesi de bu dönemde önemli bir stratejik nokta olmuştur. Persler, bölgenin güvenliği ve vergi toplama merkezi olarak kaleyi kullanmışlardır.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-right">
+                    <h3 class="font-bold text-xl mb-2">Makedonya Krallığı (MÖ 4. yüzyıl)</h3>
+                    <p>Büyük İskender’in Anadolu’yu fethetmesiyle birlikte, Harput ve çevresi Makedon hakimiyetine girmiştir. İskender’in doğuya yaptığı seferler sırasında bu bölgeyi de kontrol altına almış, bölgedeki yerel yönetim biçimleri zamanla Helenistik kültürle harmanlanmıştır.</p>
+                </div>
+            </div>
+             <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Roma İmparatorluğu (M.Ö. 1. yüzyıl – M.S. 4. yüzyıl)</h3>
+                    <p>Makedon Krallığı’nın zayıflaması ve ardından Roma İmparatorluğu’nun doğuya yayılmasıyla Harput bölgesi Roma egemenliğine girmiştir. Roma, bölgeyi önemli bir sınır kalesi ve yerleşim alanı olarak kullanmış, hem askeri hem de idari açıdan güçlendirmiştir. Bu dönemde kale, hem koruma hem de ticari açıdan önemli bir merkez olmuştur.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Büyük Selçuklular (11. yüzyıl - 12. yüzyıl)</h3>
+                    <p>Harput, Büyük Selçuklu Devleti’nin Anadolu’daki genişlemesi sırasında önemli bir yerleşim ve savunma noktası olmuştur. Selçuklular, kaleyi güçlendirerek bölgedeki hakimiyetlerini sağlamlaştırmışlardır.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-right">
+                    <h3 class="font-bold text-xl mb-2">Anadolu Selçukluları (12. – 13. yüzyıl)</h3>
+                    <p>Harput, Anadolu Selçuklu topraklarında önemli bir şehir ve kale olarak kalmaya devam etmiştir. Bölge, medrese, cami ve diğer kültürel yapılarla gelişmiş, Türk-İslam kültürünün yayıldığı merkezlerden biri olmuştur.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Beylikler Dönemi (13. – 15. yüzyıl)</h3>
+                    <p>Anadolu Selçuklu Devleti’nin zayıflamasıyla Harput, zaman zaman bağımsız beyliklerin, özellikle Dulkadiroğulları Beyliği gibi güçlerin kontrolüne geçmiştir. Harput, beylikler arasında stratejik ve kültürel önemi olan bir merkez olarak kalmıştır.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2"></h3>Osmanlı Dönemi (15. – 20. yüzyıl)</h3>
+                    <p>Osmanlılar, 16. yüzyılda Harput ve çevresini topraklarına katmışlardır. Harput Kalesi, Osmanlı döneminde de askeri ve idari açıdan önemini korumuş, sancak merkezi olarak kullanılmıştır. Osmanlı mimarisi ve kültürü Harput’ta etkili olmuş, camiler, medreseler ve diğer yapılar inşa edilmiştir.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Cumhuriyet Dönemi (1923 – Günümüz)</h3>
+                    <p>Türkiye Cumhuriyeti’nin kurulmasıyla Harput, modern Türkiye sınırları içinde kalmıştır. Kale ve çevresi tarihi ve turistik önem kazanmış, koruma altına alınmıştır. Bugün Harput, Elazığ ilinin kültürel ve tarihi simgelerinden biri olarak ziyaret edilmektedir.</p>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="section-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Galeri</h2>
+        <div class="image-gallery">
+            <div class="image-container reveal">
+                <img src="photos/Turizm/harput.jpg" class="image" alt="Hazar Gölü Fotoğraf 1" onclick="openModal(this)">
+            </div>
+            <div class="image-container reveal">
+                <img src="photos/Turizm/harput2.jpg" class="image" alt="Hazar Gölü Fotoğraf 2" onclick="openModal(this)">
+            </div>
+            <div class="image-container reveal">
+                <img src="photos/Turizm/harput3.jpg" class="image" alt="Hazar Gölü Fotoğraf 3" onclick="openModal(this)">
+            </div>
+        </div>
+    </div>
+
+    <div class="section-card weather-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Harput Kalesi Hava Durumu</h2>
+        <div id="weather-container" class="reveal">
+            <div class="weather-info">
+                <img id="weather-icon" class="weather-icon" src="" alt="Hava Durumu">
+                <div>
+                    <div id="weather-temp" class="weather-temp">--°C</div>
+                    <div id="weather-desc" class="weather-desc">Yükleniyor...</div>
+                </div>
+            </div>
+            <div class="weather-details">
+                <div class="weather-detail-item reveal">
+                    <div class="text-lg font-semibold">Nem</div>
+                    <div id="humidity">--%</div>
+                </div>
+                <div class="weather-detail-item reveal">
+                    <div class="text-lg font-semibold">Rüzgar</div>
+                    <div id="wind">-- km/s</div>
+                </div>
+                <div class="weather-detail-item reveal">
+                    <div class="text-lg font-semibold">Hissedilen</div>
+                    <div id="feels-like">--°C</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
@@ -377,6 +771,78 @@
         if (event.target.id === "imageModal") { 
             closeModal(); 
         }
+    });
+
+    // Hava durumu API'si için yeni kod
+    const API_KEY = 'f1a808f3105f266330b6103e472957e8'; // OpenWeatherMap API anahtarı
+    const CITY = 'Elazig';
+    const COUNTRY_CODE = 'TR';
+
+    async function getWeather() {
+        try {
+            console.log('Hava durumu verisi alınıyor...');
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${CITY},${COUNTRY_CODE}&appid=${API_KEY}&units=metric&lang=tr`;
+            console.log('API URL:', url);
+            
+            const response = await fetch(url);
+            console.log('API Yanıt Durumu:', response.status);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log('Alınan veri:', data);
+
+            document.getElementById('weather-temp').textContent = `${Math.round(data.main.temp)}°C`;
+            document.getElementById('weather-desc').textContent = data.weather[0].description;
+            document.getElementById('humidity').textContent = `${data.main.humidity}%`;
+            document.getElementById('wind').textContent = `${Math.round(data.wind.speed * 3.6)} km/s`;
+            document.getElementById('feels-like').textContent = `${Math.round(data.main.feels_like)}°C`;
+            
+            const iconCode = data.weather[0].icon;
+            document.getElementById('weather-icon').src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+        } catch (error) {
+            console.error('Hava durumu verisi alınamadı:', error);
+            document.getElementById('weather-desc').textContent = 'Hava durumu bilgisi alınamadı';
+            document.getElementById('weather-temp').textContent = '--°C';
+            document.getElementById('humidity').textContent = '--%';
+            document.getElementById('wind').textContent = '-- km/s';
+            document.getElementById('feels-like').textContent = '--°C';
+        }
+    }
+
+    // Sayfa yüklendiğinde hava durumunu getir
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('Sayfa yüklendi, hava durumu alınıyor...');
+        getWeather();
+    });
+
+    // Her 30 dakikada bir hava durumunu güncelle
+    setInterval(() => {
+        console.log('Hava durumu yenileniyor...');
+        getWeather();
+    }, 30 * 60 * 1000);
+
+    // Scroll Reveal için Intersection Observer
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    // Tüm reveal elementlerini seç ve gözlemle
+    document.addEventListener('DOMContentLoaded', () => {
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        revealElements.forEach(element => observer.observe(element));
     });
 </script>
 <script src="profile-updater.js"></script>
