@@ -1,4 +1,5 @@
 require('dotenv').config();
+console.log('GEMINI_API_URL:', process.env.GEMINI_API_URL);  // test amaçlı
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
