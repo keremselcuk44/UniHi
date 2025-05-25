@@ -1437,7 +1437,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const chatMessages = document.getElementById('chat-widget-messages');
 
         // Backend API URL - AWS server
-        const BACKEND_URL = 'http://13.53.117.47:3001';
+        const BACKEND_URL = '';
 
         // Sohbet geçmişini tutmak için dizi
         let conversationHistory = [];
@@ -1505,7 +1505,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     .join('\n');
 
                 console.log('Backend API İsteği Gönderiliyor...');
-                const response = await fetch(`${BACKEND_URL}/api/ai/generate`, {
+                const response = await fetch('/api/ai/generate', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

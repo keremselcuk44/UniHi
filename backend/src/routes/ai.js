@@ -1,8 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const cors = require('cors');
-require('dotenv').config();
+
 
 // CORS options
 const corsOptions = {
