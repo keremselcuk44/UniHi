@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kahve Fincanı Müzesi</title>
+    <title>Kahve Fincanı Müzesi-UniHi!</title>
     <link rel="icon" href="fotolar/UniHi!_.png" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
-        body {
-            background: linear-gradient(to right, #c32f52, #9b1d48, #6a0d45);
+         body {
+            background: linear-gradient(135deg, #818cf8, #6366f1, #4f46e5);
             color: white;
             min-height: 100vh;
         }
@@ -245,15 +245,327 @@
             color: white;
             cursor: pointer;
         }
+
+        /* Hero Section Styles */
+        .hero-section {
+            position: relative;
+            height: 70vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('photos/Turizm/kahvefincanı1.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        /* Animasyonlar */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        /* Content Section Styles */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .section-card h2 {
+            color: #6366f1;
+            margin-bottom: 1.5rem;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .section-card p {
+            color: #4b5563;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #6366f1;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: white;
+            border: 4px solid #6366f1;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -16px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-content h3 {
+            color: #6366f1;
+            margin-bottom: 0.5rem;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .timeline-content p {
+            color: #4b5563;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        /* Gallery Improvements */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .image-container:hover {
+            transform: translateY(-5px);
+        }
+
+        .image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-container:hover .image {
+            transform: scale(1.05);
+        }
+
+        /* Weather Section Styles */
+        .weather-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .weather-card h2 {
+            color: #6366f1;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .weather-info {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .weather-detail {
+            text-align: center;
+        }
+
+        .weather-icon {
+            width: 100px;
+            height: 100px;
+        }
+
+        .weather-temp {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .weather-desc {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .weather-detail-item {
+            background: rgba(99, 102, 241, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            color: #4b5563;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            animation: fadeInUp 0.8s ease-out;
+            transition: transform 0.3s ease;
+        }
+
+        .weather-detail-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .weather-detail-item .text-lg {
+            color: #6366f1;
+            font-weight: 600;
+        }
+
+        /* Scroll Reveal Animasyonları */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
     <header class="bg-gradient-to-r from-[#c32f52] to-[#9b1d48] shadow-md py-4 px-6 flex justify-between items-center">
         <button @click="open = !open" class="text-white text-3xl focus:outline-none">&#9776;</button>
         <nav class="menu text-white"> 
-            <div class="menu-item">KAHVE FİNCANI MÜZESİ
-        
-                </div>
+            <div class="menu-item">Kahve Fincanı Müzesi
             </div>
         </nav>
         <div class="profile-menu">
@@ -316,50 +628,99 @@
        
     </ul>
 </aside>
-<main class="p-6">
-    <section id="tarihce" class="mb-6">
-        <h2 class="text-3xl font-bold">Kahve Fincanı Müzesi'nin Tarihi:</h2>
-        <p>Elazığ'ın tarihi Harput Mahallesi'nde bulunan Kahve Fincanı Müzesi, 29 Ekim 2023'te Cumhuriyet'in 100. yılı anısına açılmıştır. 
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title reveal">KAHVE FİNCANI MÜZESİ</h1>
+        <p class="hero-subtitle reveal">Bir Fincan Kahvenin 40 Yıl Hatrı Vardır</p>
+    </div>
+</div>
+
+<main class="content-section">
+    <div class="section-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Kahve Fincanı Müzesi'nin Tarihi</h2>
+        <p class="text-lg leading-relaxed reveal">Elazığ'ın tarihi Harput Mahallesi'nde bulunan Kahve Fincanı Müzesi, 29 Ekim 2023'te Cumhuriyet'in 100. yılı anısına açılmıştır. 
             Türkiye'nin ilk ve tek kahve fincanı müzesi olma özelliğine sahip olan bu mekânda, başlangıçta 2.023 fincan sergilenirken, 
             zamanla bu sayı 7.000'i aşmıştır. Müze, açılışından itibaren büyük ilgi görmüş ve ilk dört ayında yaklaşık 20.000 ziyaretçiyi 
             ağırlamıştır. 2024 yılı Kasım ayı itibarıyla toplam ziyaretçi sayısı 300.000'i geçmiş olup, müze Guinness Rekorlar Kitabı'na 
             girmeyi hedeflemektedir. Müzede sergilenen değerli fincanlar arasında, 1737'de İngiltere'den Osmanlı'ya gönderilen bir fincan, 
-            Harput kazılarında bulunan 12 hayvanlı Türk takvimli fincan ve ünlü fotoğrafçı Ara Güler'e ait kahve fincanları bulunmaktadır. 
-            Ayrıca, 17 Kasım 1937'de Elazığ'ı ziyaret eden Mustafa Kemal Atatürk'ün kahve içtiği fincan da müzede sergilenmektedir. 
-            Ziyaretçiler, müzede sergilenen fincanları bağışlayarak katkıda bulunabilir ve isimlerini bakır levhalara yazdırarak hatıralarını 
-            ölümsüzleştirebilirler. Müze, hem kahve kültürünü yaşatmakta hem de ziyaretçilere geçmişe dair anlamlı bir yolculuk sunmaktadır.​​</p>
-    </section>
-    <section id="kurucusu" class="mb-6">
-        <h2 class="text-3xl font-bold"> Kurucusu Kimdir?</h2>
-        <p>Elazığ Kahve Fincanı Müzesi'nin kurucusu, iş insanı ve turizmci olan Kemal Sülük'tür. Sülük, müzeyi 2023 yılında, Türkiye'nin ilk 
+            Harput kazılarında bulunan 12 hayvanlı Türk takvimli fincan gibi fincanlar bulunmaktadır.</p>
+    </div>
+
+    <div class="section-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Müze Hakkında Diğer Bilgiler</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Kurucusu Kimdir?</h3>
+                    <p>Elazığ Kahve Fincanı Müzesi'nin kurucusu, iş insanı ve turizmci olan Kemal Sülük'tür. Sülük, müzeyi 2023 yılında, Türkiye'nin ilk 
             ve tek kahve fincanı müzesi olarak açmıştır. Müze, özellikle kahve kültürüne olan ilgisi ve koleksiyonculuk tutkusuyla dikkat 
             çekmektedir.</p>
-    </section>
-    <section id="amac" class="mb-6">
-        <h2 class="text-3xl font-bold"> Kuruluş Amacı:</h2>
-        <p>Elazığ Kahve Fincanı Müzesi'nin kuruluş amacı, kahve kültürünü yaşatmak, kahvenin tarihsel ve kültürel önemini vurgulamak ve bu 
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content reveal-right">
+                    <h3 class="font-bold text-xl mb-2">Kuruluş Amacı</h3>
+                    <p>Elazığ Kahve Fincanı Müzesi'nin kuruluş amacı, kahve kültürünü yaşatmak, kahvenin tarihsel ve kültürel önemini vurgulamak ve bu 
             alandaki nadir koleksiyonları sergileyerek ziyaretçilere geçmişe dair bir yolculuk sunmaktır. Müze, kahve fincanlarının tarihi 
-            sürecini ve farklı kültürlerdeki yerini gösteren özel bir koleksiyon sunmaktadır.
-            <br>
-            Ayrıca, müze, kahve fincanlarının sadece birer eşya değil, aynı zamanda kültürel miras olarak değer taşıdığına dikkat çekmeyi 
-            amaçlamaktadır. Ziyaretçiler, müzeye bağışta bulunarak fincanları sergileyebilir ve kendi isimlerini bakır levhalara yazdırarak 
-            bu kültürel mirasa katkıda bulunabilirler. Bu şekilde, kahve kültürünün nesilden nesile aktarılmasına olanak tanınmaktadır.</p>
-    </section>
-    <section id="fotolar" class="mb-6">
-        <h2 class="text-3xl font-bold"> Kahve Fincanı Müzesi'nden Bazı Fotoğraflar:</h2>
-        <br>
-        <div class="image-gallery">
-            <div class="image-container">
-                <img src="photos/Turizm/kahvefincanı1.jpg" onclick="openModal(this)">
+            sürecini ve farklı kültürlerdeki yerini gösteren özel bir koleksiyon sunmaktadır.</p>
+                </div>
             </div>
-            <div class="image-container">
-                <img src="photos/Turizm/kahvefincanı2.jpg" onclick="openModal(this)">
+            <div class="timeline-item">
+                <div class="timeline-content reveal-left">
+                    <h3 class="font-bold text-xl mb-2">Koleksiyon ve Sergilenen Fincanlar</h3>
+                    <p>Müzede, 7.000'den fazla kahve fincanı sergilenmektedir. Fincanların büyük bir kısmı, 100 ila 300 yıl arasında değişen tarihlere sahiptir. En değerli parçalardan biri, Mustafa Kemal Atatürk'ün 17 Kasım 1937'de Elazığ'ı ziyaretinde kullandığı fincandır.</p>
+                </div>
             </div>
-            <div class="image-container">
-                <img src="photos/Turizm/kahvefincanı4.jpg" onclick="openModal(this)">
+            <div class="timeline-item">
+                <div class="timeline-content reveal-right">
+                    <h3 class="font-bold text-xl mb-2">Bağış Sistemi ve "Hatır" Geleneği</h3>
+                    <p>Ziyaretçiler, fincan bağışlayarak müzeye katkıda bulunabilirler. Bağışçıların isimleri, fincanlara iliştirilen bakır levhalara yazılmaktadır. Bu uygulama, "Bir fincan kahvenin kırk yıl hatırı vardır" geleneğini yaşatmaktadır.</p>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="section-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Galeri</h2>
+        <div class="image-gallery">
+            <div class="image-container reveal">
+                <img src="photos/Turizm/kahvefincanı1.jpg" class="image" alt="Müze Fotoğraf 1" onclick="openModal(this)">
+            </div>
+            <div class="image-container reveal">
+                <img src="photos/Turizm/kahvefincanı2.jpg" class="image" alt="MüzeFotoğraf 2" onclick="openModal(this)">
+            </div>
+            <div class="image-container reveal">
+                <img src="photos/Turizm/kahvefincanı3.jpg" class="image" alt="Müze Fotoğraf 3" onclick="openModal(this)">
+            </div>
+        </div>
+    </div>
+
+    <div class="section-card weather-card">
+        <h2 class="text-3xl font-bold mb-4 reveal-left">Müze Civarı Hava Durumu</h2>
+        <div id="weather-container" class="reveal">
+            <div class="weather-info">
+                <img id="weather-icon" class="weather-icon" src="" alt="Hava Durumu">
+                <div>
+                    <div id="weather-temp" class="weather-temp">--°C</div>
+                    <div id="weather-desc" class="weather-desc">Yükleniyor...</div>
+                </div>
+            </div>
+            <div class="weather-details">
+                <div class="weather-detail-item reveal">
+                    <div class="text-lg font-semibold">Nem</div>
+                    <div id="humidity">--%</div>
+                </div>
+                <div class="weather-detail-item reveal">
+                    <div class="text-lg font-semibold">Rüzgar</div>
+                    <div id="wind">-- km/s</div>
+                </div>
+                <div class="weather-detail-item reveal">
+                    <div class="text-lg font-semibold">Hissedilen</div>
+                    <div id="feels-like">--°C</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 <div id="imageModal" class="modal">
     <span class="close" onclick="closeModal()">&times;</span>
@@ -381,6 +742,78 @@
         if (event.target.id === "imageModal") { 
             closeModal(); 
         }
+    });
+
+    // Hava durumu API'si için yeni kod
+    const API_KEY = 'f1a808f3105f266330b6103e472957e8'; // OpenWeatherMap API anahtarı
+    const CITY = 'Elazig';
+    const COUNTRY_CODE = 'TR';
+
+    async function getWeather() {
+        try {
+            console.log('Hava durumu verisi alınıyor...');
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${CITY},${COUNTRY_CODE}&appid=${API_KEY}&units=metric&lang=tr`;
+            console.log('API URL:', url);
+            
+            const response = await fetch(url);
+            console.log('API Yanıt Durumu:', response.status);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            console.log('Alınan veri:', data);
+
+            document.getElementById('weather-temp').textContent = `${Math.round(data.main.temp)}°C`;
+            document.getElementById('weather-desc').textContent = data.weather[0].description;
+            document.getElementById('humidity').textContent = `${data.main.humidity}%`;
+            document.getElementById('wind').textContent = `${Math.round(data.wind.speed * 3.6)} km/s`;
+            document.getElementById('feels-like').textContent = `${Math.round(data.main.feels_like)}°C`;
+            
+            const iconCode = data.weather[0].icon;
+            document.getElementById('weather-icon').src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+        } catch (error) {
+            console.error('Hava durumu verisi alınamadı:', error);
+            document.getElementById('weather-desc').textContent = 'Hava durumu bilgisi alınamadı';
+            document.getElementById('weather-temp').textContent = '--°C';
+            document.getElementById('humidity').textContent = '--%';
+            document.getElementById('wind').textContent = '-- km/s';
+            document.getElementById('feels-like').textContent = '--°C';
+        }
+    }
+
+    // Sayfa yüklendiğinde hava durumunu getir
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('Sayfa yüklendi, hava durumu alınıyor...');
+        getWeather();
+    });
+
+    // Her 30 dakikada bir hava durumunu güncelle
+    setInterval(() => {
+        console.log('Hava durumu yenileniyor...');
+        getWeather();
+    }, 30 * 60 * 1000);
+
+    // Scroll Reveal için Intersection Observer
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    // Tüm reveal elementlerini seç ve gözlemle
+    document.addEventListener('DOMContentLoaded', () => {
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        revealElements.forEach(element => observer.observe(element));
     });
 </script>
 <script src="profile-updater.js"></script>

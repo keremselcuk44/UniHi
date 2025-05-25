@@ -298,173 +298,541 @@
         }
 
         @media screen and (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+            }
+
             .hero-section {
-                height: 50vh;
+                height: 40vh;
+                margin-bottom: 1rem;
+                background-position: center;
             }
 
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .content-section {
+            .hero-content {
                 padding: 1rem;
             }
 
+            .hero-title {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .content-section {
+                padding: 0.5rem;
+            }
+
             .section-card {
-                padding: 1.5rem;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                border-radius: 10px;
+            }
+
+            .section-card h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .section-card p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+
+            /* Timeline düzenlemeleri */
+            .timeline {
+                position: relative;
+                width: 100%;
+                margin: 1rem 0;
+                padding: 0;
             }
 
             .timeline::after {
-                left: 31px;
+                content: '';
+                position: absolute;
+                width: 3px;
+                background-color: #6366f1;
+                top: 0;
+                bottom: 0;
+                left: 15px;
+                margin-left: 0;
             }
 
             .timeline-item {
                 width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
+                padding-left: 35px;
+                padding-right: 10px;
+                margin-bottom: 0.8rem;
+                position: relative;
+            }
+
+            .timeline-item::after {
+                content: '';
+                position: absolute;
+                width: 12px;
+                height: 12px;
+                background-color: white;
+                border: 2px solid #6366f1;
+                border-radius: 50%;
+                top: 8px;
+                left: 9px;
+                z-index: 1;
+            }
+
+            .timeline-content {
+                background: rgba(255, 255, 255, 0.85);
+                padding: 0.6rem;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .timeline-content h3 {
+                font-size: 0.9rem;
+                margin-bottom: 0.2rem;
+                color: #6366f1;
+                line-height: 1.2;
+            }
+
+            .timeline-content p {
+                font-size: 0.8rem;
+                line-height: 1.2;
+                margin: 0;
             }
 
             .timeline-item:nth-child(even) {
                 left: 0;
             }
 
-            .timeline-item::after {
-                left: 15px;
-            }
-
             .timeline-item:nth-child(even)::after {
-                left: 15px;
+                left: 9px;
             }
 
+            .timeline-item:nth-child(odd) .timeline-content {
+                margin-left: 0;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-right: 0;
+            }
+
+            /* Galeri düzenlemeleri */
             .image-gallery {
+                display: grid;
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 0.8rem;
+                padding: 0.5rem;
             }
 
             .image-container {
-                margin-bottom: 1rem;
+                width: 100%;
+                margin: 0;
+                border-radius: 8px;
+                overflow: hidden;
             }
 
             .image {
-                height: 200px;
+                height: 180px;
+                width: 100%;
+                object-fit: cover;
+            }
+
+            /* Hava durumu kartı düzenlemeleri */
+            .weather-card {
+                padding: 1rem;
+                margin: 1rem 0;
             }
 
             .weather-info {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.8rem;
+                align-items: center;
+            }
+
+            .weather-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .weather-temp {
+                font-size: 2rem;
+                margin: 0.5rem 0;
+            }
+
+            .weather-desc {
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .weather-details {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+                margin-top: 0.8rem;
+            }
+
+            .weather-detail-item {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            /* Header ve menü düzenlemeleri */
+            .header {
+                padding: 0.5rem;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                background: rgba(195, 47, 82, 0.95);
+                backdrop-filter: blur(10px);
+            }
+
+            .menu-item {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+
+            .profile-menu img {
+                width: 32px;
+                height: 32px;
+                border: 2px solid white;
+            }
+
+            /* Sidebar düzenlemeleri */
+            .sidebar {
+                width: 85%;
+                max-width: 300px;
+                padding: 1rem;
+            }
+
+            .sidebar ul {
+                margin-top: 2rem;
+            }
+
+            .sidebar a {
+                padding: 0.8rem 1rem;
+                font-size: 0.95rem;
+            }
+
+            /* Modal düzenlemeleri */
+            .modal {
+                padding: 0;
+            }
+
+            .modal-content {
+                max-width: 90%;
+                max-height: 75vh;
+            }
+
+            .modal .nav-button {
+                width: 35px;
+                height: 35px;
+                padding: 5px;
+                font-size: 16px;
+            }
+
+            .close {
+                top: 5px;
+                right: 5px;
+                font-size: 24px;
+                padding: 5px;
+            }
+
+            /* Chat widget düzenlemeleri */
+            .chat-widget {
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .chat-widget-button {
+                width: 40px;
+                height: 40px;
+            }
+
+            .chat-widget-button i {
+                font-size: 18px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero-section {
+                height: 35vh;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .section-card {
+                padding: 0.8rem;
+            }
+
+            .section-card h2 {
+                font-size: 1.3rem;
+            }
+
+            .timeline-item {
+                padding-left: 40px;
+            }
+
+            .timeline-content h3 {
+                font-size: 1rem;
+            }
+
+            .weather-temp {
+                font-size: 1.8rem;
             }
 
             .weather-details {
                 grid-template-columns: 1fr;
             }
 
-            .weather-card {
-                padding: 1.5rem;
-            }
-
-            .weather-temp {
-                font-size: 2.5rem;
-            }
-
-            .weather-icon {
-                width: 80px;
-                height: 80px;
+            .weather-detail-item {
+                padding: 0.6rem;
             }
 
             .header {
-                padding: 0.5rem;
+                padding: 0.4rem;
             }
 
             .menu-item {
-                padding: 8px 12px;
-            }
-
-            .dropdown {
-                min-width: 200px;
+                font-size: 0.85rem;
             }
 
             .profile-menu img {
-                width: 35px;
-                height: 35px;
+                width: 28px;
+                height: 28px;
             }
 
-            /* Mobil için Modal Düzenlemeleri */
-            .modal {
-                padding: 0;
+            .sidebar {
+                width: 90%;
+            }
+
+            .image {
+                height: 160px;
             }
 
             .modal-content {
                 max-width: 95%;
-                max-height: 80vh;
-                margin: auto;
-            }
-
-            .modal .nav-button {
-                width: 40px;
-                height: 40px;
-                padding: 8px;
-                font-size: 18px;
-                background: rgba(255, 255, 255, 0.3);
-            }
-
-            .modal .nav-button.prev {
-                left: 10px;
-            }
-
-            .modal .nav-button.next {
-                right: 10px;
-            }
-
-            .close {
-                top: 10px;
-                right: 10px;
-                font-size: 30px;
-                padding: 5px;
             }
         }
 
-        @media screen and (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
+        @media screen and (max-width: 375px) {
+            body {
+                overflow-x: hidden;
+                width: 100%;
             }
 
-            .hero-subtitle {
-                font-size: 1rem;
+            .content-section {
+                padding: 0.2rem;
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
             }
 
-            .section-card h2 {
-                font-size: 1.5rem;
+            .section-card {
+                padding: 0.5rem;
+                margin: 0.5rem 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .timeline-item {
+                padding-left: 30px;
+                padding-right: 5px;
+                margin-bottom: 0.6rem;
+            }
+
+            .timeline-item::after {
+                width: 10px;
+                height: 10px;
+                left: 7px;
+                top: 6px;
+            }
+
+            .timeline-content {
+                padding: 0.4rem;
             }
 
             .timeline-content h3 {
-                font-size: 1.2rem;
+                font-size: 0.85rem;
             }
 
-            .weather-temp {
-                font-size: 2rem;
+            .timeline-content p {
+                font-size: 0.75rem;
             }
 
-            .weather-desc {
-                font-size: 1rem;
+            /* Timeline için özel düzenlemeler */
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item:nth-child(even)::after {
+                left: 4px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content {
+                margin-left: 0;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-right: 0;
+            }
+
+            /* Galeri düzenlemeleri */
+            .image-gallery {
+                display: flex;
+                flex-direction: column;
+                gap: 0.3rem;
+                padding: 0.2rem;
+                width: 100%;
+            }
+
+            .image-container {
+                width: 100%;
+                margin: 0;
             }
 
             .image {
-                height: 180px;
+                height: 120px;
+                width: 100%;
+                object-fit: cover;
             }
 
+            /* Hava durumu kartı düzenlemeleri */
+            .weather-card {
+                padding: 0.5rem;
+                margin: 0.5rem 0;
+                width: 100%;
+            }
+
+            .weather-info {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .weather-details {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+
+            .weather-detail-item {
+                width: 100%;
+                padding: 0.4rem;
+            }
+
+            /* Modal düzenlemeleri */
             .modal-content {
-                max-width: 100%;
-                max-height: 70vh;
+                width: 95%;
+                max-height: 60vh;
+                margin: 0 auto;
             }
 
             .modal .nav-button {
-                width: 35px;
-                height: 35px;
-                font-size: 16px;
+                width: 25px;
+                height: 25px;
+                padding: 2px;
+            }
+
+            .timeline::after {
+                left: 12px;
+                width: 2px;
+            }
+        }
+
+        @media screen and (max-width: 320px) {
+            .hero-title {
+                font-size: 1.3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.75rem;
+            }
+
+            .section-card h2 {
+                font-size: 1rem;
+            }
+
+            .section-card p {
+                font-size: 0.8rem;
+            }
+
+            .timeline-item {
+                padding-left: 25px;
+                margin-bottom: 0.5rem;
+            }
+
+            .timeline-item::after {
+                width: 8px;
+                height: 8px;
+                left: 6px;
+                top: 5px;
+            }
+
+            .timeline-content {
+                padding: 0.3rem;
+            }
+
+            .timeline-content h3 {
+                font-size: 0.8rem;
+            }
+
+            .timeline-content p {
+                font-size: 0.7rem;
+            }
+
+            .weather-temp {
+                font-size: 1.4rem;
+            }
+
+            .weather-desc {
+                font-size: 0.75rem;
+            }
+
+            .weather-detail-item {
+                font-size: 0.75rem;
+            }
+
+            .menu-item {
+                font-size: 0.75rem;
+            }
+
+            .profile-menu img {
+                width: 22px;
+                height: 22px;
+            }
+
+            .sidebar a {
+                font-size: 0.8rem;
+            }
+
+            .timeline::after {
+                left: 10px;
+            }
+
+            .timeline-item {
+                padding-left: 20px;
+            }
+
+            .timeline-item::after {
+                left: 3px;
+                width: 8px;
+                height: 8px;
+            }
+
+            .timeline-content {
+                padding: 4px;
             }
         }
 
@@ -825,9 +1193,6 @@
         <button @click="open = !open" class="text-white text-3xl focus:outline-none">&#9776;</button>
         <nav class="menu text-white"> 
             <div class="menu-item">HAZAR GÖLÜ
-                <div class="dropdown">
-                 
-                </div>
             </div>
         </nav>
         <div class="profile-menu">
@@ -1124,3 +1489,4 @@
 <script src="profile-updater.js"></script>
 </body>
 </html>
+

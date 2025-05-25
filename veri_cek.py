@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
+from webdriver_manager.chrome import ChromeDriverManager
 import json
 from datetime import datetime
 
@@ -19,7 +20,7 @@ def get_uni_menu():
     chrome_options.add_argument("--disable-dev-shm-usage")
 
     # Chrome servisini ayarla
-    service = Service('/usr/bin/chromedriver')
+    service = Service(ChromeDriverManager().install())
 
     menu_items = []
     menu_date = "Menü bilgisi alınamadı"

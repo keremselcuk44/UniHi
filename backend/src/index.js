@@ -1,4 +1,5 @@
 const path = require('path');
+const path = require('path');
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -43,4 +44,4 @@ app.use((err, req, res, next) => {
 // Start server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
-});
+}); 

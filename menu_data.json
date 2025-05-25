@@ -1,32 +1,27 @@
 {
   "uni_menu": {
-    "date": "22 Mayıs 2025 Perşembe",
-    "items": [
-      "FIRINDA TAVUK",
-      "PİRİNÇ PİLAVI",
-      "MERCİMEK ÇORBASI",
-      "YOĞURT"
-    ]
+    "date": "Menü bilgisi alınamadı",
+    "items": []
   },
   "kyk_menus": {
     "aksam": null,
     "sabah": {
-      "gun": "Perşembe",
+      "gun": "Pazar",
       "menü": [
         {
-          "isim": "Sucuklu Yumurta"
+          "isim": "Menemen"
         },
         {
-          "isim": "Zeytinli/Peynirli Açma"
+          "isim": "Dere Otlu Poğaça"
         },
         {
           "isim": "Siyah/Yeşil Zeytin"
         },
         {
-          "isim": "Kaşar Peyniri"
+          "isim": "Beyaz Peynir"
         },
         {
-          "isim": "Bal ve Tereyağı"
+          "isim": "Reçel Çeşitleri"
         },
         {
           "isim": "Çeyrek Ekmek"
@@ -40,5 +35,5 @@
       ]
     }
   },
-  "last_updated": "2025-05-22 10:35:34"
+  "last_updated": "2025-05-25 09:41:41"
 }
