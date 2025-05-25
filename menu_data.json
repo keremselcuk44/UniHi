@@ -6,22 +6,22 @@
   "kyk_menus": {
     "aksam": null,
     "sabah": {
-      "gun": "Cumartesi",
+      "gun": "Pazar",
       "menü": [
         {
-          "isim": "Patates Kızartması"
+          "isim": "Menemen"
         },
         {
-          "isim": "Haşlanmış Yumurta"
+          "isim": "Dere Otlu Poğaça"
         },
         {
           "isim": "Siyah/Yeşil Zeytin"
         },
         {
-          "isim": "Labne Peyniri"
+          "isim": "Beyaz Peynir"
         },
         {
-          "isim": "Tahinli Pekmez"
+          "isim": "Reçel Çeşitleri"
         },
         {
           "isim": "Çeyrek Ekmek"
@@ -35,5 +35,5 @@
       ]
     }
   },
-  "last_updated": "2025-05-24 10:30:35"
+  "last_updated": "2025-05-25 09:41:41"
 }
