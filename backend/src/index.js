@@ -35,6 +35,14 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
 });
 
+// GitHub webhook
+app.post('/webhook', (req, res) => {
+  // GitHub’dan gelen push olayını burada işlersin
+  console.log('Webhook geldi:', req.body);
+  res.status(200).end();
+});
+
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
