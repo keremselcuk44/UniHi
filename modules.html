@@ -931,7 +931,7 @@
 <div class="w-2/3">
 <div id="welcome"></div>
 
-<p class="welcome-text" id="welcome">FIRAT'A HOŞ GELDİN</p>
+<p class="welcome-text" id="welcome-text">FIRAT'A HOŞ GELDİN</p>
 <div class="mt-8">
 <div class="slider h-[400px]">
 <img class="active" src="photos/unnamed.jpg"/>
@@ -1060,7 +1060,7 @@ function updateWelcomeMessage() {
 
     const userData = JSON.parse(userDataRaw);
 
-    const welcomeEl = document.getElementById("welcome-message");
+    const welcomeEl = document.getElementById("welcome-text");
     if (welcomeEl) {
       // fullname varsa kullan yoksa username
       welcomeEl.textContent = `HOŞ GELDİN, ${(userData.fullName || currentUser.username).toUpperCase()}`;
