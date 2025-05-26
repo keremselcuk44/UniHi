@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
+const bcrypt = require('bcrypt');
 const app = express();
 const port = 3001;
 
@@ -30,6 +31,29 @@ mongoose.connect('mongodb://localhost:27017/unihi_db', {
 // User modeli
 const User = require('./models/User');
 
+app.post('/api/login', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(404).json({ message: 'Kullanıcı bulunamadı' });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password); // hash karşılaştırması
+
+    if (!passwordMatch) {
+      return res.status(401).json({ message: 'Şifre yanlış' });
+    }
+
+    res.status(200).json({ message: 'Giriş başarılı', user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Sunucu hatası' });
+  }
+});
+
+
 app.post('/api/register', async (req, res) => {
   try {
     const { fullName, faculty, department, studentNumber, username, password } = req.body;
@@ -39,13 +63,15 @@ app.post('/api/register', async (req, res) => {
       return res.status(400).json({ message: 'Bu kullanıcı adı zaten var' });
     }
 
+    const hashedPassword = await bcrypt.hash(password, 10); // şifreyi hashle
+
     const newUser = new User({
       fullName,
       faculty,
       department,
       studentNumber,
       username,
-      password, // ileride bcrypt hash eklenebilir
+      password: hashedPassword, // hashlenmiş şifreyi kaydet
     });
 
     await newUser.save();
