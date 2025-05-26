@@ -1045,12 +1045,32 @@ const apiKey = '41dcd5c7b4490d899a7dcb713289d9cd';
 
 // Kullanıcı bilgilerini al ve hoşgeldin mesajını güncelle
 function updateWelcomeMessage() {
-    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-    if (currentUser && currentUser.username) {
+    try {
+        const currentUserRaw = sessionStorage.getItem("currentUser");
+        if (!currentUserRaw) {
+            console.log("Kullanıcı bilgisi bulunamadı");
+            return;
+        }
+
+        let currentUser;
+        try {
+            currentUser = JSON.parse(currentUserRaw);
+        } catch (e) {
+            console.error("JSON parse hatası:", e);
+            return;
+        }
+
+        if (!currentUser || !currentUser.username) {
+            console.log("Geçerli kullanıcı adı bulunamadı");
+            return;
+        }
+
         const welcomeEl = document.getElementById("welcome-text");
         if (welcomeEl) {
             welcomeEl.textContent = `HOŞ GELDİN, ${currentUser.username.toUpperCase()}`;
         }
+    } catch (error) {
+        console.error("Hoş geldin mesajı güncellenirken hata oluştu:", error);
     }
 }
 
