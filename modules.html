@@ -1046,37 +1046,50 @@ const apiKey = '41dcd5c7b4490d899a7dcb713289d9cd';
 // Kullanıcı bilgilerini al ve hoşgeldin mesajını güncelle
 function updateWelcomeMessage() {
     try {
+        // sessionStorage'dan veriyi al
         const currentUserRaw = sessionStorage.getItem("currentUser");
-        if (!currentUserRaw) {
-            console.log("Kullanıcı bilgisi bulunamadı");
+        console.log("SessionStorage verisi:", currentUserRaw); // Debug için
+
+        // Eğer veri yoksa veya boşsa
+        if (!currentUserRaw || currentUserRaw === "undefined" || currentUserRaw === "null") {
+            console.log("Kullanıcı bilgisi bulunamadı veya geçersiz");
             return;
         }
 
+        // Veriyi parse etmeyi dene
         let currentUser;
         try {
             currentUser = JSON.parse(currentUserRaw);
         } catch (e) {
             console.error("JSON parse hatası:", e);
+            // Eğer parse edilemezse, string olarak kullan
+            const welcomeEl = document.getElementById("welcome-text");
+            if (welcomeEl) {
+                welcomeEl.textContent = `HOŞ GELDİN, ${currentUserRaw.toUpperCase()}`;
+            }
             return;
         }
 
-        if (!currentUser || !currentUser.username) {
+        // Kullanıcı adını kontrol et
+        const username = currentUser.username || currentUserRaw;
+        if (!username) {
             console.log("Geçerli kullanıcı adı bulunamadı");
             return;
         }
 
+        // Hoş geldin mesajını güncelle
         const welcomeEl = document.getElementById("welcome-text");
         if (welcomeEl) {
-            welcomeEl.textContent = `HOŞ GELDİN, ${currentUser.username.toUpperCase()}`;
+            welcomeEl.textContent = `HOŞ GELDİN, ${username.toUpperCase()}`;
         }
     } catch (error) {
         console.error("Hoş geldin mesajı güncellenirken hata oluştu:", error);
     }
 }
 
+// Sayfa yüklendiğinde ve her 5 saniyede bir kontrol et
 document.addEventListener('DOMContentLoaded', updateWelcomeMessage);
-
-
+setInterval(updateWelcomeMessage, 5000);
 
 // Slider fonksiyonları
 let index = 0;
