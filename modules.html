@@ -931,7 +931,7 @@
 <div class="w-2/3">
 <div id="welcome"></div>
 
-<p class="welcome-text" id="welcome-text">FIRAT'A HOŞ GELDİN</p>
+<p class="welcome-text" id="welcome-text">HOŞ GELDİN</p>
 <div class="mt-8">
 <div class="slider h-[400px]">
 <img class="active" src="photos/unnamed.jpg"/>
@@ -1044,76 +1044,14 @@ function updateLikes(menuId, action, type) {
 const apiKey = '41dcd5c7b4490d899a7dcb713289d9cd';
 
 // Kullanıcı bilgilerini al ve hoşgeldin mesajını güncelle
-function isJson(str) {
-  try {
-    JSON.parse(str);
-  } catch (e) {
-    return false;
-  }
-  return true;
-}
-
-// Kullanıcı bilgilerini al ve hoşgeldin mesajını güncelle
 function updateWelcomeMessage() {
-  try {
-    const currentUserRaw = sessionStorage.getItem("currentUser");
-    if (!currentUserRaw) return;
-
-    if (!isJson(currentUserRaw)) {
-      console.warn("currentUser sessionStorage verisi geçerli JSON değil:", currentUserRaw);
-      return;
-    }
-
-    const currentUser = JSON.parse(currentUserRaw);
-
-    if (!currentUser.username) return;
-
-    let userDataRaw = localStorage.getItem(currentUser.username);
-
-    if (!userDataRaw || !isJson(userDataRaw)) {
-      // Geçerli değilse örnek veri koy
-      const exampleData = {
-        fullName: currentUser.username,
-        faculty: ""
-      };
-      localStorage.setItem(currentUser.username, JSON.stringify(exampleData));
-      userDataRaw = localStorage.getItem(currentUser.username);
-    }
-
-    const userData = JSON.parse(userDataRaw);
-
-    const welcomeEl = document.getElementById("welcome-text");
-    if (welcomeEl) {
-      welcomeEl.textContent = `HOŞ GELDİN, ${(userData.fullName || currentUser.username).toUpperCase()}`;
-    }
-
-    if (userData.faculty) {
-      const facultyCard = document.getElementById("faculty-card");
-      const facultyTitle = document.getElementById("faculty-title");
-      const facultyDescription = document.getElementById("faculty-description");
-      const facultyLink = document.getElementById("faculty-link");
-
-      if (facultyCard && facultyTitle && facultyDescription && facultyLink) {
-        facultyCard.classList.remove("hidden");
-
-        const faculty = userData.faculty.toLowerCase();
-
-        if (faculty.includes("teknoloji")) {
-          facultyTitle.textContent = "Teknoloji Fakültesi Hakkında Daha Fazla Bilgi!";
-          facultyDescription.textContent = "Teknoloji Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
-          facultyLink.href = "teknolojifak.html";
-        } else if (faculty.includes("mühendislik")) {
-          facultyTitle.textContent = "Mühendislik Fakültesi Hakkında Daha Fazla Bilgi!";
-          facultyDescription.textContent = "Mühendislik Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
-          facultyLink.href = "muhendislikfak.html";
-        } else {
-          facultyCard.classList.add("hidden");
+    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    if (currentUser && currentUser.username) {
+        const welcomeEl = document.getElementById("welcome-text");
+        if (welcomeEl) {
+            welcomeEl.textContent = `HOŞ GELDİN, ${currentUser.username.toUpperCase()}`;
         }
-      }
     }
-  } catch (e) {
-    console.error("updateWelcomeMessage hatası:", e);
-  }
 }
 
 document.addEventListener('DOMContentLoaded', updateWelcomeMessage);
