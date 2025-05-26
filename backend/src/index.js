@@ -4,76 +4,86 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
-const aiRoutes = require('./routes/ai');
 const app = express();
 const port = 3001;
 
+// Routes
+const aiRoutes = require('./routes/ai'); // AI route'ları (varsa)
 
-// CORS configuration
+// Güvenlik ve CORS
 app.use(cors());
-
-// Helmet configuration with relaxed settings
 app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" },
   crossOriginOpenerPolicy: { policy: "unsafe-none" },
   contentSecurityPolicy: false,
 }));
+app.use(express.json());
 
-app.use(express.json()); // Parse JSON bodies
-
-// MongoDB bağlantı URI'si
-const mongoURI = 'mongodb://localhost:27017/unihi_db';
-
-// Bağlantıyı aç
-mongoose.connect(mongoURI, {
+// MongoDB bağlantısı
+mongoose.connect('mongodb://localhost:27017/unihi_db', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
 .then(() => console.log('MongoDB ye bağlantı başarılı!'))
 .catch(err => console.error('MongoDB bağlantı hatası:', err));
 
+// User modeli
 const User = require('./models/User');
 
-const testUser = new User({
-  username: 'testuser',
-  email: 'testuser@example.com',
-  password: '123456',
+app.post('/api/register', async (req, res) => {
+  try {
+    const { fullName, faculty, department, studentNumber, username, password } = req.body;
+
+    const existingUser = await User.findOne({ username });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Bu kullanıcı adı zaten var' });
+    }
+
+    const newUser = new User({
+      fullName,
+      faculty,
+      department,
+      studentNumber,
+      username,
+      password, // ileride bcrypt hash eklenebilir
+    });
+
+    await newUser.save();
+    res.status(201).json({ message: 'Kayıt başarılı' });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ message: 'Sunucu hatası' });
+  }
 });
 
-testUser.save()
-  .then(() => console.log('Test kullanıcı veritabanına kaydedildi'))
-  .catch(err => console.error('Kayıt hatası:', err));
-
-
-// Routes
+// AI route'ları
 app.use('/api/ai', aiRoutes);
 
+// Frontend dosyaları
 app.use(express.static(path.join(__dirname, '..', '..')));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '..', '..', 'home.html'));
 });
 
-// Basic route
+// Sağlık kontrol endpoint'i
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
 });
 
 // GitHub webhook
 app.post('/webhook', (req, res) => {
-  // GitHub’dan gelen push olayını burada işlersin
   console.log('Webhook geldi:', req.body);
   res.status(200).end();
 });
 
-
-// Error handling middleware
+// Global hata yakalayıcı middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-// Start server
+// Server başlat
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
-}); 
+});
