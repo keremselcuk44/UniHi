@@ -1,27 +1,32 @@
 {
   "uni_menu": {
-    "date": "Menü bilgisi alınamadı",
-    "items": []
+    "date": "27 Mayıs 2025 Salı",
+    "items": [
+      "ORMAN KEBAP",
+      "BULGUR PİLAVI",
+      "SOĞUK CORBA",
+      "MEYVE"
+    ]
   },
   "kyk_menus": {
     "aksam": null,
     "sabah": {
-      "gun": "Pazar",
+      "gun": "Salı",
       "menü": [
         {
-          "isim": "Menemen"
+          "isim": "Peynirli Omlet"
         },
         {
-          "isim": "Dere Otlu Poğaça"
+          "isim": "Meyveli Kek"
         },
         {
           "isim": "Siyah/Yeşil Zeytin"
         },
         {
-          "isim": "Beyaz Peynir"
+          "isim": "Yöresel Peynir"
         },
         {
-          "isim": "Reçel Çeşitleri"
+          "isim": "Mevsim Sebzeleri Söğüş"
         },
         {
           "isim": "Çeyrek Ekmek"
@@ -35,5 +40,5 @@
       ]
     }
   },
-  "last_updated": "2025-05-25 09:41:41"
+  "last_updated": "2025-05-27 02:13:07"
 }

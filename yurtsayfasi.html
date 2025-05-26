@@ -220,6 +220,10 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             color: #333;
+            position: relative;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
         }
 
         .yurt-card:hover {
@@ -237,12 +241,14 @@
         }
 
         .yurt-content {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 450px;
             gap: 30px;
+            position: relative;
+            height: 100%;
         }
 
         .yurt-info-section {
-            flex: 1;
             display: flex;
             flex-direction: column;
             gap: 25px;
@@ -282,12 +288,13 @@
 
         .yurt-slider {
             width: 450px;
-            height: 500px;
+            height: calc(100% - 60px);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background: #f5f5f5;
             position: sticky;
-            top: 20px;
+            top: 30px;
         }
 
         .yurt-slider img {
@@ -297,6 +304,8 @@
             object-fit: cover;
             opacity: 0;
             transition: opacity 0.8s ease-in-out;
+            object-position: center;
+            cursor: pointer;
         }
 
         .yurt-slider img.active {
@@ -433,81 +442,21 @@
         }
 
         @media (max-width: 1024px) {
+            .yurt-content {
+                grid-template-columns: 1fr;
+            }
+
             .yurt-slider {
-                width: 400px;
+                width: 100%;
                 height: 450px;
+                position: relative;
+                top: 0;
             }
         }
 
-        /* Mobil Uyumluluk için Medya Sorguları */
         @media screen and (max-width: 768px) {
-            .yurt-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
             .yurt-slider {
-                width: 100%;
                 height: 300px;
-                position: relative;
-                top: 0;
-                margin-bottom: 20px;
-            }
-
-            .container {
-                padding: 20px 15px;
-            }
-
-            .yurt-card {
-                padding: 20px;
-                margin: 20px 0;
-            }
-
-            .info-item {
-                flex-direction: column;
-                gap: 4px;
-                padding: 10px;
-            }
-
-            .info-item strong {
-                min-width: auto;
-                margin-bottom: 4px;
-            }
-
-            .map-container {
-                margin-top: 20px;
-            }
-
-            .map-container iframe {
-                height: 250px;
-            }
-
-            .top-buttons {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                margin: 15px 0;
-            }
-
-            .top-buttons button {
-                width: 100%;
-                margin: 0;
-            }
-
-            #scrollTopBtn {
-                width: auto;
-                padding: 10px 20px;
-                right: 15px;
-                bottom: 15px;
-            }
-
-            .slider-controls {
-                bottom: 10px;
-            }
-
-            .slider-dot {
-                width: 8px;
-                height: 8px;
             }
         }
 
@@ -561,9 +510,106 @@
             }
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90vh;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .modal-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 20px;
+            transition: background 0.3s;
+        }
+
+        .modal-nav button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .modal-dots {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-dot {
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .modal-dot.active {
+            background: white;
+        }
+
     </style>
 </head>
 <body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <img id="modalImage" src="" alt="Modal Image">
+            <div class="modal-nav">
+                <button id="prevButton">&lt;</button>
+                <button id="nextButton">&gt;</button>
+            </div>
+            <div class="modal-dots" id="modalDots"></div>
+        </div>
+    </div>
+
     <header class="bg-gradient-to-r from-[#c32f52] to-[#9b1d48] shadow-md py-4 px-6 flex justify-between items-center">
         <button @click="open = !open" class="text-white text-3xl focus:outline-none">&#9776;</button>
         <nav class="menu text-white"> 
@@ -597,7 +643,6 @@
                  class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
                 <a href="teknolojifak.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Teknoloji Fakültesi</a>
                 <a href="muhendislikfak.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Mühendislik Fakültesi</a>
-                <a href="#" class="block px-2 py-1 hover:bg-gray-200 rounded">X FAKÜLTESİ</a>
             </div>
         </li>
 
@@ -627,9 +672,6 @@
                 <a href="kahvefincanimuzesi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Kahve Fincanı Müzesi</a>
             </div>
         </li>
-
-        <li><a href="#" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">DENEME 1</a></li>
-       
     </ul>
 </aside>
 
@@ -672,6 +714,18 @@
                         <div class="info-item">
                             <strong>Not:</strong>
                             <p>Kampüs içinde yer alan tek kız yurdudur.</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Yurt Özellikleri:</strong>
+                            <ul class="list-disc pl-5 mt-2">
+                                <li>24 saat güvenlik</li>
+                                <li>Ücretsiz internet</li>
+                                <li>Çamaşırhane hizmeti</li>
+                                <li>Kütüphane</li>
+                                <li>Çalışma salonu</li>
+                                <li>Yemekhane</li>
+                                <li>Oda tipi: 3-4 kişilik</li>
+                            </ul>
                         </div>
                     </div>
 
@@ -723,6 +777,18 @@
                             <strong>Not:</strong>
                             <p>Girişler "Sare Ana" yurdunun girişinden yapılmaktadır!</p>
                         </div>
+                        <div class="info-item">
+                            <strong>Yurt Özellikleri:</strong>
+                            <ul class="list-disc pl-5 mt-2">
+                                <li>24 saat güvenlik</li>
+                                <li>Ücretsiz internet</li>
+                                <li>Çamaşırhane hizmeti</li>
+                                <li>Kütüphane</li>
+                                <li>Çalışma salonu</li>
+                                <li>Yemekhane</li>
+                                <li>Oda tipi: 3-4 kişilik</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="map-container">
@@ -773,6 +839,18 @@
                             <strong>Not:</strong>
                             <p>Şehir merkezine yakın konumdadır.</p>
                         </div>
+                        <div class="info-item">
+                            <strong>Yurt Özellikleri:</strong>
+                            <ul class="list-disc pl-5 mt-2">
+                                <li>24 saat güvenlik</li>
+                                <li>Ücretsiz internet</li>
+                                <li>Çamaşırhane hizmeti</li>
+                                <li>Kütüphane</li>
+                                <li>Çalışma salonu</li>
+                                <li>Yemekhane</li>
+                                <li>Oda tipi: 3-4 kişilik</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="map-container">
@@ -822,6 +900,18 @@
                         <div class="info-item">
                             <strong>Not:</strong>
                             <p>Şehir merkezine uzak konumdadır.</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Yurt Özellikleri:</strong>
+                            <ul class="list-disc pl-5 mt-2">
+                                <li>24 saat güvenlik</li>
+                                <li>Ücretsiz internet</li>
+                                <li>Çamaşırhane hizmeti</li>
+                                <li>Kütüphane</li>
+                                <li>Çalışma salonu</li>
+                                <li>Yemekhane</li>
+                                <li>Oda tipi: 3-4 kişilik</li>
+                            </ul>
                         </div>
                     </div>
 
@@ -878,6 +968,18 @@
                             <strong>Not:</strong>
                             <p>Şehirin merkezine yakın konumdadır.</p>
                         </div>
+                        <div class="info-item">
+                            <strong>Yurt Özellikleri:</strong>
+                            <ul class="list-disc pl-5 mt-2">
+                                <li>24 saat güvenlik</li>
+                                <li>Ücretsiz internet</li>
+                                <li>Çamaşırhane hizmeti</li>
+                                <li>Kütüphane</li>
+                                <li>Çalışma salonu</li>
+                                <li>Yemekhane</li>
+                                <li>Oda tipi: 3-4 kişilik</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="map-container">
@@ -886,7 +988,7 @@
                 </div>
 
                 <div class="yurt-slider">
-                    <img src="fotolar/ahmetkabakli1.jpg" alt="Ahmet Kabaklı Yurdu 1" class="active">
+                    <img src="photos/Yurtlar/kabaklı1.png" alt="Ahmet Kabaklı Yurdu 1" class="active">
                     <img src="fotolar/ahmetkabakli2.jpg" alt="Ahmet Kabaklı Yurdu 2">
                     <img src="fotolar/ahmetkabakli3.jpg" alt="Ahmet Kabaklı Yurdu 3">
                     <img src="fotolar/ahmetkabakli4.jpg" alt="Ahmet Kabaklı Yurdu 4">
@@ -922,11 +1024,23 @@
                         </div>
                         <div class="info-item">
                             <strong>Ulaşım:</strong>
-                            <p>xx numarılı otobüs hattı - <a href="https://elazigkart.elazig.bel.tr/wheremybus" target="_blank" style="color: #c32f52; text-decoration: underline;">Otobüs nerede?</a></p>
+                            <p>"Fırat" yurdu ile yan yanadır!</p>
                         </div>
                         <div class="info-item">
                             <strong>Not:</strong>
                             <p>"Fırat" yurdu ile yan yanadır!</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Yurt Özellikleri:</strong>
+                            <ul class="list-disc pl-5 mt-2">
+                                <li>24 saat güvenlik</li>
+                                <li>Ücretsiz internet</li>
+                                <li>Çamaşırhane hizmeti</li>
+                                <li>Kütüphane</li>
+                                <li>Çalışma salonu</li>
+                                <li>Yemekhane</li>
+                                <li>Oda tipi: 3-4 kişilik</li>
+                            </ul>
                         </div>
                     </div>
 
@@ -936,10 +1050,10 @@
                 </div>
 
                 <div class="yurt-slider">
-                    <img src="fotolar/omerbilginoglu1.jpg" alt="Ömer Bilginoğlu Yurdu 1" class="active">
-                    <img src="fotolar/omerbilginoglu2.jpg" alt="Ömer Bilginoğlu Yurdu 2">
-                    <img src="fotolar/omerbilginoglu3.jpg" alt="Ömer Bilginoğlu Yurdu 3">
-                    <img src="fotolar/omerbilginoglu4.jpg" alt="Ömer Bilginoğlu Yurdu 4">
+                    <img src="photos/Yurtlar/omerbilgin1.png" alt="Ömer Bilginoğlu Yurdu 1" class="active">
+                    <img src="photos/Yurtlar/omerbilgin2.png" alt="Ömer Bilginoğlu Yurdu 2">
+                    <img src="photos/Yurtlar/omerbilgin3.png" alt="Ömer Bilginoğlu Yurdu 3">
+                    <img src="photos/Yurtlar/omerbilgin4.png" alt="Ömer Bilginoğlu Yurdu 4">
                     <img src="fotolar/omerbilginoglu5.jpg" alt="Ömer Bilginoğlu Yurdu 5">
                     <div class="slider-controls">
                         <div class="slider-dot active" data-slide="0"></div>
@@ -972,11 +1086,23 @@
                         </div>
                         <div class="info-item">
                             <strong>Ulaşım:</strong>
-                            <p>5 numarılı otobüs hattı - <a href="https://elazigkart.elazig.bel.tr/wheremybus" target="_blank" style="color: #c32f52; text-decoration: underline;">Otobüs nerede?</a></p>
+                            <p>"Ömer Bilginoğlu" yurdu ile yan yanadır!</p>
                         </div>
                         <div class="info-item">
                             <strong>Not:</strong>
                             <p>"Ömer Bilginoğlu" yurdu ile yan yanadır!</p>
+                        </div>
+                        <div class="info-item">
+                            <strong>Yurt Özellikleri:</strong>
+                            <ul class="list-disc pl-5 mt-2">
+                                <li>24 saat güvenlik</li>
+                                <li>Ücretsiz internet</li>
+                                <li>Çamaşırhane hizmeti</li>
+                                <li>Kütüphane</li>
+                                <li>Çalışma salonu</li>
+                                <li>Yemekhane</li>
+                                <li>Oda tipi: 3-4 kişilik</li>
+                            </ul>
                         </div>
                     </div>
 
@@ -1022,6 +1148,17 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
+        // Modal elements
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeBtn = document.querySelector('.modal-close');
+        const prevBtn = document.getElementById('prevButton');
+        const nextBtn = document.getElementById('nextButton');
+        const modalDots = document.getElementById('modalDots');
+        let currentModalSlide = 0;
+        let currentSlider = null;
+        let currentImages = [];
+
         // Her yurt kartı için slider fonksiyonunu çalıştır
         document.querySelectorAll('.yurt-slider').forEach(slider => {
             const images = slider.querySelectorAll('img');
@@ -1054,6 +1191,83 @@
                     dots[currentSlide].classList.add('active');
                 });
             });
+
+            // Resimlere tıklama işlevi
+            images.forEach((img, index) => {
+                img.addEventListener('click', () => {
+                    openModal(slider, index);
+                });
+            });
+        });
+
+        function openModal(slider, index) {
+            currentSlider = slider;
+            currentImages = Array.from(slider.querySelectorAll('img'));
+            currentModalSlide = index;
+            
+            modal.style.display = 'flex';
+            updateModalImage();
+            createModalDots();
+            document.body.style.overflow = 'hidden';
+        }
+
+        function updateModalImage() {
+            modalImg.src = currentImages[currentModalSlide].src;
+            updateModalDots();
+        }
+
+        function createModalDots() {
+            modalDots.innerHTML = '';
+            currentImages.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'modal-dot' + (index === currentModalSlide ? ' active' : '');
+                dot.addEventListener('click', () => {
+                    currentModalSlide = index;
+                    updateModalImage();
+                });
+                modalDots.appendChild(dot);
+            });
+        }
+
+        function updateModalDots() {
+            const dots = modalDots.querySelectorAll('.modal-dot');
+            dots.forEach((dot, index) => {
+                dot.className = 'modal-dot' + (index === currentModalSlide ? ' active' : '');
+            });
+        }
+
+        function nextModalSlide() {
+            currentModalSlide = (currentModalSlide + 1) % currentImages.length;
+            updateModalImage();
+        }
+
+        function prevModalSlide() {
+            currentModalSlide = (currentModalSlide - 1 + currentImages.length) % currentImages.length;
+            updateModalImage();
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        nextBtn.onclick = nextModalSlide;
+        prevBtn.onclick = prevModalSlide;
+
+        // Klavye kontrolleri
+        document.addEventListener('keydown', function(e) {
+            if (modal.style.display === 'flex') {
+                if (e.key === 'ArrowRight') nextModalSlide();
+                if (e.key === 'ArrowLeft') prevModalSlide();
+                if (e.key === 'Escape') closeBtn.click();
+            }
+        });
+
+        // Modal dışına tıklama ile kapatma
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeBtn.click();
+            }
         });
     });
 </script>
