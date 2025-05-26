@@ -1045,13 +1045,13 @@ const apiKey = '41dcd5c7b4490d899a7dcb713289d9cd';
 function updateWelcomeMessage() {
     const currentUserRaw = sessionStorage.getItem("currentUser");
     if (!currentUserRaw) return;
-
+    console.log("currentUserRaw:", currentUserRaw);
     const currentUser = JSON.parse(currentUserRaw);
     const userData = JSON.parse(localStorage.getItem(currentUser.username)); // localStorage'dan detayları al
 
     const welcomeEl = document.getElementById("welcome-message");
     welcomeEl.textContent = `HOŞ GELDİN, ${(userData?.fullName || currentUser.username).toUpperCase()}`;
-    
+
     // Fakülte kartı gösterme
     if (userData?.faculty) {
         const facultyCard = document.getElementById("faculty-card");
