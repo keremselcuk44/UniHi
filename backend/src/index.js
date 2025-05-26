@@ -1,6 +1,7 @@
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 const express = require('express');
+const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const aiRoutes = require('./routes/ai');
@@ -19,6 +20,30 @@ app.use(helmet({
 }));
 
 app.use(express.json()); // Parse JSON bodies
+
+// MongoDB bağlantı URI'si
+const mongoURI = 'mongodb://localhost:27017/unihi_db';
+
+// Bağlantıyı aç
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log('MongoDB ye bağlantı başarılı!'))
+.catch(err => console.error('MongoDB bağlantı hatası:', err));
+
+const User = require('./models/User');
+
+const testUser = new User({
+  username: 'testuser',
+  email: 'testuser@example.com',
+  password: '123456',
+});
+
+testUser.save()
+  .then(() => console.log('Test kullanıcı veritabanına kaydedildi'))
+  .catch(err => console.error('Kayıt hatası:', err));
+
 
 // Routes
 app.use('/api/ai', aiRoutes);
