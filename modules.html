@@ -1055,8 +1055,17 @@ function updateWelcomeMessage() {
     if (!currentUser.username) return;
 
     // localStorage'dan user detaylarını al
-    const userDataRaw = localStorage.getItem(currentUser.username);
-    if (!userDataRaw) return;
+    let userDataRaw = localStorage.getItem(currentUser.username);
+
+    // Eğer localStorage'da kullanıcı verisi yoksa örnek veri ekle
+    if (!userDataRaw) {
+      const exampleData = {
+        fullName: currentUser.username, // veya "Ad Soyad" default
+        faculty: ""
+      };
+      localStorage.setItem(currentUser.username, JSON.stringify(exampleData));
+      userDataRaw = localStorage.getItem(currentUser.username);
+    }
 
     const userData = JSON.parse(userDataRaw);
 
@@ -1097,9 +1106,9 @@ function updateWelcomeMessage() {
   }
 }
 
-
 // Sayfa yüklendiğinde çalıştır
 document.addEventListener('DOMContentLoaded', updateWelcomeMessage);
+
 
 
 // Slider fonksiyonları
