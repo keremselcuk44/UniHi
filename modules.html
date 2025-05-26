@@ -457,7 +457,7 @@
         }
 
         .calendar-day.today {
-            background-color: #3b82f6;
+            background-color: #c32f52;
             color: white;
         }
 
@@ -471,15 +471,15 @@
             bottom: 2px;
             width: 4px;
             height: 4px;
-            background-color: #3b82f6;
+            background-color: #c32f52;
             border-radius: 50%;
         }
 
         .calendar-day.final-week {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.25));
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 193, 7, 0.25));
             position: relative;
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            box-shadow: 0 2px 4px rgba(255, 193, 7, 0.1);
         }
 
         .calendar-day.final-week::before {
@@ -495,9 +495,9 @@
         }
 
         .calendar-day.final-week:hover {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(59, 130, 246, 0.35));
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.25), rgba(255, 193, 7, 0.35));
             transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 4px 8px rgba(255, 193, 7, 0.2);
         }
 
         .calendar-day-name {
@@ -531,25 +531,25 @@
         }
 
         .event-item.final-exam {
-            border-left: 4px solid #3b82f6;
-            background: linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(255, 255, 255, 0.95));
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+            border-left: 4px solid #ffc107;
+            background: linear-gradient(to right, rgba(255, 193, 7, 0.1), rgba(255, 255, 255, 0.95));
+            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.15);
         }
 
         .event-item.final-exam:hover {
             transform: translateX(5px);
-            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 6px 16px rgba(255, 193, 7, 0.2);
         }
 
         .event-item.final-exam .event-title {
-            color: #1d4ed8;
+            color: #b45309;
             font-weight: 700;
         }
 
         .event-item.final-exam .event-title::before {
             content: '📚';
             font-size: 1.2em;
-            background: rgba(59, 130, 246, 0.2);
+            background: rgba(255, 193, 7, 0.2);
             padding: 4px;
             border-radius: 50%;
         }
@@ -655,16 +655,16 @@
         }
 
         .calendar-legend-item.today::before {
-            background-color: #3b82f6;
+            background-color: #c32f52;
         }
 
         .calendar-legend-item.final-week::before {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(59, 130, 246, 0.5));
-            border: 1px solid rgba(59, 130, 246, 0.5);
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.3), rgba(255, 193, 7, 0.5));
+            border: 1px solid rgba(255, 193, 7, 0.5);
         }
 
         .calendar-legend-item.event::before {
-            background-color: #3b82f6;
+            background-color: #c32f52;
             border-radius: 50%;
             width: 8px;
             height: 8px;
@@ -677,6 +677,27 @@
             z-index: 1000;
         }
 
+        .chat-widget-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #818cf8, #6366f1);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .chat-widget-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-widget-icon {
+            font-size: 24px;
+            color: white;
+        }
+
         .chat-widget-container {
             position: fixed;
             bottom: 90px;
@@ -684,337 +705,189 @@
             width: 350px;
             height: 500px;
             background: white;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
             display: none;
             flex-direction: column;
             overflow: hidden;
-            transform: scale(0.95);
-            opacity: 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .chat-widget-container.active {
-            transform: scale(1);
-            opacity: 1;
-        }
-
-        .chat-widget-button {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .chat-widget-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .chat-widget-button:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
-        }
-
-        .chat-widget-button:hover::before {
-            opacity: 1;
-        }
-
-        .chat-widget-icon {
-            font-size: 24px;
-            color: white;
-            transition: transform 0.3s ease;
-        }
-
-        .chat-widget-button:hover .chat-widget-icon {
-            transform: scale(1.1);
         }
 
         .chat-widget-header {
-            padding: 20px;
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            padding: 15px;
+            background: linear-gradient(135deg, #818cf8, #6366f1);
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .chat-widget-header h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin: 0;
+        .chat-widget-header .status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4ade80;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .chat-widget-close {
-            background: rgba(255, 255, 255, 0.2);
+            background: none;
             border: none;
             color: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 24px;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .chat-widget-close:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(90deg);
+            padding: 0;
+            line-height: 1;
         }
 
         .chat-widget-messages {
             flex: 1;
-            padding: 20px;
+            padding: 15px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            background: #f8fafc;
+            gap: 10px;
         }
 
         .chat-message {
-            max-width: 85%;
-            padding: 12px 16px;
-            border-radius: 16px;
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 12px;
             font-size: 14px;
-            line-height: 1.5;
-            animation: messageSlide 0.3s ease;
-        }
-
-        @keyframes messageSlide {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            line-height: 1.4;
         }
 
         .chat-message.bot {
-            background: white;
+            background: #f3f4f6;
             align-self: flex-start;
             border-bottom-left-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .chat-message.bot::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 8px solid #f3f4f6;
         }
 
         .chat-message.user {
-            background: #3b82f6;
+            background: #818cf8;
             color: white;
             align-self: flex-end;
             border-bottom-right-radius: 4px;
-            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+            position: relative;
+        }
+
+        .chat-message.user::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 8px solid #818cf8;
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 10px 15px;
+            background: #f3f4f6;
+            border-radius: 12px;
+            width: fit-content;
+            margin: 5px 0;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: #818cf8;
+            border-radius: 50%;
+            animation: typing 1s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
         }
 
         .chat-widget-input {
-            padding: 16px;
-            background: white;
-            border-top: 1px solid #e2e8f0;
+            padding: 15px;
+            border-top: 1px solid #e5e7eb;
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
         .chat-widget-input input {
             flex: 1;
-            padding: 12px 16px;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
             font-size: 14px;
             outline: none;
-            transition: all 0.3s ease;
-            background: #f8fafc;
         }
 
         .chat-widget-input input:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-            background: white;
+            border-color: #818cf8;
         }
 
         .chat-widget-input button {
-            padding: 12px 20px;
-            background: #3b82f6;
+            padding: 8px 16px;
+            background: #818cf8;
             color: white;
             border: none;
-            border-radius: 12px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            transition: background 0.3s ease;
         }
 
         .chat-widget-input button:hover {
-            background: #2563eb;
-            transform: translateY(-1px);
-        }
-
-        .chat-widget-input button:active {
-            transform: translateY(0);
-        }
-
-        .event-success-message {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #3b82f6;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
-            animation: slideUp 0.3s ease, fadeOut 0.3s ease 2.7s;
-            z-index: 1000;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translate(-50%, 100%);
-                opacity: 0;
-            }
-            to {
-                transform: translate(-50%, 0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeOut {
-            from {
-                opacity: 1;
-            }
-            to {
-                opacity: 0;
-            }
-        }
-
-        #event-form {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        #event-form h3 {
-            color: #1e40af;
-            margin-bottom: 16px;
-        }
-
-        #event-form input,
-        #event-form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 12px;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 14px;
-        }
-
-        #event-form input:focus,
-        #event-form textarea:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-            outline: none;
-        }
-
-        #save-event {
-            background: #3b82f6;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        #save-event:hover {
-            background: #2563eb;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-        }
-
-        #save-event:active {
-            transform: translateY(0);
-        }
-
-        #cancel-event {
-            background: #f1f5f9;
-            color: #64748b;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin-top: 8px;
-        }
-
-        #cancel-event:hover {
-            background: #e2e8f0;
-            color: #475569;
-        }
-
-        .event-notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #3b82f6;
-            color: white;
-            padding: 16px 24px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 1000;
-            animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
-        }
-
-        .event-notification.success {
-            background: #3b82f6;
-        }
-
-        .event-notification.error {
-            background: #ef4444;
-        }
-
-        .event-notification-icon {
-            font-size: 20px;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+            background: #6366f1;
         }
     </style>
 </head>
@@ -1027,6 +900,7 @@
 <a href="muhendislikfak.html">Mühendislik Fakültesi</a>
 </div>
 </div>
+<div class="menu-item">ÜNİVERSİTE EVİ</div>
 <div class="menu-item"><a href="yurtsayfasi.html">KYK YURTLARI</a></div>
 <div class="menu-item">ETKİNLİKLER
                 <div class="dropdown">
@@ -1298,8 +1172,8 @@ class Calendar {
         this.container = container;
         this.date = new Date();
         this.events = JSON.parse(localStorage.getItem('calendarEvents')) || {};
-        this.finalWeekStart = new Date('2025-06-19');
-        this.finalWeekEnd = new Date('2025-06-29');
+        this.finalWeekStart = new Date('2024-06-19');
+        this.finalWeekEnd = new Date('2024-06-29');
         this.init();
     }
 
@@ -1410,27 +1284,16 @@ class Calendar {
             this.events[date] = [];
         }
         
-        const newEvent = {
+        this.events[date].push({
             id: Date.now(),
             title,
             description,
             date
-        };
+        });
         
-        this.events[date].push(newEvent);
         localStorage.setItem('calendarEvents', JSON.stringify(this.events));
         this.render();
         this.renderEventsList();
-        
-        // Başarılı kayıt mesajı
-        const successMessage = document.createElement('div');
-        successMessage.className = 'event-success-message';
-        successMessage.textContent = 'Etkinlik başarıyla kaydedildi!';
-        document.body.appendChild(successMessage);
-        
-        setTimeout(() => {
-            successMessage.remove();
-        }, 3000);
     }
 
     deleteEvent(date, eventId) {
@@ -1453,10 +1316,10 @@ class Calendar {
         
         // Final haftısı etkinliğini ekle
         const finalWeekEvent = {
-            id: 'final-week-2025',
+            id: 'final-week-2024',
             title: 'Final Haftası',
-            description: '2024-2025 Bahar Dönemi Final Sınavları',
-            date: '2025-06-19',
+            description: '2023-2024 Bahar Dönemi Final Sınavları',
+            date: '2024-06-19',
             isFinal: true
         };
         
@@ -1523,20 +1386,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const description = document.getElementById('event-description').value;
         
         if (title && date) {
-            const eventDate = new Date(date);
-            const formattedDate = eventDate.toISOString().split('T')[0];
-            
-            calendar.addEvent(formattedDate, title, description);
+            calendar.addEvent(date, title, description);
             document.getElementById('event-form').classList.add('hidden');
             document.getElementById('event-title').value = '';
             document.getElementById('event-date').value = '';
             document.getElementById('event-description').value = '';
-
-            // Başarılı bildirimi göster
-            showNotification('Etkinlik başarıyla kaydedildi!', 'success');
-        } else {
-            // Hata bildirimi göster
-            showNotification('Lütfen en azından etkinlik başlığı ve tarihini girin.', 'error');
         }
     });
     
@@ -1583,7 +1437,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const chatMessages = document.getElementById('chat-widget-messages');
 
         // Backend API URL - AWS server
-        const BACKEND_URL = 'http://localhost:3000';
+        const BACKEND_URL = '';
 
         // Sohbet geçmişini tutmak için dizi
         let conversationHistory = [];
@@ -1651,15 +1505,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     .join('\n');
 
                 console.log('Backend API İsteği Gönderiliyor...');
-                const response = await fetch(`${BACKEND_URL}/api/chat`, {
+                const response = await fetch('/api/ai/generate', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        message: message,
-                        context: conversationContext,
-                        currentInfo: currentInfo
+                        prompt: `Sen UniHi platformunun yapay zeka asistanısın. Adın Uni. 
+                        Şu anki durum:
+                        - Tarih: ${currentInfo.currentDate}
+                        - Saat: ${currentInfo.currentTime}
+                        - Yemekhane durumu: ${currentInfo.isYemekhaneOpen ? 'Açık' : 'Kapalı'}
+                        - Kütüphane durumu: ${currentInfo.isKutuphaneOpen ? 'Açık' : 'Kapalı'}
+                        - Hafta sonu: ${currentInfo.isWeekend ? 'Evet' : 'Hayır'}
+                        - Mevsim: ${currentInfo.season}
+
+                        [SOHBET GEÇMİŞİ]
+                        ${conversationContext}
+
+                        Kullanıcı Mesajı: ${message}`
                     })
                 });
 
@@ -1668,7 +1532,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 const data = await response.json();
-                return data.response;
+                return data.candidates[0].content.parts[0].text;
             } catch (error) {
                 console.error('Hata:', error);
                 return 'Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin.';
@@ -1726,40 +1590,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Chat widget açma/kapama fonksiyonları
         chatButton.addEventListener('click', () => {
             chatContainer.style.display = 'flex';
-            // Animasyon için setTimeout kullanıyoruz
-            setTimeout(() => {
-                chatContainer.classList.add('active');
-            }, 10);
             chatButton.style.display = 'none';
         });
 
         chatClose.addEventListener('click', () => {
-            closeChatWidget();
-        });
-
-        // Dışarı tıklandığında kapatma fonksiyonu
-        function closeChatWidget() {
-            chatContainer.classList.remove('active');
-            // Animasyon bittikten sonra gizle
-            setTimeout(() => {
-                chatContainer.style.display = 'none';
-                chatButton.style.display = 'block';
-            }, 300);
-        }
-
-        // Dışarı tıklama kontrolü
-        document.addEventListener('click', (e) => {
-            const isClickInside = chatContainer.contains(e.target);
-            const isClickOnButton = chatButton.contains(e.target);
-            
-            if (!isClickInside && !isClickOnButton && chatContainer.style.display === 'flex') {
-                closeChatWidget();
-            }
-        });
-
-        // Chat container içindeki tıklamaların dışarı yayılmasını engelle
-        chatContainer.addEventListener('click', (e) => {
-            e.stopPropagation();
+            chatContainer.style.display = 'none';
+            chatButton.style.display = 'block';
         });
     });
 </script>
@@ -1814,21 +1650,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Her 5 dakikada bir menüleri güncelle
     setInterval(updateMenus, 5 * 60 * 1000);
 });
-</script>
-<script>
-function showNotification(message, type = 'success') {
-    const notification = document.createElement('div');
-    notification.className = `event-notification ${type}`;
-    notification.innerHTML = `
-        <span class="event-notification-icon">${type === 'success' ? '✓' : '⚠'}</span>
-        <span>${message}</span>
-    `;
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
-}
 </script>
 </body>
 </html>
