@@ -1044,23 +1044,36 @@ function updateLikes(menuId, action, type) {
 const apiKey = '41dcd5c7b4490d899a7dcb713289d9cd';
 
 // Kullanıcı bilgilerini al ve hoşgeldin mesajını güncelle
+function isJson(str) {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+}
+
+// Kullanıcı bilgilerini al ve hoşgeldin mesajını güncelle
 function updateWelcomeMessage() {
   try {
     const currentUserRaw = sessionStorage.getItem("currentUser");
-    if (!currentUserRaw) return; // currentUser yoksa çık
+    if (!currentUserRaw) return;
+
+    if (!isJson(currentUserRaw)) {
+      console.warn("currentUser sessionStorage verisi geçerli JSON değil:", currentUserRaw);
+      return;
+    }
 
     const currentUser = JSON.parse(currentUserRaw);
 
-    // currentUser içinden username yoksa çık
     if (!currentUser.username) return;
 
-    // localStorage'dan user detaylarını al
     let userDataRaw = localStorage.getItem(currentUser.username);
 
-    // Eğer localStorage'da kullanıcı verisi yoksa örnek veri ekle
-    if (!userDataRaw) {
+    if (!userDataRaw || !isJson(userDataRaw)) {
+      // Geçerli değilse örnek veri koy
       const exampleData = {
-        fullName: currentUser.username, // veya "Ad Soyad" default
+        fullName: currentUser.username,
         faculty: ""
       };
       localStorage.setItem(currentUser.username, JSON.stringify(exampleData));
@@ -1071,11 +1084,9 @@ function updateWelcomeMessage() {
 
     const welcomeEl = document.getElementById("welcome-text");
     if (welcomeEl) {
-      // fullname varsa kullan yoksa username
       welcomeEl.textContent = `HOŞ GELDİN, ${(userData.fullName || currentUser.username).toUpperCase()}`;
     }
 
-    // Fakülte kartı gösterme
     if (userData.faculty) {
       const facultyCard = document.getElementById("faculty-card");
       const facultyTitle = document.getElementById("faculty-title");
@@ -1096,8 +1107,7 @@ function updateWelcomeMessage() {
           facultyDescription.textContent = "Mühendislik Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
           facultyLink.href = "muhendislikfak.html";
         } else {
-          // başka fakülte varsa istersen buraya ekleyebilirsin
-          facultyCard.classList.add("hidden"); // eğer uygun fakülte değilse gizle
+          facultyCard.classList.add("hidden");
         }
       }
     }
@@ -1106,7 +1116,6 @@ function updateWelcomeMessage() {
   }
 }
 
-// Sayfa yüklendiğinde çalıştır
 document.addEventListener('DOMContentLoaded', updateWelcomeMessage);
 
 
