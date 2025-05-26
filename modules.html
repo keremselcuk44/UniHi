@@ -1043,36 +1043,58 @@ const apiKey = '41dcd5c7b4490d899a7dcb713289d9cd';
 
 // Kullanıcı bilgilerini al ve hoşgeldin mesajını güncelle
 function updateWelcomeMessage() {
+  try {
     const currentUserRaw = sessionStorage.getItem("currentUser");
-    if (!currentUserRaw) return;
-    console.log("currentUserRaw:", currentUserRaw);
+    if (!currentUserRaw) return; // currentUser yoksa çık
+
     const currentUser = JSON.parse(currentUserRaw);
-    const userData = JSON.parse(localStorage.getItem(currentUser.username)); // localStorage'dan detayları al
+
+    // currentUser içinden username yoksa çık
+    if (!currentUser.username) return;
+
+    // localStorage'dan user detaylarını al
+    const userDataRaw = localStorage.getItem(currentUser.username);
+    if (!userDataRaw) return;
+
+    const userData = JSON.parse(userDataRaw);
 
     const welcomeEl = document.getElementById("welcome-message");
-    welcomeEl.textContent = `HOŞ GELDİN, ${(userData?.fullName || currentUser.username).toUpperCase()}`;
+    if (welcomeEl) {
+      // fullname varsa kullan yoksa username
+      welcomeEl.textContent = `HOŞ GELDİN, ${(userData.fullName || currentUser.username).toUpperCase()}`;
+    }
 
     // Fakülte kartı gösterme
-    if (userData?.faculty) {
-        const facultyCard = document.getElementById("faculty-card");
-        const facultyTitle = document.getElementById("faculty-title");
-        const facultyDescription = document.getElementById("faculty-description");
-        const facultyLink = document.getElementById("faculty-link");
+    if (userData.faculty) {
+      const facultyCard = document.getElementById("faculty-card");
+      const facultyTitle = document.getElementById("faculty-title");
+      const facultyDescription = document.getElementById("faculty-description");
+      const facultyLink = document.getElementById("faculty-link");
 
+      if (facultyCard && facultyTitle && facultyDescription && facultyLink) {
         facultyCard.classList.remove("hidden");
 
         const faculty = userData.faculty.toLowerCase();
+
         if (faculty.includes("teknoloji")) {
-            facultyTitle.textContent = "Teknoloji Fakültesi Hakkında Daha Fazla Bilgi!";
-            facultyDescription.textContent = "Teknoloji Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
-            facultyLink.href = "teknolojifak.html";
+          facultyTitle.textContent = "Teknoloji Fakültesi Hakkında Daha Fazla Bilgi!";
+          facultyDescription.textContent = "Teknoloji Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
+          facultyLink.href = "teknolojifak.html";
         } else if (faculty.includes("mühendislik")) {
-            facultyTitle.textContent = "Mühendislik Fakültesi Hakkında Daha Fazla Bilgi!";
-            facultyDescription.textContent = "Mühendislik Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
-            facultyLink.href = "muhendislikfak.html";
+          facultyTitle.textContent = "Mühendislik Fakültesi Hakkında Daha Fazla Bilgi!";
+          facultyDescription.textContent = "Mühendislik Fakültesi'nin bölümlerini, akademik kadrosunu ve eğitim olanaklarını keşfetmek için tıklayın.";
+          facultyLink.href = "muhendislikfak.html";
+        } else {
+          // başka fakülte varsa istersen buraya ekleyebilirsin
+          facultyCard.classList.add("hidden"); // eğer uygun fakülte değilse gizle
         }
+      }
     }
+  } catch (e) {
+    console.error("updateWelcomeMessage hatası:", e);
+  }
 }
+
 
 // Sayfa yüklendiğinde çalıştır
 document.addEventListener('DOMContentLoaded', updateWelcomeMessage);
