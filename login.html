@@ -209,6 +209,30 @@
                 message.className = "text-red-500 mt-2";
                 console.error("Login error:", error);
             }
+
+            function loginUser(username, password) {
+  fetch('/api/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    if(data.user) {
+      // Giriş başarılıysa kullanıcı bilgilerini sessionStorage'a kaydet
+      sessionStorage.setItem('currentUser', JSON.stringify(data.user));
+
+      // Burada updateWelcomeMessage yok! Sadece yönlendir.
+      window.location.href = 'modules.html';
+    } else {
+      alert(data.message || 'Giriş başarısız');
+    }
+  })
+  .catch(err => {
+    console.error('Login hatası:', err);
+  });
+}
+
         }
     
         function togglePasswordVisibility(inputId) {
@@ -221,67 +245,34 @@
         }
     
         function checkPasswordStrength(password) {
-            const hasLowerCase = /[a-z]/.test(password);
-            const hasUpperCase = /[A-Z]/.test(password);
-            const hasNumber = /\d/.test(password);
-            const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-            const isLongEnough = password.length >= 6;
-    
-            let strength = 0;
-            if (isLongEnough) strength++;
-            if (hasLowerCase && hasUpperCase) strength++;
-            if (hasNumber) strength++;
-            if (hasSpecialChar) strength++;
-    
-            for (let i = 1; i <= 4; i++) {
-                const bar = document.getElementById(`strength-bar-${i}`);
-                if (i <= strength) {
-                    let color = "bg-red-500";
-                    if (strength === 2) color = "bg-orange-500";
-                    if (strength === 3) color = "bg-yellow-500";
-                    if (strength === 4) color = "bg-green-500";
-                    bar.className = `h-1 w-1/4 ${color} ${i < 4 ? "mr-1" : ""} rounded`;
-                } else {
-                    bar.className = `h-1 w-1/4 bg-gray-200 ${i < 4 ? "mr-1" : ""} rounded`;
-                }
-            }
-    
-            const strengthText = document.getElementById("password-strength-text");
-    
-            let textContent = "";
-            let textClass = "text-xs mt-1 h-4 ";
-    
-            if (password.length === 0) {
-                textContent = "Şifreniz en az 6 karakter olmalıdır";
-                textClass += "text-gray-500";
-            } else if (strength === 0) {
-                textContent = "Şifreniz çok zayıf";
-                textClass += "text-red-500";
-            } else if (strength === 1) {
-                textContent = "Şifreniz zayıf";
-                textClass += "text-red-500";
-            } else if (strength === 2) {
-                textContent = "Şifreniz orta";
-                textClass += "text-orange-500";
-            } else if (strength === 3) {
-                textContent = "Şifreniz güçlü";
-                textClass += "text-yellow-600";
-            } else {
-                textContent = "Şifreniz çok güçlü";
-                textClass += "text-green-500";
-            }
-    
-            strengthText.textContent = textContent;
-            strengthText.className = textClass;
+    const strengthBars = [
+        document.getElementById('strength-bar-1'),
+        document.getElementById('strength-bar-2'),
+        document.getElementById('strength-bar-3'),
+        document.getElementById('strength-bar-4')
+    ];
+    const strengthText = document.getElementById('password-strength-text');
+
+    let strength = 0;
+    if (password.length >= 6) strength++;
+    if (/[A-Z]/.test(password)) strength++;
+    if (/[0-9]/.test(password)) strength++;
+    if (/[\W]/.test(password)) strength++;
+
+    strengthBars.forEach((bar, i) => {
+        if (i < strength) {
+            bar.classList.remove('bg-gray-200');
+            bar.classList.add('bg-green-500');
+        } else {
+            bar.classList.add('bg-gray-200');
+            bar.classList.remove('bg-green-500');
         }
-    
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("login-username").focus();
-    
-            // Form submit event listenerları
-            document.getElementById("register-form-element").addEventListener("submit", register);
-            document.getElementById("login-form-element").addEventListener("submit", login);
-        });
+    });
+
+    const strengthNames = ["Çok Zayıf", "Zayıf", "Orta", "Güçlü"];
+    strengthText.textContent = password.length === 0 ? "Şifreniz en az 6 karakter olmalıdır" : strengthNames[strength-1] || "Çok Zayıf";
+}
+
     </script>    
 </body>
 </html>
