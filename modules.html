@@ -1734,12 +1734,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         chatClose.addEventListener('click', () => {
+            closeChatWidget();
+        });
+
+        // Dışarı tıklandığında kapatma fonksiyonu
+        function closeChatWidget() {
             chatContainer.classList.remove('active');
             // Animasyon bittikten sonra gizle
             setTimeout(() => {
                 chatContainer.style.display = 'none';
                 chatButton.style.display = 'block';
             }, 300);
+        }
+
+        // Dışarı tıklama kontrolü
+        document.addEventListener('click', (e) => {
+            const isClickInside = chatContainer.contains(e.target);
+            const isClickOnButton = chatButton.contains(e.target);
+            
+            if (!isClickInside && !isClickOnButton && chatContainer.style.display === 'flex') {
+                closeChatWidget();
+            }
+        });
+
+        // Chat container içindeki tıklamaların dışarı yayılmasını engelle
+        chatContainer.addEventListener('click', (e) => {
+            e.stopPropagation();
         });
     });
 </script>
