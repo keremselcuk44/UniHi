@@ -10,7 +10,7 @@
         {"isim": "Domates"},
         {"isim": "Reçel"},
         {"isim": "Tereyağı"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-02": {
@@ -23,7 +23,7 @@
         {"isim": "Domates"},
         {"isim": "Reçel"},
         {"isim": "Tereyağı"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-03": {
@@ -36,7 +36,7 @@
         {"isim": "Domates"},
         {"isim": "Reçel"},
         {"isim": "Tereyağı"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-04": {
@@ -49,7 +49,7 @@
         {"isim": "Domates"},
         {"isim": "Reçel"},
         {"isim": "Tereyağı"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-05": {
@@ -62,7 +62,7 @@
         {"isim": "Domates"},
         {"isim": "Reçel"},
         {"isim": "Tereyağı"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-06": {
@@ -75,7 +75,7 @@
         {"isim": "Domates"},
         {"isim": "Reçel"},
         {"isim": "Tereyağı"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-07": {
@@ -88,7 +88,7 @@
         {"isim": "Domates"},
         {"isim": "Reçel"},
         {"isim": "Tereyağı"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-08": {
@@ -101,7 +101,7 @@
         {"isim": "Domates"},
         {"isim": "Reçel"},
         {"isim": "Tereyağı"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-09": {
@@ -114,7 +114,7 @@
         {"isim": "Domates"},
         {"isim": "Reçel"},
         {"isim": "Tereyağı"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-10": {
@@ -127,7 +127,7 @@
         {"isim": "Domates"},
         {"isim": "Reçel"},
         {"isim": "Tereyağı"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-11": {
@@ -140,7 +140,7 @@
         {"isim": "Domates"},
         {"isim": "Reçel"},
         {"isim": "Tereyağı"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-12": {
@@ -151,9 +151,7 @@
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Krem Peynir"},
         {"isim": "Mevsim Sebzeleri Söğüş"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-13": {
@@ -164,9 +162,7 @@
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Beyaz Peynir"},
         {"isim": "Reçel Çeşitleri"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-14": {
@@ -177,9 +173,7 @@
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Kaşar Peyniri"},
         {"isim": "Sürülebilir Çikolata"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-15": {
@@ -190,9 +184,7 @@
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Yöresel Peynir"},
         {"isim": "Mevsim Sebzeleri Söğüş"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-16": {
@@ -202,10 +194,8 @@
         {"isim": "Haşlanmış Yumurta"},
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Beyaz Peynir"},
-        {"isim": "Tahinli Pekmez"}, 
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Tahinli Pekmez"},
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-17": {
@@ -216,22 +206,18 @@
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Kaşar Peyniri"},
         {"isim": "Meyve"},
-        {"isim": "Çeyrek Ekmek"}, 
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-18": {
       "gun": "Pazar",
       "menü": [
-        {"isim": "Karışık Kızartma"},     
+        {"isim": "Karışık Kızartma"},
         {"isim": "Kek"},
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Yöresel Peynir"},
         {"isim": "Reçel Çeşitleri"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-19": {
@@ -242,9 +228,7 @@
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Beyaz Peynir"},
         {"isim": "Mevsim Sebzeleri Söğüş"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-20": {
@@ -255,9 +239,7 @@
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Kaşar Peyniri"},
         {"isim": "Sürülebilir Çikolata"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-21": {
@@ -268,48 +250,40 @@
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Beyaz Peynir"},
         {"isim": "Mevsim Sebzeleri Söğüş"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
-      ] 
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
+      ]
     },
     "2025-05-22": {
       "gun": "Perşembe",
       "menü": [
         {"isim": "Sucuklu Yumurta"},
-        {"isim": "Zeytinli/Peynirli Açma"}, 
+        {"isim": "Zeytinli/Peynirli Açma"},
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Kaşar Peyniri"},
         {"isim": "Bal ve Tereyağı"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-23": {
       "gun": "Cuma",
       "menü": [
         {"isim": "Sade Omlet"},
-        {"isim": "Çikolatalı Kek"}, 
+        {"isim": "Çikolatalı Kek"},
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Yöresel Peynir"},
         {"isim": "Mevsim Sebzeleri Söğüş"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-24": {
       "gun": "Cumartesi",
       "menü": [
         {"isim": "Patates Kızartması"},
-        {"isim": "Haşlanmış Yumurta"}, 
+        {"isim": "Haşlanmış Yumurta"},
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Labne Peyniri"},
         {"isim": "Tahinli Pekmez"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-25": {
@@ -320,89 +294,75 @@
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Beyaz Peynir"},
         {"isim": "Reçel Çeşitleri"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-26": {
       "gun": "Pazartesi",
       "menü": [
         {"isim": "Simit"},
-        {"isim": "Sade Omlet"}, 
+        {"isim": "Sade Omlet"},
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Kaşar Peyniri"},
         {"isim": "Bal ve Tereyağı"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-27": {
       "gun": "Salı",
       "menü": [
         {"isim": "Peynirli Omlet"},
-        {"isim": "Meyveli Kek"}, 
+        {"isim": "Meyveli Kek"},
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Yöresel Peynir"},
         {"isim": "Mevsim Sebzeleri Söğüş"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-28": {
       "gun": "Çarşamba",
       "menü": [
         {"isim": "Patates Kızartması"},
-        {"isim": "Haşlanmış Yumurta"}, 
+        {"isim": "Haşlanmış Yumurta"},
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Beyaz Peynir"},
         {"isim": "Helva"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-29": {
       "gun": "Perşembe",
       "menü": [
         {"isim": "Kaşarlı Omlet"},
-        {"isim": "Sade Açma"}, 
+        {"isim": "Sade Açma"},
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Krem Peynir"},
         {"isim": "Tahinli Pekmez"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-30": {
       "gun": "Cuma",
       "menü": [
         {"isim": "Patatesli Börek"},
-        {"isim": "Sucuklu Yumurta"}, 
+        {"isim": "Sucuklu Yumurta"},
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Beyaz Peynir"},
         {"isim": "Mevsim Sebzeleri Söğüş"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
     "2025-05-31": {
       "gun": "Cumartesi",
       "menü": [
         {"isim": "Sade Omlet"},
-        {"isim": "Dere"}, 
+        {"isim": "Dere"},
         {"isim": "Siyah/Yeşil Zeytin"},
         {"isim": "Kaşar Peyniri"},
         {"isim": "Sürülebilir Çikolata"},
-        {"isim": "Çeyrek Ekmek"},
-        {"isim": "500 ml Su"},
-        {"isim": "Çay"}
+        {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
-    } 
+    }
   }
 }
     
