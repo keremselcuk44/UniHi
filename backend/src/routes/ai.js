@@ -5,6 +5,8 @@ const router = express.Router();
 const axios = require('axios');
 const cors = require('cors');
 
+// Sohbet geçmişini saklamak için Map
+const conversationHistory = new Map();
 
 // CORS options
 const corsOptions = {
@@ -64,8 +66,23 @@ function getCurrentInfo() {
 
 router.post('/generate', async (req, res) => {
   try {
-    const { prompt, conversationContext = '' } = req.body;
+    const { prompt, userId = 'default' } = req.body;
     const currentInfo = getCurrentInfo();
+
+    // Kullanıcının sohbet geçmişini al veya yeni oluştur
+    if (!conversationHistory.has(userId)) {
+      conversationHistory.set(userId, []);
+    }
+    const userHistory = conversationHistory.get(userId);
+
+    // Yeni mesajı geçmişe ekle
+    userHistory.push({ role: 'user', content: prompt });
+
+    // Son 10 mesajı al (geçmişi sınırlamak için)
+    const recentHistory = userHistory.slice(-10);
+    const conversationContext = recentHistory
+      .map(msg => `${msg.role === 'user' ? 'Kullanıcı' : 'Uni'}: ${msg.content}`)
+      .join('\n');
 
     const systemPrompt = `Sen UniHi platformunun yapay zeka asistanısın. Adın Uni.
 Şu anki durum:
@@ -279,6 +296,15 @@ ${conversationContext}
     });
 
     const data = response.data;
+    
+    // Asistanın yanıtını geçmişe ekle
+    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+      userHistory.push({ 
+        role: 'assistant', 
+        content: data.candidates[0].content.parts[0].text 
+      });
+    }
+
     res.json(data);
   } catch (error) {
     console.error('Error:', error);
