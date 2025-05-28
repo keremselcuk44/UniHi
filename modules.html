@@ -1765,7 +1765,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (type === 'bot') {
                 messageDiv.style.cursor = 'pointer';
                 messageDiv.addEventListener('click', () => {
-                    // Tüm HTML dosyalarını kontrol et
+                    // URL regex pattern
+                    const urlPattern = /(https?:\/\/[^\s]+)/g;
+                    const urls = text.match(urlPattern);
+                    
+                    if (urls && urls.length > 0) {
+                        // Dış bağlantı varsa direkt yönlendir
+                        window.location.href = urls[0];
+                        return;
+                    }
+
+                    // İç sayfaları kontrol et
                     const htmlFiles = [
                         'yurtsayfasi.html',
                         'kykmenusabah.json',
