@@ -1760,6 +1760,48 @@ document.addEventListener('DOMContentLoaded', () => {
         function addMessage(text, type) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `chat-message ${type}`;
+            
+            // Bot mesajlarını tıklanabilir yap
+            if (type === 'bot') {
+                messageDiv.style.cursor = 'pointer';
+                messageDiv.addEventListener('click', () => {
+                    // Tüm HTML dosyalarını kontrol et
+                    const htmlFiles = [
+                        'yurtsayfasi.html',
+                        'kykmenusabah.json',
+                        'kykmenuaksam.json',
+                        'modules.html',
+                        'login.html',
+                        'settings.html',
+                        'teknolojifak.html',
+                        'muhendislikfak.html',
+                        'festivaller.html',
+                        'soylesiler.html',
+                        'harput.html',
+                        'hazar.html',
+                        'buzlukmagarasi.html',
+                        'circirselalesi.html',
+                        'kahvefincanimuzesi.html'
+                    ];
+
+                    // Mesaj içeriğinde geçen linkleri kontrol et
+                    for (const file of htmlFiles) {
+                        if (text.includes(file)) {
+                            const pageName = file.replace('.html', '').replace('.json', '');
+                            const formattedName = pageName
+                                .split('_')
+                                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                                .join(' ');
+                            
+                            if (confirm(`${formattedName} sayfasına gitmek istiyor musunuz?`)) {
+                                window.location.href = file;
+                            }
+                            return;
+                        }
+                    }
+                });
+            }
+            
             messageDiv.innerHTML = text;
             chatMessages.appendChild(messageDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
