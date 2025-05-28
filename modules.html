@@ -1761,14 +1761,33 @@ document.addEventListener('DOMContentLoaded', () => {
             const messageDiv = document.createElement('div');
             messageDiv.className = `chat-message ${type}`;
             
-            // Bot mesajlarını tıklanabilir yap
-            if (type === 'bot') {
+            // URL regex pattern
+            const urlPattern = /(https?:\/\/[^\s]+)/g;
+            const urls = text.match(urlPattern);
+            
+            // İç sayfaları kontrol et
+            const htmlFiles = [
+                'yurtsayfasi.html',
+                'modules.html',
+                'login.html',
+                'settings.html',
+                'teknolojifak.html',
+                'muhendislikfak.html',
+                'festivaller.html',
+                'soylesiler.html',
+                'harput.html',
+                'hazar.html',
+                'buzlukmagarasi.html',
+                'circirselalesi.html',
+                'kahvefincanimuzesi.html'
+            ];
+
+            // Sadece bağlantı içeren mesajları tıklanabilir yap
+            const hasLink = urls || htmlFiles.some(file => text.includes(file));
+            
+            if (type === 'bot' && hasLink) {
                 messageDiv.style.cursor = 'pointer';
                 messageDiv.addEventListener('click', () => {
-                    // URL regex pattern
-                    const urlPattern = /(https?:\/\/[^\s]+)/g;
-                    const urls = text.match(urlPattern);
-                    
                     if (urls && urls.length > 0) {
                         // Dış bağlantı varsa direkt yönlendir
                         window.location.href = urls[0];
@@ -1776,25 +1795,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     // İç sayfaları kontrol et
-                    const htmlFiles = [
-                        'yurtsayfasi.html',
-                        'kykmenusabah.json',
-                        'kykmenuaksam.json',
-                        'modules.html',
-                        'login.html',
-                        'settings.html',
-                        'teknolojifak.html',
-                        'muhendislikfak.html',
-                        'festivaller.html',
-                        'soylesiler.html',
-                        'harput.html',
-                        'hazar.html',
-                        'buzlukmagarasi.html',
-                        'circirselalesi.html',
-                        'kahvefincanimuzesi.html'
-                    ];
-
-                    // Mesaj içeriğinde geçen linkleri kontrol et ve direkt yönlendir
                     for (const file of htmlFiles) {
                         if (text.includes(file)) {
                             window.location.href = file;
