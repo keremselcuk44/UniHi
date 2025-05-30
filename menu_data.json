@@ -1,34 +1,51 @@
 {
   "uni_menu": {
-    "date": "29 Mayıs 2025 Perşembe",
+    "date": "30 Mayıs 2025 Cuma",
     "items": [
-      "ANTEP TAVA",
-      "MAKARNA",
-      "KOMPOSTO ÜZÜM",
-      "YOĞURT"
+      "ETLİ GÜVEÇ",
+      "PİRİNÇ PİLAVI",
+      "SOĞUK HARPUT ÇORBASI",
+      "PUDİNG"
     ]
   },
   "kyk_menus": {
     "aksam": {
-      "": "500 ml Su"
-    },
-    "sabah": {
-      "gun": "Perşembe",
+      "gun": "Cuma",
       "menü": [
         {
-          "isim": "Kaşarlı Omlet"
+          "isim": "Tarhana Çorba / Dövme Çorba"
         },
         {
-          "isim": "Sade Açma"
+          "isim": "Tavuk Tantuni / Sulu Nohut"
+        },
+        {
+          "isim": "Sebzeli Bulgur Pilav"
+        },
+        {
+          "isim": "Ayran"
+        },
+        {
+          "isim": "500 ml Su"
+        }
+      ]
+    },
+    "sabah": {
+      "gun": "Cuma",
+      "menü": [
+        {
+          "isim": "Patatesli Börek"
+        },
+        {
+          "isim": "Sucuklu Yumurta"
         },
         {
           "isim": "Siyah/Yeşil Zeytin"
         },
         {
-          "isim": "Krem Peynir"
+          "isim": "Beyaz Peynir"
         },
         {
-          "isim": "Tahinli Pekmez"
+          "isim": "Mevsim Sebzeleri Söğüş"
         },
         {
           "isim": "Çeyrek Ekmek / 500 ml Su / Çay"
@@ -36,5 +53,5 @@
       ]
     }
   },
-  "last_updated": "2025-05-29 00:02:57"
+  "last_updated": "2025-05-30 14:40:33"
 }

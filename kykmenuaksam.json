@@ -1,116 +1,164 @@
 {
+  "Mayis_Ayi_Aksam_Menusu": {
     "2025-05-06": {
-      "Çorba": "Tarhana Çorba / Ayran Aşı Çorba",
-      "Ana Yemek": "Karışık Musakka / Dolma",
-      "Ek Yemek": "Soslu Makarna",
-      "Tatlı": "Sütlaç",
-      "İçecek": "500 ml Su"
+      "gun": "Salı",
+      "menü": [
+        {"isim": "Tarhana Çorba / Ayran Aşı Çorba"},
+        {"isim": "Karışık Musakka / Dolma"},
+        {"isim": "Soslu Makarna"},
+        {"isim": "Sütlaç"},
+        {"isim": "500 ml Su"}
+      ]
     },
     "2025-05-07": {
-      "Çorba": "Süzme Çorba / Şehriyeli Yayla Çorba",
-      "Ana Yemek": "Kavurma / Kuru Fasulye",
-      "Ek Yemek": "Şehriyeli Pirinç Pilavı",
-      "Salata": "Mevsim Salata",
-      "İçecek": "500 ml Su"
+      "gun": "Çarşamba",
+      "menü": [
+        {"isim": "Süzme Çorba / Şehriyeli Yayla Çorba"},
+        {"isim": "Kavurma / Kuru Fasulye"},
+        {"isim": "Şehriyeli Pirinç Pilavı"},
+        {"isim": "Mevsim Salata"},
+        {"isim": "500 ml Su"}
+      ]
     },
     "2025-05-08": {
-      "Çorba": "Domates Çorba / Ezogelin Çorba",
-      "Ana Yemek": "Tavuk Tantuni / EZO / Et Yemek",
-      "Ek Yemek": "Soslu Makarna",
-      "Tatlı": "Yoğurt",
-      "İçecek": "500 ml Su"
+      "gun": "Perşembe",
+      "menü": [
+        {"isim": "Domates Çorba / Ezogelin Çorba"},
+        {"isim": "Tavuk Tantuni / EZO / Et Yemek"},
+        {"isim": "Soslu Makarna"},
+        {"isim": "Yoğurt"},
+        {"isim": "500 ml Su"}
+      ]
     },
     "2025-05-09": {
-      "Çorba": "Ezogelin Çorba / Şehriyeli Yayla Çorba",
-      "Ana Yemek": "Izgara Köfte / Taze Fasulye",
-      "Ek Yemek": "Şehriyeli Bulgur Pilavı",
-      "Salata": "Mevsim Salata",
-      "İçecek": "500 ml Su"
+      "gun": "Cuma",
+      "menü": [
+        {"isim": "Ezogelin Çorba / Şehriyeli Yayla Çorba"},
+        {"isim": "Izgara Köfte / Taze Fasulye"},
+        {"isim": "Şehriyeli Bulgur Pilavı"},
+        {"isim": "Mevsim Salata"},
+        {"isim": "500 ml Su"}
+      ]
     },
     "2025-05-10": {
-      "Çorba": "Süzme Çorba / Tarhana Çorba",
-      "Ana Yemek": "Tavuk Fajita / Yoğurtlu Mantı",
-      "Ek Yemek": "Şehriyeli Bulgur Pilavı",
-      "Tatlı": "İrmik Tatlısı",
-      "İçecek": "500 ml Su"
+      "gun": "Cumartesi",
+      "menü": [
+        {"isim": "Süzme Çorba / Tarhana Çorba"},
+        {"isim": "Tavuk Fajita / Yoğurtlu Mantı"},
+        {"isim": "Şehriyeli Bulgur Pilavı"},
+        {"isim": "İrmik Tatlısı"},
+        {"isim": "500 ml Su"}
+      ]
     },
     "2025-05-11": {
-      "Çorba": "Şehriyeli Yayla Çorba / Tarhana",
-      "Ana Yemek": "Tavuk Sote / Dolma",
-      "Ek Yemek": "Soslu Makarna",
-      "Tatlı": "Cacık",
-      "İçecek": "500 ml Su"
+      "gun": "Pazar",
+      "menü": [
+        {"isim": "Şehriyeli Yayla Çorba / Tarhana"},
+        {"isim": "Tavuk Sote / Dolma"},
+        {"isim": "Soslu Makarna"},
+        {"isim": "Cacık"},
+        {"isim": "500 ml Su"}
+      ]
     },
     "2025-05-12": {
-      "Çorba": "Domates Çorba / Mercimek Çorba",
-      "Ana Yemek": "Etli Kuru Fasulye / Tavuk Yemeği",
-      "Ek Yemek": "Şehriyeli Bulgur Pilavı",
-      "Tatlı": "Ayran",
-      "İçecek": "500 ml Su"
+      "gun": "Pazartesi",
+      "menü": [
+        {"isim": "Domates Çorba / Mercimek Çorba"},
+        {"isim": "Etli Kuru Fasulye / Tavuk Yemeği"},
+        {"isim": "Şehriyeli Bulgur Pilavı"},
+        {"isim": "Ayran"},
+        {"isim": "500 ml Su"}
+      ]
     },
     "2025-05-13": {
-      "Çorba": "Tarhana Çorba / Şehriyeli Yayla Çorba",
-      "Ana Yemek": "Tavuk Tantuni / Yoğurtlu Mantı",
-      "Ek Yemek": "Şehriyeli Pirinç Pilavı",
-      "Tatlı": "Sütlaç",
-      "İçecek": "500 ml Su"
+      "gun": "Salı",
+      "menü": [
+        {"isim": "Tarhana Çorba / Şehriyeli Yayla Çorba"},
+        {"isim": "Tavuk Tantuni / Yoğurtlu Mantı"},
+        {"isim": "Şehriyeli Pirinç Pilavı"},
+        {"isim": "Sütlaç"},
+        {"isim": "500 ml Su"}
+      ]
     },
     "2025-05-14": {
-      "Çorba": "Ezogelin Çorba / Tarhana Çorba",
-      "Ana Yemek": "Etli Karnıyarık / Taze Fasulye",
-      "Ek Yemek": "Soslu Makarna",
-      "Tatlı": "Yoğurt",
-      "İçecek": "500 ml Su"
+      "gun": "Çarşamba",
+      "menü": [
+        {"isim": "Ezogelin Çorba / Tarhana Çorba"},
+        {"isim": "Etli Karnıyarık / Taze Fasulye"},
+        {"isim": "Soslu Makarna"},
+        {"isim": "Yoğurt"},
+        {"isim": "500 ml Su"}
+      ]
     },
     "2025-05-15": {
-      "Çorba": "Ayran Aşı Çorba / Domates Çorba",
-      "Ana Yemek": "Etli Nohut / Yoğurtlu Mantı",
-      "Ek Yemek": "Şehriyeli Bulgur Pilavı",
-      "Tatlı": "Tatlı",
-      "İçecek": "500 ml Su"
+      "gun": "Perşembe",
+      "menü": [
+        {"isim": "Ayran Aşı Çorba / Domates Çorba"},
+        {"isim": "Etli Nohut / Yoğurtlu Mantı"},
+        {"isim": "Şehriyeli Bulgur Pilavı"},
+        {"isim": "Tatlı"},
+        {"isim": "500 ml Su"}
+      ]
     },
     "2025-05-16": {
-      "Çorba": "Mercimek Çorba / Mahluta Çorba",
-      "Ana Yemek": "Karnıyarık / Taze Fasulye",
-      "Ek Yemek": "Nohutlu Pirinç Pilavı",
-      "Tatlı": "Cacık",
-      "İçecek": "500 ml Su"
+      "gun": "Cuma",
+      "menü": [
+        {"isim": "Mercimek Çorba / Mahluta Çorba"},
+        {"isim": "Karnıyarık / Taze Fasulye"},
+        {"isim": "Nohutlu Pirinç Pilavı"},
+        {"isim": "Cacık"},
+        {"isim": "500 ml Su"}
+      ]
     },
     "2025-05-17": {
-      "Çorba": "Şehriyeli Yayla Çorba / Ezogelin Çorba",
-      "Ana Yemek": "Tavuk Sote / Yoğurtlu Mantı",
-      "Ek Yemek": "Soslu Makarna",
-      "Tatlı": "Cacık",
-      "İçecek": "500 ml Su"
+      "gun": "Cumartesi",
+      "menü": [
+        {"isim": "Şehriyeli Yayla Çorba / Ezogelin Çorba"},
+        {"isim": "Tavuk Sote / Yoğurtlu Mantı"},
+        {"isim": "Soslu Makarna"},
+        {"isim": "Cacık"},
+        {"isim": "500 ml Su"}
+      ]
     },
     "2025-05-18": {
-      "Çorba": "Ayran Aşı Çorba / Ezogelin Çorba",
-      "Ana Yemek": "Çiftlik Kebabı / Sulu Köfte",
-      "Ek Yemek": "Şehriyeli Bulgur Pilavı",
-      "Tatlı": "Cacık",
-      "İçecek": "500 ml Su"
+      "gun": "Pazar",
+      "menü": [
+        {"isim": "Ayran Aşı Çorba / Ezogelin Çorba"},
+        {"isim": "Çiftlik Kebabı / Sulu Köfte"},
+        {"isim": "Şehriyeli Bulgur Pilavı"},
+        {"isim": "Cacık"},
+        {"isim": "500 ml Su"}
+      ]
     },
     "2025-05-19": {
-      "Çorba": "Domates Çorba / Ezogelin Çorba",
-      "Ana Yemek": "Hamburger Köfte / Patates Kızartması",
-      "Ek Yemek": "Soslu Makarna",
-      "Tatlı": "Cacık",
-      "İçecek": "500 ml Su"
+      "gun": "Pazartesi",
+      "menü": [
+        {"isim": "Domates Çorba / Ezogelin Çorba"},
+        {"isim": "Hamburger Köfte / Patates Kızartması"},
+        {"isim": "Soslu Makarna"},
+        {"isim": "Cacık"},
+        {"isim": "500 ml Su"}
+      ]
     },
     "2025-05-29": {
-      "": "Mercimek Çorba / Mahluta Çorba",
-      "": "Etli Dolma / Soslu Karışık Kızartma",
-      "": "Soslu Makarna",
-      "": "Haydari",
-      "": "Çeyrek Ekmek",
-      "": "500 ml Su"
+      "gun": "Perşembe",
+      "menü": [
+        {"isim": "Mercimek Çorba / Mahluta Çorba"},
+        {"isim": "Etli Dolma / Soslu Karışık Kızartma"},
+        {"isim": "Soslu Makarna"},
+        {"isim": "Haydari"},
+        {"isim": "500 ml Su"}
+      ]
     },
     "2025-05-30": {
-      "": "Tarhana Çorba / Dövme Çorba",
-      "": "Tavuk Tantuni / Sulu Nohut",
-      "": "Sebzeli Bulgur Pilav",
-      "": "Ayran",
-      "": "Çeyrek Ekmek",
-      "": "500 ml Su"
+      "gun": "Cuma",
+      "menü": [
+        {"isim": "Tarhana Çorba / Dövme Çorba"},
+        {"isim": "Tavuk Tantuni / Sulu Nohut"},
+        {"isim": "Sebzeli Bulgur Pilav"},
+        {"isim": "Ayran"},
+        {"isim": "500 ml Su"}
+      ]
     }
+  }
 }

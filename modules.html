@@ -1030,6 +1030,63 @@
                 display: flex;
             }
         }
+
+        #kyk-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            #kyk-container {
+                flex-direction: row;
+            }
+        }
+
+        #kyk-aksam-menu, #kyk-sabah-menu {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 1.5rem;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            #kyk-aksam-menu, #kyk-sabah-menu {
+                width: calc(50% - 1rem);
+            }
+        }
+
+        #kyk-aksam-menu h2, #kyk-sabah-menu h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        #kyk-aksam-menu ul, #kyk-sabah-menu ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #kyk-aksam-menu li, #kyk-sabah-menu li {
+            background-color: #f9fafb;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s ease;
+        }
+
+        #kyk-aksam-menu li:hover, #kyk-sabah-menu li:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
     </style>
 </head>
 <body class="bg-red min-h-screen flex flex-col">
@@ -1169,10 +1226,8 @@ function updateLikes(menuId, action, type) {
         }
     }
 }
-</script><h2 class="text-2xl font-bold text-center text-gray-800 mb-4">Üniversite Günün Menüsü</h2><p class="text-center text-gray-600 mb-6"></p><ul class="flex flex-wrap justify-center gap-4"></ul></div><div class="flex flex-col md:flex-row gap-8" id="kyk-container"><div class="bg-white rounded-lg shadow-lg p-6 w-full md:w-1/2" id="kyk-menu"><h2 class="text-2xl font-bold text-center text-gray-800 mb-4">KYK Akşam Menüsü</h2><p class="text-center text-gray-600 mb-6"></p><ul class="space-y-4"></ul></div><div class="bg-white rounded-lg shadow-lg p-6 w-full md:w-1/2" id="kyk-sabah-menu"><h2 class="text-2xl font-bold text-center text-gray-800 mb-4">KYK Kahvaltı Menüsü</h2><p class="text-center text-gray-600 mb-6"></p><ul class="space-y-4"></ul></div></div></div>
+</script><h2 class="text-2xl font-bold text-center text-gray-800 mb-4">Üniversite Günün Menüsü</h2><p class="text-center text-gray-600 mb-6"></p><ul class="flex flex-wrap justify-center gap-4"></ul></div><div class="flex flex-col md:flex-row gap-8" id="kyk-container"><div class="bg-white rounded-lg shadow-lg p-6 w-full md:w-1/2" id="kyk-aksam-menu"><h2 class="text-2xl font-bold text-center text-gray-800 mb-4">KYK Akşam Menüsü</h2><p class="text-center text-gray-600 mb-6"></p><ul class="flex flex-wrap justify-center gap-4"></ul></div><div class="bg-white rounded-lg shadow-lg p-6 w-full md:w-1/2" id="kyk-sabah-menu"><h2 class="text-2xl font-bold text-center text-gray-800 mb-4">KYK Kahvaltı Menüsü</h2><p class="text-center text-gray-600 mb-6"></p><ul class="flex flex-wrap justify-center gap-4"></ul></div></div></div>
 </div>
-<p id="last-updated" class="text-center text-gray-500 mt-4"></p>
-
 <script src="menu.js"></script>
 <div class="mt-8 hidden" id="faculty-card">
 <div class="bg-white bg-opacity-90 p-6 rounded-2xl shadow-xl backdrop-blur-sm transform transition-all duration-300 hover:scale-105">
@@ -1864,40 +1919,92 @@ document.addEventListener('DOMContentLoaded', () => {
 // Menüleri güncelleme fonksiyonu
 async function updateMenus() {
     try {
+        console.log('Menü güncelleme başladı');
+        
         // KYK sabah menüsünü güncelle
         const kykSabahResponse = await fetch('kykmenusabah.json');
         const kykSabahData = await kykSabahResponse.json();
+        console.log('Sabah menü verisi:', kykSabahData);
         
         // KYK akşam menüsünü güncelle
         const kykAksamResponse = await fetch('kykmenuaksam.json');
         const kykAksamData = await kykAksamResponse.json();
-        
-        // Üniversite menüsünü güncelle
-        const uniMenuResponse = await fetch('unimenus.json');
-        const uniMenuData = await uniMenuResponse.json();
+        console.log('Akşam menü verisi:', kykAksamData);
         
         // Bugünün tarihini al
-        const today = new Date().toISOString().split('T')[0];
-        
-        // KYK sabah menüsünü güncelle
-        const kykSabahMenu = document.getElementById('kyk-sabah-menu');
-        if (kykSabahMenu && kykSabahData.Mayis_Ayi_Kahvalti_Menusu[today]) {
-            const menu = kykSabahData.Mayis_Ayi_Kahvalti_Menusu[today].menü;
-            kykSabahMenu.innerHTML = menu.map(item => `<li>${item.isim}</li>`).join('');
-        }
+        const today = new Date().toLocaleDateString('tr-TR');
+        console.log('Bugünün tarihi:', today);
         
         // KYK akşam menüsünü güncelle
         const kykAksamMenu = document.getElementById('kyk-aksam-menu');
-        if (kykAksamMenu && kykAksamData.Mayis_Ayi_Aksam_Menusu[today]) {
-            const menu = kykAksamData.Mayis_Ayi_Aksam_Menusu[today].menü;
-            kykAksamMenu.innerHTML = menu.map(item => `<li>${item.isim}</li>`).join('');
+        console.log('Akşam menü elementi:', kykAksamMenu);
+        
+        if (kykAksamMenu) {
+            const aksamMenu = kykAksamData.Mayis_Ayi_Aksam_Menusu?.[new Date().toISOString().split('T')[0]]?.menü;
+            console.log('Akşam menü verisi:', aksamMenu);
+            
+            if (aksamMenu) {
+                const menuList = kykAksamMenu.querySelector('ul');
+                kykAksamMenu.querySelector('p').textContent = today;
+                menuList.innerHTML = aksamMenu.map(item => `
+                    <li class="bg-gray-100 p-4 rounded-lg shadow-md flex-1 min-w-[200px] max-w-[300px]">
+                        <div class="text-center font-medium text-gray-800 mb-2">${item.isim}</div>
+                        <div class="flex justify-center space-x-4 mt-2">
+                            <button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors">
+                                <span class="text-lg">👍</span>
+                                <span>0</span>
+                            </button>
+                            <button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors">
+                                <span class="text-lg">👎</span>
+                                <span>0</span>
+                            </button>
+                        </div>
+                    </li>
+                `).join('');
+                console.log('Akşam menüsü güncellendi');
+            } else {
+                const menuList = kykAksamMenu.querySelector('ul');
+                kykAksamMenu.querySelector('p').textContent = today;
+                menuList.innerHTML = `
+                    <li class="bg-gray-100 p-4 rounded-lg shadow-md flex-1 min-w-[200px] max-w-[300px]">
+                        <div class="text-center font-medium text-gray-800 mb-2">Bugün için menü bulunamadı</div>
+                    </li>
+                `;
+                console.log('Akşam menüsü bulunamadı');
+            }
         }
         
-        // Üniversite menüsünü güncelle
-        const uniMenu = document.getElementById('gunun-menusu');
-        if (uniMenu && uniMenuData[today]) {
-            const menu = uniMenuData[today].menü;
-            uniMenu.innerHTML = menu.map(item => `<li>${item.isim}</li>`).join('');
+        // KYK sabah menüsünü güncelle
+        const kykSabahMenu = document.getElementById('kyk-sabah-menu');
+        if (kykSabahMenu) {
+            const sabahMenu = kykSabahData.Mayis_Ayi_Kahvalti_Menusu?.[new Date().toISOString().split('T')[0]]?.menü;
+            if (sabahMenu) {
+                const menuList = kykSabahMenu.querySelector('ul');
+                kykSabahMenu.querySelector('p').textContent = today;
+                menuList.innerHTML = sabahMenu.map(item => `
+                    <li class="bg-gray-100 p-4 rounded-lg shadow-md flex-1 min-w-[200px] max-w-[300px]">
+                        <div class="text-center font-medium text-gray-800 mb-2">${item.isim}</div>
+                        <div class="flex justify-center space-x-4 mt-2">
+                            <button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-green-500 hover:text-white transition-colors">
+                                <span class="text-lg">👍</span>
+                                <span>0</span>
+                            </button>
+                            <button class="flex items-center space-x-1 px-3 py-1 rounded-full bg-gray-200 hover:bg-red-500 hover:text-white transition-colors">
+                                <span class="text-lg">👎</span>
+                                <span>0</span>
+                            </button>
+                        </div>
+                    </li>
+                `).join('');
+            } else {
+                const menuList = kykSabahMenu.querySelector('ul');
+                kykSabahMenu.querySelector('p').textContent = today;
+                menuList.innerHTML = `
+                    <li class="bg-gray-100 p-4 rounded-lg shadow-md flex-1 min-w-[200px] max-w-[300px]">
+                        <div class="text-center font-medium text-gray-800 mb-2">Bugün için menü bulunamadı</div>
+                    </li>
+                `;
+            }
         }
     } catch (error) {
         console.error('Menü güncelleme hatası:', error);
@@ -1906,10 +2013,8 @@ async function updateMenus() {
 
 // Sayfa yüklendiğinde menüleri güncelle
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Sayfa yüklendi, menüler güncelleniyor...');
     updateMenus();
-    
-    // Her 5 dakikada bir menüleri güncelle
-    setInterval(updateMenus, 5 * 60 * 1000);
 });
 </script>
 <script>

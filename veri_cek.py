@@ -67,18 +67,10 @@ def get_kyk_menus():
         today = datetime.now().strftime("%Y-%m-%d")
         
         # Akşam menüsünü bul
-        today_menu = None
-        for date, menu in kyk_menu.items():
-            if date == today:
-                today_menu = menu
-                break
+        today_menu = kyk_menu.get("Mayis_Ayi_Aksam_Menusu", {}).get(today)
 
         # Kahvaltı menüsünü bul
-        today_sabah_menu = None
-        for date, menu in kyk_sabah_menu["Mayis_Ayi_Kahvalti_Menusu"].items():
-            if date == today:
-                today_sabah_menu = menu
-                break
+        today_sabah_menu = kyk_sabah_menu.get("Mayis_Ayi_Kahvalti_Menusu", {}).get(today)
 
         return {
             "aksam": today_menu,
