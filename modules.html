@@ -2062,17 +2062,27 @@ function updateFacultyCard() {
     const userData = JSON.parse(localStorage.getItem('userData') || '{}');
     console.log('LocalStorage userData:', userData);
     
+    // Kullanıcı giriş yapmış mı kontrol et
+    const currentUser = sessionStorage.getItem('currentUser');
+    if (!currentUser) {
+        console.log('Kullanıcı giriş yapmamış, kart gizleniyor');
+        facultyCard.classList.add('hidden');
+        return;
+    }
+    
+    // Fakülte bilgisi var mı kontrol et
     if (userData.faculty) {
         console.log('Fakülte bilgisi bulundu:', userData.faculty);
-        facultyCard.classList.remove('hidden');
         
         // Fakülte bilgilerine göre içeriği güncelle
         const faculty = userData.faculty.toLowerCase();
         if (faculty.includes('teknoloji')) {
+            facultyCard.classList.remove('hidden');
             facultyTitle.textContent = 'Teknoloji Fakültesi';
             facultyDescription.textContent = 'Teknoloji Fakültesi hakkında detaylı bilgi almak için aşağıdaki butona tıklayın.';
             facultyLink.href = 'teknolojifak.html';
         } else if (faculty.includes('mühendislik')) {
+            facultyCard.classList.remove('hidden');
             facultyTitle.textContent = 'Mühendislik Fakültesi';
             facultyDescription.textContent = 'Mühendislik Fakültesi hakkında detaylı bilgi almak için aşağıdaki butona tıklayın.';
             facultyLink.href = 'muhendislikfak.html';
