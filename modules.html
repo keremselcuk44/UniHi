@@ -2090,6 +2090,10 @@ function updateFacultyCard() {
             facultyTitle.textContent = 'Mühendislik Fakültesi';
             facultyDescription.textContent = 'Mühendislik Fakültesi hakkında detaylı bilgi almak için aşağıdaki butona tıklayın.';
             facultyLink.href = 'muhendislikfak.html';
+            facultyLink.onclick = function(e) {
+                e.preventDefault();
+                window.location.href = 'muhendislikfak.html';
+            };
         } else {
             console.log('Tanımlanmamış fakülte:', faculty);
             facultyCard.classList.add('hidden');
