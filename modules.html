@@ -2081,6 +2081,10 @@ function updateFacultyCard() {
             facultyTitle.textContent = 'Teknoloji Fakültesi';
             facultyDescription.textContent = 'Teknoloji Fakültesi hakkında detaylı bilgi almak için aşağıdaki butona tıklayın.';
             facultyLink.href = 'teknolojifak.html';
+            facultyLink.onclick = function(e) {
+                e.preventDefault();
+                window.location.href = 'teknolojifak.html';
+            };
         } else if (faculty.includes('mühendislik')) {
             facultyCard.classList.remove('hidden');
             facultyTitle.textContent = 'Mühendislik Fakültesi';
