@@ -2075,10 +2075,10 @@ function updateFacultyCard() {
         console.log('Fakülte bilgisi bulundu:', userData.faculty);
         
         // Fakülte bilgilerine göre içeriği güncelle
-        const faculty = userData.faculty.toLowerCase();
+        const faculty = userData.faculty.toLowerCase().replace(/[^a-z0-9]/g, '');
         console.log('İşlenen fakülte:', faculty);
         
-        if (faculty.includes('teknoloji')) {
+        if (faculty === 'teknoloji' || faculty === 'teknolojifakultesi') {
             console.log('Teknoloji fakültesi seçildi');
             facultyCard.style.display = 'block';
             facultyTitle.textContent = 'Teknoloji Fakültesi';
@@ -2088,7 +2088,7 @@ function updateFacultyCard() {
                 e.preventDefault();
                 window.location.href = 'teknolojifak.html';
             };
-        } else if (faculty.includes('mühendislik')) {
+        } else if (faculty === 'muhendislik' || faculty === 'muhendislikfakultesi') {
             console.log('Mühendislik fakültesi seçildi');
             facultyCard.style.display = 'block';
             facultyTitle.textContent = 'Mühendislik Fakültesi';
@@ -2108,10 +2108,31 @@ function updateFacultyCard() {
     }
 }
 
+// Hoş geldin mesajını güncelle
+function updateWelcomeMessage() {
+    try {
+        const currentUser = sessionStorage.getItem("currentUser");
+        console.log("SessionStorage verisi:", currentUser);
+
+        if (!currentUser) {
+            console.log("Kullanıcı bilgisi bulunamadı");
+            return;
+        }
+
+        const welcomeEl = document.getElementById("welcome-text");
+        if (welcomeEl) {
+            welcomeEl.textContent = `HOŞ GELDİN, ${currentUser.toUpperCase()}`;
+        }
+    } catch (error) {
+        console.error("Hoş geldin mesajı güncellenirken hata oluştu:", error);
+    }
+}
+
 // Sayfa yüklendiğinde fakülte kartını güncelle
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Sayfa yüklendi, fakülte kartı güncelleniyor');
     updateFacultyCard();
+    updateWelcomeMessage();
 });
 
 // Her 5 saniyede bir kontrol et
