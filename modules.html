@@ -2062,33 +2062,23 @@ function updateFacultyCard() {
     const userData = JSON.parse(localStorage.getItem('userData') || '{}');
     console.log('LocalStorage userData:', userData);
     
-    // SessionStorage'dan da kontrol et
-    const sessionUserData = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
-    console.log('SessionStorage currentUser:', sessionUserData);
-    
-    // Her iki kaynaktan da fakülte bilgisini kontrol et
-    const faculty = userData.faculty || sessionUserData.faculty;
-    console.log('Bulunan fakülte bilgisi:', faculty);
-    
-    if (faculty) {
-        console.log('Fakülte bilgisi bulundu, kart gösteriliyor');
+    if (userData.faculty) {
+        console.log('Fakülte bilgisi bulundu:', userData.faculty);
         facultyCard.classList.remove('hidden');
         
         // Fakülte bilgilerine göre içeriği güncelle
-        switch(faculty.toLowerCase()) {
-            case 'teknoloji fakültesi':
-                facultyTitle.textContent = 'Teknoloji Fakültesi';
-                facultyDescription.textContent = 'Teknoloji Fakültesi hakkında detaylı bilgi almak için aşağıdaki butona tıklayın.';
-                facultyLink.href = 'teknolojifak.html';
-                break;
-            case 'mühendislik fakültesi':
-                facultyTitle.textContent = 'Mühendislik Fakültesi';
-                facultyDescription.textContent = 'Mühendislik Fakültesi hakkında detaylı bilgi almak için aşağıdaki butona tıklayın.';
-                facultyLink.href = 'muhendislikfak.html';
-                break;
-            default:
-                console.log('Tanımlanmamış fakülte:', faculty);
-                facultyCard.classList.add('hidden');
+        const faculty = userData.faculty.toLowerCase();
+        if (faculty.includes('teknoloji')) {
+            facultyTitle.textContent = 'Teknoloji Fakültesi';
+            facultyDescription.textContent = 'Teknoloji Fakültesi hakkında detaylı bilgi almak için aşağıdaki butona tıklayın.';
+            facultyLink.href = 'teknolojifak.html';
+        } else if (faculty.includes('mühendislik')) {
+            facultyTitle.textContent = 'Mühendislik Fakültesi';
+            facultyDescription.textContent = 'Mühendislik Fakültesi hakkında detaylı bilgi almak için aşağıdaki butona tıklayın.';
+            facultyLink.href = 'muhendislikfak.html';
+        } else {
+            console.log('Tanımlanmamış fakülte:', faculty);
+            facultyCard.classList.add('hidden');
         }
     } else {
         console.log('Fakülte bilgisi bulunamadı, kart gizleniyor');
