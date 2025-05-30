@@ -2066,7 +2066,7 @@ function updateFacultyCard() {
     const currentUser = sessionStorage.getItem('currentUser');
     if (!currentUser) {
         console.log('Kullanıcı giriş yapmamış, kart gizleniyor');
-        facultyCard.classList.add('hidden');
+        facultyCard.style.display = 'none';
         return;
     }
     
@@ -2076,8 +2076,11 @@ function updateFacultyCard() {
         
         // Fakülte bilgilerine göre içeriği güncelle
         const faculty = userData.faculty.toLowerCase();
+        console.log('İşlenen fakülte:', faculty);
+        
         if (faculty.includes('teknoloji')) {
-            facultyCard.classList.remove('hidden');
+            console.log('Teknoloji fakültesi seçildi');
+            facultyCard.style.display = 'block';
             facultyTitle.textContent = 'Teknoloji Fakültesi';
             facultyDescription.textContent = 'Teknoloji Fakültesi hakkında detaylı bilgi almak için aşağıdaki butona tıklayın.';
             facultyLink.href = 'teknolojifak.html';
@@ -2086,7 +2089,8 @@ function updateFacultyCard() {
                 window.location.href = 'teknolojifak.html';
             };
         } else if (faculty.includes('mühendislik')) {
-            facultyCard.classList.remove('hidden');
+            console.log('Mühendislik fakültesi seçildi');
+            facultyCard.style.display = 'block';
             facultyTitle.textContent = 'Mühendislik Fakültesi';
             facultyDescription.textContent = 'Mühendislik Fakültesi hakkında detaylı bilgi almak için aşağıdaki butona tıklayın.';
             facultyLink.href = 'muhendislikfak.html';
@@ -2096,11 +2100,11 @@ function updateFacultyCard() {
             };
         } else {
             console.log('Tanımlanmamış fakülte:', faculty);
-            facultyCard.classList.add('hidden');
+            facultyCard.style.display = 'none';
         }
     } else {
         console.log('Fakülte bilgisi bulunamadı, kart gizleniyor');
-        facultyCard.classList.add('hidden');
+        facultyCard.style.display = 'none';
     }
 }
 
