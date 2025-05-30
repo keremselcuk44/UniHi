@@ -2051,6 +2051,8 @@ document.addEventListener('DOMContentLoaded', () => {
 <script>
 // Fakülte kartını güncelle
 function updateFacultyCard() {
+    console.log('Fakülte kartı güncelleme başladı');
+    
     const facultyCard = document.getElementById('faculty-card');
     const facultyTitle = document.getElementById('faculty-title');
     const facultyDescription = document.getElementById('faculty-description');
@@ -2058,12 +2060,22 @@ function updateFacultyCard() {
     
     // Kullanıcı verilerini localStorage'dan al
     const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+    console.log('LocalStorage userData:', userData);
     
-    if (userData.faculty) {
+    // SessionStorage'dan da kontrol et
+    const sessionUserData = JSON.parse(sessionStorage.getItem('currentUser') || '{}');
+    console.log('SessionStorage currentUser:', sessionUserData);
+    
+    // Her iki kaynaktan da fakülte bilgisini kontrol et
+    const faculty = userData.faculty || sessionUserData.faculty;
+    console.log('Bulunan fakülte bilgisi:', faculty);
+    
+    if (faculty) {
+        console.log('Fakülte bilgisi bulundu, kart gösteriliyor');
         facultyCard.classList.remove('hidden');
         
         // Fakülte bilgilerine göre içeriği güncelle
-        switch(userData.faculty.toLowerCase()) {
+        switch(faculty.toLowerCase()) {
             case 'teknoloji fakültesi':
                 facultyTitle.textContent = 'Teknoloji Fakültesi';
                 facultyDescription.textContent = 'Teknoloji Fakültesi hakkında detaylı bilgi almak için aşağıdaki butona tıklayın.';
@@ -2075,17 +2087,26 @@ function updateFacultyCard() {
                 facultyLink.href = 'muhendislikfak.html';
                 break;
             default:
+                console.log('Tanımlanmamış fakülte:', faculty);
                 facultyCard.classList.add('hidden');
         }
     } else {
+        console.log('Fakülte bilgisi bulunamadı, kart gizleniyor');
         facultyCard.classList.add('hidden');
     }
 }
 
 // Sayfa yüklendiğinde fakülte kartını güncelle
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Sayfa yüklendi, fakülte kartı güncelleniyor');
     updateFacultyCard();
 });
+
+// Her 5 saniyede bir kontrol et
+setInterval(() => {
+    console.log('Periyodik fakülte kartı kontrolü');
+    updateFacultyCard();
+}, 5000);
 </script>
 </body>
 </html>
