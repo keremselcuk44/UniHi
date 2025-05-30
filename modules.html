@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="tr" x-data="{ open: false }">
+<html lang="tr" x-data="{ menuOpen: false }">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -914,105 +914,72 @@
                 display: none;
             }
 
+            .mobile-menu-button {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+                padding: 0.5rem;
+                z-index: 1001;
+            }
+
             .sidebar {
                 transform: translateX(-100%);
                 transition: transform 0.3s ease-in-out;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: white;
+                z-index: 1000;
+                padding: 1rem;
+                overflow-y: auto;
             }
 
             .sidebar.open {
                 transform: translateX(0);
             }
 
-            .profile-menu {
-                position: relative;
-                top: auto;
-                right: auto;
-                z-index: 1;
+            .sidebar ul {
+                margin-top: 3rem;
             }
 
-            .profile-menu img {
-                width: 40px;
-                height: 40px;
+            .sidebar li {
+                margin-bottom: 0.5rem;
             }
 
-            .profile-dropdown {
-                right: 0;
-                top: 100%;
+            .sidebar a, .sidebar button {
+                display: block;
+                width: 100%;
+                padding: 0.75rem 1rem;
+                color: #333;
+                text-decoration: none;
+                border: none;
+                background: none;
+                text-align: left;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .sidebar a:hover, .sidebar button:hover {
+                background-color: #f3f4f6;
+            }
+
+            .sidebar .dropdown-content {
+                margin-left: 1rem;
                 margin-top: 0.5rem;
+                padding: 0.5rem;
+                background-color: #f9fafb;
+                border-radius: 0.5rem;
             }
 
-            /* Takvim mobil stilleri */
-            .calendar-container {
-                padding: 5px;
-            }
-
-            .calendar-header {
-                margin-bottom: 10px;
-                padding: 0 5px;
-            }
-
-            .calendar-header h3 {
-                font-size: 1rem;
-            }
-
-            .calendar-header button {
-                padding: 2px 8px;
-                font-size: 1rem;
-            }
-
-            .calendar-grid {
-                gap: 2px;
-            }
-
-            .calendar-day {
-                font-size: 0.8rem;
-                min-width: 30px;
-                min-height: 30px;
-            }
-
-            .calendar-day-name {
-                font-size: 0.7rem;
-                padding: 2px 0;
-            }
-
-            .calendar-legend {
-                font-size: 0.7rem;
-                padding: 5px;
-                margin-top: 5px;
-            }
-
-            .slider {
-                height: 300px;
-            }
-
-            .haber-card {
-                height: auto;
-                flex-direction: column;
-            }
-
-            .haber-thumbnail {
-                width: 100%;
-                height: 150px;
-            }
-
-            .chat-widget {
-                bottom: 10px;
-                right: 10px;
-            }
-
-            .chat-widget-button {
-                bottom: 10px;
-                right: 10px;
-                width: 50px;
-                height: 50px;
-            }
-
-            .chat-widget-container {
-                width: 100%;
-                height: 100%;
-                bottom: 0;
-                right: 0;
-                border-radius: 0;
+            .sidebar .dropdown-content a {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
             }
         }
 
@@ -1091,87 +1058,154 @@
 </head>
 <body class="bg-red min-h-screen flex flex-col">
 <header class="bg-gradient-to-r from-[#c32f52] to-[#9b1d48] shadow-md py-4 px-6 flex justify-between items-center">
-<button @click="open = !open" class="text-white text-3xl focus:outline-none md:hidden">&#9776;</button>
-<nav class="menu text-white">
-<div class="menu-item">FAKÜLTELER
-<div class="dropdown">
-<a href="teknolojifak.html">Teknoloji Fakültesi</a>
-<a href="muhendislikfak.html">Mühendislik Fakültesi</a>
-</div>
-</div>
-<div class="menu-item"><a href="yurtsayfasi.html">KYK YURTLARI</a></div>
-<div class="menu-item">ETKİNLİKLER
-<div class="dropdown">
-<a href="festivaller.html">Festivaller</a>
-<a href="soylesiler.html">Söyleşiler</a>
-</div>
-</div>
-<div class="menu-item">GEZİLER
-<div class="dropdown">
-<a href="harput.html">Harput Kalesi</a>
-<a href="hazar.html">Hazar Gölü</a>
-<a href="buzlukmagarasi.html">Buzluk Mağarası</a>
-<a href="circirselalesi.html">Çırçır Şelalesi</a>
-<a href="kahvefincanimuzesi.html">Kahve Fincanı Müzesi</a>
-</div>
-</div>
-</nav>
-<div class="profile-menu">
-<img alt="Admin Profil" src="photos/jonsnow.png"/>
-<div class="profile-dropdown">
-<a href="settings.html">Ayarlar</a>
-<a href="home.html">Çıkış Yap</a>
-</div>
-</div>
+    <button id="mobile-menu-button" class="mobile-menu-button text-white text-3xl focus:outline-none md:hidden">&#9776;</button>
+    <nav class="menu text-white">
+        <div class="menu-item">FAKÜLTELER
+            <div class="dropdown">
+                <a href="teknolojifak.html">Teknoloji Fakültesi</a>
+                <a href="muhendislikfak.html">Mühendislik Fakültesi</a>
+            </div>
+        </div>
+        <div class="menu-item"><a href="yurtsayfasi.html">KYK YURTLARI</a></div>
+        <div class="menu-item">ETKİNLİKLER
+            <div class="dropdown">
+                <a href="festivaller.html">Festivaller</a>
+                <a href="soylesiler.html">Söyleşiler</a>
+            </div>
+        </div>
+        <div class="menu-item">GEZİLER
+            <div class="dropdown">
+                <a href="harput.html">Harput Kalesi</a>
+                <a href="hazar.html">Hazar Gölü</a>
+                <a href="buzlukmagarasi.html">Buzluk Mağarası</a>
+                <a href="circirselalesi.html">Çırçır Şelalesi</a>
+                <a href="kahvefincanimuzesi.html">Kahve Fincanı Müzesi</a>
+            </div>
+        </div>
+    </nav>
+    <div class="profile-menu">
+        <img alt="Admin Profil" src="photos/jonsnow.png"/>
+        <div class="profile-dropdown">
+            <a href="settings.html">Ayarlar</a>
+            <a href="home.html">Çıkış Yap</a>
+        </div>
+    </div>
 </header>
 
-<div class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" x-show="open" @click="open = false"></div>
-<aside class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 p-5 sidebar md:hidden" x-data="{ etkinlikOpen: false }" :class="{'open': open}">
-<button @click="open = false" class="text-black text-2xl absolute top-4 right-4">&times;</button>
-<ul class="mt-10 space-y-4">
-    <li><a href="modules.html" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">ANA SAYFA</a></li>
-    <li><a href="yurtsayfasi.html" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">KYK YURTLARI</a></li>
+<div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" style="display: none;"></div>
+<aside id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 p-5 md:hidden" style="display: none;">
+    <button id="close-menu" class="text-black text-2xl absolute top-4 right-4">&times;</button>
+    <ul class="mt-10 space-y-4">
+        <li><a href="modules.html" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">ANA SAYFA</a></li>
+        <li><a href="yurtsayfasi.html" class="block px-4 py-2 text-black hover:bg-gray-200 rounded">KYK YURTLARI</a></li>
 
-    <!-- FAKÜLTELER-->
-    <li x-data="{ dropdownOpen: false }" class="relative">
-        <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
-            FAKÜLTELER
-        </button>
-        <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
-             class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
-            <a href="teknolojifak.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Teknoloji Fakültesi</a>
-            <a href="muhendislikfak.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Mühendislik Fakültesi</a>
-        </div>
-    </li>
+        <!-- FAKÜLTELER-->
+        <li class="relative">
+            <button class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded dropdown-button">
+                FAKÜLTELER
+            </button>
+            <div class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2" style="display: none;">
+                <a href="teknolojifak.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Teknoloji Fakültesi</a>
+                <a href="muhendislikfak.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Mühendislik Fakültesi</a>
+            </div>
+        </li>
 
-    <!-- ETKİNLİKLER-->
-    <li x-data="{ dropdownOpen: false }" class="relative">
-        <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
-            ETKİNLİKLER
-        </button>
-        <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
-             class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
-            <a href="festivaller.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Festivaller</a>
-            <a href="soylesiler.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Söyleşiler</a>
-        </div>
-    </li>
-    
-    <!-- GEZİLER-->
-    <li x-data="{ dropdownOpen: false }" class="relative">
-        <button @click="dropdownOpen = !dropdownOpen" class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded">
-            GEZİLER
-        </button>
-        <div x-show="dropdownOpen" @click.away="dropdownOpen = false" 
-             class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2">
-            <a href="harput.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Harput Kalesi</a>
-            <a href="hazar.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Hazar Gölü</a>
-            <a href="buzlukmagarasi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Buzluk Mağarası</a>
-            <a href="circirselalesi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Çırçır Şelalesi</a>
-            <a href="kahvefincanimuzesi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Kahve Fincanı Müzesi</a>
-        </div>
-    </li>
-</ul>
+        <!-- ETKİNLİKLER-->
+        <li class="relative">
+            <button class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded dropdown-button">
+                ETKİNLİKLER
+            </button>
+            <div class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2" style="display: none;">
+                <a href="festivaller.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Festivaller</a>
+                <a href="soylesiler.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Söyleşiler</a>
+            </div>
+        </li>
+        
+        <!-- GEZİLER-->
+        <li class="relative">
+            <button class="w-full text-left px-4 py-2 text-black hover:bg-gray-200 rounded dropdown-button">
+                GEZİLER
+            </button>
+            <div class="mt-2 ml-4 bg-gray-100 rounded shadow-md text-black space-y-2 p-2" style="display: none;">
+                <a href="harput.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Harput Kalesi</a>
+                <a href="hazar.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Hazar Gölü</a>
+                <a href="buzlukmagarasi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Buzluk Mağarası</a>
+                <a href="circirselalesi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Çırçır Şelalesi</a>
+                <a href="kahvefincanimuzesi.html" class="block px-2 py-1 hover:bg-gray-200 rounded">Kahve Fincanı Müzesi</a>
+            </div>
+        </li>
+    </ul>
 </aside>
+
+<style>
+@media (max-width: 768px) {
+    .mobile-menu-button {
+        z-index: 1001;
+    }
+    
+    .sidebar {
+        width: 80%;
+        max-width: 300px;
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .sidebar.open {
+        transform: translateX(0) !important;
+    }
+    
+    .dropdown-content {
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .dropdown-content.show {
+        display: block !important;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMenuButton = document.getElementById('close-menu');
+    const sidebar = document.getElementById('sidebar');
+    const menuOverlay = document.getElementById('menu-overlay');
+    const dropdownButtons = document.querySelectorAll('.dropdown-button');
+
+    // Menü açma fonksiyonu
+    function openMenu() {
+        sidebar.style.display = 'block';
+        menuOverlay.style.display = 'block';
+    }
+
+    // Menü kapatma fonksiyonu
+    function closeMenu() {
+        sidebar.style.display = 'none';
+        menuOverlay.style.display = 'none';
+    }
+
+    // Menü butonuna tıklama
+    mobileMenuButton.addEventListener('click', openMenu);
+
+    // Kapatma butonuna tıklama
+    closeMenuButton.addEventListener('click', closeMenu);
+
+    // Overlay'e tıklama
+    menuOverlay.addEventListener('click', closeMenu);
+
+    // Dropdown menüler için
+    dropdownButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const dropdownContent = button.nextElementSibling;
+            if (dropdownContent.style.display === 'none') {
+                dropdownContent.style.display = 'block';
+            } else {
+                dropdownContent.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
 
 <section class="flex flex-col mt-10 px-6">
 <div class="flex flex-col md:flex-row justify-between items-start gap-8">
@@ -2020,30 +2054,36 @@ document.addEventListener('DOMContentLoaded', () => {
 <script>
 // Mobil menü için yeni JavaScript
 document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const menu = document.querySelector('.menu');
-    const menuItems = document.querySelectorAll('.menu-item');
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const sidebar = document.querySelector('.sidebar');
+    const dropdownButtons = document.querySelectorAll('.sidebar button[data-dropdown]');
 
-    mobileMenuButton.addEventListener('click', () => {
-        menu.classList.toggle('active');
+    // Menü butonuna tıklama
+    mobileMenuButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.toggle('open');
     });
 
-    menuItems.forEach(item => {
-        if (item.querySelector('.dropdown')) {
-            item.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    item.classList.toggle('active');
-                }
-            });
-        }
+    // Dropdown menüleri için
+    dropdownButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const dropdownContent = button.nextElementSibling;
+            dropdownContent.style.display = 
+                dropdownContent.style.display === 'block' ? 'none' : 'block';
+        });
     });
 
     // Menü dışına tıklandığında menüyü kapat
     document.addEventListener('click', (e) => {
-        if (!menu.contains(e.target) && !mobileMenuButton.contains(e.target)) {
-            menu.classList.remove('active');
+        if (!sidebar.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+            sidebar.classList.remove('open');
         }
+    });
+
+    // Menü içindeki tıklamaların dışarı yayılmasını engelle
+    sidebar.addEventListener('click', (e) => {
+        e.stopPropagation();
     });
 });
 </script>
