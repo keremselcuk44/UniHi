@@ -1,0 +1,6 @@
+projectKey=unihi-me
+serverUrl=http://localhost:9000
+serverVersion=25.5.0.107428
+dashboardUrl=http://localhost:9000/dashboard?id=unihi-me
+ceTaskId=b46d47cd-b0ae-4761-bbe1-a0f3c766435a
+ceTaskUrl=http://localhost:9000/api/ce/task?id=b46d47cd-b0ae-4761-bbe1-a0f3c766435a

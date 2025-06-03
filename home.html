@@ -123,28 +123,43 @@
 
         .hero-section {
             position: relative;
-            height: 80vh;
+            height: 85vh;
+            width: 100%;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .hero-content {
+        .hero-image {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 2;
-            width: 80%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: opacity 0.5s ease;
         }
 
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+        }
+
+        .hero-bottom {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            text-align: center;
+            width: 100%;
+            padding: 0 20px;
         }
 
         .feature-card {
@@ -288,46 +303,73 @@
 
         .discover-button {
             display: inline-block;
-            background-color: transparent;
-            border: 2px solid white;
-            color: white;
-            padding: 0.75rem 2rem;
-            border-radius: 9999px;
-            font-weight: bold;
+            background-color: #ffffff;
+            color: #4f46e5;
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: none;
         }
 
         .discover-button:hover {
-            background-color: #818cf8;
-            border-color: #818cf8;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background-color: #f8f9fa;
         }
 
         /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .menu {
-                display: none;
+        @media screen and (max-width: 768px) {
+            .hero-section {
+                height: 75vh;
             }
 
-            .mobile-menu-button {
-                display: block;
+            .hero-image {
+                object-position: center 30%;
             }
 
-            .hero-content h1 {
-                font-size: 2rem;
+            .hero-bottom {
+                bottom: 30px;
             }
 
-            .hero-content p {
+            .discover-button {
+                padding: 0.7rem 2rem;
                 font-size: 1rem;
             }
 
-            .feature-card, .news-card {
-                margin-bottom: 1rem;
+            .feature-card {
+                margin: 1rem;
+            }
+
+            .news-card {
+                margin: 1rem;
             }
 
             .grid {
                 grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero-section {
+                height: 70vh;
+            }
+
+            .discover-button {
+                padding: 0.6rem 1.8rem;
+                font-size: 0.9rem;
             }
         }
 
@@ -357,16 +399,30 @@
         .mobile-menu-item:last-child {
             border-bottom: none;
         }
+
+        .desktop-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .mobile-image {
+            display: none;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
     </style>
 </head>
 <body class="bg-red min-h-screen flex flex-col" x-data="{ open: false }">
     <!-- Hero Section -->
     <section class="hero-section">
+        <img src="photos/ChatGPT Image 4 Haz 2025 01_49_42.png" alt="Fırat Üniversitesi" class="hero-image">
         <div class="hero-overlay"></div>
-        <img src="photos/unnamed.jpg" alt="Fırat Üniversitesi" class="w-full h-full object-cover">
-        <div class="hero-content">
-            <h1 class="text-5xl font-bold mb-6">UniHi'a Hoş Geldiniz :))</h1>
-            <p class="text-xl mb-8">Üniversite ve şehir rehberiniz</p>
+        <div class="hero-bottom">
             <a href="login.html" class="discover-button">
                 Keşfet <i class="fas fa-arrow-right ml-2"></i>
             </a>
@@ -374,9 +430,74 @@
     </section>
 
     <!-- Features Section -->
-    <section class="py-16 px-6">
+    <section class="py-16 px-4 md:px-6">
         <h2 class="text-3xl font-bold text-center mb-12">Neden UniHi?</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        
+        <!-- UniHi Açıklama Bloğu -->
+        <div class="max-w-6xl mx-auto mb-12">
+            <div class="bg-white bg-opacity-5 rounded-xl p-6 backdrop-blur-lg">
+                <div class="text-center">
+                    <p class="text-white text-lg leading-relaxed">
+                        Yaptığımız araştırmalar sonucunda, öğrencilerin üniversite ve şehir hakkında yeterli bilgiye sahip olmadığını, ulaşım konusunda zorluklar yaşadığını ve bölüm bilgilerine erişimde sorunlar yaşadığını tespit ettik. Bu sorunları çözmek ve öğrencilere daha iyi bir üniversite deneyimi sunmak için UniHi'yi oluşturduk. UniHi, öğrencilere üniversite ve şehir hakkında detaylı bilgiler sunan, ulaşım konusunda rehberlik eden ve bölüm bilgilerine kolay erişim sağlayan kapsamlı bir platformdur. Amacımız, öğrencilerin üniversite hayatını daha kolay ve verimli hale getirmektir.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="max-w-6xl mx-auto mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Soru1 -->
+                <div class="bg-white bg-opacity-10 rounded-xl p-6 backdrop-blur-lg">
+                    <div class="flex items-center justify-center mb-4">
+                        <i class="fas fa-thumbtack text-4xl text-white transform rotate-12"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4 text-white">Üniversite ve Şehir Hakkında Yeterli Bilgiye Sahip Miydiniz?</h3>
+                    <div class="relative h-48">
+                        <canvas id="academicChart"></canvas>
+                    </div>
+                    <div class="mt-4 relative bg-white bg-opacity-5 rounded-lg p-4">
+                        <i class="fas fa-thumbtack text-2xl text-white transform rotate-12 absolute -top-3 -left-3"></i>
+                        <p class="text-white text-sm">Öğrencilerin %29.4'ü üniversite ve şehir hakkında yeterli bilgiye sahip olduğunu belirtirken, %30.9'u yeterli bilgiye sahip olmadığını ve %39.7'si kısmen bilgiye sahip olduğunu ifade etmiştir.</p>
+                    </div>
+                </div>
+
+                <!-- Soru2 -->
+                <div class="bg-white bg-opacity-10 rounded-xl p-6 backdrop-blur-lg">
+                    <div class="flex items-center justify-center mb-4">
+                        <i class="fas fa-thumbtack text-4xl text-white transform rotate-12"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4 text-white">Yurt veya Şehir Merkezi'ne Giden Otobüsler ve Durakları Bulmakta Zorlandınız Mı?</h3>
+                    <div class="relative h-48">
+                        <canvas id="satisfactionChart"></canvas>
+                    </div>
+                    <div class="mt-4 relative bg-white bg-opacity-5 rounded-lg p-4">
+                        <i class="fas fa-thumbtack text-2xl text-white transform rotate-12 absolute -top-3 -left-3"></i>
+                        <p class="text-white text-sm">Öğrencilerin %59.9'u ulaşım konusunda zorluk yaşadığını belirtirken, %32.4'ü zorluk yaşamadığını ve %14.7'si kısmen zorluk yaşadığını ifade etmiştir.</p>
+                    </div>
+                </div>
+
+                <!-- Soru3 -->
+                <div class="bg-white bg-opacity-10 rounded-xl p-6 backdrop-blur-lg">
+                    <div class="flex items-center justify-center mb-4">
+                        <i class="fas fa-thumbtack text-4xl text-white transform rotate-12"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4 text-white">Bölümünüz ile Alakalı Gerekli Bilgiler ve Linklere Kolaylıkla Ulaşabildiniz Mi?</h3>
+                    <div class="relative h-48">
+                        <canvas id="careerChart"></canvas>
+                    </div>
+                    <div class="mt-4 relative bg-white bg-opacity-5 rounded-lg p-4">
+                        <i class="fas fa-thumbtack text-2xl text-white transform rotate-12 absolute -top-3 -left-3"></i>
+                        <p class="text-white text-sm">Öğrencilerin %26.5'i bölüm bilgilerine kolayca ulaşabildiğini belirtirken, %35.3'ü ulaşamadığını ve %38.2'si kısmen ulaşabildiğini ifade etmiştir.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text-3xl font-bold text-center mb-12 mt-16">UniHi'de Neler Var?</h2>
+
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
             <div class="feature-card p-6">
                 <i class="fas fa-building feature-icon"></i>
                 <h3 class="text-xl font-bold mb-4">Yurt ve Konaklama</h3>
@@ -392,13 +513,50 @@
                 <h3 class="text-xl font-bold mb-4">Şehir Hakkında</h3>
                 <p class="text-gray-200">Şehre yeni geldiniz ve keşfetmeniz gereken çok şey var. Şehirdeki en önemli yerler, parklar, alışveriş merkezleri ve etkinlikler hakkında bilgi alabilirsiniz.</p>
             </div>
+            <div class="feature-card p-6">
+                <i class="fas fa-utensils feature-icon"></i>
+                <h3 class="text-xl font-bold mb-4">Yemek ve Kafeler</h3>
+                <p class="text-gray-200">Kampüs içi ve şehir merkezindeki yemek seçenekleri, kafeler ve restoranlar hakkında detaylı bilgiler. Öğrenci bütçesine uygun mekanlar ve özel indirimler.</p>
+            </div>
+            <div class="feature-card p-6">
+                <i class="fas fa-calendar-alt feature-icon"></i>
+                <h3 class="text-xl font-bold mb-4">Etkinlikler ve Kulüpler</h3>
+                <p class="text-gray-200">Üniversitedeki öğrenci kulüpleri, sosyal etkinlikler, spor aktiviteleri ve kültürel organizasyonlar. Yeni arkadaşlar edinmek ve sosyalleşmek için mükemmel fırsatlar.</p>
+            </div>
+            <div class="feature-card p-6">
+                <i class="fas fa-book feature-icon"></i>
+                <h3 class="text-xl font-bold mb-4">Akademik Kaynaklar</h3>
+                <p class="text-gray-200">Bölümünüzle ilgili ders programları, akademik takvim, kütüphane bilgileri ve online kaynaklara erişim. Öğrenim hayatınızı kolaylaştıracak tüm bilgiler.</p>
+            </div>
         </div>
     </section>
 
+    <!-- UniAI Section -->
+    <div class="max-w-6xl mx-auto mt-16 mb-12 px-4">
+        <div class="bg-white bg-opacity-5 rounded-xl p-6 md:p-8 backdrop-blur-lg">
+            <div class="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+                <div class="flex-1 text-center md:text-left">
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-4">UniAI Asistanınız</h3>
+                    <p class="text-white text-base md:text-lg leading-relaxed">
+                        UniHi'nin yapay zeka destekli asistanı UniAI, size 7/24 yardımcı olmak için burada! Üniversite ve şehir hakkındaki tüm sorularınızı yanıtlayabilir, size özel öneriler sunabilir ve ihtiyaçlarınıza göre kişiselleştirilmiş bilgiler sağlayabilir. UniAI ile üniversite hayatınızı daha kolay ve verimli hale getirin.
+                    </p>
+                    <div class="mt-6">
+                        <a href="login.html" class="inline-block bg-white text-indigo-600 px-6 py-3 rounded-full font-bold hover:bg-opacity-90 transition-all text-sm md:text-base">
+                            UniAI ile Tanışın <i class="fas fa-robot ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-1 flex justify-center">
+                    <i class="fas fa-robot text-6xl md:text-8xl text-white opacity-80"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- News Section -->
-    <section class="py-16 px-6 bg-opacity-50 bg-black">
+    <section class="py-16 px-4 md:px-6 bg-opacity-50 bg-black">
         <h2 class="text-3xl font-bold text-center mb-12">Son Haberler</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
             <div class="news-card p-6">
                 <img src="photos/Etkinlikler/08.04.2025 Yapay Zeka Konferansı.jpg" alt="Yapay Zeka Konferansı" class="w-full h-48 object-cover rounded-lg mb-4">
                 <span class="news-category">Konferans</span>
@@ -428,7 +586,7 @@
 
     <!-- Footer -->
     <footer class="bg-black bg-opacity-50 py-8 mt-auto">
-        <div class="max-w-6xl mx-auto px-6">
+        <div class="max-w-6xl mx-auto px-4 md:px-6">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <h4 class="text-xl font-bold mb-4">İletişim</h4>
@@ -457,5 +615,129 @@
             </div>
         </div>
     </footer>
+
+    <!-- Chart.js Script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Soru1
+        const academicCtx = document.getElementById('academicChart').getContext('2d');
+        new Chart(academicCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Evet', 'Hayır', 'Kısmen'],
+                datasets: [{
+                    data: [29.4, 30.9, 39.7],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(255, 206, 86, 0.8)'
+                    ],
+                    borderColor: 'rgba(255, 255, 255, 0.2)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: 'white',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutQuart',
+                    animateRotate: true,
+                    animateScale: false
+                }
+            }
+        });
+
+        // Soru2
+        const satisfactionCtx = document.getElementById('satisfactionChart').getContext('2d');
+        new Chart(satisfactionCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Evet', 'Hayır', 'Kısmen'],
+                datasets: [{
+                    data: [59.9, 32.4, 14.7],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(255, 206, 86, 0.8)'
+                    ],
+                    borderColor: 'rgba(255, 255, 255, 0.2)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: 'white',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutQuart',
+                    animateRotate: true,
+                    animateScale: false
+                }
+            }
+        });
+
+        // Soru3
+        const careerCtx = document.getElementById('careerChart').getContext('2d');
+        new Chart(careerCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Evet', 'Hayır', 'Kısmen'],
+                datasets: [{
+                    data: [26.5, 35.3, 38.2],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(255, 206, 86, 0.8)'
+                    ],
+                    borderColor: 'rgba(255, 255, 255, 0.2)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            color: 'white',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutQuart',
+                    animateRotate: true,
+                    animateScale: false
+                }
+            }
+        });
+    </script>
 </body>
 </html> 
