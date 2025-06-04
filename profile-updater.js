@@ -17,7 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
 function loadUserData() {
     const savedData = localStorage.getItem('userData');
     if (savedData) {
-        userData = JSON.parse(savedData);
+        const parsedData = JSON.parse(savedData);
+        userData = {
+            ...userData,
+            ...parsedData,
+            photoUrl: parsedData.photoUrl || 'photos/profil.png'
+        };
     }
 }
 
