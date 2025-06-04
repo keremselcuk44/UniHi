@@ -3,7 +3,7 @@ let userData = {
     name: '',
     faculty: '',
     department: '',
-    photoUrl: 'photos/jonsnow.png'
+    photoUrl: 'photos/profil.png'
 };
 
 // Load saved user data on page load
@@ -31,7 +31,11 @@ function updateUIWithUserData() {
     // Update profile pictures across all pages
     const profileImages = document.querySelectorAll('.profile-menu img');
     profileImages.forEach(img => {
-        img.src = userData.photoUrl || 'photos/jonsnow.png';
+        if (userData.photoUrl) {
+            img.src = userData.photoUrl;
+        } else {
+            img.src = 'photos/profil.png';
+        }
     });
 
     // Update settings page fields if we're on that page
@@ -41,7 +45,10 @@ function updateUIWithUserData() {
         const facultyInput = document.getElementById('facultyInput');
         const departmentInput = document.getElementById('departmentInput');
 
-        if (profilePreview) profilePreview.src = userData.photoUrl || 'photos/jonsnow.png';
+        // Settings sayfasında kullanıcının yüklediği resmi veya varsayılan resmi göster
+        if (profilePreview) {
+            profilePreview.src = userData.photoUrl || 'photos/profil.png';
+        }
         if (nameInput) nameInput.value = userData.name || '';
         if (facultyInput) facultyInput.value = userData.faculty || '';
         if (departmentInput) departmentInput.value = userData.department || '';
@@ -66,8 +73,17 @@ function setupEventListeners() {
         if (file) {
             const reader = new FileReader();
             reader.onload = (e) => {
-                userData.photoUrl = e.target.result;
-                document.getElementById('profilePreview').src = e.target.result;
+                const newPhotoUrl = e.target.result;
+                userData.photoUrl = newPhotoUrl;
+                
+                // Update preview immediately
+                const profilePreview = document.getElementById('profilePreview');
+                if (profilePreview) {
+                    profilePreview.src = newPhotoUrl;
+                }
+                
+                // Save to localStorage immediately
+                saveUserData();
             };
             reader.readAsDataURL(file);
         }
