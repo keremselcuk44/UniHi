@@ -19,8 +19,9 @@ function loadUserData() {
     if (savedData) {
         const parsedData = JSON.parse(savedData);
         userData = {
-            ...userData,
-            ...parsedData,
+            name: parsedData.name || '',
+            faculty: parsedData.faculty || '',
+            department: parsedData.department || '',
             photoUrl: parsedData.photoUrl || 'photos/profil.png'
         };
     }
@@ -36,11 +37,7 @@ function updateUIWithUserData() {
     // Update profile pictures across all pages
     const profileImages = document.querySelectorAll('.profile-menu img');
     profileImages.forEach(img => {
-        if (userData.photoUrl) {
-            img.src = userData.photoUrl;
-        } else {
-            img.src = 'photos/profil.png';
-        }
+        img.src = userData.photoUrl;
     });
 
     // Update settings page fields if we're on that page
@@ -50,9 +47,8 @@ function updateUIWithUserData() {
         const facultyInput = document.getElementById('facultyInput');
         const departmentInput = document.getElementById('departmentInput');
 
-        // Settings sayfasında kullanıcının yüklediği resmi veya varsayılan resmi göster
         if (profilePreview) {
-            profilePreview.src = userData.photoUrl || 'photos/profil.png';
+            profilePreview.src = userData.photoUrl;
         }
         if (nameInput) nameInput.value = userData.name || '';
         if (facultyInput) facultyInput.value = userData.faculty || '';
