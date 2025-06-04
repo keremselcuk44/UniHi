@@ -7,7 +7,7 @@ let userData = {
 };
 
 // Sayfa yüklendiğinde çalışacak fonksiyon
-window.onload = function() {
+document.addEventListener('DOMContentLoaded', function() {
     // localStorage'dan veriyi yükle
     const savedData = localStorage.getItem('userData');
     if (savedData) {
@@ -27,18 +27,26 @@ window.onload = function() {
     if (window.location.pathname.includes('settings.html')) {
         setupSettingsPage();
     }
-};
+});
 
 // Profil resimlerini güncelle
 function updateProfileImages() {
     const profileImages = document.querySelectorAll('.profile-menu img');
     profileImages.forEach(img => {
+        // Resim yüklenme hatası durumunda varsayılan resmi göster
+        img.onerror = function() {
+            this.src = 'photos/profil.png';
+        };
+        // Resmi ayarla
         img.src = userData.photoUrl;
     });
 
     // Settings sayfasındaki önizleme resmini güncelle
     const profilePreview = document.getElementById('profilePreview');
     if (profilePreview) {
+        profilePreview.onerror = function() {
+            this.src = 'photos/profil.png';
+        };
         profilePreview.src = userData.photoUrl;
     }
 }
