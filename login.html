@@ -27,13 +27,20 @@
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+        .register-btn {
+            background-color: #FF6B00 !important;
+            color: white !important;
+        }
+        .register-btn:hover {
+            background-color: #E65C00 !important;
+        }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen relative">
-    <img src="photos/unihilogo.png" alt="Logo" class="logo" />
+    <img src="photos/Logo.png" alt="Logo" class="logo" />
 
     <div class="text-center text-white">
-        <h1 class="text-5xl font-bold mb-6">UniHi - Your University Guide</h1>
+        <h1 class="text-5xl font-bold mb-6">Üniversite ve Şehir Rehberiniz</h1>
 
         <!-- Giriş Formu -->
         <div id="login-form" class="bg-white p-6 max-w-lg mx-auto rounded-2xl shadow-2xl">
@@ -51,7 +58,7 @@
                 </div>
                 <div class="flex justify-center space-x-4">
                     <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-blue-600">Giriş Yap</button>
-                    <button type="button" onclick="toggleForms()" class="bg-green-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-green-600">Kayıt Ol</button>
+                    <button type="button" onclick="toggleForms()" class="register-btn px-6 py-2 rounded-xl shadow-md">Kayıt Ol</button>
                 </div>
             </form>
             <p id="login-message" class="mt-2"></p>
@@ -90,7 +97,7 @@
                     <div id="password-strength-text" class="text-xs text-gray-500 mt-1 h-4">Şifreniz en az 6 karakter olmalıdır</div>
                 </div>
                 <div class="flex justify-center space-x-4">
-                    <button type="submit" class="bg-green-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-green-600">Kaydı Tamamla</button>
+                    <button type="submit" class="register-btn px-6 py-2 rounded-xl shadow-md">Kaydı Tamamla</button>
                     <button type="button" onclick="toggleForms()" class="bg-gray-500 text-white px-6 py-2 rounded-xl shadow-md hover:bg-gray-600">Geri Dön</button>
                 </div>
             </form>
@@ -209,30 +216,6 @@
                 message.className = "text-red-500 mt-2";
                 console.error("Login error:", error);
             }
-
-            function loginUser(username, password) {
-  fetch('/api/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password }),
-  })
-  .then(response => response.json())
-  .then(data => {
-    if(data.user) {
-      // Giriş başarılıysa kullanıcı bilgilerini sessionStorage'a kaydet
-      sessionStorage.setItem('currentUser', JSON.stringify(data.user));
-
-      // Burada updateWelcomeMessage yok! Sadece yönlendir.
-      window.location.href = 'modules.html';
-    } else {
-      alert(data.message || 'Giriş başarısız');
-    }
-  })
-  .catch(err => {
-    console.error('Login hatası:', err);
-  });
-}
-
         }
     
         function togglePasswordVisibility(inputId) {
