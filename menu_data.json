@@ -1,28 +1,31 @@
 {
   "uni_menu": {
-    "date": "30 Mayıs 2025 Cuma",
+    "date": "11 Haziran 2025 Çarşamba",
     "items": [
-      "ETLİ GÜVEÇ",
-      "PİRİNÇ PİLAVI",
-      "SOĞUK HARPUT ÇORBASI",
-      "PUDİNG"
+      "SEBZELİ KEBAP",
+      "BULGUR  PİLAVI",
+      "İRMİK HELVA",
+      "AYRAN"
     ]
   },
   "kyk_menus": {
     "aksam": {
-      "gun": "Cuma",
+      "gun": "Çarşamba",
       "menü": [
         {
-          "isim": "Tarhana Çorba / Dövme Çorba"
+          "isim": "Şehriyeli Yayla Çorba / Tarhana"
         },
         {
-          "isim": "Tavuk Tantuni / Sulu Nohut"
+          "isim": "Etli Kuru Fasulye / Soslu Karışık Kızartma"
         },
         {
-          "isim": "Sebzeli Bulgur Pilav"
+          "isim": "Şehriyeli Pirinç Pilavı"
         },
         {
-          "isim": "Ayran"
+          "isim": "Revani"
+        },
+        {
+          "isim": "Çeyrek Ekmek"
         },
         {
           "isim": "500 ml Su"
@@ -30,22 +33,22 @@
       ]
     },
     "sabah": {
-      "gun": "Cuma",
+      "gun": "Çarşamba",
       "menü": [
         {
-          "isim": "Patatesli Börek"
+          "isim": "Karışık Kızartma"
         },
         {
-          "isim": "Sucuklu Yumurta"
+          "isim": "Haşlanmış Yumurta"
         },
         {
           "isim": "Siyah/Yeşil Zeytin"
         },
         {
-          "isim": "Beyaz Peynir"
+          "isim": "Kaşar Peyniri"
         },
         {
-          "isim": "Mevsim Sebzeleri Söğüş"
+          "isim": "Sürülebilir Çikolata"
         },
         {
           "isim": "Çeyrek Ekmek / 500 ml Su / Çay"
@@ -53,5 +56,5 @@
       ]
     }
   },
-  "last_updated": "2025-05-30 14:40:33"
+  "last_updated": "2025-06-11 09:32:41"
 }
