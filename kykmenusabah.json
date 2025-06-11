@@ -1,6 +1,6 @@
 {
   "Mayis_Ayi_Kahvalti_Menusu": {
-    "2025-05-01": {
+    "2025-06-01": {
       "gun": "Perşembe",
       "menü": [
         {"isim": "Sade Omlet"},
@@ -13,7 +13,7 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-02": {
+    "2025-06-02": {
       "gun": "Cuma",
       "menü": [
         {"isim": "Haşlanmış Yumurta"},
@@ -26,7 +26,7 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-03": {
+    "2025-06-03": {
       "gun": "Cumartesi",
       "menü": [
         {"isim": "Sucuklu Yumurta"},
@@ -39,7 +39,7 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-04": {
+    "2025-06-04": {
       "gun": "Pazar",
       "menü": [
         {"isim": "Patates Kızartması"},
@@ -52,7 +52,7 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-05": {
+    "2025-06-05": {
       "gun": "Pazartesi",
       "menü": [
         {"isim": "Menemen"},
@@ -65,7 +65,7 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-06": {
+    "2025-06-06": {
       "gun": "Salı",
       "menü": [
         {"isim": "Sucuklu-Kaşarlı Omlet"},
@@ -78,7 +78,7 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-07": {
+    "2025-06-07": {
       "gun": "Çarşamba",
       "menü": [
         {"isim": "Kaşarlı Omlet"},
@@ -91,7 +91,7 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-08": {
+    "2025-06-08": {
       "gun": "Perşembe",
       "menü": [
         {"isim": "Patates Kavurması"},
@@ -104,7 +104,7 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-09": {
+    "2025-06-09": {
       "gun": "Cuma",
       "menü": [
         {"isim": "Kaşarlı Pide"},
@@ -117,7 +117,7 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-10": {
+    "2025-06-10": {
       "gun": "Cumartesi",
       "menü": [
         {"isim": "Sucuklu Yumurta"},
@@ -130,32 +130,30 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-11": {
-      "gun": "Pazar",
+    "2025-06-11": {
+      "gun": "Çarşamba",
       "menü": [
-        {"isim": "Sade Omlet"},
-        {"isim": "Zeytinli/Peynirli Açma"},
-        {"isim": "Siyah Zeytin"},
-        {"isim": "Beyaz Peynir"},
-        {"isim": "Domates"},
-        {"isim": "Reçel"},
-        {"isim": "Tereyağı"},
+        {"isim": "Karışık Kızartma"},
+        {"isim": "Haşlanmış Yumurta"},
+        {"isim": "Siyah/Yeşil Zeytin"},
+        {"isim": "Kaşar Peyniri"},
+        {"isim": "Sürülebilir Çikolata"},
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-12": {
-      "gun": "Pazartesi",
+          "2025-06-12": {
+      "gun": "Perşembe",
       "menü": [
-        {"isim": "Peynirli Börek"},
         {"isim": "Sade Omlet"},
+        {"isim": "Simit"},
         {"isim": "Siyah/Yeşil Zeytin"},
-        {"isim": "Krem Peynir"},
+        {"isim": "Beyaz Peynir"},
         {"isim": "Mevsim Sebzeleri Söğüş"},
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-13": {
-      "gun": "Salı",
+    "2025-06-13": {
+      "gun": "Cuma",
       "menü": [
         {"isim": "Sucuklu Yumurta"},
         {"isim": "Kek"},
@@ -165,8 +163,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-14": {
-      "gun": "Çarşamba",
+    "2025-06-14": {
+      "gun": "Cumartesi", 
       "menü": [
         {"isim": "Patates Kızartması"},
         {"isim": "Haşlanmış Yumurta"},
@@ -176,8 +174,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-15": {
-      "gun": "Perşembe",
+    "2025-06-15": {
+      "gun": "Pazar",
       "menü": [
         {"isim": "Sade Omlet"},
         {"isim": "Dere Otlu Poğaça"},
@@ -187,8 +185,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-16": {
-      "gun": "Cuma",
+    "2025-06-16": {
+      "gun": "Pazartesi",
       "menü": [
         {"isim": "Karışık Pizza"},
         {"isim": "Haşlanmış Yumurta"},
@@ -198,8 +196,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-17": {
-      "gun": "Cumartesi",
+    "2025-06-17": {
+      "gun": "Salı",
       "menü": [
         {"isim": "Menemen"},
         {"isim": "Simit"},
@@ -209,8 +207,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-18": {
-      "gun": "Pazar",
+    "2025-06-18": {
+      "gun": "Çarşamba",
       "menü": [
         {"isim": "Karışık Kızartma"},
         {"isim": "Kek"},
@@ -220,8 +218,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-19": {
-      "gun": "Pazartesi",
+    "2025-06-19": {
+      "gun": "Perşembe",
       "menü": [
         {"isim": "Sucuklu Yumurta"},
         {"isim": "Patates Kızartması"},
@@ -231,8 +229,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-20": {
-      "gun": "Salı",
+    "2025-06-20": {
+      "gun": "Cuma",
       "menü": [
         {"isim": "Sosis Kokteyl"},
         {"isim": "Haşlanmış Yumurta"},
@@ -242,8 +240,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-21": {
-      "gun": "Çarşamba",
+    "2025-06-21": {
+      "gun": "Cumartesi",
       "menü": [
         {"isim": "Patatesli Yumurta"},
         {"isim": "Sade Poğaça"},
@@ -253,8 +251,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-22": {
-      "gun": "Perşembe",
+    "2025-06-22": {
+      "gun": "Pazar",
       "menü": [
         {"isim": "Sucuklu Yumurta"},
         {"isim": "Zeytinli/Peynirli Açma"},
@@ -264,8 +262,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-23": {
-      "gun": "Cuma",
+      "2025-06-23": {
+      "gun": "Pazartesi",
       "menü": [
         {"isim": "Sade Omlet"},
         {"isim": "Çikolatalı Kek"},
@@ -275,8 +273,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-24": {
-      "gun": "Cumartesi",
+    "2025-06-24": {
+      "gun": "Salı",
       "menü": [
         {"isim": "Patates Kızartması"},
         {"isim": "Haşlanmış Yumurta"},
@@ -286,8 +284,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-25": {
-      "gun": "Pazar",
+    "2025-06-25": {
+      "gun": "Çarşamba",
       "menü": [
         {"isim": "Menemen"},
         {"isim": "Dere Otlu Poğaça"},
@@ -297,8 +295,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-26": {
-      "gun": "Pazartesi",
+    "2025-06-26": {
+      "gun": "Perşembe",
       "menü": [
         {"isim": "Simit"},
         {"isim": "Sade Omlet"},
@@ -308,8 +306,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-27": {
-      "gun": "Salı",
+    "2025-06-27": {
+      "gun": "Cuma",
       "menü": [
         {"isim": "Peynirli Omlet"},
         {"isim": "Meyveli Kek"},
@@ -319,8 +317,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-28": {
-      "gun": "Çarşamba",
+    "2025-06-28": {
+      "gun": "Cumartesi",
       "menü": [
         {"isim": "Patates Kızartması"},
         {"isim": "Haşlanmış Yumurta"},
@@ -330,8 +328,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-29": {
-      "gun": "Perşembe",
+    "2025-06-29": {
+      "gun": "Pazar",
       "menü": [
         {"isim": "Kaşarlı Omlet"},
         {"isim": "Sade Açma"},
@@ -341,8 +339,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-30": {
-      "gun": "Cuma",
+    "2025-06-30": {
+      "gun": "Pazartesi",
       "menü": [
         {"isim": "Patatesli Börek"},
         {"isim": "Sucuklu Yumurta"},
@@ -352,8 +350,8 @@
         {"isim": "Çeyrek Ekmek / 500 ml Su / Çay"}
       ]
     },
-    "2025-05-31": {
-      "gun": "Cumartesi",
+      "2025-06-31": {
+      "gun": "Salı",
       "menü": [
         {"isim": "Sade Omlet"},
         {"isim": "Dere"},

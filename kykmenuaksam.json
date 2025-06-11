@@ -1,6 +1,6 @@
 {
   "Mayis_Ayi_Aksam_Menusu": {
-    "2025-05-06": {
+    "2025-06-01": {
       "gun": "Salı",
       "menü": [
         {"isim": "Tarhana Çorba / Ayran Aşı Çorba"},
@@ -10,7 +10,7 @@
         {"isim": "500 ml Su"}
       ]
     },
-    "2025-05-07": {
+    "2025-06-02": {
       "gun": "Çarşamba",
       "menü": [
         {"isim": "Süzme Çorba / Şehriyeli Yayla Çorba"},
@@ -20,7 +20,7 @@
         {"isim": "500 ml Su"}
       ]
     },
-    "2025-05-08": {
+    "2025-06-03": {
       "gun": "Perşembe",
       "menü": [
         {"isim": "Domates Çorba / Ezogelin Çorba"},
@@ -30,7 +30,7 @@
         {"isim": "500 ml Su"}
       ]
     },
-    "2025-05-09": {
+    "2025-06-04": {
       "gun": "Cuma",
       "menü": [
         {"isim": "Ezogelin Çorba / Şehriyeli Yayla Çorba"},
@@ -40,7 +40,7 @@
         {"isim": "500 ml Su"}
       ]
     },
-    "2025-05-10": {
+    "2025-06-05": {
       "gun": "Cumartesi",
       "menü": [
         {"isim": "Süzme Çorba / Tarhana Çorba"},
@@ -50,7 +50,7 @@
         {"isim": "500 ml Su"}
       ]
     },
-    "2025-05-11": {
+    "2025-06-06": {
       "gun": "Pazar",
       "menü": [
         {"isim": "Şehriyeli Yayla Çorba / Tarhana"},
@@ -60,7 +60,7 @@
         {"isim": "500 ml Su"}
       ]
     },
-    "2025-05-12": {
+    "2025-06-07": {
       "gun": "Pazartesi",
       "menü": [
         {"isim": "Domates Çorba / Mercimek Çorba"},
@@ -70,7 +70,7 @@
         {"isim": "500 ml Su"}
       ]
     },
-    "2025-05-13": {
+    "2025-06-08": {
       "gun": "Salı",
       "menü": [
         {"isim": "Tarhana Çorba / Şehriyeli Yayla Çorba"},
@@ -80,7 +80,7 @@
         {"isim": "500 ml Su"}
       ]
     },
-    "2025-05-14": {
+    "2025-06-09": {
       "gun": "Çarşamba",
       "menü": [
         {"isim": "Ezogelin Çorba / Tarhana Çorba"},
@@ -90,7 +90,7 @@
         {"isim": "500 ml Su"}
       ]
     },
-    "2025-05-15": {
+    "2025-06-10": {
       "gun": "Perşembe",
       "menü": [
         {"isim": "Ayran Aşı Çorba / Domates Çorba"},
@@ -100,28 +100,30 @@
         {"isim": "500 ml Su"}
       ]
     },
-    "2025-05-16": {
+    "2025-06-11": {
+      "gun": "Çarşamba",
+      "menü": [
+        {"isim": "Şehriyeli Yayla Çorba / Tarhana"},
+        {"isim": "Etli Kuru Fasulye / Soslu Karışık Kızartma"},
+        {"isim": "Şehriyeli Pirinç Pilavı"},
+        {"isim": "Revani"},
+        {"isim": "Çeyrek Ekmek"},
+        {"isim": "500 ml Su"}
+      ]
+    },
+    "2025-06-12": {
+      "gun": "Perşembe",
+      "menü": [
+        {"isim": "Domates Çorba / Mercimek Çorba"},
+        {"isim": "Tavuk Sote / Salçalı Mantı"},
+        {"isim": "Sebzeli Bulgur Pilav"},
+        {"isim": "Tarator"},
+        {"isim": "Çeyrek Ekmek"},
+        {"isim": "500 ml Su"}
+      ]
+    },
+    "2025-06-13": {
       "gun": "Cuma",
-      "menü": [
-        {"isim": "Mercimek Çorba / Mahluta Çorba"},
-        {"isim": "Karnıyarık / Taze Fasulye"},
-        {"isim": "Nohutlu Pirinç Pilavı"},
-        {"isim": "Cacık"},
-        {"isim": "500 ml Su"}
-      ]
-    },
-    "2025-05-17": {
-      "gun": "Cumartesi",
-      "menü": [
-        {"isim": "Şehriyeli Yayla Çorba / Ezogelin Çorba"},
-        {"isim": "Tavuk Sote / Yoğurtlu Mantı"},
-        {"isim": "Soslu Makarna"},
-        {"isim": "Cacık"},
-        {"isim": "500 ml Su"}
-      ]
-    },
-    "2025-05-18": {
-      "gun": "Pazar",
       "menü": [
         {"isim": "Ayran Aşı Çorba / Ezogelin Çorba"},
         {"isim": "Çiftlik Kebabı / Sulu Köfte"},
@@ -130,8 +132,8 @@
         {"isim": "500 ml Su"}
       ]
     },
-    "2025-05-19": {
-      "gun": "Pazartesi",
+    "2025-06-14": {
+      "gun": "Cumartesi",
       "menü": [
         {"isim": "Domates Çorba / Ezogelin Çorba"},
         {"isim": "Hamburger Köfte / Patates Kızartması"},
@@ -140,8 +142,8 @@
         {"isim": "500 ml Su"}
       ]
     },
-    "2025-05-29": {
-      "gun": "Perşembe",
+    "2025-06-15": {
+      "gun": "Pazar",
       "menü": [
         {"isim": "Mercimek Çorba / Mahluta Çorba"},
         {"isim": "Etli Dolma / Soslu Karışık Kızartma"},
@@ -150,8 +152,8 @@
         {"isim": "500 ml Su"}
       ]
     },
-    "2025-05-30": {
-      "gun": "Cuma",
+    "2025-06-16": {
+      "gun": "Pazartesi",
       "menü": [
         {"isim": "Tarhana Çorba / Dövme Çorba"},
         {"isim": "Tavuk Tantuni / Sulu Nohut"},
